@@ -1,0 +1,1356 @@
+15:36:16 [Warning] Overriding address(es) '"http://localhost:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+15:36:24 [Information] Authentication attempt for login: "string"
+15:36:25 [Information] JWT token generated for user deb0cc8d-b2a5-4e65-92ef-a775802a880f
+15:36:25 [Information] User authenticated successfully. UserId: deb0cc8d-b2a5-4e65-92ef-a775802a880f
+15:36:46 [Warning] User with Id 3fa85f64-5717-4562-b3fc-2c963f66afa6 not found
+15:36:46 [Error] Error occurred while retrieving user with Id 3fa85f64-5717-4562-b3fc-2c963f66afa6
+Eventity.Domain.Exceptions.UserRepositoryException: User with Id 3fa85f64-5717-4562-b3fc-2c963f66afa6 not found
+   at Eventity.DataAccess.Repositories.UserRepository.GetByIdAsync(Guid id) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.DataAccess/Repositories/UserRepository.cs:line 53
+15:36:46 [Error] Failed to get user by ID: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+Eventity.Domain.Exceptions.UserRepositoryException: Failed to retrieve user
+ ---> Eventity.Domain.Exceptions.UserRepositoryException: User with Id 3fa85f64-5717-4562-b3fc-2c963f66afa6 not found
+   at Eventity.DataAccess.Repositories.UserRepository.GetByIdAsync(Guid id) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.DataAccess/Repositories/UserRepository.cs:line 53
+   --- End of inner exception stack trace ---
+   at Eventity.DataAccess.Repositories.UserRepository.GetByIdAsync(Guid id) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.DataAccess/Repositories/UserRepository.cs:line 61
+   at UserService.GetUserById(Guid id) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.Application/Services/UserService.cs:line 43
+15:36:46 [Warning] User not found: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+Eventity.Domain.Exceptions.UserServiceException: User service: Failed to get user by id
+ ---> Eventity.Domain.Exceptions.UserRepositoryException: Failed to retrieve user
+ ---> Eventity.Domain.Exceptions.UserRepositoryException: User with Id 3fa85f64-5717-4562-b3fc-2c963f66afa6 not found
+   at Eventity.DataAccess.Repositories.UserRepository.GetByIdAsync(Guid id) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.DataAccess/Repositories/UserRepository.cs:line 53
+   --- End of inner exception stack trace ---
+   at Eventity.DataAccess.Repositories.UserRepository.GetByIdAsync(Guid id) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.DataAccess/Repositories/UserRepository.cs:line 61
+   at UserService.GetUserById(Guid id) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.Application/Services/UserService.cs:line 43
+   --- End of inner exception stack trace ---
+   at UserService.GetUserById(Guid id) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.Application/Services/UserService.cs:line 56
+   at Eventity.Api.Controllers.UserController.GetUserById(Guid id) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.Web/Controllers/UserController.cs:line 76
+15:36:56 [Information] Retrieved user successfully. ID: deb0cc8d-b2a5-4e65-92ef-a775802a880f, Login: "string"
+15:37:04 [Information] Retrieved user successfully. ID: deb0cc8d-b2a5-4e65-92ef-a775802a880f, Login: "string"
+15:38:18 [Warning] Overriding address(es) '"http://localhost:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+15:38:27 [Information] Authentication attempt for login: "string"
+15:38:28 [Information] JWT token generated for user deb0cc8d-b2a5-4e65-92ef-a775802a880f
+15:38:28 [Information] User authenticated successfully. UserId: deb0cc8d-b2a5-4e65-92ef-a775802a880f
+15:39:02 [Information] Authentication attempt for login: "string"
+15:39:02 [Information] JWT token generated for user deb0cc8d-b2a5-4e65-92ef-a775802a880f
+15:39:02 [Information] User authenticated successfully. UserId: deb0cc8d-b2a5-4e65-92ef-a775802a880f
+15:39:13 [Warning] Event not found: deb0cc8d-b2a5-4e65-92ef-a775802a880f
+15:39:13 [Warning] Event not found. ID: deb0cc8d-b2a5-4e65-92ef-a775802a880f
+15:39:13 [Error] Failed to get event. ID: deb0cc8d-b2a5-4e65-92ef-a775802a880f
+Eventity.Domain.Exceptions.EventServiceException: Event not found
+   at Eventity.Application.Services.EventService.GetEventById(Guid id) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.Application/Services/EventService.cs:line 82
+15:39:14 [Warning] Event not found: deb0cc8d-b2a5-4e65-92ef-a775802a880f
+Eventity.Domain.Exceptions.EventServiceException: Failed to get event
+ ---> Eventity.Domain.Exceptions.EventServiceException: Event not found
+   at Eventity.Application.Services.EventService.GetEventById(Guid id) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.Application/Services/EventService.cs:line 82
+   --- End of inner exception stack trace ---
+   at Eventity.Application.Services.EventService.GetEventById(Guid id) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.Application/Services/EventService.cs:line 92
+   at Eventity.Api.Controllers.EventController.GetEventById(Guid id) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.Web/Controllers/EventController.cs:line 78
+15:41:56 [Warning] Overriding address(es) '"http://localhost:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+15:42:26 [Information] Retrieved 31 events
+15:42:26 [Information] Retrieved 31 events successfully
+15:43:09 [Warning] Overriding address(es) '"http://localhost:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+15:43:17 [Debug] Trying to get add events
+15:43:17 [Debug] Retrieving all events
+15:43:17 [Information] Retrieved 31 events
+15:43:17 [Information] Retrieved 31 events successfully
+18:09:30 [Warning] Overriding address(es) '"http://localhost:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+18:09:41 [Information] Authentication attempt for login: "string"
+18:09:42 [Information] JWT token generated for user deb0cc8d-b2a5-4e65-92ef-a775802a880f
+18:09:42 [Information] User authenticated successfully. UserId: deb0cc8d-b2a5-4e65-92ef-a775802a880f
+18:10:22 [Debug] Trying to add event
+18:10:23 [Debug] Attempting to add new event: Event { Id: e4213034-b3eb-4a12-bf71-752eeefa0bd9, Title: "string string", Description: "string", DateTime: 05/15/2026 15:09:56, Address: "string", OrganizerId: 3fa85f64-5717-4562-b3fc-2c963f66afa6 }
+18:10:23 [Information] Event added successfully: e4213034-b3eb-4a12-bf71-752eeefa0bd9
+18:10:24 [Error] Failed executing DbCommand ("38"ms) [Parameters=["@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = Guid)"], CommandType='Text', CommandTimeout='30']"
+""INSERT INTO \"Participations\" (\"Id\", \"EventId\", \"Role\", \"Status\", \"UserId\")
+VALUES (@p0, @p1, @p2, @p3, @p4);"
+18:10:24 [Error] An exception occurred in the database while saving changes for context type '"Eventity.DataAccess.Context.EventityDbContext"'."
+""Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 23503: insert or update on table \"Participations\" violates foreign key constraint \"FK_Participations_Users_UserId\"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|233_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+  Exception data:
+    Severity: ERROR
+    SqlState: 23503
+    MessageText: insert or update on table \"Participations\" violates foreign key constraint \"FK_Participations_Users_UserId\"
+    Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+    SchemaName: public
+    TableName: Participations
+    ConstraintName: FK_Participations_Users_UserId
+    File: ri_triggers.c
+    Line: 2619
+    Routine: ri_ReportViolation
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)"
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 23503: insert or update on table "Participations" violates foreign key constraint "FK_Participations_Users_UserId"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|233_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+  Exception data:
+    Severity: ERROR
+    SqlState: 23503
+    MessageText: insert or update on table "Participations" violates foreign key constraint "FK_Participations_Users_UserId"
+    Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+    SchemaName: public
+    TableName: Participations
+    ConstraintName: FK_Participations_Users_UserId
+    File: ri_triggers.c
+    Line: 2619
+    Routine: ri_ReportViolation
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+18:10:24 [Error] Error occurred while creating participation
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 23503: insert or update on table "Participations" violates foreign key constraint "FK_Participations_Users_UserId"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|233_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+  Exception data:
+    Severity: ERROR
+    SqlState: 23503
+    MessageText: insert or update on table "Participations" violates foreign key constraint "FK_Participations_Users_UserId"
+    Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+    SchemaName: public
+    TableName: Participations
+    ConstraintName: FK_Participations_Users_UserId
+    File: ri_triggers.c
+    Line: 2619
+    Routine: ri_ReportViolation
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Eventity.DataAccess.Repositories.ParticipationRepository.AddAsync(Participation participation) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.DataAccess/Repositories/ParticipationRepository.cs:line 33
+18:10:24 [Error] Failed to create event. Transaction rolled back.
+Eventity.Domain.Exceptions.ParticipationRepositoryException: Failed to create participation
+ ---> Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 23503: insert or update on table "Participations" violates foreign key constraint "FK_Participations_Users_UserId"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|233_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+  Exception data:
+    Severity: ERROR
+    SqlState: 23503
+    MessageText: insert or update on table "Participations" violates foreign key constraint "FK_Participations_Users_UserId"
+    Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+    SchemaName: public
+    TableName: Participations
+    ConstraintName: FK_Participations_Users_UserId
+    File: ri_triggers.c
+    Line: 2619
+    Routine: ri_ReportViolation
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Eventity.DataAccess.Repositories.ParticipationRepository.AddAsync(Participation participation) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.DataAccess/Repositories/ParticipationRepository.cs:line 33
+   --- End of inner exception stack trace ---
+   at Eventity.DataAccess.Repositories.ParticipationRepository.AddAsync(Participation participation) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.DataAccess/Repositories/ParticipationRepository.cs:line 40
+   at Eventity.Application.Services.EventService.AddEvent(String title, String description, DateTime dateTime, String address, Guid organizerId) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.Application/Services/EventService.cs:line 50
+18:10:24 [Error] Failed to create event. Title: "string string", Organizer: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+Eventity.Domain.Exceptions.ParticipationRepositoryException: Failed to create participation
+ ---> Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 23503: insert or update on table "Participations" violates foreign key constraint "FK_Participations_Users_UserId"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|233_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+  Exception data:
+    Severity: ERROR
+    SqlState: 23503
+    MessageText: insert or update on table "Participations" violates foreign key constraint "FK_Participations_Users_UserId"
+    Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+    SchemaName: public
+    TableName: Participations
+    ConstraintName: FK_Participations_Users_UserId
+    File: ri_triggers.c
+    Line: 2619
+    Routine: ri_ReportViolation
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Eventity.DataAccess.Repositories.ParticipationRepository.AddAsync(Participation participation) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.DataAccess/Repositories/ParticipationRepository.cs:line 33
+   --- End of inner exception stack trace ---
+   at Eventity.DataAccess.Repositories.ParticipationRepository.AddAsync(Participation participation) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.DataAccess/Repositories/ParticipationRepository.cs:line 40
+   at Eventity.Application.Services.EventService.AddEvent(String title, String description, DateTime dateTime, String address, Guid organizerId) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.Application/Services/EventService.cs:line 50
+   at Eventity.Application.Services.EventService.AddEvent(String title, String description, DateTime dateTime, String address, Guid organizerId) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.Application/Services/EventService.cs:line 63
+18:10:24 [Error] Failed to create event
+Eventity.Domain.Exceptions.EventServiceException: Failed to create event
+ ---> Eventity.Domain.Exceptions.ParticipationRepositoryException: Failed to create participation
+ ---> Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 23503: insert or update on table "Participations" violates foreign key constraint "FK_Participations_Users_UserId"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|233_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+  Exception data:
+    Severity: ERROR
+    SqlState: 23503
+    MessageText: insert or update on table "Participations" violates foreign key constraint "FK_Participations_Users_UserId"
+    Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+    SchemaName: public
+    TableName: Participations
+    ConstraintName: FK_Participations_Users_UserId
+    File: ri_triggers.c
+    Line: 2619
+    Routine: ri_ReportViolation
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Eventity.DataAccess.Repositories.ParticipationRepository.AddAsync(Participation participation) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.DataAccess/Repositories/ParticipationRepository.cs:line 33
+   --- End of inner exception stack trace ---
+   at Eventity.DataAccess.Repositories.ParticipationRepository.AddAsync(Participation participation) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.DataAccess/Repositories/ParticipationRepository.cs:line 40
+   at Eventity.Application.Services.EventService.AddEvent(String title, String description, DateTime dateTime, String address, Guid organizerId) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.Application/Services/EventService.cs:line 50
+   at Eventity.Application.Services.EventService.AddEvent(String title, String description, DateTime dateTime, String address, Guid organizerId) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.Application/Services/EventService.cs:line 63
+   --- End of inner exception stack trace ---
+   at Eventity.Application.Services.EventService.AddEvent(String title, String description, DateTime dateTime, String address, Guid organizerId) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.Application/Services/EventService.cs:line 69
+   at Eventity.Api.Controllers.EventController.CreateEvent(CreateEventRequestDto requestDto) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.Web/Controllers/EventController.cs:line 43
+18:12:41 [Warning] Overriding address(es) '"http://localhost:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+18:12:50 [Information] Authentication attempt for login: "string"
+18:12:51 [Information] JWT token generated for user deb0cc8d-b2a5-4e65-92ef-a775802a880f
+18:12:51 [Information] User authenticated successfully. UserId: deb0cc8d-b2a5-4e65-92ef-a775802a880f
+18:13:20 [Information] Authentication attempt for login: "string"
+18:13:20 [Information] JWT token generated for user deb0cc8d-b2a5-4e65-92ef-a775802a880f
+18:13:20 [Information] User authenticated successfully. UserId: deb0cc8d-b2a5-4e65-92ef-a775802a880f
+18:13:31 [Debug] Trying to add event
+18:13:31 [Debug] Attempting to add new event: Event { Id: 0674c0ab-a2fb-43e7-80b0-a4248cc7ea67, Title: "string string", Description: "string", DateTime: 05/15/2026 15:13:03, Address: "string", OrganizerId: deb0cc8d-b2a5-4e65-92ef-a775802a880f }
+18:13:31 [Information] Event added successfully: 0674c0ab-a2fb-43e7-80b0-a4248cc7ea67
+18:13:31 [Information] Event created successfully. ID: 0674c0ab-a2fb-43e7-80b0-a4248cc7ea67, Title: "string string", Organizer: deb0cc8d-b2a5-4e65-92ef-a775802a880f
+18:13:38 [Debug] Trying to get add events
+18:13:38 [Debug] Retrieving all events
+18:13:38 [Information] Retrieved 32 events
+18:13:38 [Information] Retrieved 32 events successfully
+00:46:14 [Warning] Overriding address(es) '"http://localhost:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+00:46:28 [Information] Authentication attempt for login: "string"
+00:46:29 [Information] JWT token generated for user deb0cc8d-b2a5-4e65-92ef-a775802a880f
+00:46:29 [Information] User authenticated successfully. UserId: deb0cc8d-b2a5-4e65-92ef-a775802a880f
+00:53:26 [Information] Authentication attempt for login: "string"
+00:53:26 [Information] JWT token generated for user deb0cc8d-b2a5-4e65-92ef-a775802a880f
+00:53:26 [Information] User authenticated successfully. UserId: deb0cc8d-b2a5-4e65-92ef-a775802a880f
+00:59:57 [Information] Authentication attempt for login: "string"
+00:59:57 [Information] JWT token generated for user deb0cc8d-b2a5-4e65-92ef-a775802a880f
+00:59:57 [Information] User authenticated successfully. UserId: deb0cc8d-b2a5-4e65-92ef-a775802a880f
+01:11:14 [Warning] Overriding address(es) '"http://localhost:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+01:11:21 [Information] Authentication attempt for login: "string"
+01:11:22 [Information] JWT token generated for user deb0cc8d-b2a5-4e65-92ef-a775802a880f
+01:11:22 [Information] User authenticated successfully. UserId: deb0cc8d-b2a5-4e65-92ef-a775802a880f
+12:37:43 [Warning] Overriding address(es) '"http://localhost:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+12:38:38 [Information] Authentication attempt for login: "string"
+12:38:39 [Information] JWT token generated for user deb0cc8d-b2a5-4e65-92ef-a775802a880f
+12:38:39 [Information] User authenticated successfully. UserId: deb0cc8d-b2a5-4e65-92ef-a775802a880f
+12:49:33 [Information] Authentication attempt for login: "string"
+12:49:34 [Information] JWT token generated for user deb0cc8d-b2a5-4e65-92ef-a775802a880f
+12:49:34 [Information] User authenticated successfully. UserId: deb0cc8d-b2a5-4e65-92ef-a775802a880f
+12:52:43 [Warning] Overriding address(es) '"http://localhost:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+12:57:20 [Warning] Overriding address(es) '"http://localhost:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+12:57:35 [Information] Authentication attempt for login: "string"
+12:57:36 [Information] JWT token generated for user deb0cc8d-b2a5-4e65-92ef-a775802a880f
+12:57:36 [Information] User authenticated successfully. UserId: deb0cc8d-b2a5-4e65-92ef-a775802a880f
+12:57:37 [Debug] Trying to get add events
+12:57:37 [Debug] Retrieving all events
+12:57:37 [Information] Retrieved 32 events
+12:57:37 [Information] Retrieved 32 events successfully
+12:57:48 [Debug] Trying to get add events
+12:57:48 [Debug] Retrieving all events
+12:57:48 [Information] Retrieved 32 events
+12:57:48 [Information] Retrieved 32 events successfully
+12:57:51 [Debug] Trying to get add events
+12:57:51 [Debug] Retrieving all events
+12:57:51 [Information] Retrieved 32 events
+12:57:51 [Information] Retrieved 32 events successfully
+12:57:52 [Debug] Trying to get add events
+12:57:52 [Debug] Retrieving all events
+12:57:52 [Information] Retrieved 32 events
+12:57:52 [Information] Retrieved 32 events successfully
+12:59:06 [Information] Authentication attempt for login: "string"
+12:59:06 [Information] JWT token generated for user deb0cc8d-b2a5-4e65-92ef-a775802a880f
+12:59:06 [Information] User authenticated successfully. UserId: deb0cc8d-b2a5-4e65-92ef-a775802a880f
+12:59:06 [Debug] Trying to get add events
+12:59:06 [Debug] Retrieving all events
+12:59:06 [Information] Retrieved 32 events
+12:59:06 [Information] Retrieved 32 events successfully
+13:00:23 [Information] Registration attempt. Login: "string2", Email: "string2"
+13:00:23 [Warning] User with login "string2" not found
+13:00:24 [Information] JWT token generated for user 51ed646a-3195-411a-a8da-0acc94fd2930
+13:00:24 [Information] User registered successfully. UserId: 51ed646a-3195-411a-a8da-0acc94fd2930
+13:00:44 [Debug] Trying to get all users
+13:00:44 [Information] Retrieved 33 users successfully
+13:03:23 [Warning] Overriding address(es) '"http://localhost:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+13:04:22 [Debug] Trying to get add events
+13:04:22 [Debug] Retrieving all events
+13:04:23 [Information] Retrieved 32 events
+13:04:23 [Information] Retrieved 32 events successfully
+13:11:31 [Debug] Trying to get add events
+13:11:31 [Debug] Retrieving all events
+13:11:31 [Information] Retrieved 32 events
+13:11:31 [Information] Retrieved 32 events successfully
+13:11:38 [Debug] Trying to get all participations
+13:11:38 [Information] All participations found
+13:11:38 [Debug] Trying to get all notifications
+13:11:38 [Information] Getting all notifications
+13:11:38 [Debug] Total notifications retrieved: 30
+13:11:38 [Information] Retrieved 30 notifications successfully
+13:11:39 [Debug] Trying to get add events
+13:11:39 [Debug] Retrieving all events
+13:11:39 [Information] Retrieved 32 events
+13:11:39 [Information] Retrieved 32 events successfully
+13:14:02 [Debug] Trying to get add events
+13:14:02 [Debug] Retrieving all events
+13:14:02 [Information] Retrieved 32 events
+13:14:02 [Information] Retrieved 32 events successfully
+13:14:05 [Debug] Trying to get add events
+13:14:05 [Debug] Retrieving all events
+13:14:05 [Information] Retrieved 32 events
+13:14:05 [Information] Retrieved 32 events successfully
+13:14:52 [Information] Authentication attempt for login: "string"
+13:14:53 [Information] JWT token generated for user deb0cc8d-b2a5-4e65-92ef-a775802a880f
+13:14:53 [Information] User authenticated successfully. UserId: deb0cc8d-b2a5-4e65-92ef-a775802a880f
+13:15:04 [Debug] Trying to get all users
+13:15:04 [Information] Retrieved 33 users successfully
+13:17:22 [Information] Authentication attempt for login: "string"
+13:17:22 [Information] JWT token generated for user deb0cc8d-b2a5-4e65-92ef-a775802a880f
+13:17:22 [Information] User authenticated successfully. UserId: deb0cc8d-b2a5-4e65-92ef-a775802a880f
+13:17:22 [Debug] Trying to get add events
+13:17:22 [Debug] Retrieving all events
+13:17:22 [Information] Retrieved 32 events
+13:17:22 [Information] Retrieved 32 events successfully
+13:17:32 [Debug] Trying to get add events
+13:17:32 [Debug] Retrieving all events
+13:17:32 [Information] Retrieved 32 events
+13:17:32 [Information] Retrieved 32 events successfully
+13:17:33 [Debug] Trying to get all participations
+13:17:33 [Information] All participations found
+13:17:33 [Debug] Trying to get all notifications
+13:17:33 [Information] Getting all notifications
+13:17:33 [Debug] Total notifications retrieved: 30
+13:17:33 [Information] Retrieved 30 notifications successfully
+13:17:35 [Debug] Trying to get add events
+13:17:35 [Debug] Retrieving all events
+13:17:35 [Information] Retrieved 32 events
+13:17:35 [Information] Retrieved 32 events successfully
+13:17:39 [Debug] Trying to get add events
+13:17:39 [Debug] Retrieving all events
+13:17:39 [Information] Retrieved 32 events
+13:17:39 [Information] Retrieved 32 events successfully
+13:27:04 [Debug] Trying to get add events
+13:27:04 [Debug] Retrieving all events
+13:27:04 [Information] Retrieved 32 events
+13:27:04 [Information] Retrieved 32 events successfully
+13:27:21 [Debug] Trying to get add events
+13:27:21 [Debug] Retrieving all events
+13:27:21 [Information] Retrieved 32 events
+13:27:21 [Information] Retrieved 32 events successfully
+13:27:23 [Debug] Trying to get add events
+13:27:23 [Debug] Retrieving all events
+13:27:23 [Information] Retrieved 32 events
+13:27:23 [Information] Retrieved 32 events successfully
+13:27:25 [Debug] Trying to get add events
+13:27:25 [Debug] Retrieving all events
+13:27:25 [Information] Retrieved 32 events
+13:27:25 [Information] Retrieved 32 events successfully
+13:27:26 [Debug] Trying to get add events
+13:27:26 [Debug] Retrieving all events
+13:27:26 [Information] Retrieved 32 events
+13:27:26 [Information] Retrieved 32 events successfully
+13:27:42 [Debug] Trying to get add events
+13:27:42 [Debug] Retrieving all events
+13:27:42 [Information] Retrieved 32 events
+13:27:42 [Information] Retrieved 32 events successfully
+13:27:43 [Debug] Trying to get add events
+13:27:43 [Debug] Retrieving all events
+13:27:43 [Information] Retrieved 32 events
+13:27:43 [Information] Retrieved 32 events successfully
+13:28:09 [Debug] Trying to get add events
+13:28:09 [Debug] Retrieving all events
+13:28:09 [Information] Retrieved 32 events
+13:28:09 [Information] Retrieved 32 events successfully
+13:28:33 [Debug] Trying to get add events
+13:28:33 [Debug] Retrieving all events
+13:28:33 [Information] Retrieved 32 events
+13:28:33 [Information] Retrieved 32 events successfully
+13:31:20 [Information] Authentication attempt for login: "string"
+13:31:20 [Information] JWT token generated for user deb0cc8d-b2a5-4e65-92ef-a775802a880f
+13:31:20 [Information] User authenticated successfully. UserId: deb0cc8d-b2a5-4e65-92ef-a775802a880f
+13:31:20 [Debug] Trying to get add events
+13:31:20 [Debug] Retrieving all events
+13:31:20 [Information] Retrieved 32 events
+13:31:20 [Information] Retrieved 32 events successfully
+13:46:46 [Debug] Trying to get add events
+13:46:46 [Debug] Retrieving all events
+13:46:46 [Information] Retrieved 32 events
+13:46:46 [Information] Retrieved 32 events successfully
+13:49:41 [Warning] Overriding address(es) '"http://localhost:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+13:51:01 [Warning] Overriding address(es) '"http://localhost:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+13:55:00 [Debug] Trying to get add events
+13:55:00 [Debug] Retrieving all events
+13:55:01 [Information] Retrieved 32 events
+13:55:01 [Information] Retrieved 32 events successfully
+13:58:46 [Information] Authentication attempt for login: "string"
+13:58:46 [Information] JWT token generated for user deb0cc8d-b2a5-4e65-92ef-a775802a880f
+13:58:46 [Information] User authenticated successfully. UserId: deb0cc8d-b2a5-4e65-92ef-a775802a880f
+13:58:46 [Debug] Trying to get add events
+13:58:46 [Debug] Retrieving all events
+13:58:46 [Information] Retrieved 32 events
+13:58:46 [Information] Retrieved 32 events successfully
+14:05:54 [Information] Authentication attempt for login: "string"
+14:05:55 [Information] JWT token generated for user deb0cc8d-b2a5-4e65-92ef-a775802a880f
+14:05:55 [Information] User authenticated successfully. UserId: deb0cc8d-b2a5-4e65-92ef-a775802a880f
+14:06:13 [Information] Authentication attempt for login: "string"
+14:06:13 [Information] JWT token generated for user deb0cc8d-b2a5-4e65-92ef-a775802a880f
+14:06:13 [Information] User authenticated successfully. UserId: deb0cc8d-b2a5-4e65-92ef-a775802a880f
+14:06:42 [Debug] Trying to add event
+14:06:42 [Debug] Attempting to add new event: Event { Id: 1d4b2c46-b9b7-4656-bfae-02c530e4bf00, Title: "aaaa", Description: "aaaa", DateTime: 05/25/2025 11:05:00, Address: "aaaa", OrganizerId: 00000000-0000-0000-0000-000000000000 }
+14:06:42 [Information] Event added successfully: 1d4b2c46-b9b7-4656-bfae-02c530e4bf00
+14:06:42 [Error] Failed executing DbCommand ("40"ms) [Parameters=["@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = Guid)"], CommandType='Text', CommandTimeout='30']"
+""INSERT INTO \"Participations\" (\"Id\", \"EventId\", \"Role\", \"Status\", \"UserId\")
+VALUES (@p0, @p1, @p2, @p3, @p4);"
+14:06:43 [Error] An exception occurred in the database while saving changes for context type '"Eventity.DataAccess.Context.EventityDbContext"'."
+""Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 23503: insert or update on table \"Participations\" violates foreign key constraint \"FK_Participations_Users_UserId\"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|233_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+  Exception data:
+    Severity: ERROR
+    SqlState: 23503
+    MessageText: insert or update on table \"Participations\" violates foreign key constraint \"FK_Participations_Users_UserId\"
+    Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+    SchemaName: public
+    TableName: Participations
+    ConstraintName: FK_Participations_Users_UserId
+    File: ri_triggers.c
+    Line: 2619
+    Routine: ri_ReportViolation
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)"
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 23503: insert or update on table "Participations" violates foreign key constraint "FK_Participations_Users_UserId"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|233_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+  Exception data:
+    Severity: ERROR
+    SqlState: 23503
+    MessageText: insert or update on table "Participations" violates foreign key constraint "FK_Participations_Users_UserId"
+    Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+    SchemaName: public
+    TableName: Participations
+    ConstraintName: FK_Participations_Users_UserId
+    File: ri_triggers.c
+    Line: 2619
+    Routine: ri_ReportViolation
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+14:06:43 [Error] Error occurred while creating participation
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 23503: insert or update on table "Participations" violates foreign key constraint "FK_Participations_Users_UserId"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|233_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+  Exception data:
+    Severity: ERROR
+    SqlState: 23503
+    MessageText: insert or update on table "Participations" violates foreign key constraint "FK_Participations_Users_UserId"
+    Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+    SchemaName: public
+    TableName: Participations
+    ConstraintName: FK_Participations_Users_UserId
+    File: ri_triggers.c
+    Line: 2619
+    Routine: ri_ReportViolation
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Eventity.DataAccess.Repositories.ParticipationRepository.AddAsync(Participation participation) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.DataAccess/Repositories/ParticipationRepository.cs:line 33
+14:06:43 [Error] Failed to create event. Transaction rolled back.
+Eventity.Domain.Exceptions.ParticipationRepositoryException: Failed to create participation
+ ---> Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 23503: insert or update on table "Participations" violates foreign key constraint "FK_Participations_Users_UserId"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|233_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+  Exception data:
+    Severity: ERROR
+    SqlState: 23503
+    MessageText: insert or update on table "Participations" violates foreign key constraint "FK_Participations_Users_UserId"
+    Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+    SchemaName: public
+    TableName: Participations
+    ConstraintName: FK_Participations_Users_UserId
+    File: ri_triggers.c
+    Line: 2619
+    Routine: ri_ReportViolation
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Eventity.DataAccess.Repositories.ParticipationRepository.AddAsync(Participation participation) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.DataAccess/Repositories/ParticipationRepository.cs:line 33
+   --- End of inner exception stack trace ---
+   at Eventity.DataAccess.Repositories.ParticipationRepository.AddAsync(Participation participation) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.DataAccess/Repositories/ParticipationRepository.cs:line 40
+   at Eventity.Application.Services.EventService.AddEvent(String title, String description, DateTime dateTime, String address, Guid organizerId) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.Application/Services/EventService.cs:line 50
+14:06:43 [Error] Failed to create event. Title: "aaaa", Organizer: 00000000-0000-0000-0000-000000000000
+Eventity.Domain.Exceptions.ParticipationRepositoryException: Failed to create participation
+ ---> Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 23503: insert or update on table "Participations" violates foreign key constraint "FK_Participations_Users_UserId"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|233_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+  Exception data:
+    Severity: ERROR
+    SqlState: 23503
+    MessageText: insert or update on table "Participations" violates foreign key constraint "FK_Participations_Users_UserId"
+    Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+    SchemaName: public
+    TableName: Participations
+    ConstraintName: FK_Participations_Users_UserId
+    File: ri_triggers.c
+    Line: 2619
+    Routine: ri_ReportViolation
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Eventity.DataAccess.Repositories.ParticipationRepository.AddAsync(Participation participation) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.DataAccess/Repositories/ParticipationRepository.cs:line 33
+   --- End of inner exception stack trace ---
+   at Eventity.DataAccess.Repositories.ParticipationRepository.AddAsync(Participation participation) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.DataAccess/Repositories/ParticipationRepository.cs:line 40
+   at Eventity.Application.Services.EventService.AddEvent(String title, String description, DateTime dateTime, String address, Guid organizerId) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.Application/Services/EventService.cs:line 50
+   at Eventity.Application.Services.EventService.AddEvent(String title, String description, DateTime dateTime, String address, Guid organizerId) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.Application/Services/EventService.cs:line 63
+14:06:43 [Error] Failed to create event
+Eventity.Domain.Exceptions.EventServiceException: Failed to create event
+ ---> Eventity.Domain.Exceptions.ParticipationRepositoryException: Failed to create participation
+ ---> Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 23503: insert or update on table "Participations" violates foreign key constraint "FK_Participations_Users_UserId"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|233_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+  Exception data:
+    Severity: ERROR
+    SqlState: 23503
+    MessageText: insert or update on table "Participations" violates foreign key constraint "FK_Participations_Users_UserId"
+    Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+    SchemaName: public
+    TableName: Participations
+    ConstraintName: FK_Participations_Users_UserId
+    File: ri_triggers.c
+    Line: 2619
+    Routine: ri_ReportViolation
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Eventity.DataAccess.Repositories.ParticipationRepository.AddAsync(Participation participation) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.DataAccess/Repositories/ParticipationRepository.cs:line 33
+   --- End of inner exception stack trace ---
+   at Eventity.DataAccess.Repositories.ParticipationRepository.AddAsync(Participation participation) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.DataAccess/Repositories/ParticipationRepository.cs:line 40
+   at Eventity.Application.Services.EventService.AddEvent(String title, String description, DateTime dateTime, String address, Guid organizerId) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.Application/Services/EventService.cs:line 50
+   at Eventity.Application.Services.EventService.AddEvent(String title, String description, DateTime dateTime, String address, Guid organizerId) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.Application/Services/EventService.cs:line 63
+   --- End of inner exception stack trace ---
+   at Eventity.Application.Services.EventService.AddEvent(String title, String description, DateTime dateTime, String address, Guid organizerId) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.Application/Services/EventService.cs:line 69
+   at Eventity.Api.Controllers.EventController.CreateEvent(CreateEventRequestDto requestDto) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.Web/Controllers/EventController.cs:line 43
+14:06:54 [Debug] Trying to add event
+14:06:54 [Debug] Attempting to add new event: Event { Id: 8b64683e-1e7b-4f08-91c5-0e414e34d0f0, Title: "aaaa", Description: "aaaa", DateTime: 05/25/2025 11:05:21, Address: "aaaa", OrganizerId: deb0cc8d-b2a5-4e65-92ef-a775802a880f }
+14:06:54 [Information] Event added successfully: 8b64683e-1e7b-4f08-91c5-0e414e34d0f0
+14:06:54 [Information] Event created successfully. ID: 8b64683e-1e7b-4f08-91c5-0e414e34d0f0, Title: "aaaa", Organizer: deb0cc8d-b2a5-4e65-92ef-a775802a880f
+14:09:42 [Debug] Trying to add participation
+14:09:42 [Information] Participation created. ID: 7ce2663e-5d66-4a61-9990-dad99b37c47f, UserID: deb0cc8d-b2a5-4e65-92ef-a775802a880f, EventID: 8b64683e-1e7b-4f08-91c5-0e414e34d0f0
+
+
+
+14:12:13 [Warning] Overriding address(es) '"http://localhost:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+14:12:51 [Information] Authentication attempt for login: "string"
+14:12:53 [Information] JWT token generated for user deb0cc8d-b2a5-4e65-92ef-a775802a880f
+14:12:53 [Information] User authenticated successfully. UserId: deb0cc8d-b2a5-4e65-92ef-a775802a880f
+14:13:11 [Debug] Trying to get all users
+14:13:11 [Information] Retrieved 33 users successfully
+14:13:20 [Debug] Trying to add event
+14:13:20 [Debug] Attempting to add new event: Event { Id: dac30722-7541-485a-9a58-22774ff68324, Title: "aaaa", Description: "aaaa", DateTime: 05/25/2025 11:05:00, Address: "aaaa", OrganizerId: 00000000-0000-0000-0000-000000000000 }
+14:13:20 [Information] Event added successfully: dac30722-7541-485a-9a58-22774ff68324
+14:13:20 [Error] Failed executing DbCommand ("26"ms) [Parameters=["@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = Guid)"], CommandType='Text', CommandTimeout='30']"
+""INSERT INTO \"Participations\" (\"Id\", \"EventId\", \"Role\", \"Status\", \"UserId\")
+VALUES (@p0, @p1, @p2, @p3, @p4);"
+14:13:21 [Error] An exception occurred in the database while saving changes for context type '"Eventity.DataAccess.Context.EventityDbContext"'."
+""Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 23503: insert or update on table \"Participations\" violates foreign key constraint \"FK_Participations_Users_UserId\"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|233_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+  Exception data:
+    Severity: ERROR
+    SqlState: 23503
+    MessageText: insert or update on table \"Participations\" violates foreign key constraint \"FK_Participations_Users_UserId\"
+    Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+    SchemaName: public
+    TableName: Participations
+    ConstraintName: FK_Participations_Users_UserId
+    File: ri_triggers.c
+    Line: 2619
+    Routine: ri_ReportViolation
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)"
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 23503: insert or update on table "Participations" violates foreign key constraint "FK_Participations_Users_UserId"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|233_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+  Exception data:
+    Severity: ERROR
+    SqlState: 23503
+    MessageText: insert or update on table "Participations" violates foreign key constraint "FK_Participations_Users_UserId"
+    Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+    SchemaName: public
+    TableName: Participations
+    ConstraintName: FK_Participations_Users_UserId
+    File: ri_triggers.c
+    Line: 2619
+    Routine: ri_ReportViolation
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+14:13:21 [Error] Error occurred while creating participation
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 23503: insert or update on table "Participations" violates foreign key constraint "FK_Participations_Users_UserId"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|233_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+  Exception data:
+    Severity: ERROR
+    SqlState: 23503
+    MessageText: insert or update on table "Participations" violates foreign key constraint "FK_Participations_Users_UserId"
+    Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+    SchemaName: public
+    TableName: Participations
+    ConstraintName: FK_Participations_Users_UserId
+    File: ri_triggers.c
+    Line: 2619
+    Routine: ri_ReportViolation
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Eventity.DataAccess.Repositories.ParticipationRepository.AddAsync(Participation participation) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.DataAccess/Repositories/ParticipationRepository.cs:line 33
+14:13:21 [Error] Failed to create event. Transaction rolled back.
+Eventity.Domain.Exceptions.ParticipationRepositoryException: Failed to create participation
+ ---> Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 23503: insert or update on table "Participations" violates foreign key constraint "FK_Participations_Users_UserId"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|233_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+  Exception data:
+    Severity: ERROR
+    SqlState: 23503
+    MessageText: insert or update on table "Participations" violates foreign key constraint "FK_Participations_Users_UserId"
+    Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+    SchemaName: public
+    TableName: Participations
+    ConstraintName: FK_Participations_Users_UserId
+    File: ri_triggers.c
+    Line: 2619
+    Routine: ri_ReportViolation
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Eventity.DataAccess.Repositories.ParticipationRepository.AddAsync(Participation participation) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.DataAccess/Repositories/ParticipationRepository.cs:line 33
+   --- End of inner exception stack trace ---
+   at Eventity.DataAccess.Repositories.ParticipationRepository.AddAsync(Participation participation) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.DataAccess/Repositories/ParticipationRepository.cs:line 40
+   at Eventity.Application.Services.EventService.AddEvent(String title, String description, DateTime dateTime, String address, Guid organizerId) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.Application/Services/EventService.cs:line 50
+14:13:21 [Error] Failed to create event. Title: "aaaa", Organizer: 00000000-0000-0000-0000-000000000000
+Eventity.Domain.Exceptions.ParticipationRepositoryException: Failed to create participation
+ ---> Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 23503: insert or update on table "Participations" violates foreign key constraint "FK_Participations_Users_UserId"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|233_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+  Exception data:
+    Severity: ERROR
+    SqlState: 23503
+    MessageText: insert or update on table "Participations" violates foreign key constraint "FK_Participations_Users_UserId"
+    Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+    SchemaName: public
+    TableName: Participations
+    ConstraintName: FK_Participations_Users_UserId
+    File: ri_triggers.c
+    Line: 2619
+    Routine: ri_ReportViolation
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Eventity.DataAccess.Repositories.ParticipationRepository.AddAsync(Participation participation) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.DataAccess/Repositories/ParticipationRepository.cs:line 33
+   --- End of inner exception stack trace ---
+   at Eventity.DataAccess.Repositories.ParticipationRepository.AddAsync(Participation participation) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.DataAccess/Repositories/ParticipationRepository.cs:line 40
+   at Eventity.Application.Services.EventService.AddEvent(String title, String description, DateTime dateTime, String address, Guid organizerId) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.Application/Services/EventService.cs:line 50
+   at Eventity.Application.Services.EventService.AddEvent(String title, String description, DateTime dateTime, String address, Guid organizerId) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.Application/Services/EventService.cs:line 63
+14:13:21 [Error] Failed to create event
+Eventity.Domain.Exceptions.EventServiceException: Failed to create event
+ ---> Eventity.Domain.Exceptions.ParticipationRepositoryException: Failed to create participation
+ ---> Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 23503: insert or update on table "Participations" violates foreign key constraint "FK_Participations_Users_UserId"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|233_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+  Exception data:
+    Severity: ERROR
+    SqlState: 23503
+    MessageText: insert or update on table "Participations" violates foreign key constraint "FK_Participations_Users_UserId"
+    Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+    SchemaName: public
+    TableName: Participations
+    ConstraintName: FK_Participations_Users_UserId
+    File: ri_triggers.c
+    Line: 2619
+    Routine: ri_ReportViolation
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Eventity.DataAccess.Repositories.ParticipationRepository.AddAsync(Participation participation) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.DataAccess/Repositories/ParticipationRepository.cs:line 33
+   --- End of inner exception stack trace ---
+   at Eventity.DataAccess.Repositories.ParticipationRepository.AddAsync(Participation participation) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.DataAccess/Repositories/ParticipationRepository.cs:line 40
+   at Eventity.Application.Services.EventService.AddEvent(String title, String description, DateTime dateTime, String address, Guid organizerId) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.Application/Services/EventService.cs:line 50
+   at Eventity.Application.Services.EventService.AddEvent(String title, String description, DateTime dateTime, String address, Guid organizerId) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.Application/Services/EventService.cs:line 63
+   --- End of inner exception stack trace ---
+   at Eventity.Application.Services.EventService.AddEvent(String title, String description, DateTime dateTime, String address, Guid organizerId) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.Application/Services/EventService.cs:line 69
+   at Eventity.Api.Controllers.EventController.CreateEvent(CreateEventRequestDto requestDto) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.Web/Controllers/EventController.cs:line 43
+14:16:05 [Debug] Trying to get add events
+14:16:05 [Debug] Retrieving all events
+14:16:05 [Information] Retrieved 33 events
+14:16:05 [Information] Retrieved 33 events successfully
+14:16:30 [Information] Authentication attempt for login: "string"
+14:16:30 [Information] JWT token generated for user deb0cc8d-b2a5-4e65-92ef-a775802a880f
+14:16:30 [Information] User authenticated successfully. UserId: deb0cc8d-b2a5-4e65-92ef-a775802a880f
+14:16:30 [Debug] Trying to get add events
+14:16:30 [Debug] Retrieving all events
+14:16:30 [Information] Retrieved 33 events
+14:16:30 [Information] Retrieved 33 events successfully
+14:16:47 [Debug] Trying to add event
+14:16:47 [Debug] Attempting to add new event: Event { Id: c32cda99-c9be-4dae-aa41-df481b124e7f, Title: "aaaa", Description: "aaaaa", DateTime: 05/25/2025 11:16:00, Address: "aaaaa", OrganizerId: 00000000-0000-0000-0000-000000000000 }
+14:16:47 [Information] Event added successfully: c32cda99-c9be-4dae-aa41-df481b124e7f
+14:16:47 [Error] Failed executing DbCommand ("6"ms) [Parameters=["@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = Guid)"], CommandType='Text', CommandTimeout='30']"
+""INSERT INTO \"Participations\" (\"Id\", \"EventId\", \"Role\", \"Status\", \"UserId\")
+VALUES (@p0, @p1, @p2, @p3, @p4);"
+14:16:47 [Error] An exception occurred in the database while saving changes for context type '"Eventity.DataAccess.Context.EventityDbContext"'."
+""Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 23503: insert or update on table \"Participations\" violates foreign key constraint \"FK_Participations_Users_UserId\"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|233_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+  Exception data:
+    Severity: ERROR
+    SqlState: 23503
+    MessageText: insert or update on table \"Participations\" violates foreign key constraint \"FK_Participations_Users_UserId\"
+    Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+    SchemaName: public
+    TableName: Participations
+    ConstraintName: FK_Participations_Users_UserId
+    File: ri_triggers.c
+    Line: 2619
+    Routine: ri_ReportViolation
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)"
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 23503: insert or update on table "Participations" violates foreign key constraint "FK_Participations_Users_UserId"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|233_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+  Exception data:
+    Severity: ERROR
+    SqlState: 23503
+    MessageText: insert or update on table "Participations" violates foreign key constraint "FK_Participations_Users_UserId"
+    Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+    SchemaName: public
+    TableName: Participations
+    ConstraintName: FK_Participations_Users_UserId
+    File: ri_triggers.c
+    Line: 2619
+    Routine: ri_ReportViolation
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+14:16:47 [Error] Error occurred while creating participation
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 23503: insert or update on table "Participations" violates foreign key constraint "FK_Participations_Users_UserId"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|233_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+  Exception data:
+    Severity: ERROR
+    SqlState: 23503
+    MessageText: insert or update on table "Participations" violates foreign key constraint "FK_Participations_Users_UserId"
+    Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+    SchemaName: public
+    TableName: Participations
+    ConstraintName: FK_Participations_Users_UserId
+    File: ri_triggers.c
+    Line: 2619
+    Routine: ri_ReportViolation
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Eventity.DataAccess.Repositories.ParticipationRepository.AddAsync(Participation participation) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.DataAccess/Repositories/ParticipationRepository.cs:line 33
+14:16:47 [Error] Failed to create event. Transaction rolled back.
+Eventity.Domain.Exceptions.ParticipationRepositoryException: Failed to create participation
+ ---> Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 23503: insert or update on table "Participations" violates foreign key constraint "FK_Participations_Users_UserId"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|233_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+  Exception data:
+    Severity: ERROR
+    SqlState: 23503
+    MessageText: insert or update on table "Participations" violates foreign key constraint "FK_Participations_Users_UserId"
+    Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+    SchemaName: public
+    TableName: Participations
+    ConstraintName: FK_Participations_Users_UserId
+    File: ri_triggers.c
+    Line: 2619
+    Routine: ri_ReportViolation
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Eventity.DataAccess.Repositories.ParticipationRepository.AddAsync(Participation participation) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.DataAccess/Repositories/ParticipationRepository.cs:line 33
+   --- End of inner exception stack trace ---
+   at Eventity.DataAccess.Repositories.ParticipationRepository.AddAsync(Participation participation) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.DataAccess/Repositories/ParticipationRepository.cs:line 40
+   at Eventity.Application.Services.EventService.AddEvent(String title, String description, DateTime dateTime, String address, Guid organizerId) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.Application/Services/EventService.cs:line 50
+14:16:47 [Error] Failed to create event. Title: "aaaa", Organizer: 00000000-0000-0000-0000-000000000000
+Eventity.Domain.Exceptions.ParticipationRepositoryException: Failed to create participation
+ ---> Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 23503: insert or update on table "Participations" violates foreign key constraint "FK_Participations_Users_UserId"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|233_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+  Exception data:
+    Severity: ERROR
+    SqlState: 23503
+    MessageText: insert or update on table "Participations" violates foreign key constraint "FK_Participations_Users_UserId"
+    Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+    SchemaName: public
+    TableName: Participations
+    ConstraintName: FK_Participations_Users_UserId
+    File: ri_triggers.c
+    Line: 2619
+    Routine: ri_ReportViolation
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Eventity.DataAccess.Repositories.ParticipationRepository.AddAsync(Participation participation) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.DataAccess/Repositories/ParticipationRepository.cs:line 33
+   --- End of inner exception stack trace ---
+   at Eventity.DataAccess.Repositories.ParticipationRepository.AddAsync(Participation participation) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.DataAccess/Repositories/ParticipationRepository.cs:line 40
+   at Eventity.Application.Services.EventService.AddEvent(String title, String description, DateTime dateTime, String address, Guid organizerId) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.Application/Services/EventService.cs:line 50
+   at Eventity.Application.Services.EventService.AddEvent(String title, String description, DateTime dateTime, String address, Guid organizerId) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.Application/Services/EventService.cs:line 63
+14:16:47 [Error] Failed to create event
+Eventity.Domain.Exceptions.EventServiceException: Failed to create event
+ ---> Eventity.Domain.Exceptions.ParticipationRepositoryException: Failed to create participation
+ ---> Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 23503: insert or update on table "Participations" violates foreign key constraint "FK_Participations_Users_UserId"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|233_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+  Exception data:
+    Severity: ERROR
+    SqlState: 23503
+    MessageText: insert or update on table "Participations" violates foreign key constraint "FK_Participations_Users_UserId"
+    Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+    SchemaName: public
+    TableName: Participations
+    ConstraintName: FK_Participations_Users_UserId
+    File: ri_triggers.c
+    Line: 2619
+    Routine: ri_ReportViolation
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Eventity.DataAccess.Repositories.ParticipationRepository.AddAsync(Participation participation) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.DataAccess/Repositories/ParticipationRepository.cs:line 33
+   --- End of inner exception stack trace ---
+   at Eventity.DataAccess.Repositories.ParticipationRepository.AddAsync(Participation participation) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.DataAccess/Repositories/ParticipationRepository.cs:line 40
+   at Eventity.Application.Services.EventService.AddEvent(String title, String description, DateTime dateTime, String address, Guid organizerId) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.Application/Services/EventService.cs:line 50
+   at Eventity.Application.Services.EventService.AddEvent(String title, String description, DateTime dateTime, String address, Guid organizerId) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.Application/Services/EventService.cs:line 63
+   --- End of inner exception stack trace ---
+   at Eventity.Application.Services.EventService.AddEvent(String title, String description, DateTime dateTime, String address, Guid organizerId) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.Application/Services/EventService.cs:line 69
+   at Eventity.Api.Controllers.EventController.CreateEvent(CreateEventRequestDto requestDto) in /Users/ekaterinaparamonova/Desktop/6sem/ppo/fullproject/Eventity.Web/Controllers/EventController.cs:line 43
+14:18:46 [Information] Authentication attempt for login: "string"
+14:18:47 [Information] JWT token generated for user deb0cc8d-b2a5-4e65-92ef-a775802a880f
+14:18:47 [Information] User authenticated successfully. UserId: deb0cc8d-b2a5-4e65-92ef-a775802a880f
+14:20:27 [Debug] Trying to add event
+14:20:27 [Debug] Attempting to add new event: Event { Id: 29923dcf-0a5e-4f2f-9ba8-b83de6d0e6e2, Title: "aaa", Description: "aaa", DateTime: 05/25/2025 11:20:00, Address: "aaa", OrganizerId: deb0cc8d-b2a5-4e65-92ef-a775802a880f }
+14:20:27 [Information] Event added successfully: 29923dcf-0a5e-4f2f-9ba8-b83de6d0e6e2
+14:20:27 [Information] Event created successfully. ID: 29923dcf-0a5e-4f2f-9ba8-b83de6d0e6e2, Title: "aaa", Organizer: deb0cc8d-b2a5-4e65-92ef-a775802a880f
+14:20:27 [Error] An unhandled exception has occurred while executing the request.
+Microsoft.AspNetCore.Routing.Matching.AmbiguousMatchException: The request matched multiple endpoints. Matches: 
+
+Eventity.Api.Controllers.UserController.GetUserById (Eventity.Web)
+Eventity.Api.Controllers.UserController.GetUserByLogin (Eventity.Web)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.ReportAmbiguity(CandidateState[] candidateState)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.ProcessFinalCandidates(HttpContext httpContext, CandidateState[] candidateState)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.Select(HttpContext httpContext, CandidateState[] candidateState)
+   at Microsoft.AspNetCore.Routing.Matching.DfaMatcher.MatchAsync(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+14:20:29 [Debug] Trying to get add events
+14:20:29 [Debug] Retrieving all events
+14:20:29 [Information] Retrieved 34 events
+14:20:29 [Information] Retrieved 34 events successfully
+14:20:33 [Debug] Trying to get all participations
+14:20:33 [Information] All participations found
+14:20:33 [Debug] Trying to get all notifications
+14:20:33 [Information] Getting all notifications
+14:20:33 [Debug] Total notifications retrieved: 30
+14:20:33 [Information] Retrieved 30 notifications successfully
+14:20:34 [Debug] Trying to get add events
+14:20:34 [Debug] Retrieving all events
+14:20:34 [Information] Retrieved 34 events
+14:20:34 [Information] Retrieved 34 events successfully
+14:21:23 [Debug] Trying to get add events
+14:21:23 [Debug] Retrieving all events
+14:21:23 [Information] Retrieved 34 events
+14:21:23 [Information] Retrieved 34 events successfully
+14:21:23 [Debug] Trying to get add events
+14:21:23 [Debug] Retrieving all events
+14:21:23 [Information] Retrieved 34 events
+14:21:23 [Information] Retrieved 34 events successfully
+14:21:24 [Debug] Trying to get add events
+14:21:24 [Debug] Retrieving all events
+14:21:24 [Information] Retrieved 34 events
+14:21:24 [Information] Retrieved 34 events successfully
+14:21:24 [Debug] Trying to get add events
+14:21:24 [Debug] Retrieving all events
+14:21:24 [Information] Retrieved 34 events
+14:21:24 [Information] Retrieved 34 events successfully
+14:21:27 [Debug] Trying to get add events
+14:21:27 [Debug] Retrieving all events
+14:21:27 [Information] Retrieved 34 events
+14:21:27 [Information] Retrieved 34 events successfully
+14:21:27 [Debug] Trying to get add events
+14:21:27 [Debug] Retrieving all events
+14:21:27 [Information] Retrieved 34 events
+14:21:27 [Information] Retrieved 34 events successfully
+14:21:28 [Debug] Trying to get add events
+14:21:28 [Debug] Retrieving all events
+14:21:28 [Information] Retrieved 34 events
+14:21:28 [Information] Retrieved 34 events successfully
+14:21:34 [Debug] Trying to get add events
+14:21:34 [Debug] Retrieving all events
+14:21:34 [Information] Retrieved 34 events
+14:21:34 [Information] Retrieved 34 events successfully
+14:24:07 [Debug] Trying to get add events
+14:24:07 [Debug] Retrieving all events
+14:24:07 [Information] Retrieved 34 events
+14:24:07 [Information] Retrieved 34 events successfully
+14:25:53 [Information] Authentication attempt for login: "string"
+14:25:53 [Information] JWT token generated for user deb0cc8d-b2a5-4e65-92ef-a775802a880f
+14:25:53 [Information] User authenticated successfully. UserId: deb0cc8d-b2a5-4e65-92ef-a775802a880f
+14:25:53 [Debug] Trying to get add events
+14:25:53 [Debug] Retrieving all events
+14:25:53 [Information] Retrieved 34 events
+14:25:53 [Information] Retrieved 34 events successfully
+14:26:27 [Information] Authentication attempt for login: "string2"
+14:26:27 [Information] JWT token generated for user 51ed646a-3195-411a-a8da-0acc94fd2930
+14:26:27 [Information] User authenticated successfully. UserId: 51ed646a-3195-411a-a8da-0acc94fd2930
+14:26:28 [Debug] Trying to get add events
+14:26:28 [Debug] Retrieving all events
+14:26:28 [Information] Retrieved 34 events
+14:26:28 [Information] Retrieved 34 events successfully
+14:26:33 [Debug] Trying to get all participations
+14:26:33 [Information] All participations found
+14:26:33 [Debug] Trying to get all notifications
+14:26:33 [Information] Getting all notifications
+14:26:33 [Debug] Total notifications retrieved: 30
+14:26:33 [Information] Retrieved 30 notifications successfully
+14:26:34 [Debug] Trying to get add events
+14:26:34 [Debug] Retrieving all events
+14:26:34 [Information] Retrieved 34 events
+14:26:34 [Information] Retrieved 34 events successfully
+14:26:44 [Information] Authentication attempt for login: "string"
+14:26:44 [Information] JWT token generated for user deb0cc8d-b2a5-4e65-92ef-a775802a880f
+14:26:44 [Information] User authenticated successfully. UserId: deb0cc8d-b2a5-4e65-92ef-a775802a880f
+14:26:44 [Debug] Trying to get add events
+14:26:44 [Debug] Retrieving all events
+14:26:44 [Information] Retrieved 34 events
+14:26:44 [Information] Retrieved 34 events successfully
+14:28:32 [Information] Authentication attempt for login: "string"
+14:28:32 [Information] JWT token generated for user deb0cc8d-b2a5-4e65-92ef-a775802a880f
+14:28:32 [Information] User authenticated successfully. UserId: deb0cc8d-b2a5-4e65-92ef-a775802a880f
+14:28:33 [Debug] Trying to get add events
+14:28:33 [Debug] Retrieving all events
+14:28:33 [Information] Retrieved 34 events
+14:28:33 [Information] Retrieved 34 events successfully
+14:28:41 [Debug] Trying to get all participations
+14:28:41 [Information] All participations found
+14:28:41 [Debug] Trying to get all notifications
+14:28:41 [Information] Getting all notifications
+14:28:41 [Debug] Total notifications retrieved: 30
+14:28:41 [Information] Retrieved 30 notifications successfully
+14:28:43 [Debug] Trying to get add events
+14:28:43 [Debug] Retrieving all events
+14:28:43 [Information] Retrieved 34 events
+14:28:43 [Information] Retrieved 34 events successfully
+14:28:50 [Debug] Trying to get add events
+14:28:50 [Debug] Retrieving all events
+14:28:50 [Information] Retrieved 34 events
+14:28:50 [Information] Retrieved 34 events successfully
+14:42:58 [Warning] Overriding address(es) '"http://localhost:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+14:43:14 [Information] Authentication attempt for login: "string"
+14:43:15 [Information] JWT token generated for user deb0cc8d-b2a5-4e65-92ef-a775802a880f
+14:43:15 [Information] User authenticated successfully. UserId: deb0cc8d-b2a5-4e65-92ef-a775802a880f
+14:43:15 [Debug] Trying to get add events
+14:43:15 [Debug] Retrieving all events
+14:43:16 [Information] Retrieved 34 events
+14:43:16 [Information] Retrieved 34 events successfully
+14:49:36 [Information] Authentication attempt for login: "string"
+14:49:36 [Information] JWT token generated for user deb0cc8d-b2a5-4e65-92ef-a775802a880f
+14:49:36 [Information] User authenticated successfully. UserId: deb0cc8d-b2a5-4e65-92ef-a775802a880f
+14:49:36 [Debug] Trying to get add events
+14:49:36 [Debug] Retrieving all events
+14:49:36 [Information] Retrieved 34 events
+14:49:36 [Information] Retrieved 34 events successfully

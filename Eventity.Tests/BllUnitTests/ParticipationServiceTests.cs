@@ -1,22 +1,26 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Eventity.Application.Services;
 using Eventity.Domain.Enums;
+using Eventity.Domain.Exceptions;
+using Eventity.Domain.Models;
+using Eventity.UnitTests.DalUnitTests.Fabrics;
 using Microsoft.Extensions.Logging;
+using Moq;
+using Xunit;
 
-namespace Eventity.UnitTests;
+namespace Eventity.Tests.Services;
 
-public class ParticipationServiceTests
+public class ParticipationServiceTests : IClassFixture<ParticipationServiceTestFixture>
 {
-    private readonly Mock<IParticipationRepository> _mockParticipationRepository;
-    private readonly ParticipationService _participationService;
-    private readonly ILogger<ParticipationService> _logger;
+    private readonly ParticipationServiceTestFixture _fixture;
 
-    public ParticipationServiceTests()
+    public ParticipationServiceTests(ParticipationServiceTestFixture fixture)
     {
-        _mockParticipationRepository = new Mock<IParticipationRepository>();
-        var loggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
-        var logger = loggerFactory.CreateLogger<ParticipationService>();
-        _logger = logger;
-        _participationService = new ParticipationService(_mockParticipationRepository.Object, _logger);
+        _fixture = fixture;
+        _fixture.ResetMocks();
     }
 
     [Fact]
@@ -27,11 +31,11 @@ public class ParticipationServiceTests
         var role = ParticipationRoleEnum.Organizer;
         var status = ParticipationStatusEnum.Accepted;
 
-        _mockParticipationRepository
+        _fixture.ParticipationRepoMock
             .Setup(repo => repo.AddAsync(It.IsAny<Participation>()))
             .ReturnsAsync((Participation p) => p);
 
-        var result = await _participationService.AddParticipation(userId, eventId, role, status);
+        var result = await _fixture.Service.AddParticipation(userId, eventId, role, status);
 
         Assert.NotNull(result);
         Assert.Equal(userId, result.UserId);
@@ -39,7 +43,7 @@ public class ParticipationServiceTests
         Assert.Equal(role, result.Role);
         Assert.Equal(status, result.Status);
 
-        _mockParticipationRepository.Verify(repo => repo.AddAsync(
+        _fixture.ParticipationRepoMock.Verify(repo => repo.AddAsync(
             It.IsAny<Participation>()), Times.Once);
     }
 
@@ -51,42 +55,35 @@ public class ParticipationServiceTests
         var role = ParticipationRoleEnum.Organizer;
         var status = ParticipationStatusEnum.Accepted;
 
-        _mockParticipationRepository
+        _fixture.ParticipationRepoMock
             .Setup(repo => repo.AddAsync(It.IsAny<Participation>()))
             .ThrowsAsync(new ParticipationRepositoryException("Repository error"));
 
         await Assert.ThrowsAsync<ParticipationServiceException>(() =>
-            _participationService.AddParticipation(userId, eventId, role, status));
+            _fixture.Service.AddParticipation(userId, eventId, role, status));
     }
 
     [Fact]
     public async Task GetParticipationById_ShouldReturnParticipation_WhenParticipationExists()
     {
-        var participationId = Guid.NewGuid();
-        var participation = new Participation(participationId, Guid.NewGuid(), Guid.NewGuid(), 
-            ParticipationRoleEnum.Organizer, ParticipationStatusEnum.Accepted);
+        var participation = ParticipationFactory.Create();
 
-        _mockParticipationRepository
-            .Setup(repo => repo.GetByIdAsync(participationId))
-            .ReturnsAsync(participation);
+        _fixture.SetupParticipationExists(participation);
 
-        var result = await _participationService.GetParticipationById(participationId);
+        var result = await _fixture.Service.GetParticipationById(participation.Id);
 
         Assert.NotNull(result);
-        Assert.Equal(participationId, result.Id);
+        Assert.Equal(participation.Id, result.Id);
     }
 
     [Fact]
     public async Task GetParticipationById_ShouldThrowParticipationServiceException_WhenParticipationNotFound()
     {
         var participationId = Guid.NewGuid();
-
-        _mockParticipationRepository
-            .Setup(repo => repo.GetByIdAsync(participationId))
-            .ReturnsAsync(default(Participation));
+        _fixture.SetupParticipationNotFound(participationId);
 
         await Assert.ThrowsAsync<ParticipationServiceException>(() =>
-            _participationService.GetParticipationById(participationId));
+            _fixture.Service.GetParticipationById(participationId));
     }
 
     [Fact]
@@ -95,17 +92,15 @@ public class ParticipationServiceTests
         var eventId = Guid.NewGuid();
         var participations = new List<Participation>
         {
-            new Participation(Guid.NewGuid(), Guid.NewGuid(), eventId, ParticipationRoleEnum.Participant, 
-                ParticipationStatusEnum.Accepted),
-            new Participation(Guid.NewGuid(), Guid.NewGuid(), eventId, ParticipationRoleEnum.Organizer, 
-                ParticipationStatusEnum.Accepted)
+            ParticipationFactory.WithSpecificIds(Guid.NewGuid(), eventId),
+            ParticipationFactory.WithSpecificIds(Guid.NewGuid(), eventId)
         };
 
-        _mockParticipationRepository
+        _fixture.ParticipationRepoMock
             .Setup(repo => repo.GetByEventIdAsync(eventId))
             .ReturnsAsync(participations);
 
-        var result = await _participationService.GetParticipationsByEventId(eventId);
+        var result = await _fixture.Service.GetParticipationsByEventId(eventId);
 
         Assert.NotNull(result);
         Assert.Equal(2, result.Count());
@@ -116,12 +111,12 @@ public class ParticipationServiceTests
     {
         var eventId = Guid.NewGuid();
 
-        _mockParticipationRepository
+        _fixture.ParticipationRepoMock
             .Setup(repo => repo.GetByEventIdAsync(eventId))
             .ReturnsAsync(Enumerable.Empty<Participation>());
 
         await Assert.ThrowsAsync<ParticipationServiceException>(() =>
-            _participationService.GetParticipationsByEventId(eventId));
+            _fixture.Service.GetParticipationsByEventId(eventId));
     }
 
     [Fact]
@@ -130,17 +125,15 @@ public class ParticipationServiceTests
         var userId = Guid.NewGuid();
         var participations = new List<Participation>
         {
-            new Participation(Guid.NewGuid(), userId, Guid.NewGuid(), ParticipationRoleEnum.Participant, 
-                ParticipationStatusEnum.Accepted),
-            new Participation(Guid.NewGuid(), userId, Guid.NewGuid(), ParticipationRoleEnum.Organizer, 
-                ParticipationStatusEnum.Accepted)
+            ParticipationFactory.WithSpecificIds(userId, Guid.NewGuid()),
+            ParticipationFactory.WithSpecificIds(userId, Guid.NewGuid())
         };
 
-        _mockParticipationRepository
+        _fixture.ParticipationRepoMock
             .Setup(repo => repo.GetByUserIdAsync(userId))
             .ReturnsAsync(participations);
 
-        var result = await _participationService.GetParticipationsByUserId(userId);
+        var result = await _fixture.Service.GetParticipationsByUserId(userId);
 
         Assert.NotNull(result);
         Assert.Equal(2, result.Count());
@@ -151,12 +144,12 @@ public class ParticipationServiceTests
     {
         var userId = Guid.NewGuid();
 
-        _mockParticipationRepository
+        _fixture.ParticipationRepoMock
             .Setup(repo => repo.GetByUserIdAsync(userId))
             .ReturnsAsync(Enumerable.Empty<Participation>());
 
         await Assert.ThrowsAsync<ParticipationServiceException>(() =>
-            _participationService.GetParticipationsByUserId(userId));
+            _fixture.Service.GetParticipationsByUserId(userId));
     }
 
     [Fact]
@@ -165,17 +158,15 @@ public class ParticipationServiceTests
         var eventId = Guid.NewGuid();
         var participations = new List<Participation>
         {
-            new Participation(Guid.NewGuid(), Guid.NewGuid(), eventId, ParticipationRoleEnum.Participant, 
-                ParticipationStatusEnum.Accepted),
-            new Participation(Guid.NewGuid(), Guid.NewGuid(), eventId, ParticipationRoleEnum.Organizer, 
-                ParticipationStatusEnum.Accepted)
+            ParticipationFactory.AcceptedParticipant(),
+            ParticipationFactory.Organizer()
         };
 
-        _mockParticipationRepository
+        _fixture.ParticipationRepoMock
             .Setup(repo => repo.GetByEventIdAsync(eventId))
             .ReturnsAsync(participations);
 
-        var result = await _participationService.GetOrganizerByEventId(eventId);
+        var result = await _fixture.Service.GetOrganizerByEventId(eventId);
 
         Assert.NotNull(result);
         Assert.Equal(ParticipationRoleEnum.Organizer, result.Role);
@@ -187,16 +178,15 @@ public class ParticipationServiceTests
         var eventId = Guid.NewGuid();
         var participations = new List<Participation>
         {
-            new Participation(Guid.NewGuid(), Guid.NewGuid(), eventId, ParticipationRoleEnum.Participant, 
-                ParticipationStatusEnum.Accepted)
+            ParticipationFactory.AcceptedParticipant()
         };
 
-        _mockParticipationRepository
+        _fixture.ParticipationRepoMock
             .Setup(repo => repo.GetByEventIdAsync(eventId))
             .ReturnsAsync(participations);
 
         await Assert.ThrowsAsync<ParticipationServiceException>(() =>
-            _participationService.GetOrganizerByEventId(eventId));
+            _fixture.Service.GetOrganizerByEventId(eventId));
     }
 
     [Fact]
@@ -205,20 +195,19 @@ public class ParticipationServiceTests
         var eventId = Guid.NewGuid();
         var participations = new List<Participation>
         {
-            new Participation(Guid.NewGuid(), Guid.NewGuid(), eventId, ParticipationRoleEnum.Participant, 
-                ParticipationStatusEnum.Accepted),
-            new Participation(Guid.NewGuid(), Guid.NewGuid(), eventId, ParticipationRoleEnum.Organizer, 
-                ParticipationStatusEnum.Accepted)
+            ParticipationFactory.AcceptedParticipant(),
+            ParticipationFactory.Organizer()
         };
 
-        _mockParticipationRepository
+        _fixture.ParticipationRepoMock
             .Setup(repo => repo.GetByEventIdAsync(eventId))
             .ReturnsAsync(participations);
 
-        var result = await _participationService.GetAllParticipantsByEventId(eventId);
+        var result = await _fixture.Service.GetAllParticipantsByEventId(eventId);
 
         Assert.NotNull(result);
         Assert.Single(result);
+        Assert.All(result, p => Assert.Equal(ParticipationRoleEnum.Participant, p.Role));
     }
 
     [Fact]
@@ -226,12 +215,12 @@ public class ParticipationServiceTests
     {
         var eventId = Guid.NewGuid();
 
-        _mockParticipationRepository
+        _fixture.ParticipationRepoMock
             .Setup(repo => repo.GetByEventIdAsync(eventId))
             .ReturnsAsync(Enumerable.Empty<Participation>());
 
         await Assert.ThrowsAsync<ParticipationServiceException>(() =>
-            _participationService.GetAllParticipantsByEventId(eventId));
+            _fixture.Service.GetAllParticipantsByEventId(eventId));
     }
 
     [Fact]
@@ -240,20 +229,19 @@ public class ParticipationServiceTests
         var eventId = Guid.NewGuid();
         var participations = new List<Participation>
         {
-            new Participation(Guid.NewGuid(), Guid.NewGuid(), eventId, ParticipationRoleEnum.Left, 
-                ParticipationStatusEnum.Accepted),
-            new Participation(Guid.NewGuid(), Guid.NewGuid(), eventId, ParticipationRoleEnum.Participant, 
-                ParticipationStatusEnum.Accepted)
+            ParticipationFactory.Create(role: ParticipationRoleEnum.Left),
+            ParticipationFactory.AcceptedParticipant()
         };
 
-        _mockParticipationRepository
+        _fixture.ParticipationRepoMock
             .Setup(repo => repo.GetByEventIdAsync(eventId))
             .ReturnsAsync(participations);
 
-        var result = await _participationService.GetAllLeftParticipantsByEventId(eventId);
+        var result = await _fixture.Service.GetAllLeftParticipantsByEventId(eventId);
 
         Assert.NotNull(result);
         Assert.Single(result);
+        Assert.All(result, p => Assert.Equal(ParticipationRoleEnum.Left, p.Role));
     }
 
     [Fact]
@@ -261,12 +249,12 @@ public class ParticipationServiceTests
     {
         var eventId = Guid.NewGuid();
 
-        _mockParticipationRepository
+        _fixture.ParticipationRepoMock
             .Setup(repo => repo.GetByEventIdAsync(eventId))
             .ReturnsAsync(Enumerable.Empty<Participation>());
 
         await Assert.ThrowsAsync<ParticipationServiceException>(() =>
-            _participationService.GetAllLeftParticipantsByEventId(eventId));
+            _fixture.Service.GetAllLeftParticipantsByEventId(eventId));
     }
 
     [Fact]
@@ -274,17 +262,13 @@ public class ParticipationServiceTests
     {
         var participations = new List<Participation>
         {
-            new Participation(Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), ParticipationRoleEnum.Participant, 
-                ParticipationStatusEnum.Accepted),
-            new Participation(Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), ParticipationRoleEnum.Organizer, 
-                ParticipationStatusEnum.Accepted)
+            ParticipationFactory.Create(),
+            ParticipationFactory.Create()
         };
 
-        _mockParticipationRepository
-            .Setup(repo => repo.GetAllAsync())
-            .ReturnsAsync(participations);
+        _fixture.SetupParticipationsList(participations);
 
-        var result = await _participationService.GetAllParticipations();
+        var result = await _fixture.Service.GetAllParticipations();
 
         Assert.NotNull(result);
         Assert.Equal(2, result.Count());
@@ -293,31 +277,24 @@ public class ParticipationServiceTests
     [Fact]
     public async Task GetAllParticipations_ShouldThrowParticipationServiceException_WhenNoParticipationsFound()
     {
-        _mockParticipationRepository
-            .Setup(repo => repo.GetAllAsync())
-            .ReturnsAsync(Enumerable.Empty<Participation>());
+        _fixture.SetupParticipationsList(new List<Participation>());
 
         await Assert.ThrowsAsync<ParticipationServiceException>(() =>
-            _participationService.GetAllParticipations());
+            _fixture.Service.GetAllParticipations());
     }
 
     [Fact]
     public async Task UpdateParticipation_ShouldReturnUpdatedParticipation_WhenParticipationExists()
     {
-        var participationId = Guid.NewGuid();
-        var participation = new Participation(participationId, Guid.NewGuid(), Guid.NewGuid(), 
-            ParticipationRoleEnum.Participant, ParticipationStatusEnum.Accepted);
+        var participation = ParticipationFactory.Create();
         var updatedStatus = ParticipationStatusEnum.Rejected;
 
-        _mockParticipationRepository
-            .Setup(repo => repo.GetByIdAsync(participationId))
-            .ReturnsAsync(participation);
+        _fixture.SetupParticipationExists(participation);
+        _fixture.ParticipationRepoMock
+            .Setup(repo => repo.UpdateAsync(It.IsAny<Participation>()))
+            .ReturnsAsync((Participation p) => p);
 
-        _mockParticipationRepository
-            .Setup(repo => repo.UpdateAsync(participation))
-            .ReturnsAsync(participation);
-
-        var result = await _participationService.UpdateParticipation(participationId, updatedStatus);
+        var result = await _fixture.Service.UpdateParticipation(participation.Id, updatedStatus);
 
         Assert.NotNull(result);
         Assert.Equal(updatedStatus, result.Status);
@@ -327,32 +304,24 @@ public class ParticipationServiceTests
     public async Task UpdateParticipation_ShouldThrowParticipationServiceException_WhenParticipationNotFound()
     {
         var participationId = Guid.NewGuid();
-
-        _mockParticipationRepository
-            .Setup(repo => repo.GetByIdAsync(participationId))
-            .ReturnsAsync(default(Participation));
+        _fixture.SetupParticipationNotFound(participationId);
 
         await Assert.ThrowsAsync<ParticipationServiceException>(() =>
-            _participationService.UpdateParticipation(participationId, ParticipationStatusEnum.Rejected));
+            _fixture.Service.UpdateParticipation(participationId, ParticipationStatusEnum.Rejected));
     }
 
     [Fact]
     public async Task ChangeParticipationStatus_ShouldReturnUpdatedParticipation_WhenParticipationExists()
     {
-        var participationId = Guid.NewGuid();
-        var participation = new Participation(participationId, Guid.NewGuid(), Guid.NewGuid(), 
-            ParticipationRoleEnum.Participant, ParticipationStatusEnum.Accepted);
+        var participation = ParticipationFactory.Create();
         var updatedStatus = ParticipationStatusEnum.Invited;
 
-        _mockParticipationRepository
-            .Setup(repo => repo.GetByIdAsync(participationId))
-            .ReturnsAsync(participation);
+        _fixture.SetupParticipationExists(participation);
+        _fixture.ParticipationRepoMock
+            .Setup(repo => repo.UpdateAsync(It.IsAny<Participation>()))
+            .ReturnsAsync((Participation p) => p);
 
-        _mockParticipationRepository
-            .Setup(repo => repo.UpdateAsync(participation))
-            .ReturnsAsync(participation);
-
-        var result = await _participationService.ChangeParticipationStatus(participationId, updatedStatus);
+        var result = await _fixture.Service.ChangeParticipationStatus(participation.Id, updatedStatus);
 
         Assert.NotNull(result);
         Assert.Equal(updatedStatus, result.Status);
@@ -362,32 +331,24 @@ public class ParticipationServiceTests
     public async Task ChangeParticipationStatus_ShouldThrowParticipationServiceException_WhenParticipationNotFound()
     {
         var participationId = Guid.NewGuid();
-
-        _mockParticipationRepository
-            .Setup(repo => repo.GetByIdAsync(participationId))
-            .ReturnsAsync(default(Participation));
+        _fixture.SetupParticipationNotFound(participationId);
 
         await Assert.ThrowsAsync<ParticipationServiceException>(() =>
-            _participationService.ChangeParticipationStatus(participationId, ParticipationStatusEnum.Invited));
+            _fixture.Service.ChangeParticipationStatus(participationId, ParticipationStatusEnum.Invited));
     }
 
     [Fact]
     public async Task ChangeParticipationRole_ShouldReturnUpdatedParticipation_WhenParticipationExists()
     {
-        var participationId = Guid.NewGuid();
-        var participation = new Participation(participationId, Guid.NewGuid(), Guid.NewGuid(), 
-            ParticipationRoleEnum.Participant, ParticipationStatusEnum.Accepted);
+        var participation = ParticipationFactory.Create();
         var updatedRole = ParticipationRoleEnum.Organizer;
 
-        _mockParticipationRepository
-            .Setup(repo => repo.GetByIdAsync(participationId))
-            .ReturnsAsync(participation);
+        _fixture.SetupParticipationExists(participation);
+        _fixture.ParticipationRepoMock
+            .Setup(repo => repo.UpdateAsync(It.IsAny<Participation>()))
+            .ReturnsAsync((Participation p) => p);
 
-        _mockParticipationRepository
-            .Setup(repo => repo.UpdateAsync(participation))
-            .ReturnsAsync(participation);
-
-        var result = await _participationService.ChangeParticipationRole(participationId, updatedRole);
+        var result = await _fixture.Service.ChangeParticipationRole(participation.Id, updatedRole);
 
         Assert.NotNull(result);
         Assert.Equal(updatedRole, result.Role);
@@ -397,13 +358,10 @@ public class ParticipationServiceTests
     public async Task ChangeParticipationRole_ShouldThrowParticipationServiceException_WhenParticipationNotFound()
     {
         var participationId = Guid.NewGuid();
-
-        _mockParticipationRepository
-            .Setup(repo => repo.GetByIdAsync(participationId))
-            .ReturnsAsync(default(Participation));
+        _fixture.SetupParticipationNotFound(participationId);
 
         await Assert.ThrowsAsync<ParticipationServiceException>(() =>
-            _participationService.ChangeParticipationRole(participationId, ParticipationRoleEnum.Organizer));
+            _fixture.Service.ChangeParticipationRole(participationId, ParticipationRoleEnum.Organizer));
     }
 
     [Fact]
@@ -411,13 +369,13 @@ public class ParticipationServiceTests
     {
         var participationId = Guid.NewGuid();
 
-        _mockParticipationRepository
+        _fixture.ParticipationRepoMock
             .Setup(repo => repo.RemoveAsync(participationId))
             .Returns(Task.CompletedTask);
 
-        await _participationService.RemoveParticipation(participationId);
+        await _fixture.Service.RemoveParticipation(participationId);
 
-        _mockParticipationRepository.Verify(repo => repo.RemoveAsync(participationId), Times.Once);
+        _fixture.ParticipationRepoMock.Verify(repo => repo.RemoveAsync(participationId), Times.Once);
     }
 
     [Fact]
@@ -425,11 +383,11 @@ public class ParticipationServiceTests
     {
         var participationId = Guid.NewGuid();
 
-        _mockParticipationRepository
+        _fixture.ParticipationRepoMock
             .Setup(repo => repo.RemoveAsync(participationId))
             .ThrowsAsync(new ParticipationRepositoryException("Repository error"));
 
         await Assert.ThrowsAsync<ParticipationServiceException>(() =>
-            _participationService.RemoveParticipation(participationId));
+            _fixture.Service.RemoveParticipation(participationId));
     }
 }

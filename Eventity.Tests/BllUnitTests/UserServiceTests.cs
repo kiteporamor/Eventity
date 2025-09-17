@@ -1,22 +1,25 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Eventity.Application.Services;
 using Eventity.Domain.Enums;
+using Eventity.Domain.Exceptions;
+using Eventity.Domain.Models;
 using Microsoft.Extensions.Logging;
+using Moq;
+using Xunit;
 
-namespace Eventity.UnitTests;
+namespace Eventity.Tests.Services;
 
-public class UserServiceTests
+public class UserServiceTests : IClassFixture<UserServiceTestFixture>
 {
-    private readonly Mock<IUserRepository> _mockUserRepository;
-    private readonly UserService _userService;
-    private readonly ILogger<UserService> _logger;
+    private readonly UserServiceTestFixture _fixture;
 
-    public UserServiceTests()
+    public UserServiceTests(UserServiceTestFixture fixture)
     {
-        _mockUserRepository = new Mock<IUserRepository>();
-        var loggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
-        var logger = loggerFactory.CreateLogger<UserService>();
-        _logger = logger;
-        _userService = new UserService(_mockUserRepository.Object, logger);
+        _fixture = fixture;
+        _fixture.ResetMocks();
     }
 
     [Fact]
@@ -26,15 +29,13 @@ public class UserServiceTests
         var email = "john.doe@example.com";
         var login = "johndoe";
         var password = "password123";
-        var userId = Guid.NewGuid();
         var role = UserRoleEnum.User;
-        var user = new User(userId, name, email, login, password, role);
 
-        _mockUserRepository
+        _fixture.UserRepoMock
             .Setup(repo => repo.AddAsync(It.IsAny<User>()))
-            .ReturnsAsync(user);
+            .ReturnsAsync((User u) => u);
 
-        var result = await _userService.AddUser(name, email, login, password, role);
+        var result = await _fixture.Service.AddUser(name, email, login, password, role);
 
         Assert.NotNull(result);
         Assert.Equal(name, result.Name);
@@ -42,7 +43,7 @@ public class UserServiceTests
         Assert.Equal(login, result.Login);
         Assert.Equal(password, result.Password);
 
-        _mockUserRepository.Verify(repo => repo.AddAsync(It.IsAny<User>()), Times.Once);
+        _fixture.UserRepoMock.Verify(repo => repo.AddAsync(It.IsAny<User>()), Times.Once);
     }
 
     [Fact]
@@ -54,44 +55,38 @@ public class UserServiceTests
         var password = "password123";
         var role = UserRoleEnum.User;
 
-        _mockUserRepository
+        _fixture.UserRepoMock
             .Setup(repo => repo.AddAsync(It.IsAny<User>()))
             .ThrowsAsync(new UserRepositoryException("Repository error"));
 
         await Assert.ThrowsAsync<UserServiceException>(() => 
-            _userService.AddUser(name, email, login, password, role));
+            _fixture.Service.AddUser(name, email, login, password, role));
     }
     
     [Fact]
     public async Task GetUserById_ShouldReturnUser_WhenUserExists()
     {
-        var userId = Guid.NewGuid();
-        var user = new User(userId, "John Doe", "john.doe@example.com", "johndoe", 
+        var user = new User(Guid.NewGuid(), "John Doe", "john.doe@example.com", "johndoe", 
             "password123", UserRoleEnum.User);
 
-        _mockUserRepository
-            .Setup(repo => repo.GetByIdAsync(userId))
-            .ReturnsAsync(user);
+        _fixture.SetupUserExists(user);
 
-        var result = await _userService.GetUserById(userId);
+        var result = await _fixture.Service.GetUserById(user.Id);
 
         Assert.NotNull(result);
-        Assert.Equal(userId, result.Id);
+        Assert.Equal(user.Id, result.Id);
 
-        _mockUserRepository.Verify(repo => repo.GetByIdAsync(userId), Times.Once);
+        _fixture.UserRepoMock.Verify(repo => repo.GetByIdAsync(user.Id), Times.Once);
     }
 
     [Fact]
     public async Task GetUserById_ShouldThrowUserServiceException_WhenUserNotFound()
     {
         var userId = Guid.NewGuid();
-
-        _mockUserRepository
-            .Setup(repo => repo.GetByIdAsync(userId))
-            .ReturnsAsync(default(User?));
+        _fixture.SetupUserNotFound(userId);
 
         await Assert.ThrowsAsync<UserServiceException>(() => 
-            _userService.GetUserById(userId));
+            _fixture.Service.GetUserById(userId));
     }
 
     [Fact]
@@ -99,12 +94,12 @@ public class UserServiceTests
     {
         var userId = Guid.NewGuid();
 
-        _mockUserRepository
+        _fixture.UserRepoMock
             .Setup(repo => repo.GetByIdAsync(userId))
             .ThrowsAsync(new UserRepositoryException("Repository error"));
 
         await Assert.ThrowsAsync<UserServiceException>(() => 
-            _userService.GetUserById(userId));
+            _fixture.Service.GetUserById(userId));
     }
     
     [Fact]
@@ -118,95 +113,80 @@ public class UserServiceTests
                 "password456", UserRoleEnum.User)
         };
 
-        _mockUserRepository
-            .Setup(repo => repo.GetAllAsync())
-            .ReturnsAsync(users);
+        _fixture.SetupUsersList(users);
 
-        var result = await _userService.GetAllUsers();
+        var result = await _fixture.Service.GetAllUsers();
 
         Assert.NotNull(result);
         Assert.Equal(2, result.Count());
 
-        _mockUserRepository.Verify(repo => repo.GetAllAsync(), Times.Once);
+        _fixture.UserRepoMock.Verify(repo => repo.GetAllAsync(), Times.Once);
     }
 
     [Fact]
     public async Task GetAllUsers_ShouldThrowUserServiceException_WhenNoUsersFound()
     {
-        _mockUserRepository
-            .Setup(repo => repo.GetAllAsync())
-            .ReturnsAsync(Enumerable.Empty<User>());
+        _fixture.SetupUsersList(new List<User>());
 
         await Assert.ThrowsAsync<UserServiceException>(() => 
-            _userService.GetAllUsers());
+            _fixture.Service.GetAllUsers());
     }
 
     [Fact]
     public async Task GetAllUsers_ShouldThrowUserServiceException_WhenRepositoryFails()
     {
-        _mockUserRepository
+        _fixture.UserRepoMock
             .Setup(repo => repo.GetAllAsync())
             .ThrowsAsync(new UserRepositoryException("Repository error"));
 
         await Assert.ThrowsAsync<UserServiceException>(() => 
-            _userService.GetAllUsers());
+            _fixture.Service.GetAllUsers());
     }
     
     [Fact]
     public async Task UpdateUser_ShouldReturnUpdatedUser_WhenUserExists()
     {
-        var userId = Guid.NewGuid();
-        var user = new User(userId, "John Doe", "john.doe@example.com", "johndoe", 
+        var user = new User(Guid.NewGuid(), "John Doe", "john.doe@example.com", "johndoe", 
             "password123", UserRoleEnum.User);
 
-        _mockUserRepository
-            .Setup(repo => repo.GetByIdAsync(userId))
-            .ReturnsAsync(user);
+        _fixture.SetupUserExists(user);
+        _fixture.UserRepoMock
+            .Setup(repo => repo.UpdateAsync(It.IsAny<User>()))
+            .ReturnsAsync((User u) => u);
 
-        _mockUserRepository
-            .Setup(repo => repo.UpdateAsync(user))
-            .ReturnsAsync(user);
-
-        var result = await _userService.UpdateUser(userId, "Jane Doe", null, null, null);
+        var result = await _fixture.Service.UpdateUser(user.Id, "Jane Doe", null, null, null);
 
         Assert.NotNull(result);
         Assert.Equal("Jane Doe", result.Name);
         Assert.Equal("john.doe@example.com", result.Email);
 
-        _mockUserRepository.Verify(repo => repo.GetByIdAsync(userId), Times.Once);
-        _mockUserRepository.Verify(repo => repo.UpdateAsync(user), Times.Once);
+        _fixture.UserRepoMock.Verify(repo => repo.GetByIdAsync(user.Id), Times.Once);
+        _fixture.UserRepoMock.Verify(repo => repo.UpdateAsync(It.IsAny<User>()), Times.Once);
     }
 
     [Fact]
     public async Task UpdateUser_ShouldThrowUserServiceException_WhenUserNotFound()
     {
         var userId = Guid.NewGuid();
-
-        _mockUserRepository
-            .Setup(repo => repo.GetByIdAsync(userId))
-            .ReturnsAsync(default(User));
+        _fixture.SetupUserNotFound(userId);
 
         await Assert.ThrowsAsync<UserServiceException>(() => 
-            _userService.UpdateUser(userId, "Jane Doe", null, null, null));
+            _fixture.Service.UpdateUser(userId, "Jane Doe", null, null, null));
     }
 
     [Fact]
     public async Task UpdateUser_ShouldThrowUserServiceException_WhenRepositoryFails()
     {
-        var userId = Guid.NewGuid();
-        var user = new User(userId, "John Doe", "john.doe@example.com", 
+        var user = new User(Guid.NewGuid(), "John Doe", "john.doe@example.com", 
             "johndoe", "password123", UserRoleEnum.User);
 
-        _mockUserRepository
-            .Setup(repo => repo.GetByIdAsync(userId))
-            .ReturnsAsync(user);
-
-        _mockUserRepository
-            .Setup(repo => repo.UpdateAsync(user))
+        _fixture.SetupUserExists(user);
+        _fixture.UserRepoMock
+            .Setup(repo => repo.UpdateAsync(It.IsAny<User>()))
             .ThrowsAsync(new UserRepositoryException("Repository error"));
 
         await Assert.ThrowsAsync<UserServiceException>(() => 
-            _userService.UpdateUser(userId, "Jane Doe", null, null, null));
+            _fixture.Service.UpdateUser(user.Id, "Jane Doe", null, null, null));
     }
     
     [Fact]
@@ -214,13 +194,13 @@ public class UserServiceTests
     {
         var userId = Guid.NewGuid();
 
-        _mockUserRepository
+        _fixture.UserRepoMock
             .Setup(repo => repo.RemoveAsync(userId))
             .Returns(Task.CompletedTask);
 
-        await _userService.RemoveUser(userId);
+        await _fixture.Service.RemoveUser(userId);
 
-        _mockUserRepository.Verify(repo => repo.RemoveAsync(userId), Times.Once);
+        _fixture.UserRepoMock.Verify(repo => repo.RemoveAsync(userId), Times.Once);
     }
 
     [Fact]
@@ -228,11 +208,11 @@ public class UserServiceTests
     {
         var userId = Guid.NewGuid();
 
-        _mockUserRepository
+        _fixture.UserRepoMock
             .Setup(repo => repo.RemoveAsync(userId))
             .ThrowsAsync(new UserRepositoryException("Repository error"));
 
         await Assert.ThrowsAsync<UserServiceException>(() => 
-            _userService.RemoveUser(userId));
+            _fixture.Service.RemoveUser(userId));
     }
 }

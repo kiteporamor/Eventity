@@ -1,6 +1,7 @@
 using Eventity.DataAccess.Converters;
 using Eventity.DataAccess.Models;
 using System;
+using Allure.XUnit.Attributes.Steps;
 using Xunit;
 
 namespace Eventity.UnitTests.DalUnitTests.ConvertersUnitTests;
@@ -8,6 +9,7 @@ namespace Eventity.UnitTests.DalUnitTests.ConvertersUnitTests;
 public class EventConverterTests
 {
     [Fact]
+    [AllureStep]
     public void ToDb_WhenValidEvent_ReturnsEventDb()
     {
         var eventDomain = new EventBuilder()
@@ -26,6 +28,7 @@ public class EventConverterTests
     }
 
     [Fact]
+    [AllureStep]
     public void ToDomain_WhenValidEventDb_ReturnsEvent()
     {
         var eventDb = new EventDb(
@@ -49,6 +52,7 @@ public class EventConverterTests
     }
 
     [Fact]
+    [AllureStep]
     public void ToDb_WhenNullEvent_ThrowsArgumentNullException()
     {
         Event eventDomain = null;

@@ -1,6 +1,7 @@
 using Eventity.DataAccess.Converters;
 using Eventity.DataAccess.Models;
 using System;
+using Allure.XUnit.Attributes.Steps;
 using Xunit;
 
 namespace Eventity.UnitTests.DalUnitTests.ConvertersUnitTests;
@@ -8,6 +9,7 @@ namespace Eventity.UnitTests.DalUnitTests.ConvertersUnitTests;
 public class NotificationConverterTests
 {
     [Fact]
+    [AllureStep]
     public void ToDb_WhenValidNotification_ReturnsNotificationDb()
     {
         var notification = new NotificationBuilder()
@@ -24,6 +26,7 @@ public class NotificationConverterTests
     }
 
     [Fact]
+    [AllureStep]
     public void ToDomain_WhenValidNotificationDb_ReturnsNotification()
     {
         var sentAt = DateTime.UtcNow;
@@ -44,6 +47,7 @@ public class NotificationConverterTests
     }
 
     [Fact]
+    [AllureStep]
     public void ToDb_WhenNullNotification_ThrowsNullReferenceException()
     {
         Notification notification = null;
@@ -52,6 +56,7 @@ public class NotificationConverterTests
     }
 
     [Fact]
+    [AllureStep]
     public void ToDomain_WhenNullNotificationDb_ThrowsNullReferenceException()
     {
         NotificationDb notificationDb = null;
@@ -60,6 +65,7 @@ public class NotificationConverterTests
     }
 
     [Fact]
+    [AllureStep]
     public void ToDb_WithEmptyText_ConvertsCorrectly()
     {
         var notification = new NotificationBuilder()
@@ -72,6 +78,7 @@ public class NotificationConverterTests
     }
 
     [Fact]
+    [AllureStep]
     public void ToDomain_WithLongText_ConvertsCorrectly()
     {
         var longText = new string('A', 1000);

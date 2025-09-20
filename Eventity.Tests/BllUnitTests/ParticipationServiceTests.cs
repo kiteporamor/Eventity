@@ -10,6 +10,10 @@ using Eventity.UnitTests.DalUnitTests.Fabrics;
 using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
+using Allure.Xunit;
+using Allure.Xunit.Attributes;
+using Allure.Net.Commons;
+using Allure.XUnit.Attributes.Steps;
 
 namespace Eventity.Tests.Services;
 
@@ -24,6 +28,8 @@ public class ParticipationServiceTests : IClassFixture<ParticipationServiceTestF
     }
 
     [Fact]
+    [AllureSuite("ParticipationServiceSuccess")]
+    [AllureStep]
     public async Task AddParticipation_ShouldReturnParticipation_WhenParticipationIsCreated()
     {
         var userId = Guid.NewGuid();
@@ -48,6 +54,8 @@ public class ParticipationServiceTests : IClassFixture<ParticipationServiceTestF
     }
 
     [Fact]
+    [AllureSuite("ParticipationServiceError")]
+    [AllureStep]
     public async Task AddParticipation_ShouldThrowParticipationServiceException_WhenRepositoryFails()
     {
         var userId = Guid.NewGuid();
@@ -64,6 +72,8 @@ public class ParticipationServiceTests : IClassFixture<ParticipationServiceTestF
     }
 
     [Fact]
+    [AllureSuite("ParticipationServiceSuccess")]
+    [AllureStep]
     public async Task GetParticipationById_ShouldReturnParticipation_WhenParticipationExists()
     {
         var participation = ParticipationFactory.Create();
@@ -77,6 +87,8 @@ public class ParticipationServiceTests : IClassFixture<ParticipationServiceTestF
     }
 
     [Fact]
+    [AllureSuite("ParticipationServiceError")]
+    [AllureStep]
     public async Task GetParticipationById_ShouldThrowParticipationServiceException_WhenParticipationNotFound()
     {
         var participationId = Guid.NewGuid();
@@ -87,6 +99,8 @@ public class ParticipationServiceTests : IClassFixture<ParticipationServiceTestF
     }
 
     [Fact]
+    [AllureSuite("ParticipationServicSuccess")]
+    [AllureStep]
     public async Task GetParticipationsByEventId_ShouldReturnParticipations_WhenParticipationsExist()
     {
         var eventId = Guid.NewGuid();
@@ -107,6 +121,8 @@ public class ParticipationServiceTests : IClassFixture<ParticipationServiceTestF
     }
 
     [Fact]
+    [AllureSuite("ParticipationServiceError")]
+    [AllureStep]
     public async Task GetParticipationsByEventId_ShouldThrowParticipationServiceException_WhenNoParticipationsFound()
     {
         var eventId = Guid.NewGuid();
@@ -120,6 +136,8 @@ public class ParticipationServiceTests : IClassFixture<ParticipationServiceTestF
     }
 
     [Fact]
+    [AllureSuite("ParticipationServiceSuccess")]
+    [AllureStep]
     public async Task GetParticipationsByUserId_ShouldReturnParticipations_WhenParticipationsExist()
     {
         var userId = Guid.NewGuid();
@@ -140,6 +158,8 @@ public class ParticipationServiceTests : IClassFixture<ParticipationServiceTestF
     }
 
     [Fact]
+    [AllureSuite("ParticipationServiceError")]
+    [AllureStep]
     public async Task GetParticipationsByUserId_ShouldThrowParticipationServiceException_WhenNoParticipationsFound()
     {
         var userId = Guid.NewGuid();
@@ -153,6 +173,8 @@ public class ParticipationServiceTests : IClassFixture<ParticipationServiceTestF
     }
 
     [Fact]
+    [AllureSuite("ParticipationServiceSuccess")]
+    [AllureStep]
     public async Task GetOrganizerByEventId_ShouldReturnOrganizer_WhenOrganizerExists()
     {
         var eventId = Guid.NewGuid();
@@ -173,6 +195,8 @@ public class ParticipationServiceTests : IClassFixture<ParticipationServiceTestF
     }
 
     [Fact]
+    [AllureSuite("ParticipationServiceError")]
+    [AllureStep]
     public async Task GetOrganizerByEventId_ShouldThrowParticipationServiceException_WhenNoOrganizerFound()
     {
         var eventId = Guid.NewGuid();
@@ -190,6 +214,8 @@ public class ParticipationServiceTests : IClassFixture<ParticipationServiceTestF
     }
 
     [Fact]
+    [AllureSuite("ParticipationServiceSuccess")]
+    [AllureStep]
     public async Task GetAllParticipantsByEventId_ShouldReturnParticipants_WhenParticipantsExist()
     {
         var eventId = Guid.NewGuid();
@@ -211,6 +237,8 @@ public class ParticipationServiceTests : IClassFixture<ParticipationServiceTestF
     }
 
     [Fact]
+    [AllureSuite("ParticipationServiceError")]
+    [AllureStep]
     public async Task GetAllParticipantsByEventId_ShouldThrowParticipationServiceException_WhenNoParticipantsFound()
     {
         var eventId = Guid.NewGuid();
@@ -224,6 +252,8 @@ public class ParticipationServiceTests : IClassFixture<ParticipationServiceTestF
     }
 
     [Fact]
+    [AllureSuite("ParticipationServiceSuccess")]
+    [AllureStep]
     public async Task GetAllLeftParticipantsByEventId_ShouldReturnLeftParticipants_WhenLeftParticipantsExist()
     {
         var eventId = Guid.NewGuid();
@@ -245,6 +275,8 @@ public class ParticipationServiceTests : IClassFixture<ParticipationServiceTestF
     }
 
     [Fact]
+    [AllureSuite("ParticipationServiceError")]
+    [AllureStep]
     public async Task GetAllLeftParticipantsByEventId_ShouldThrowParticipationServiceException_WhenNoLeftParticipantsFound()
     {
         var eventId = Guid.NewGuid();
@@ -258,6 +290,8 @@ public class ParticipationServiceTests : IClassFixture<ParticipationServiceTestF
     }
 
     [Fact]
+    [AllureSuite("ParticipationServiceSuccess")]
+    [AllureStep]
     public async Task GetAllParticipations_ShouldReturnParticipations_WhenParticipationsExist()
     {
         var participations = new List<Participation>
@@ -275,6 +309,8 @@ public class ParticipationServiceTests : IClassFixture<ParticipationServiceTestF
     }
 
     [Fact]
+    [AllureSuite("ParticipationServiceError")]
+    [AllureStep]
     public async Task GetAllParticipations_ShouldThrowParticipationServiceException_WhenNoParticipationsFound()
     {
         _fixture.SetupParticipationsList(new List<Participation>());
@@ -284,6 +320,8 @@ public class ParticipationServiceTests : IClassFixture<ParticipationServiceTestF
     }
 
     [Fact]
+    [AllureSuite("ParticipationServiceSuccess")]
+    [AllureStep]
     public async Task UpdateParticipation_ShouldReturnUpdatedParticipation_WhenParticipationExists()
     {
         var participation = ParticipationFactory.Create();
@@ -301,6 +339,8 @@ public class ParticipationServiceTests : IClassFixture<ParticipationServiceTestF
     }
 
     [Fact]
+    [AllureSuite("ParticipationServiceError")]
+    [AllureStep]
     public async Task UpdateParticipation_ShouldThrowParticipationServiceException_WhenParticipationNotFound()
     {
         var participationId = Guid.NewGuid();
@@ -311,6 +351,8 @@ public class ParticipationServiceTests : IClassFixture<ParticipationServiceTestF
     }
 
     [Fact]
+    [AllureSuite("ParticipationServiceSuccess")]
+    [AllureStep]
     public async Task ChangeParticipationStatus_ShouldReturnUpdatedParticipation_WhenParticipationExists()
     {
         var participation = ParticipationFactory.Create();
@@ -328,6 +370,8 @@ public class ParticipationServiceTests : IClassFixture<ParticipationServiceTestF
     }
 
     [Fact]
+    [AllureSuite("ParticipationServiceError")]
+    [AllureStep]
     public async Task ChangeParticipationStatus_ShouldThrowParticipationServiceException_WhenParticipationNotFound()
     {
         var participationId = Guid.NewGuid();
@@ -338,6 +382,8 @@ public class ParticipationServiceTests : IClassFixture<ParticipationServiceTestF
     }
 
     [Fact]
+    [AllureSuite("ParticipationServiceSuccess")]
+    [AllureStep]
     public async Task ChangeParticipationRole_ShouldReturnUpdatedParticipation_WhenParticipationExists()
     {
         var participation = ParticipationFactory.Create();
@@ -355,6 +401,8 @@ public class ParticipationServiceTests : IClassFixture<ParticipationServiceTestF
     }
 
     [Fact]
+    [AllureSuite("ParticipationServiceError")]
+    [AllureStep]
     public async Task ChangeParticipationRole_ShouldThrowParticipationServiceException_WhenParticipationNotFound()
     {
         var participationId = Guid.NewGuid();
@@ -365,6 +413,8 @@ public class ParticipationServiceTests : IClassFixture<ParticipationServiceTestF
     }
 
     [Fact]
+    [AllureSuite("ParticipationServiceSuccess")]
+    [AllureStep]
     public async Task RemoveParticipation_ShouldCallRemoveAsync_WhenParticipationExists()
     {
         var participationId = Guid.NewGuid();
@@ -379,6 +429,8 @@ public class ParticipationServiceTests : IClassFixture<ParticipationServiceTestF
     }
 
     [Fact]
+    [AllureSuite("ParticipationServiceError")]
+    [AllureStep]
     public async Task RemoveParticipation_ShouldThrowParticipationServiceException_WhenRepositoryFails()
     {
         var participationId = Guid.NewGuid();

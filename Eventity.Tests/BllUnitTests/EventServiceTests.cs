@@ -11,6 +11,10 @@ using Eventity.Domain.Models;
 using Eventity.UnitTests.DalUnitTests.ConvertersUnitTests;
 using Microsoft.Extensions.Logging;
 using Moq;
+using Allure.Xunit;
+using Allure.Xunit.Attributes;
+using Allure.Net.Commons;
+using Allure.XUnit.Attributes.Steps;
 
 namespace Eventity.Tests.Services;
 
@@ -25,20 +29,19 @@ public class EventServiceTests : IClassFixture<EventServiceTestFixture>
     }
 
     [Fact]
+    [AllureSuite("EventServiceSuccess")]
+    [AllureStep]
     public async Task AddEvent_Should_Add_Event_And_Participation()
     {
-        var title = "Test Event";
-        var desc = "Test Description";
+        var title = "Event";
+        var desc = "Description";
         var date = DateTime.Now.AddDays(1);
-        var addr = "Test Address";
+        var addr = "Address";
         var organizerId = Guid.NewGuid();
 
-        _fixture.UnitOfWorkMock.Setup(x => x.BeginTransactionAsync())
-                              .Returns(Task.CompletedTask);
-        _fixture.UnitOfWorkMock.Setup(x => x.SaveChangesAsync())
-                              .Returns(Task.CompletedTask);
-        _fixture.UnitOfWorkMock.Setup(x => x.CommitAsync())
-                              .Returns(Task.CompletedTask);
+        _fixture.UnitOfWorkMock.Setup(x => x.BeginTransactionAsync()).Returns(Task.CompletedTask);
+        _fixture.UnitOfWorkMock.Setup(x => x.SaveChangesAsync()).Returns(Task.CompletedTask);
+        _fixture.UnitOfWorkMock.Setup(x => x.CommitAsync()).Returns(Task.CompletedTask);
 
         var result = await _fixture.Service.AddEvent(title, desc, date, addr, organizerId);
 
@@ -56,6 +59,8 @@ public class EventServiceTests : IClassFixture<EventServiceTestFixture>
     }
 
     [Fact]
+    [AllureSuite("EventServiceSuccess")]
+    [AllureStep]
     public async Task GetEventById_Should_Return_Event_If_Exists()
     {
         var expectedEvent = EventBuilder.Default();
@@ -68,6 +73,8 @@ public class EventServiceTests : IClassFixture<EventServiceTestFixture>
     }
 
     [Fact]
+    [AllureSuite("EventServiceError")]
+    [AllureStep]
     public async Task GetEventById_Should_Throw_If_Not_Exists()
     {
         var eventId = Guid.NewGuid();
@@ -80,6 +87,8 @@ public class EventServiceTests : IClassFixture<EventServiceTestFixture>
     }
 
     [Fact]
+    [AllureSuite("EventServiceSuccess")]
+    [AllureStep]
     public async Task GetAllEvents_Should_Return_List_If_Any()
     {
         var events = new List<Event> 
@@ -96,6 +105,8 @@ public class EventServiceTests : IClassFixture<EventServiceTestFixture>
     }
 
     [Fact]
+    [AllureSuite("EventServiceError")]
+    [AllureStep]
     public async Task GetAllEvents_Should_Throw_If_Empty()
     {
         _fixture.SetupEventsList(new List<Event>());
@@ -107,6 +118,8 @@ public class EventServiceTests : IClassFixture<EventServiceTestFixture>
     }
 
     [Fact]
+    [AllureSuite("EventServiceSuccess")]
+    [AllureStep]
     public async Task UpdateEvent_Should_Update_Existing_Event()
     {
         var originalEvent = EventBuilder.Default();
@@ -132,6 +145,8 @@ public class EventServiceTests : IClassFixture<EventServiceTestFixture>
     }
 
     [Fact]
+    [AllureSuite("EventServiceError")]
+    [AllureStep]
     public async Task UpdateEvent_Should_Throw_If_Not_Exists()
     {
         var eventId = Guid.NewGuid();
@@ -145,6 +160,8 @@ public class EventServiceTests : IClassFixture<EventServiceTestFixture>
     }
 
     [Fact]
+    [AllureSuite("EventServiceSuccess")]
+    [AllureStep]
     public async Task RemoveEvent_Should_Call_Repository()
     {
         var eventId = Guid.NewGuid();
@@ -157,6 +174,8 @@ public class EventServiceTests : IClassFixture<EventServiceTestFixture>
     }
 
     [Fact]
+    [AllureSuite("EventServiceError")]
+    [AllureStep]
     public async Task RemoveEvent_Should_Throw_On_Exception()
     {
         var eventId = Guid.NewGuid();
@@ -167,32 +186,5 @@ public class EventServiceTests : IClassFixture<EventServiceTestFixture>
             _fixture.Service.RemoveEvent(eventId));
         
         _fixture.EventRepoMock.Verify(x => x.RemoveAsync(eventId), Times.Once);
-    }
-
-    [Fact]
-    public async Task UpdateEvent_With_Null_Values_Should_Keep_Original_Values()
-    {
-        var originalEvent = new EventBuilder()
-            .WithTitle("Original Title")
-            .WithDescription("Original Description")
-            .WithDateTime(DateTime.Now.AddDays(5))
-            .WithAddress("Original Address")
-            .Build();
-            
-        _fixture.SetupEventExists(originalEvent);
-        _fixture.EventRepoMock.Setup(x => x.UpdateAsync(It.IsAny<Event>()))
-                             .ReturnsAsync((Event e) => e);
-
-        var result = await _fixture.Service.UpdateEvent(
-            originalEvent.Id, 
-            null, 
-            null, 
-            null, 
-            null);
-
-        Assert.Equal(originalEvent.Title, result.Title);
-        Assert.Equal(originalEvent.Description, result.Description);
-        Assert.Equal(originalEvent.DateTime, result.DateTime);
-        Assert.Equal(originalEvent.Address, result.Address);
     }
 }

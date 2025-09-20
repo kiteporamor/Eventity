@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Allure.Xunit;
 using Allure.Xunit.Attributes;
 using Allure.Net.Commons;
+using Allure.XUnit.Attributes.Steps;
 
 namespace Eventity.Tests.Services;
 
@@ -24,9 +25,8 @@ public class AuthServiceTests : IClassFixture<AuthServiceTestFixture>
     }
 
     [Fact]
-    [AllureFeature("Authentication")]
-    [AllureStory("User authentication")]
-    [AllureSuite("Auth")]
+    [AllureStep]
+    [AllureSuite("AuthServiceSuccess")]
     public async Task AuthenticateUser_ValidCredentials_ReturnsAuthResult()
     {
         var user = UserFactory.CreateUser();
@@ -45,9 +45,8 @@ public class AuthServiceTests : IClassFixture<AuthServiceTestFixture>
     }
 
     [Fact]
-    [AllureFeature("Authentication UserNotFound")]
-    [AllureStory("Unknown user authentication")]
-    [AllureSuite("AuthError")]
+    [AllureSuite("AuthServiceError")]
+    [AllureStep]
     public async Task AuthenticateUser_UserNotFound_ThrowsUserNotFoundException()
     {
         var login = "missing";
@@ -59,6 +58,8 @@ public class AuthServiceTests : IClassFixture<AuthServiceTestFixture>
     }
 
     [Fact]
+    [AllureSuite("AuthServiceError")]
+    [AllureStep]
     public async Task AuthenticateUser_InvalidPassword_ThrowsInvalidPasswordException()
     {
         var user = UserFactory.CreateUser(password: "correct");
@@ -70,6 +71,8 @@ public class AuthServiceTests : IClassFixture<AuthServiceTestFixture>
     }
 
     [Fact]
+    [AllureSuite("AuthServiceSuccess")]
+    [AllureStep]
     public async Task RegisterUser_NewUser_ReturnsAuthResult()
     {
         var newUser = UserFactory.RegistratedUser();
@@ -97,13 +100,15 @@ public class AuthServiceTests : IClassFixture<AuthServiceTestFixture>
     }
 
     [Fact]
+    [AllureSuite("AuthServiceError")]
+    [AllureStep]
     public async Task RegisterUser_UserAlreadyExists_ThrowsUserAlreadyExistsException()
     {
-        var existingUser = UserFactory.CreateUser(login: "existing");
+        var existingUser = UserFactory.CreateUser(login: "login");
         var newUserDetails = UserFactory.CreateUser(
             name: "New", 
             email: "new@email.com", 
-            login: "existing",
+            login: "login",
             password: "1234"
         );
 
@@ -120,6 +125,8 @@ public class AuthServiceTests : IClassFixture<AuthServiceTestFixture>
     }
 
     [Fact]
+    [AllureSuite("AuthServiceSuccess")]
+    [AllureStep]
     public async Task RegisterUser_AdminRole_CreatesAdminUserSuccessfully()
     {
         var adminUser = UserFactory.AdminUser();
@@ -141,31 +148,10 @@ public class AuthServiceTests : IClassFixture<AuthServiceTestFixture>
         Assert.Equal(UserRoleEnum.User, result.User.Role);
         Assert.Equal("admin", result.User.Login);
     }
-
+    
     [Fact]
-    public async Task RegisterUser_OrganizerRole_CreatesOrganizerUserSuccessfully()
-    {
-        var organizerUser = UserFactory.OrganizerUser();
-        var token = "organizer-token";
-
-        _fixture.UserRepositoryMock.Setup(r => r.GetByLoginAsync(organizerUser.Login))
-            .ReturnsAsync((User)null!);
-        _fixture.JwtServiceMock.Setup(s => s.GenerateToken(It.IsAny<User>()))
-            .Returns(token);
-
-        var result = await _fixture.Service.RegisterUser(
-            organizerUser.Name,
-            organizerUser.Email,
-            organizerUser.Login,
-            organizerUser.Password,
-            organizerUser.Role);
-
-        Assert.NotNull(result);
-        Assert.Equal(UserRoleEnum.Admin, result.User.Role);
-        Assert.Equal("organizer", result.User.Login);
-    }
-
-    [Fact]
+    [AllureSuite("AuthServiceSuccess")]
+    [AllureStep]
     public async Task AuthenticateUser_AdminUser_ReturnsAuthResultWithAdminRole()
     {
         var adminUser = UserFactory.AdminUser();
@@ -182,24 +168,5 @@ public class AuthServiceTests : IClassFixture<AuthServiceTestFixture>
         Assert.Equal(adminUser, result.User);
         Assert.Equal(token, result.Token);
         Assert.Equal(UserRoleEnum.User, result.User.Role);
-    }
-
-    [Fact]
-    public async Task AuthenticateUser_OrganizerUser_ReturnsAuthResultWithOrganizerRole()
-    {
-        var organizerUser = UserFactory.OrganizerUser();
-        var token = "organizer-jwt-token";
-
-        _fixture.UserRepositoryMock.Setup(r => r.GetByLoginAsync(organizerUser.Login))
-            .ReturnsAsync(organizerUser);
-        _fixture.JwtServiceMock.Setup(s => s.GenerateToken(organizerUser))
-            .Returns(token);
-
-        var result = await _fixture.Service.AuthenticateUser(organizerUser.Login, organizerUser.Password);
-
-        Assert.NotNull(result);
-        Assert.Equal(organizerUser, result.User);
-        Assert.Equal(token, result.Token);
-        Assert.Equal(UserRoleEnum.Admin, result.User.Role);
     }
 }

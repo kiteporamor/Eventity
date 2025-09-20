@@ -3,6 +3,7 @@ using Eventity.DataAccess.Models;
 using Eventity.Domain.Enums;
 using Eventity.UnitTests.DalUnitTests.Fabrics;
 using System;
+using Allure.XUnit.Attributes.Steps;
 using Xunit;
 
 namespace Eventity.UnitTests.DalUnitTests.ConvertersUnitTests;
@@ -10,6 +11,7 @@ namespace Eventity.UnitTests.DalUnitTests.ConvertersUnitTests;
 public class UserConverterTests
 {
     [Fact]
+    [AllureStep]
     public void ToDb_WhenValidUser_ReturnsUserDb()
     {
         var user = UserFactory.CreateUser();
@@ -26,6 +28,7 @@ public class UserConverterTests
     }
 
     [Fact]
+    [AllureStep]
     public void ToDomain_WhenValidUserDb_ReturnsUser()
     {
         var userDb = new UserDb(
@@ -49,6 +52,7 @@ public class UserConverterTests
     }
 
     [Fact]
+    [AllureStep]
     public void ToDb_WhenNullUser_ThrowsNullReferenceException()
     {
         User user = null;

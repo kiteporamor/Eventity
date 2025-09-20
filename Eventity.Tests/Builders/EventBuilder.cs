@@ -8,10 +8,10 @@ public class EventBuilder
     {
         _event = new Event(
             Guid.NewGuid(),
-            "Default Event",
-            "Default Description",
+            "Default event",
+            "Default description",
             DateTime.Now.AddDays(1),
-            "Default Address",
+            "Default address",
             Guid.NewGuid()
         );
     }

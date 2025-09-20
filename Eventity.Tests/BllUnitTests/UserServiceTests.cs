@@ -9,6 +9,10 @@ using Eventity.Domain.Models;
 using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
+using Allure.Xunit;
+using Allure.Xunit.Attributes;
+using Allure.Net.Commons;
+using Allure.XUnit.Attributes.Steps;
 
 namespace Eventity.Tests.Services;
 
@@ -23,12 +27,14 @@ public class UserServiceTests : IClassFixture<UserServiceTestFixture>
     }
 
     [Fact]
+    [AllureSuite("UserServiceSuccess")]
+    [AllureStep]
     public async Task AddUser_ShouldReturnUser_WhenUserIsCreated()
     {
-        var name = "John Doe";
-        var email = "john.doe@example.com";
-        var login = "johndoe";
-        var password = "password123";
+        var name = "New user";
+        var email = "user@mail.ru";
+        var login = "login";
+        var password = "passworduniq";
         var role = UserRoleEnum.User;
 
         _fixture.UserRepoMock
@@ -47,12 +53,14 @@ public class UserServiceTests : IClassFixture<UserServiceTestFixture>
     }
 
     [Fact]
+    [AllureSuite("UserServiceError")]
+    [AllureStep]
     public async Task AddUser_ShouldThrowUserServiceException_WhenRepositoryFails()
     {
-        var name = "John Doe";
-        var email = "john.doe@example.com";
-        var login = "johndoe";
-        var password = "password123";
+        var name = "New user";
+        var email = "user@mail.ru";
+        var login = "login";
+        var password = "passworduniq";
         var role = UserRoleEnum.User;
 
         _fixture.UserRepoMock
@@ -64,10 +72,12 @@ public class UserServiceTests : IClassFixture<UserServiceTestFixture>
     }
     
     [Fact]
+    [AllureSuite("UserServiceSuccess")]
+    [AllureStep]
     public async Task GetUserById_ShouldReturnUser_WhenUserExists()
     {
-        var user = new User(Guid.NewGuid(), "John Doe", "john.doe@example.com", "johndoe", 
-            "password123", UserRoleEnum.User);
+        var user = new User(Guid.NewGuid(), "Name", "name@mail.ru", "login111", 
+            "password", UserRoleEnum.User);
 
         _fixture.SetupUserExists(user);
 
@@ -80,6 +90,8 @@ public class UserServiceTests : IClassFixture<UserServiceTestFixture>
     }
 
     [Fact]
+    [AllureSuite("UserServiceError")]
+    [AllureStep]
     public async Task GetUserById_ShouldThrowUserServiceException_WhenUserNotFound()
     {
         var userId = Guid.NewGuid();
@@ -90,6 +102,8 @@ public class UserServiceTests : IClassFixture<UserServiceTestFixture>
     }
 
     [Fact]
+    [AllureSuite("UserServiceError")]
+    [AllureStep]
     public async Task GetUserById_ShouldThrowUserServiceException_WhenRepositoryFails()
     {
         var userId = Guid.NewGuid();
@@ -103,14 +117,16 @@ public class UserServiceTests : IClassFixture<UserServiceTestFixture>
     }
     
     [Fact]
+    [AllureSuite("UserServiceSuccess")]
+    [AllureStep]
     public async Task GetAllUsers_ShouldReturnUsers_WhenUsersExist()
     {
         var users = new List<User>
         {
-            new User(Guid.NewGuid(), "John Doe", "john.doe@example.com", "johndoe", 
-                "password123", UserRoleEnum.User),
-            new User(Guid.NewGuid(), "Jane Doe", "jane.doe@example.com", "janedoe", 
-                "password456", UserRoleEnum.User)
+            new User(Guid.NewGuid(), "A A", "a.a@mail.ru", "aaa", 
+                "aaa111", UserRoleEnum.User),
+            new User(Guid.NewGuid(), "B B", "b.b@mail.ru", "bbb", 
+                "bbb111", UserRoleEnum.User)
         };
 
         _fixture.SetupUsersList(users);
@@ -124,6 +140,8 @@ public class UserServiceTests : IClassFixture<UserServiceTestFixture>
     }
 
     [Fact]
+    [AllureSuite("UserServiceError")]
+    [AllureStep]
     public async Task GetAllUsers_ShouldThrowUserServiceException_WhenNoUsersFound()
     {
         _fixture.SetupUsersList(new List<User>());
@@ -133,6 +151,8 @@ public class UserServiceTests : IClassFixture<UserServiceTestFixture>
     }
 
     [Fact]
+    [AllureSuite("UserServiceError")]
+    [AllureStep]
     public async Task GetAllUsers_ShouldThrowUserServiceException_WhenRepositoryFails()
     {
         _fixture.UserRepoMock
@@ -144,41 +164,47 @@ public class UserServiceTests : IClassFixture<UserServiceTestFixture>
     }
     
     [Fact]
+    [AllureSuite("UserServiceSuccess")]
+    [AllureStep]
     public async Task UpdateUser_ShouldReturnUpdatedUser_WhenUserExists()
     {
-        var user = new User(Guid.NewGuid(), "John Doe", "john.doe@example.com", "johndoe", 
-            "password123", UserRoleEnum.User);
+        var user = new User(Guid.NewGuid(), "name", "name@mail.ru", "sjdneck", 
+            "ejoijf", UserRoleEnum.User);
 
         _fixture.SetupUserExists(user);
         _fixture.UserRepoMock
             .Setup(repo => repo.UpdateAsync(It.IsAny<User>()))
             .ReturnsAsync((User u) => u);
 
-        var result = await _fixture.Service.UpdateUser(user.Id, "Jane Doe", null, null, null);
+        var result = await _fixture.Service.UpdateUser(user.Id, "name", null, null, null);
 
         Assert.NotNull(result);
-        Assert.Equal("Jane Doe", result.Name);
-        Assert.Equal("john.doe@example.com", result.Email);
+        Assert.Equal("name", result.Name);
+        Assert.Equal("name@mail.ru", result.Email);
 
         _fixture.UserRepoMock.Verify(repo => repo.GetByIdAsync(user.Id), Times.Once);
         _fixture.UserRepoMock.Verify(repo => repo.UpdateAsync(It.IsAny<User>()), Times.Once);
     }
 
     [Fact]
+    [AllureSuite("UserServiceError")]
+    [AllureStep]
     public async Task UpdateUser_ShouldThrowUserServiceException_WhenUserNotFound()
     {
         var userId = Guid.NewGuid();
         _fixture.SetupUserNotFound(userId);
 
         await Assert.ThrowsAsync<UserServiceException>(() => 
-            _fixture.Service.UpdateUser(userId, "Jane Doe", null, null, null));
+            _fixture.Service.UpdateUser(userId, "BB", null, null, null));
     }
 
     [Fact]
+    [AllureSuite("UserServiceError")]
+    [AllureStep]
     public async Task UpdateUser_ShouldThrowUserServiceException_WhenRepositoryFails()
     {
-        var user = new User(Guid.NewGuid(), "John Doe", "john.doe@example.com", 
-            "johndoe", "password123", UserRoleEnum.User);
+        var user = new User(Guid.NewGuid(), "A", "a@mail.ru", 
+            "iqefiq", "woefjof", UserRoleEnum.User);
 
         _fixture.SetupUserExists(user);
         _fixture.UserRepoMock
@@ -186,10 +212,12 @@ public class UserServiceTests : IClassFixture<UserServiceTestFixture>
             .ThrowsAsync(new UserRepositoryException("Repository error"));
 
         await Assert.ThrowsAsync<UserServiceException>(() => 
-            _fixture.Service.UpdateUser(user.Id, "Jane Doe", null, null, null));
+            _fixture.Service.UpdateUser(user.Id, "A", null, null, null));
     }
     
     [Fact]
+    [AllureSuite("UserServiceSuccess")]
+    [AllureStep]
     public async Task RemoveUser_ShouldCallRemoveAsync_WhenUserExists()
     {
         var userId = Guid.NewGuid();
@@ -204,6 +232,8 @@ public class UserServiceTests : IClassFixture<UserServiceTestFixture>
     }
 
     [Fact]
+    [AllureSuite("UserServiceError")]
+    [AllureStep]
     public async Task RemoveUser_ShouldThrowUserServiceException_WhenRepositoryFails()
     {
         var userId = Guid.NewGuid();

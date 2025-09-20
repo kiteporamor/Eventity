@@ -3,6 +3,7 @@ using Eventity.DataAccess.Models;
 using Eventity.Domain.Enums;
 using Eventity.UnitTests.DalUnitTests.Fabrics;
 using System;
+using Allure.XUnit.Attributes.Steps;
 using Xunit;
 
 namespace Eventity.UnitTests.DalUnitTests.ConvertersUnitTests;
@@ -10,6 +11,7 @@ namespace Eventity.UnitTests.DalUnitTests.ConvertersUnitTests;
 public class ParticipationConverterTests
 {
     [Fact]
+    [AllureStep]
     public void ToDb_WhenValidParticipation_ReturnsParticipationDb()
     {
         var participation = ParticipationFactory.Organizer();
@@ -25,6 +27,7 @@ public class ParticipationConverterTests
     }
 
     [Fact]
+    [AllureStep]
     public void ToDomain_WhenValidParticipationDb_ReturnsParticipation()
     {
         var participationDb = new ParticipationDb(
@@ -46,6 +49,7 @@ public class ParticipationConverterTests
     }
 
     [Fact]
+    [AllureStep]
     public void ToDb_WhenNullParticipation_ThrowsNullReferenceException()
     {
         Participation participation = null;
@@ -54,6 +58,7 @@ public class ParticipationConverterTests
     }
 
     [Fact]
+    [AllureStep]
     public void ToDomain_WhenNullParticipationDb_ThrowsNullReferenceException()
     {
         ParticipationDb participationDb = null;
@@ -62,6 +67,7 @@ public class ParticipationConverterTests
     }
 
     [Fact]
+    [AllureStep]
     public void ToDb_WithDifferentRoleAndStatus_ConvertsCorrectly()
     {
         var participation = ParticipationFactory.RejectedParticipant();
@@ -73,6 +79,7 @@ public class ParticipationConverterTests
     }
 
     [Fact]
+    [AllureStep]
     public void ToDb_WithCustomParameters_ConvertsCorrectly()
     {
         var specificUserId = Guid.NewGuid();

@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Allure.XUnit.Attributes.Steps;
 using Eventity.DataAccess.Context;
 using Eventity.DataAccess.Repositories;
 using Eventity.Domain.Models;
@@ -20,6 +21,7 @@ public class EventRepositoryTests : IClassFixture<EventRepositoryFixture>
     }
 
     [Fact]
+    [AllureStep]
     public async Task AddAsync_ShouldSaveEvent()
     {
         var context = await _fixture.CreateContextAsync();
@@ -27,9 +29,9 @@ public class EventRepositoryTests : IClassFixture<EventRepositoryFixture>
 
         var eventToAdd = new EventBuilder()
             .WithId(Guid.NewGuid())
-            .WithTitle("Test Event Title")
-            .WithDescription("Test Event")
-            .WithAddress("123 Main St")
+            .WithTitle("Birthday")
+            .WithDescription("Mari's Birthday")
+            .WithAddress("adress")
             .WithDateTime(DateTime.UtcNow)
             .Build();
 
@@ -43,6 +45,7 @@ public class EventRepositoryTests : IClassFixture<EventRepositoryFixture>
     }
 
     [Fact]
+    [AllureStep]
     public async Task UpdateAsync_ShouldModifyExistingEvent()
     {
         var context = await _fixture.CreateContextAsync();
@@ -50,30 +53,33 @@ public class EventRepositoryTests : IClassFixture<EventRepositoryFixture>
 
         var eventToUpdate = new EventBuilder()
             .WithId(Guid.NewGuid())
-            .WithTitle("Test Event Title")
-            .WithDescription("Old Description")
-            .WithAddress("Old Address")
+            .WithTitle("title")
+            .WithDescription("description")
+            .WithAddress("adress")
             .WithDateTime(DateTime.UtcNow)
             .Build();
 
         await repository.AddAsync(eventToUpdate);
 
+        var newDescription = "new descr";
+        var newAddress = "new addr";
         var updatedEvent = new EventBuilder()
             .WithId(eventToUpdate.Id)
             .WithTitle(eventToUpdate.Title)
-            .WithDescription("Updated Description")
-            .WithAddress("Updated Address")
+            .WithDescription(newDescription)
+            .WithAddress(newAddress)
             .WithDateTime(eventToUpdate.DateTime)
             .Build();
 
         await repository.UpdateAsync(updatedEvent);
         var result = await repository.GetByIdAsync(eventToUpdate.Id);
 
-        Assert.Equal("Updated Description", result.Description);
-        Assert.Equal("Updated Address", result.Address);
+        Assert.Equal(newDescription, result.Description);
+        Assert.Equal(newAddress, result.Address);
     }
 
     [Fact]
+    [AllureStep]
     public async Task RemoveAsync_ShouldDeleteEvent()
     {
         var context = await _fixture.CreateContextAsync();
@@ -81,10 +87,6 @@ public class EventRepositoryTests : IClassFixture<EventRepositoryFixture>
 
         var eventToDelete = new EventBuilder()
             .WithId(Guid.NewGuid())
-            .WithTitle("Test Event Title")
-            .WithDescription("To Be Deleted")
-            .WithAddress("Some Address")
-            .WithDateTime(DateTime.UtcNow)
             .Build();
 
         await repository.AddAsync(eventToDelete);

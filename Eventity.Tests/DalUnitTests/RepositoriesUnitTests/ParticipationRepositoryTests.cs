@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using Allure.XUnit.Attributes.Steps;
 using Eventity.DataAccess.Repositories;
 using Eventity.Domain.Enums;
 using Eventity.Domain.Models;
@@ -19,6 +20,7 @@ public class ParticipationRepositoryTests : IClassFixture<ParticipationRepositor
     }
 
     [Fact]
+    [AllureStep]
     public async Task AddAsync_ShouldAddParticipation()
     {
         var context = await _fixture.CreateContextAsync();
@@ -37,6 +39,7 @@ public class ParticipationRepositoryTests : IClassFixture<ParticipationRepositor
     }
 
     [Fact]
+    [AllureStep]
     public async Task GetByIdAsync_ShouldReturnParticipation_WhenExist()
     {
         var context = await _fixture.CreateContextAsync();
@@ -52,6 +55,7 @@ public class ParticipationRepositoryTests : IClassFixture<ParticipationRepositor
     }
 
     [Fact]
+    [AllureStep]
     public async Task UpdateAsync_ShouldUpdateParticipation()
     {
         var context = await _fixture.CreateContextAsync();
@@ -62,7 +66,6 @@ public class ParticipationRepositoryTests : IClassFixture<ParticipationRepositor
         );
         await repository.AddAsync(participation);
 
-        // Create updated participation with same ID but different status
         var updatedParticipation = ParticipationFactory.Create(
             id: participation.Id,
             userId: participation.UserId,
@@ -71,13 +74,14 @@ public class ParticipationRepositoryTests : IClassFixture<ParticipationRepositor
             status: ParticipationStatusEnum.Accepted
         );
 
-        var result = await repository.UpdateAsync(updatedParticipation);
+        await repository.UpdateAsync(updatedParticipation);
         var savedParticipation = await context.Participations.FirstOrDefaultAsync(p => p.Id == participation.Id);
 
         Assert.Equal(ParticipationStatusEnum.Accepted, savedParticipation.Status);
     }
 
     [Fact]
+    [AllureStep]
     public async Task RemoveAsync_ShouldRemoveParticipation()
     {
         var context = await _fixture.CreateContextAsync();
@@ -94,6 +98,7 @@ public class ParticipationRepositoryTests : IClassFixture<ParticipationRepositor
     }
 
     [Fact]
+    [AllureStep]
     public async Task AddAsync_ShouldSaveOrganizerParticipation()
     {
         var context = await _fixture.CreateContextAsync();
@@ -111,6 +116,7 @@ public class ParticipationRepositoryTests : IClassFixture<ParticipationRepositor
     }
 
     [Fact]
+    [AllureStep]
     public async Task AddAsync_ShouldSaveAcceptedParticipant()
     {
         var context = await _fixture.CreateContextAsync();
@@ -128,6 +134,7 @@ public class ParticipationRepositoryTests : IClassFixture<ParticipationRepositor
     }
 
     [Fact]
+    [AllureStep]
     public async Task AddAsync_ShouldSaveParticipationWithSpecificIds()
     {
         var context = await _fixture.CreateContextAsync();

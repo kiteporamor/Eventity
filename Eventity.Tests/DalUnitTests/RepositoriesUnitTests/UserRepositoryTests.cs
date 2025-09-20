@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using Allure.XUnit.Attributes.Steps;
 using Eventity.DataAccess.Converters;
 using Eventity.DataAccess.Repositories;
 using Eventity.Domain.Models;
@@ -17,6 +18,7 @@ public class UserRepositoryTests : IClassFixture<UserRepositoryFixture>
     }
 
     [Fact]
+    [AllureStep]
     public async Task AddAsync_ShouldAddUser()
     {
         var context = await _fixture.CreateContextAsync();
@@ -25,10 +27,10 @@ public class UserRepositoryTests : IClassFixture<UserRepositoryFixture>
         var user = new User
         {
             Id = Guid.NewGuid(),
-            Name = "John Doe",
-            Email = "john@example.com",
-            Login = "johndoe",
-            Password = "securepassword"
+            Name = "User",
+            Email = "user@mail.ru",
+            Login = "loginuser",
+            Password = "woiejfwjf"
         };
 
         var result = await repository.AddAsync(user);
@@ -39,6 +41,7 @@ public class UserRepositoryTests : IClassFixture<UserRepositoryFixture>
     }
 
     [Fact]
+    [AllureStep]
     public async Task GetByIdAsync_ShouldReturnUser_WhenUserExists()
     {
         var context = await _fixture.CreateContextAsync();
@@ -47,10 +50,10 @@ public class UserRepositoryTests : IClassFixture<UserRepositoryFixture>
         var user = new User
         {
             Id = Guid.NewGuid(),
-            Name = "Jane Doe",
-            Email = "jane@example.com",
-            Login = "janedoe",
-            Password = "securepassword"
+            Name = "User",
+            Email = "a@mail.ru",
+            Login = "wefknwlknf",
+            Password = "wkenflwknf"
         };
 
         await context.Users.AddAsync(user.ToDb());
@@ -63,6 +66,7 @@ public class UserRepositoryTests : IClassFixture<UserRepositoryFixture>
     }
 
     [Fact]
+    [AllureStep]
     public async Task RemoveAsync_ShouldRemoveUser_WhenUserExists()
     {
         var context = await _fixture.CreateContextAsync();
@@ -72,9 +76,9 @@ public class UserRepositoryTests : IClassFixture<UserRepositoryFixture>
         {
             Id = Guid.NewGuid(),
             Name = "Alice",
-            Email = "alice@example.com",
+            Email = "alice@mail.ru",
             Login = "alice",
-            Password = "securepassword"
+            Password = "password"
         };
 
         await context.Users.AddAsync(user.ToDb());

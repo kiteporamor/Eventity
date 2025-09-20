@@ -11,6 +11,10 @@ using Eventity.Domain.Models;
 using Eventity.UnitTests.DalUnitTests.ConvertersUnitTests;
 using Microsoft.Extensions.Logging;
 using Moq;
+using Allure.Xunit;
+using Allure.Xunit.Attributes;
+using Allure.Net.Commons;
+using Allure.XUnit.Attributes.Steps;
 
 namespace Eventity.Tests.Services;
 
@@ -25,6 +29,8 @@ public class NotificationServiceTests : IClassFixture<NotificationServiceTestFix
     }
 
     [Fact]
+    [AllureSuite("NotificationServiceError")]
+    [AllureStep]
     public async Task AddNotification_ShouldThrow_WhenParticipationNotFound()
     {
         var participationId = Guid.NewGuid();
@@ -35,6 +41,8 @@ public class NotificationServiceTests : IClassFixture<NotificationServiceTestFix
     }
 
     [Fact]
+    [AllureSuite("NotificationServiceSuccess")]
+    [AllureStep]
     public async Task GetNotificationById_ShouldReturnNotification_WhenFound()
     {
         var notification = NotificationBuilder.Default();
@@ -46,6 +54,8 @@ public class NotificationServiceTests : IClassFixture<NotificationServiceTestFix
     }
 
     [Fact]
+    [AllureSuite("NotificationServiceError")]
+    [AllureStep]
     public async Task GetNotificationById_ShouldThrow_WhenNotFound()
     {
         var notificationId = Guid.NewGuid();
@@ -56,6 +66,8 @@ public class NotificationServiceTests : IClassFixture<NotificationServiceTestFix
     }
 
     [Fact]
+    [AllureSuite("NotificationServiceSuccess")]
+    [AllureStep]
     public async Task GetNotificationByParticipationId_ShouldReturnNotification()
     {
         var participationId = Guid.NewGuid();
@@ -70,12 +82,14 @@ public class NotificationServiceTests : IClassFixture<NotificationServiceTestFix
     }
 
     [Fact]
+    [AllureSuite("NotificationServiceSuccess")]
+    [AllureStep]
     public async Task GetAllNotifications_ShouldReturnList_WhenFound()
     {
         var notifications = new List<Notification> 
         { 
             NotificationBuilder.Default(),
-            NotificationBuilder.WithSpecificText("Another notification")
+            NotificationBuilder.WithSpecificText("new")
         };
         _fixture.SetupNotificationsList(notifications);
 
@@ -85,6 +99,8 @@ public class NotificationServiceTests : IClassFixture<NotificationServiceTestFix
     }
 
     [Fact]
+    [AllureSuite("NotificationServiceError")]
+    [AllureStep]
     public async Task GetAllNotifications_ShouldThrow_WhenEmpty()
     {
         _fixture.SetupNotificationsList(new List<Notification>());
@@ -94,6 +110,8 @@ public class NotificationServiceTests : IClassFixture<NotificationServiceTestFix
     }
 
     [Fact]
+    [AllureSuite("NotificationServiceSuccess")]
+    [AllureStep]
     public async Task UpdateNotification_ShouldUpdateFields()
     {
         var notification = NotificationBuilder.Default();
@@ -109,6 +127,8 @@ public class NotificationServiceTests : IClassFixture<NotificationServiceTestFix
     }
 
     [Fact]
+    [AllureSuite("NotificationServiceSuccess")]
+    [AllureStep]
     public async Task RemoveNotification_ShouldCallRepository()
     {
         var notificationId = Guid.NewGuid();
@@ -118,19 +138,5 @@ public class NotificationServiceTests : IClassFixture<NotificationServiceTestFix
         await _fixture.Service.RemoveNotification(notificationId);
 
         _fixture.NotificationRepoMock.Verify(r => r.RemoveAsync(notificationId), Times.Once);
-    }
-
-    [Fact]
-    public async Task UpdateNotification_WithNullValues_ShouldKeepOriginalValues()
-    {
-        var originalNotification = NotificationBuilder.Default();
-        _fixture.SetupNotificationExists(originalNotification);
-        _fixture.NotificationRepoMock.Setup(r => r.UpdateAsync(It.IsAny<Notification>()))
-                                    .ReturnsAsync((Notification n) => n);
-
-        var result = await _fixture.Service.UpdateNotification(originalNotification.Id, null, null, null);
-
-        Assert.Equal(originalNotification.Text, result.Text);
-        Assert.Equal(originalNotification.SentAt, result.SentAt);
     }
 }

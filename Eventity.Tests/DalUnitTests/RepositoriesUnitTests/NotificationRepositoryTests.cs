@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Allure.XUnit.Attributes.Steps;
 using Eventity.DataAccess.Context;
 using Eventity.DataAccess.Converters;
 using Eventity.DataAccess.Repositories;
@@ -22,6 +23,7 @@ public class NotificationRepositoryTests : IClassFixture<NotificationRepositoryF
     }
 
     [Fact]
+    [AllureStep]
     public async Task AddAsync_ShouldSaveNotificationToDatabase()
     {
         var context = await _fixture.CreateContextAsync();
@@ -30,17 +32,18 @@ public class NotificationRepositoryTests : IClassFixture<NotificationRepositoryF
         var notification = new NotificationBuilder()
             .WithId(Guid.NewGuid())
             .WithParticipationId(Guid.NewGuid())
-            .WithText("Test Notification")
+            .WithText("notification")
             .WithSentAt(DateTime.UtcNow)
             .Build();
 
         await repository.AddAsync(notification);
-        var exists = await context.Notifications.AnyAsync(n => n.Text == "Test Notification");
+        var exists = await context.Notifications.AnyAsync(n => n.Text == "notification");
 
         Assert.True(exists);
     }
 
     [Fact]
+    [AllureStep]
     public async Task GetByIdAsync_ShouldReturnNotification_WhenExists()
     {
         var context = await _fixture.CreateContextAsync();
@@ -49,7 +52,7 @@ public class NotificationRepositoryTests : IClassFixture<NotificationRepositoryF
         var notification = new NotificationBuilder()
             .WithId(Guid.NewGuid())
             .WithParticipationId(Guid.NewGuid())
-            .WithText("Test Notification")
+            .WithText("notification")
             .WithSentAt(DateTime.UtcNow)
             .Build();
 
@@ -63,6 +66,7 @@ public class NotificationRepositoryTests : IClassFixture<NotificationRepositoryF
     }
 
     [Fact]
+    [AllureStep]
     public async Task RemoveAsync_ShouldDeleteNotificationFromDatabase()
     {
         var context = await _fixture.CreateContextAsync();
@@ -71,7 +75,7 @@ public class NotificationRepositoryTests : IClassFixture<NotificationRepositoryF
         var notification = new NotificationBuilder()
             .WithId(Guid.NewGuid())
             .WithParticipationId(Guid.NewGuid())
-            .WithText("Test Notification")
+            .WithText("notification")
             .WithSentAt(DateTime.UtcNow)
             .Build();
 

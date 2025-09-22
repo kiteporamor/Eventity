@@ -6,16 +6,22 @@ namespace Eventity.Tests.Services;
 public class ParticipationServiceTestFixture
 {
     public Mock<IParticipationRepository> ParticipationRepoMock { get; }
+    public Mock<IEventRepository> EventRepoMoch { get; }
+    public Mock<IUserRepository> UserRepoMoch { get; }
     public Mock<ILogger<ParticipationService>> LoggerMock { get; }
     public ParticipationService Service { get; }
 
     public ParticipationServiceTestFixture()
     {
         ParticipationRepoMock = new Mock<IParticipationRepository>();
+        EventRepoMoch = new Mock<IEventRepository>();
+        UserRepoMoch = new Mock<IUserRepository>();
         LoggerMock = new Mock<ILogger<ParticipationService>>();
         
         Service = new ParticipationService(
             ParticipationRepoMock.Object,
+            EventRepoMoch.Object,
+            UserRepoMoch.Object,
             LoggerMock.Object);
     }
 

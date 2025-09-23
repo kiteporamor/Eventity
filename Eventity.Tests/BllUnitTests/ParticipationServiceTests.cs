@@ -14,6 +14,7 @@ using Allure.Xunit;
 using Allure.Xunit.Attributes;
 using Allure.Net.Commons;
 using Allure.XUnit.Attributes.Steps;
+using Eventity.UnitTests.DalUnitTests.ConvertersUnitTests;
 
 namespace Eventity.Tests.Services;
 
@@ -51,6 +52,90 @@ public class ParticipationServiceTests : IClassFixture<ParticipationServiceTestF
 
         _fixture.ParticipationRepoMock.Verify(repo => repo.AddAsync(
             It.IsAny<Participation>()), Times.Once);
+    }
+    
+    [Fact]
+    [AllureSuite("ParticipationServiceSuccess")]
+    [AllureStep]
+    public async Task GetUserParticipationInfoByUserId_ShouldReturnUserParticipationInfos_WhenValidAcceptedParticipations()
+    {
+        var userId = Guid.NewGuid();
+        var organizerId = Guid.NewGuid();
+        var event1Id = Guid.NewGuid();
+        var event2Id = Guid.NewGuid();
+
+        var participations = new List<Participation>
+        {
+            ParticipationFactory.Create(userId: userId, eventId: event1Id, status: ParticipationStatusEnum.Accepted),
+            ParticipationFactory.Create(userId: userId, eventId: event2Id, status: ParticipationStatusEnum.Accepted),
+            ParticipationFactory.Create(userId: userId, eventId: Guid.NewGuid(), status: ParticipationStatusEnum.Invited) 
+        };
+
+        var event1 = new EventBuilder().WithId(event1Id).WithTitle("Event 1").Build();
+        event1.OrganizerId = organizerId; 
+        
+        var event2 = new EventBuilder().WithId(event2Id).WithTitle("Event 2").Build();
+        event2.OrganizerId = organizerId;
+        
+        var organizer = UserFactory.CreateUser(id: organizerId, login: "organizer1");
+
+        _fixture.ParticipationRepoMock.Setup(r => r.GetByUserIdAsync(userId))
+            .ReturnsAsync(participations);
+        _fixture.EventRepoMoch.Setup(r => r.GetByIdAsync(event1Id))
+            .ReturnsAsync(event1);
+        _fixture.EventRepoMoch.Setup(r => r.GetByIdAsync(event2Id))
+            .ReturnsAsync(event2);
+        _fixture.UserRepoMoch.Setup(r => r.GetByIdAsync(organizerId))
+            .ReturnsAsync(organizer);
+
+        var result = await _fixture.Service.GetUserParticipationInfoByUserId(userId);
+
+        Assert.NotNull(result);
+        Assert.Equal(2, result.Count()); 
+        Assert.Contains(result, x => x.EventItem.Id == event1Id); 
+        Assert.Contains(result, x => x.EventItem.Id == event2Id); 
+        Assert.All(result, x => Assert.Equal(organizerId, x.OrganizerId));
+        Assert.All(result, x => Assert.Equal(organizer.Login, x.OrganizerLogin));
+    }
+
+    [Fact]
+    [AllureSuite("ParticipationServiceError")]
+    [AllureStep]
+    public async Task GetUserParticipationInfoByUserId_ShouldThrow_WhenNoParticipationsFound()
+    {
+        var userId = Guid.NewGuid();
+
+        _fixture.ParticipationRepoMock.Setup(r => r.GetByUserIdAsync(userId))
+                                    .ReturnsAsync(new List<Participation>());
+
+        var exception = await Assert.ThrowsAsync<ParticipationServiceException>(() => 
+            _fixture.Service.GetUserParticipationInfoByUserId(userId));
+        
+        Assert.Equal("Failed to find participations by user id.", exception.Message);
+    }
+
+    [Fact]
+    [AllureSuite("ParticipationServiceError")]
+    [AllureStep]
+    public async Task GetUserParticipationInfoByUserId_ShouldThrow_WhenEventNotFound()
+    {
+        var userId = Guid.NewGuid();
+        var eventId = Guid.NewGuid();
+
+        var participations = new List<Participation>
+        {
+            ParticipationFactory.Create(userId: userId, eventId: eventId, status: ParticipationStatusEnum.Accepted)
+        };
+
+        _fixture.ParticipationRepoMock.Setup(r => r.GetByUserIdAsync(userId))
+                                    .ReturnsAsync(participations);
+        _fixture.EventRepoMoch.Setup(r => r.GetByIdAsync(eventId))
+                             .ReturnsAsync((Event)null);
+
+        var exception = await Assert.ThrowsAsync<ParticipationServiceException>(() => 
+            _fixture.Service.GetUserParticipationInfoByUserId(userId));
+        
+        Assert.Contains("Failed to get participations by user id", exception.Message);
     }
 
     [Fact]

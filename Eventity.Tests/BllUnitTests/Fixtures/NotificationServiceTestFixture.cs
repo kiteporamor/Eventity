@@ -61,9 +61,27 @@ public class NotificationServiceTestFixture
             .ReturnsAsync(participation);
     }
 
+    public void SetupUserExists(Guid userId, User user)
+    {
+        UserRepoMock.Setup(r => r.GetByIdAsync(userId))
+            .ReturnsAsync(user);
+    }
+    
+    public void SetupEventExists(Guid eventInfo, Event eventItem)
+    {
+        EventRepoMock.Setup(r => r.GetByIdAsync(eventItem.Id))
+            .ReturnsAsync(eventItem);
+    }
+    
     public void SetupParticipationNotFound(Guid participationId)
     {
         ParticipationRepoMock.Setup(r => r.GetByIdAsync(participationId))
             .ReturnsAsync((Participation)null);
+    }
+    
+    public void SetupNotificationAddedSuccessfully()
+    {
+        NotificationRepoMock.Setup(r => r.AddAsync(It.IsAny<Notification>()))
+            .ReturnsAsync((Notification n) => n);
     }
 }

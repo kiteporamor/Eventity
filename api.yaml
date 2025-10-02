@@ -969,34 +969,31 @@ components:
         role:
           $ref: '#/components/schemas/UserRoleEnum'
 
-    # ==================== ENUMS ====================
     UserRoleEnum:
       type: string
       enum:
-        - Organizer
-        - Participant
+        - User
         - Admin
       description: Роли пользователей в системе
-      example: "Participant"
+      example: "User"
 
     ParticipationRoleEnum:
       type: string
       enum:
-        - Guest
-        - Speaker
-        - Volunteer
+        - Participant
+        - Organizer
+        - Left
       description: Роли участников в событиях
-      example: "Guest"
+      example: "Participant"
 
     ParticipationStatusEnum:
       type: string
       enum:
-        - Pending
+        - Invited
         - Accepted
-        - Declined
-        - Cancelled
+        - Rejected
       description: Статусы участия в событиях
-      example: "Pending"
+      example: "Invited"
 
     ErrorResponse:
       type: object

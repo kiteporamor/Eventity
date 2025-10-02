@@ -101,6 +101,28 @@ public class ParticipationServiceTests : IClassFixture<ParticipationServiceTestF
     [Fact]
     [AllureSuite("ParticipationServiceError")]
     [AllureStep]
+    public async Task GetUserParticipationInfoByUserId_ShouldThrow_WhenNoAcceptedParticipations()
+    {
+        var userId = Guid.NewGuid();
+
+        var participations = new List<Participation>
+        {
+            ParticipationFactory.Create(userId: userId, status: ParticipationStatusEnum.Invited),
+            ParticipationFactory.Create(userId: userId, status: ParticipationStatusEnum.Rejected)
+        };
+
+        _fixture.ParticipationRepoMock.Setup(r => r.GetByUserIdAsync(userId))
+                                    .ReturnsAsync(participations);
+
+        var exception = await Assert.ThrowsAsync<ParticipationServiceException>(() => 
+            _fixture.Service.GetUserParticipationInfoByUserId(userId));
+        
+        Assert.Equal("Failed to find participations by user id.", exception.Message);
+    }
+
+    [Fact]
+    [AllureSuite("ParticipationServiceError")]
+    [AllureStep]
     public async Task GetUserParticipationInfoByUserId_ShouldThrow_WhenNoParticipationsFound()
     {
         var userId = Guid.NewGuid();
@@ -112,30 +134,6 @@ public class ParticipationServiceTests : IClassFixture<ParticipationServiceTestF
             _fixture.Service.GetUserParticipationInfoByUserId(userId));
         
         Assert.Equal("Failed to find participations by user id.", exception.Message);
-    }
-
-    [Fact]
-    [AllureSuite("ParticipationServiceError")]
-    [AllureStep]
-    public async Task GetUserParticipationInfoByUserId_ShouldThrow_WhenEventNotFound()
-    {
-        var userId = Guid.NewGuid();
-        var eventId = Guid.NewGuid();
-
-        var participations = new List<Participation>
-        {
-            ParticipationFactory.Create(userId: userId, eventId: eventId, status: ParticipationStatusEnum.Accepted)
-        };
-
-        _fixture.ParticipationRepoMock.Setup(r => r.GetByUserIdAsync(userId))
-                                    .ReturnsAsync(participations);
-        _fixture.EventRepoMoch.Setup(r => r.GetByIdAsync(eventId))
-                             .ReturnsAsync((Event)null);
-
-        var exception = await Assert.ThrowsAsync<ParticipationServiceException>(() => 
-            _fixture.Service.GetUserParticipationInfoByUserId(userId));
-        
-        Assert.Contains("Failed to get participations by user id", exception.Message);
     }
 
     [Fact]

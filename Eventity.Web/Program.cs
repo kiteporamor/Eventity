@@ -59,7 +59,6 @@ builder.Services.AddAuthorization();
 var isSwaggerEnabled = builder.Configuration.GetValue<bool>("Swagger:Enabled") 
                        || builder.Environment.IsDevelopment();
 
-// В конфигурации Swagger:
 builder.Services.AddEndpointsApiExplorer();
 if (isSwaggerEnabled)
 {

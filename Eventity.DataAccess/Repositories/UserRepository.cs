@@ -29,6 +29,8 @@ public class UserRepository : IUserRepository
         try
         {
             var userDb = user.ToDb();
+            if (userDb.Login.Length > 30)
+                throw new ArgumentException("Login cannot exceed 30 characters");
             await _context.Users.AddAsync(userDb);
             await _context.SaveChangesAsync();
 

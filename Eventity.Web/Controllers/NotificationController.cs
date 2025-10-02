@@ -13,9 +13,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 
-//TODO: использование ErrorResponseDto
-//TODO: Update убрать из сервиса? 
-
 namespace Eventity.Api.Controllers;
 
 [ApiController]

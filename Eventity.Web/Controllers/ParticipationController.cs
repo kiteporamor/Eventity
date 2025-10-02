@@ -113,15 +113,15 @@ public class ParticipationController : ControllerBase
         }
     }
     
-    [HttpGet("{user_id}")]
+    [HttpGet("user/{user_id}")]
     [Authorize]
     [ProducesResponseType(typeof(IEnumerable<ParticipationResponseDto>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult<IEnumerable<ParticipationResponseDto>>> GetAllUserParticipations(Guid userId)
+    public async Task<ActionResult<IEnumerable<UserParticipationInfoResponseDto>>> GetAllUserParticipations(Guid user_id)
     {
         try
         {
-            var participations = await _participationService.GetParticipationsByUserId(userId);
+            var participations = await _participationService.GetUserParticipationInfoByUserId(user_id);
             return Ok(participations.Select(_dtoConverter.ToResponseDto));
         }
         catch (Exception ex)
@@ -130,7 +130,43 @@ public class ParticipationController : ControllerBase
             return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
         }
     }
-
+    
+    [HttpGet("event/{title}")]
+    [Authorize]
+    [ProducesResponseType(typeof(IEnumerable<ParticipationResponseDto>), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task<ActionResult<IEnumerable<UserParticipationInfoResponseDto>>> GetAllUserParticipationsByEventTitle(Guid userId, string title)
+    {
+        try
+        {
+            var participations = await _participationService.GetUserParticipationInfoByEventTitle(userId, title);
+            return Ok(participations.Select(_dtoConverter.ToResponseDto));
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error getting all participations by event title");
+            return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
+        }
+    }
+    
+    [HttpGet("organizer/{login}")]
+    [Authorize]
+    [ProducesResponseType(typeof(IEnumerable<ParticipationResponseDto>), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task<ActionResult<IEnumerable<UserParticipationInfoResponseDto>>> GetAllUserParticipationsByOrganizerLogin(Guid userId, string login)
+    {
+        try
+        {
+            var participations = await _participationService.GetUserParticipationInfoByOrganizerLogin(userId, login);
+            return Ok(participations.Select(_dtoConverter.ToResponseDto));
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error getting all participations by organizer login");
+            return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
+        }
+    }
+    
     [HttpPut("{id}")]
     [Authorize]
     [ProducesResponseType(typeof(ParticipationResponseDto), StatusCodes.Status200OK)]

@@ -35,6 +35,8 @@ public class UserRepositoryTests : IClassFixture<UserRepositoryFixture>
 
         var result = await repository.AddAsync(user);
         var userInDb = await context.Users.FindAsync(user.Id);
+        
+        Assert.True(user.Login.Length <= 30);
 
         Assert.NotNull(userInDb);
         Assert.Equal(user.Name, userInDb.Name);

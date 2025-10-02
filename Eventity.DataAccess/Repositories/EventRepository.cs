@@ -72,6 +72,52 @@ public class EventRepository : IEventRepository
         }
     }
 
+    public async Task<IEnumerable<Event>> GetByTitleAsync(string title)
+    {
+        _logger.LogDebug("Retrieving event by title: {Title}", title);
+
+        try
+        {
+            var eventDb = await _context.Events.Where(e => e.Title == title).ToListAsync();
+
+            if (eventDb is null)
+            {
+                _logger.LogWarning("Event not found: {title}", title);
+                return null;
+            }
+
+            _logger.LogInformation("Event retrieved: {title}", title);
+            return eventDb.Select(e => e.ToDomain());
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Failed to retrieve event with title: {title}", title);
+            throw new EventRepositoryException("Failed to retrieve event", ex);
+        }
+    }
+
+    public async Task<IEnumerable<Event>> GetByOrganizerIdAsync(Guid id)
+    {
+        try
+        {
+            var eventDb = await _context.Events.Where(e => e.OrganizerId == id).ToListAsync();
+
+            if (eventDb is null)
+            {
+                _logger.LogWarning("Event not found: {organizerId}", id);
+                return null;
+            }
+
+            _logger.LogInformation("Event retrieved: {organizerId}", id);
+            return eventDb.Select(e => e.ToDomain());
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Failed to retrieve event with organizerId: {id}", id);
+            throw new EventRepositoryException("Failed to retrieve event", ex);
+        }
+    }
+    
     public async Task<IEnumerable<Event>> GetAllAsync()
     {
         _logger.LogDebug("Retrieving all events");

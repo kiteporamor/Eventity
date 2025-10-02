@@ -16,4 +16,18 @@ public class ParticipationDtoConverter
             Status = participation.Status
         };
     }
+    
+    public UserParticipationInfoResponseDto ToResponseDto(UserParticipationInfo userParticipationInfo)
+    {
+        return new UserParticipationInfoResponseDto
+        {
+            Id = userParticipationInfo.EventItem.Id,
+            Title = userParticipationInfo.EventItem.Title,
+            Address = userParticipationInfo.EventItem.Address,
+            DateTime = userParticipationInfo.EventItem.DateTime,
+            Description = userParticipationInfo.EventItem.Description,
+            OrganizerId = userParticipationInfo.OrganizerId,
+            OrganizerLogin = userParticipationInfo.OrganizerLogin
+        };
+    }
 }

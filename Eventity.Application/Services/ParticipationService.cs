@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,14 +15,16 @@ namespace Eventity.Application.Services;
 public class ParticipationService : IParticipationService
 {
     private readonly IParticipationRepository _participationRepository;
-    // private readonly INotificationRepository _notificationRepository;
+    private readonly IEventRepository _eventRepository;
+    private readonly IUserRepository _userRepository;
     private readonly ILogger<ParticipationService> _logger;
 
-    public ParticipationService(IParticipationRepository participationRepository,
-        ILogger<ParticipationService> logger)
+    public ParticipationService(IParticipationRepository participationRepository, 
+        IEventRepository eventRepository, IUserRepository userRepository, ILogger<ParticipationService> logger)
     {
         _participationRepository = participationRepository;
-        // _notificationRepository = notificationRepository;
+        _eventRepository = eventRepository;
+        _userRepository = userRepository;
         _logger = logger;
     }
 
@@ -68,7 +71,6 @@ public class ParticipationService : IParticipationService
         }
     }
 
-
     public async Task<IEnumerable<Participation>> GetParticipationsByEventId(Guid eventId)
     {
         _logger.LogDebug("Trying to get participation by event id");
@@ -88,6 +90,39 @@ public class ParticipationService : IParticipationService
         {
             _logger.LogError(ex, "Failed to get participations by event id");
             throw new ParticipationServiceException("Failed to get participations by event id", ex);
+        }
+    }
+    
+    public async Task<IEnumerable<UserParticipationInfo>> GetUserParticipationInfoByUserId(Guid userId)
+    {
+        _logger.LogDebug("Trying to get participation by event id");
+        try
+        {
+            List<UserParticipationInfo> userParticipationInfos = new List<UserParticipationInfo>();
+            var participations = await _participationRepository.GetByUserIdAsync(userId);
+            foreach (var participation in participations)
+            {
+                if (participation.Status == ParticipationStatusEnum.Accepted)
+                {
+                    var eventItem = await _eventRepository.GetByIdAsync(participation.EventId);
+                    var organizer = await _userRepository.GetByIdAsync(eventItem.OrganizerId);
+                    var userParticipationInfo = new UserParticipationInfo(eventItem, organizer.Id, organizer.Login);
+                    userParticipationInfos.Add(userParticipationInfo);
+                }
+            }
+            if (userParticipationInfos == null || !userParticipationInfos.Any())
+            {
+                _logger.LogWarning("Failed to find participation by user id: {UserId}", userId);
+                throw new ParticipationServiceException("Failed to find participations by user id.");
+            }
+            
+            _logger.LogInformation("Participation found by user id: {UserId}", userId);
+            return userParticipationInfos;
+        }
+        catch (ParticipationRepositoryException ex)
+        {
+            _logger.LogError(ex, "Failed to get participations by user id");
+            throw new ParticipationServiceException("Failed to get participations by user id", ex);
         }
     }
 
@@ -141,6 +176,64 @@ public class ParticipationService : IParticipationService
         {
             _logger.LogError(ex, "Failed to find organizer for event id: {EventId}", eventId);
             throw new ParticipationServiceException("Failed to get organizer by event id", ex);
+        }
+    }
+
+    public async Task<IEnumerable<UserParticipationInfo>> GetUserParticipationInfoByEventTitle(Guid userId, string title)
+    {
+        try
+        {
+            List<UserParticipationInfo> userParticipationInfos = new List<UserParticipationInfo>();
+            List<Event> events = new List<Event>();
+            var participations = await _participationRepository.GetByUserIdAsync(userId);
+            foreach (var participation in participations)
+            {
+                if (participation.Status == ParticipationStatusEnum.Accepted)
+                {
+                    var eventItem = await _eventRepository.GetByIdAsync(participation.EventId);
+                    if (eventItem.Title == title)
+                        events.Add(eventItem);
+                }
+            }
+            foreach (var eventItem in events)
+            {
+                var organizer = await _userRepository.GetByIdAsync(eventItem.OrganizerId);
+                var userParticipationInfo = new UserParticipationInfo(eventItem, organizer.Id, organizer.Login);
+                userParticipationInfos.Add(userParticipationInfo);
+            }
+
+            return userParticipationInfos;
+        }
+        catch (ParticipationRepositoryException ex)
+        {
+            throw new ParticipationServiceException("Failed to get participation info by event title", ex);
+        }
+    }
+    
+    public async Task<IEnumerable<UserParticipationInfo>> GetUserParticipationInfoByOrganizerLogin(Guid userId, string login)
+    {
+        try
+        {
+            List<UserParticipationInfo> userParticipationInfos = new List<UserParticipationInfo>();
+            var participations = await _participationRepository.GetByUserIdAsync(userId);
+            foreach (var participation in participations)
+            {
+                if (participation.Status == ParticipationStatusEnum.Accepted)
+                {
+                    var eventItem = await _eventRepository.GetByIdAsync(participation.EventId);
+                    var organizer = await _userRepository.GetByIdAsync(eventItem.OrganizerId);
+                    if (organizer.Login == login)
+                    {
+                        var userParticipationInfo = new UserParticipationInfo(eventItem, organizer.Id, organizer.Login);
+                        userParticipationInfos.Add(userParticipationInfo);
+                    }
+                }
+            }
+            return userParticipationInfos;
+        }
+        catch (ParticipationRepositoryException ex)
+        {
+            throw new ParticipationServiceException("Failed to get participation info by event title", ex);
         }
     }
 

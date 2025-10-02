@@ -92,6 +92,27 @@ public class EventService : IEventService
             throw new EventServiceException("Failed to get event", ex);
         }
     }
+    
+    public async Task<IEnumerable<Event>> GetEventByTitle(string title)
+    {
+        _logger.LogDebug("Trying to get event by title");
+        try
+        {
+            var eventDomains = await _eventRepository.GetByTitleAsync(title);
+            if (eventDomains == null)
+            {
+                _logger.LogWarning("Event not found. title: {title}", title);
+                throw new EventServiceException("Event not found");
+            }
+            
+            return eventDomains;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Failed to get event. title: {title}", title);
+            throw new EventServiceException("Failed to get event", ex);
+        }
+    }
 
     public async Task<IEnumerable<Event>> GetAllEvents()
     {

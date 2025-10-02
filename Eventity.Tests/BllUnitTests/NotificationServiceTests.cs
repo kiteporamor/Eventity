@@ -15,6 +15,7 @@ using Allure.Xunit;
 using Allure.Xunit.Attributes;
 using Allure.Net.Commons;
 using Allure.XUnit.Attributes.Steps;
+using Eventity.UnitTests.DalUnitTests.Fabrics;
 
 namespace Eventity.Tests.Services;
 
@@ -26,6 +27,105 @@ public class NotificationServiceTests : IClassFixture<NotificationServiceTestFix
     {
         _fixture = fixture;
         _fixture.ResetMocks();
+    }
+    
+    [Fact]
+    [AllureSuite("NotificationServiceSuccess")]
+    [AllureStep]
+    public async Task AddNotification_ShouldCreateNotification_WhenValidParticipation()
+    {
+        var participationId = Guid.NewGuid();
+        var userId = Guid.NewGuid();
+        var eventId = Guid.NewGuid();
+    
+        var participation = ParticipationFactory.Create(
+            id: participationId,
+            userId: userId,
+            eventId: eventId,
+            status: ParticipationStatusEnum.Invited
+        );
+    
+        var user = UserFactory.CreateUser(id: userId, name: "John Doe", email: "john@example.com");
+        var eventInfo = new EventBuilder()
+            .WithId(eventId)
+            .WithTitle("Test Event")
+            .WithAddress("Test Address")
+            .WithDateTime(DateTime.UtcNow.AddDays(1))
+            .Build();
+    
+        _fixture.SetupParticipationExists(participation);
+        _fixture.SetupUserExists(userId, user);
+        _fixture.SetupEventExists(eventId, eventInfo);
+        _fixture.SetupNotificationAddedSuccessfully();
+
+        var result = await _fixture.Service.AddNotification(participationId);
+
+        Assert.NotNull(result);
+        Assert.Equal(participationId, result.ParticipationId);
+        Assert.Contains(user.Name, result.Text);
+        Assert.Contains(eventInfo.Title, result.Text);
+        Assert.Contains(eventInfo.Address, result.Text);
+    
+        _fixture.NotificationRepoMock.Verify(r => r.AddAsync(It.IsAny<Notification>()), Times.Once);
+    }
+
+    [Fact]
+    [AllureSuite("NotificationServiceSuccess")]
+    [AllureStep]
+    public async Task AddNotification_ShouldGenerateCorrectInvitationText()
+    {
+        var participationId = Guid.NewGuid();
+        var userId = Guid.NewGuid();
+        var eventId = Guid.NewGuid();
+        
+        var participation = ParticipationFactory.Create(
+            id: participationId,
+            userId: userId,
+            eventId: eventId,
+            status: ParticipationStatusEnum.Invited
+        );
+        
+        var user = UserFactory.CreateUser(id: userId, name: "Name", email: "email@mail.ru");
+        var eventDateTime = new DateTime(2024, 12, 25, 18, 0, 0);
+        var eventInfo = new EventBuilder()
+            .WithId(eventId)
+            .WithTitle("Event")
+            .WithAddress("Adress")
+            .WithDateTime(eventDateTime)
+            .Build();
+        
+        _fixture.SetupParticipationExists(participation);
+        _fixture.SetupUserExists(userId, user);
+        _fixture.SetupEventExists(eventId, eventInfo);
+        _fixture.SetupNotificationAddedSuccessfully();
+
+        var result = await _fixture.Service.AddNotification(participationId);
+
+        var expectedText = $"Dear {user.Name}! You are invited to the \"{eventInfo.Title}\" event, " +
+                          $"which will be held at \"{eventInfo.Address}\", " +
+                          $"at {eventInfo.DateTime:yyyy-MM-dd HH:mm}.\n" +
+                          $"Notification sent at: {DateTime.UtcNow:yyyy-MM-dd HH:mm}.";
+        
+        Assert.Equal(expectedText, result.Text);
+    }
+
+    [Fact]
+    [AllureSuite("NotificationServiceError")]
+    [AllureStep]
+    public async Task AddNotification_ShouldThrow_WhenParticipationStatusNotInvited()
+    {
+        var participationId = Guid.NewGuid();
+
+        var confirmedParticipation = ParticipationFactory.AcceptedParticipant();
+        confirmedParticipation = new Participation(participationId, confirmedParticipation.UserId,
+            confirmedParticipation.EventId, confirmedParticipation.Role, confirmedParticipation.Status);
+
+        _fixture.SetupParticipationExists(confirmedParticipation);
+
+        var exception = await Assert.ThrowsAsync<NotificationServiceException>(() =>
+            _fixture.Service.AddNotification(participationId));
+
+        Assert.Equal("Failed to create notification", exception.Message);
     }
 
     [Fact]

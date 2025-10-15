@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Eventity.Domain.Exceptions;
 using Eventity.Domain.Interfaces.Services;
 using Eventity.Domain.Models;
+using Eventity.Web.Converters;
 using Eventity.Web.Dtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -15,14 +16,16 @@ namespace Eventity.Web.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IAuthService _authService;
+        private readonly AuthDtoConverter _dtoConverter;
 
-        public AuthController(IAuthService authService)
+        public AuthController(IAuthService authService, AuthDtoConverter dtoConverter)
         {
             _authService = authService;
+            _dtoConverter = dtoConverter;
         }
 
         [HttpPost("login")]
-        [ProducesResponseType(typeof(AuthResult), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(AuthResponseDto), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorResponseDto), StatusCodes.Status404NotFound)] // UserNotFound
         [ProducesResponseType(typeof(ErrorResponseDto), StatusCodes.Status401Unauthorized)] // InvalidPassword
         [ProducesResponseType(typeof(ErrorResponseDto), StatusCodes.Status500InternalServerError)]
@@ -31,7 +34,7 @@ namespace Eventity.Web.Controllers
             try
             {
                 var result = await _authService.AuthenticateUser(request.Login, request.Password);
-                return Ok(result);
+                return Ok(_dtoConverter.ToResponseDto(result));
             }
             catch (UserNotFoundException ex)
             {
@@ -52,7 +55,7 @@ namespace Eventity.Web.Controllers
         }
 
         [HttpPost("register")]
-        [ProducesResponseType(typeof(AuthResult), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(AuthResponseDto), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorResponseDto), StatusCodes.Status409Conflict)] // UserAlreadyExists
         [ProducesResponseType(typeof(ErrorResponseDto), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Register([FromBody] RegisterRequestDto request)
@@ -61,7 +64,7 @@ namespace Eventity.Web.Controllers
             {
                 var result = await _authService.RegisterUser(
                     request.Name, request.Email, request.Login, request.Password, request.Role);
-                return Ok(result);
+                return Ok(_dtoConverter.ToResponseDto(result));
             }
             catch (UserAlreadyExistsException ex)
             {

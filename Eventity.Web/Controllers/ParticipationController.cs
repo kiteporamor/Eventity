@@ -115,7 +115,7 @@ public class ParticipationController : ControllerBase
     
     [HttpGet("user/{user_id}")]
     [Authorize]
-    [ProducesResponseType(typeof(IEnumerable<ParticipationResponseDto>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(IEnumerable<UserParticipationInfoResponseDto>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<ActionResult<IEnumerable<UserParticipationInfoResponseDto>>> GetAllUserParticipations(Guid user_id)
     {
@@ -133,7 +133,7 @@ public class ParticipationController : ControllerBase
     
     [HttpGet("event/{title}")]
     [Authorize]
-    [ProducesResponseType(typeof(IEnumerable<ParticipationResponseDto>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(IEnumerable<UserParticipationInfoResponseDto>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<ActionResult<IEnumerable<UserParticipationInfoResponseDto>>> GetAllUserParticipationsByEventTitle(Guid userId, string title)
     {
@@ -151,7 +151,7 @@ public class ParticipationController : ControllerBase
     
     [HttpGet("organizer/{login}")]
     [Authorize]
-    [ProducesResponseType(typeof(IEnumerable<ParticipationResponseDto>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(IEnumerable<UserParticipationInfoResponseDto>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<ActionResult<IEnumerable<UserParticipationInfoResponseDto>>> GetAllUserParticipationsByOrganizerLogin(Guid userId, string login)
     {

@@ -424,6 +424,15 @@ paths:
         - Participation
       security:
       - Bearer: []
+      parameters:
+        - name: organizer_login
+          in: query
+          schema:
+            type: string
+        - name: event_title
+          in: query
+          schema:
+            type: string
       responses:
         200:
           description: Success
@@ -432,13 +441,25 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/ParticipationResponseDto"
+                  $ref: "#/components/schemas/UserParticipationInfoResponseDto"
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
         401:
           description: Unauthorized
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponseDto"
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
         500:
           description: Server Error
 
@@ -474,56 +495,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponseDto"
-        500:
-          description: Server Error
-    put:
-      tags:
-        - Participation
-      security:
-      - Bearer: []
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/UpdateParticipationRequestDto"
-          text/json:
-            schema:
-              $ref: "#/components/schemas/UpdateParticipationRequestDto"
-          application/*+json:
-            schema:
-              $ref: "#/components/schemas/UpdateParticipationRequestDto"
-      responses:
-        200:
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ParticipationResponseDto"
-        400:
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ProblemDetails"
-        401:
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponseDto"
-        403:
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ProblemDetails"
         500:
           description: Server Error
     patch:
@@ -606,33 +577,29 @@ paths:
                 $ref: "#/components/schemas/ProblemDetails"
         500:
           description: Server Error
-          
-  /api/participations_detailed:
+        
+
+  /api/users/me:
     get:
       tags:
-        - Participation
+        - User
       security:
       - Bearer: []
-      parameters:
-        - name: organizer_login
-          in: query
-          schema:
-            type: string
-        - name: event_title
-          in: query
-          schema:
-            type: string
       responses:
         200:
           description: Success
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/UserParticipationInfoResponseDto"
+                $ref: "#/components/schemas/UserResponseDto"
         403:
           description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+        404:
+          description: Not Found
           content:
             application/json:
               schema:
@@ -643,16 +610,9 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponseDto"
-        404:
-          description: Not Found
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ProblemDetails"
         500:
           description: Server Error
-
-
+          
   /api/users/{id}:
     get:
       tags:

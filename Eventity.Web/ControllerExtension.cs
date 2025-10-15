@@ -11,5 +11,6 @@ public static class ControllerExtension
         services.AddScoped<EventDtoConverter>();
         services.AddScoped<ParticipationDtoConverter>();
         services.AddScoped<NotificationDtoConverter>();
+        services.AddScoped<AuthDtoConverter>();
     }
 }

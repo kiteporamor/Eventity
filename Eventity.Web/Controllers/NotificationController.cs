@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Eventity.Domain.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 
@@ -91,20 +92,29 @@ public class NotificationController : ControllerBase
         }
     }
     
-    [HttpGet("{participation_id}")]
+    [HttpGet]
     [ProducesResponseType(typeof(NotificationResponseDto), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult<NotificationResponseDto>> GetNotificationByParticipationId(Guid id)
+    public async Task<ActionResult<NotificationResponseDto>> GetAllNotifications(Guid? participation_id)
     {
         try
         {
-            var notification = await _notificationService.GetNotificationByParticipationId(id);
-            return Ok(_dtoConverter.ToResponseDto(notification));
+            IEnumerable<Notification> notifications = new List<Notification>();
+            if (participation_id is not null)
+            {
+                var notification = await _notificationService.GetNotificationByParticipationId(participation_id.Value);
+                notifications.Append(notification);
+            }
+            else
+            {
+                notifications = await _notificationService.GetAllNotifications();
+            }
+            return Ok(notifications.Select(_dtoConverter.ToResponseDto));
         }
         catch (NotificationServiceException ex)
         {
-            _logger.LogWarning(ex, "Notification not found: {NotificationId}", id);
+            _logger.LogWarning(ex, "Notification not found: {NotificationId}", participation_id);
             return NotFound(new ProblemDetails { 
                 Title = "Notification not found", 
                 Detail = ex.Message 
@@ -112,29 +122,11 @@ public class NotificationController : ControllerBase
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error getting notification by ID {Id}", id);
+            _logger.LogError(ex, "Error getting notification by ID {Id}", participation_id);
             return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
         }
     }
-    
-    [HttpGet]
-    [Authorize]
-    [ProducesResponseType(typeof(IEnumerable<NotificationResponseDto>), StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult<IEnumerable<NotificationResponseDto>>> GetAllNotifications()
-    {
-        try
-        {
-            var notifications = await _notificationService.GetAllNotifications();
-            return Ok(notifications.Select(_dtoConverter.ToResponseDto));
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "Error getting all notifications");
-            return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
-        }
-    }
-    
+
     [HttpDelete("{id}")]
     [Authorize]
     [ProducesResponseType(StatusCodes.Status204NoContent)]

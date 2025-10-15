@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Eventity.Domain.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 
@@ -97,67 +98,52 @@ public class ParticipationController : ControllerBase
     
     [HttpGet]
     [Authorize]
-    [ProducesResponseType(typeof(IEnumerable<ParticipationResponseDto>), StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult<IEnumerable<ParticipationResponseDto>>> GetAllParticipations()
-    {
-        try
-        {
-            var participations = await _participationService.GetAllParticipations();
-            return Ok(participations.Select(_dtoConverter.ToResponseDto));
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "Error getting all participations");
-            return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
-        }
-    }
-    
-    [HttpGet("user/{user_id}")]
-    [Authorize]
     [ProducesResponseType(typeof(IEnumerable<UserParticipationInfoResponseDto>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult<IEnumerable<UserParticipationInfoResponseDto>>> GetAllUserParticipations(Guid user_id)
+    public async Task<ActionResult<IEnumerable<UserParticipationInfoResponseDto>>> GetParticipationsDetailed(
+        string? organizer_login, string? event_title)
     {
         try
         {
-            var participations = await _participationService.GetUserParticipationInfoByUserId(user_id);
-            return Ok(participations.Select(_dtoConverter.ToResponseDto));
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "Error getting all participations by userId");
-            return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
-        }
-    }
-    
-    [HttpGet("event/{title}")]
-    [Authorize]
-    [ProducesResponseType(typeof(IEnumerable<UserParticipationInfoResponseDto>), StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult<IEnumerable<UserParticipationInfoResponseDto>>> GetAllUserParticipationsByEventTitle(Guid userId, string title)
-    {
-        try
-        {
-            var participations = await _participationService.GetUserParticipationInfoByEventTitle(userId, title);
-            return Ok(participations.Select(_dtoConverter.ToResponseDto));
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "Error getting all participations by event title");
-            return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
-        }
-    }
-    
-    [HttpGet("organizer/{login}")]
-    [Authorize]
-    [ProducesResponseType(typeof(IEnumerable<UserParticipationInfoResponseDto>), StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult<IEnumerable<UserParticipationInfoResponseDto>>> GetAllUserParticipationsByOrganizerLogin(Guid userId, string login)
-    {
-        try
-        {
-            var participations = await _participationService.GetUserParticipationInfoByOrganizerLogin(userId, login);
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (string.IsNullOrEmpty(userIdClaim))
+            {
+                return Unauthorized("User ID not found in token");
+            }
+            if (!Guid.TryParse(userIdClaim, out var userId))
+            {
+                return BadRequest("Invalid user ID format");
+            }
+
+            IEnumerable<UserParticipationInfo> participations = new List<UserParticipationInfo>();
+            if (organizer_login == null && event_title == null)
+            {
+                participations = await _participationService
+                    .GetUserParticipationInfoByUserId(userId);
+            }
+            else
+            {
+                IEnumerable<UserParticipationInfo> participations_by_organizer = new List<UserParticipationInfo>();
+                IEnumerable<UserParticipationInfo> participations_by_title = new List<UserParticipationInfo>();
+                if (organizer_login != null)
+                {
+                    participations_by_organizer = await _participationService
+                        .GetUserParticipationInfoByOrganizerLogin(userId, organizer_login);
+                }
+                if (event_title != null)
+                {
+                    participations_by_title = await _participationService
+                        .GetUserParticipationInfoByEventTitle(userId, event_title);
+                }
+                if (organizer_login != null && event_title != null)
+                {
+                    participations = participations_by_organizer.Intersect(participations_by_title);
+                }
+                else
+                {
+                    participations = participations_by_organizer.Union(participations_by_title);
+                }
+            }
             return Ok(participations.Select(_dtoConverter.ToResponseDto));
         }
         catch (Exception ex)
@@ -167,7 +153,7 @@ public class ParticipationController : ControllerBase
         }
     }
     
-    [HttpPut("{id}")]
+    [HttpPatch("{id}")]
     [Authorize]
     [ProducesResponseType(typeof(ParticipationResponseDto), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]

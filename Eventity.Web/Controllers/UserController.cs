@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Eventity.Domain.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 
@@ -91,46 +92,26 @@ public class UserController : ControllerBase
             return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
         }
     }
-    
-    [HttpGet("user/{login}")]
-    [ProducesResponseType(typeof(UserResponseDto), StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [ProducesResponseType(StatusCodes.Status403Forbidden)]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult<UserResponseDto>> GetUserByLogin(string login)
-    {
-        try
-        {
-            var user = await _userService.GetUserByLogin(login);
-            return Ok(_dtoConverter.ToResponseDto(user));
-        }
-        catch (UserServiceException ex)
-        {
-            _logger.LogWarning(ex, "User not found: {Login}", login);
-            return NotFound(new ProblemDetails
-            {
-                Title = "User not found",
-                Detail = ex.Message
-            });
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "Error getting user by login {Login}", login);
-            return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
-        }
-    }
-    
-    [HttpGet("all")]
+
+    [HttpGet]
     [ProducesResponseType(typeof(List<UserResponseDto>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult<List<UserResponseDto>>> GetAllUsers()
+    public async Task<ActionResult<List<UserResponseDto>>> GetUsers(string? login)
     {
         try
         {
-            var users = await _userService.GetAllUsers();
+            IEnumerable<User> users = new List<User>();
+            if (login != null)
+            {
+                var user = await _userService.GetUserByLogin(login);
+                users.Append(user);
+            }
+            else
+            {
+                users = await _userService.GetAllUsers();
+            }
             var userDtos = users.Select(u => _dtoConverter.ToResponseDto(u)).ToList();
-
             return Ok(userDtos);
         }
         catch (UserServiceException ex)
@@ -148,7 +129,6 @@ public class UserController : ControllerBase
             return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
         }
     }
-
 
     [HttpPut("{id}")]
     [Authorize(Roles = "Admin")]

@@ -162,6 +162,10 @@ public class EventRepository : IEventRepository
             _logger.LogInformation("Event updated successfully: {EventId}", eventDomain.Id);
             return eventDomain;
         }
+        catch (EventRepositoryException)
+        {
+            throw;
+        }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Failed to update event: {@Event}", eventDomain);
@@ -190,6 +194,10 @@ public class EventRepository : IEventRepository
                 _logger.LogInformation("Event removed: {EventId}", id);
             else
                 _logger.LogWarning("No changes saved while removing event: {EventId}", id);
+        }
+        catch (EventRepositoryException)
+        {
+            throw;
         }
         catch (Exception ex)
         {

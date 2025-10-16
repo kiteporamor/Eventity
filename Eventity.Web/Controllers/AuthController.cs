@@ -26,8 +26,8 @@ namespace Eventity.Web.Controllers
 
         [HttpPost("login")]
         [ProducesResponseType(typeof(AuthResponseDto), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(ErrorResponseDto), StatusCodes.Status404NotFound)] // UserNotFound
-        [ProducesResponseType(typeof(ErrorResponseDto), StatusCodes.Status401Unauthorized)] // InvalidPassword
+        [ProducesResponseType(typeof(ErrorResponseDto), StatusCodes.Status404NotFound)] 
+        [ProducesResponseType(typeof(ErrorResponseDto), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(typeof(ErrorResponseDto), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Login([FromBody] LoginRequestDto request)
         {
@@ -56,7 +56,7 @@ namespace Eventity.Web.Controllers
 
         [HttpPost("register")]
         [ProducesResponseType(typeof(AuthResponseDto), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(ErrorResponseDto), StatusCodes.Status409Conflict)] // UserAlreadyExists
+        [ProducesResponseType(typeof(ErrorResponseDto), StatusCodes.Status409Conflict)]
         [ProducesResponseType(typeof(ErrorResponseDto), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Register([FromBody] RegisterRequestDto request)
         {

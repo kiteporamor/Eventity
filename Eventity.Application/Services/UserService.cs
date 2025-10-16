@@ -28,7 +28,7 @@ public class UserService : IUserService
             _logger.LogInformation("User created successfully. ID: {UserId}, Login: {Login}, Role: {Role}", userId, login, role);
             return user;
         }
-        catch (UserRepositoryException ex)
+        catch (Exception ex)
         {
             _logger.LogError(ex, "Failed to create user. Login: {Login}, Email: {Email}", login, email);
             throw new UserServiceException("User service: Failed to create user", ex);
@@ -50,7 +50,11 @@ public class UserService : IUserService
             _logger.LogInformation("Retrieved user successfully. ID: {UserId}, Login: {Login}", id, user.Login);
             return user;
         }
-        catch (UserRepositoryException ex)
+        catch (UserServiceException)
+        {
+            throw;
+        }
+        catch (Exception ex)
         {
             _logger.LogError(ex, "Failed to get user by ID: {UserId}", id);
             throw new UserServiceException("User service: Failed to get user by id", ex);
@@ -72,7 +76,11 @@ public class UserService : IUserService
             _logger.LogInformation("Retrieved user successfully. Login: {Login}, ID: {UserId}", login, user.Id);
             return user;
         }
-        catch (UserRepositoryException ex)
+        catch (UserServiceException)
+        {
+            throw;
+        }
+        catch (Exception ex)
         {
             _logger.LogError(ex, "Failed to get user by login: {Login}", login);
             throw new UserServiceException("User service: Failed to get user by login", ex);
@@ -96,7 +104,47 @@ public class UserService : IUserService
             _logger.LogInformation("Retrieved {UserCount} users successfully", userList.Length);
             return userList;
         }
-        catch (UserRepositoryException ex)
+        catch (UserServiceException)
+        {
+            throw;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Failed to get all users");
+            throw new UserServiceException("User service: Failed to get all users", ex);
+        }
+    }
+
+    public async Task<IEnumerable<User>> GetUsers(string? login)
+    {
+        _logger.LogDebug("Trying to get all users");
+        try
+        {
+            IEnumerable<User> users = new List<User>();
+            if (string.IsNullOrEmpty(login))
+            {
+                users = await _userRepository.GetAllAsync();
+            }
+            else
+            {
+                var user = await _userRepository.GetByLoginAsync(login);
+                users.Append(user);
+            }
+            var userList = users as User[] ?? users.ToArray();
+
+            if (userList.Length == 0)
+            {
+                _logger.LogWarning("No users found");
+                throw new UserServiceException("User service: No users found.");
+            }
+            _logger.LogInformation("Retrieved {UserCount} users successfully", userList.Length);
+            return userList;
+        }
+        catch (UserServiceException)
+        {
+            throw;
+        }
+        catch (Exception ex)
         {
             _logger.LogError(ex, "Failed to get all users");
             throw new UserServiceException("User service: Failed to get all users", ex);
@@ -125,7 +173,11 @@ public class UserService : IUserService
             _logger.LogInformation("User updated successfully. ID: {UserId}, New Login: {Login}", id, updatedUser.Login);
             return updatedUser;
         }
-        catch (UserRepositoryException ex)
+        catch (UserServiceException)
+        {
+            throw;
+        }
+        catch (Exception ex)
         {
             _logger.LogError(ex, "Failed to update user. ID: {UserId}", id);
             throw new UserServiceException("User service: Failed to update user", ex);
@@ -140,7 +192,7 @@ public class UserService : IUserService
             await _userRepository.RemoveAsync(id);
             _logger.LogInformation("User removed successfully. ID: {UserId}", id);
         }
-        catch (UserRepositoryException ex)
+        catch (Exception ex)
         {
             _logger.LogError(ex, "Failed to remove user. ID: {UserId}", id);
             throw new UserServiceException("User service: Failed to remove user", ex);

@@ -2,3 +2,7 @@
 .idea/
 [Bb]in/
 [Oo]bj/
+allure-report/
+Eventity.Web/Logs/log.txt
+Eventity.Tests/allure-report/
+Eventity.Tests/allure-results/

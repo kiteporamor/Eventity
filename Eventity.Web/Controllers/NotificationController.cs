@@ -24,32 +24,33 @@ public class NotificationController : ControllerBase
     private readonly INotificationService _notificationService;
     private readonly ILogger<NotificationController> _logger;
     private readonly NotificationDtoConverter _dtoConverter;
+    private readonly ValidationDtoConverter _validationDtoConverter;
 
     public NotificationController(INotificationService notificationService, ILogger<NotificationController> logger, 
-        NotificationDtoConverter dtoConverter)
+        NotificationDtoConverter dtoConverter, ValidationDtoConverter validationDtoConverter)
     {
         _notificationService = notificationService;
         _logger = logger;
         _dtoConverter = dtoConverter;
+        _validationDtoConverter = validationDtoConverter;
     }
     
     [HttpPost]
-    [Authorize]
+    [Authorize(Roles = "Admin,User")]
     [ProducesResponseType(typeof(NotificationResponseDto), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult<NotificationResponseDto>> CreateNotification([FromBody] 
+    public async Task<ActionResult<IEnumerable<NotificationResponseDto>>> CreateNotifications([FromBody] 
         NotificationRequestDto requestDto)
     {
         try
         {
-            var newNotification = await _notificationService.AddNotification(
-                requestDto.ParticipationId);
+            var validation = _validationDtoConverter.ToDomain(new ValidationDto(GetCurrentUserId(), IsAdmin()));
+            
+            var newNotifications = await _notificationService.AddNotification(
+                requestDto.EventId, requestDto.Type, validation);
 
-            return CreatedAtAction(
-                nameof(GetNotificationId), 
-                new { id = newNotification.Id }, 
-                _dtoConverter.ToResponseDto(newNotification));
+            return StatusCode(StatusCodes.Status201Created, newNotifications);
         }
         catch (NotificationServiceException ex)
         {
@@ -67,6 +68,7 @@ public class NotificationController : ControllerBase
     }
     
     [HttpGet("{id}")]
+    [Authorize(Roles = "Admin")]
     [ProducesResponseType(typeof(NotificationResponseDto), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -93,6 +95,7 @@ public class NotificationController : ControllerBase
     }
     
     [HttpGet]
+    [Authorize(Roles = "Admin,User")]
     [ProducesResponseType(typeof(NotificationResponseDto), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -100,16 +103,9 @@ public class NotificationController : ControllerBase
     {
         try
         {
-            IEnumerable<Notification> notifications = new List<Notification>();
-            if (participation_id is not null)
-            {
-                var notification = await _notificationService.GetNotificationByParticipationId(participation_id.Value);
-                notifications.Append(notification);
-            }
-            else
-            {
-                notifications = await _notificationService.GetAllNotifications();
-            }
+            var validation = _validationDtoConverter.ToDomain(new ValidationDto(GetCurrentUserId(), IsAdmin()));
+            var notifications = await _notificationService.GetNotifications(participation_id, validation);
+
             return Ok(notifications.Select(_dtoConverter.ToResponseDto));
         }
         catch (NotificationServiceException ex)
@@ -128,7 +124,7 @@ public class NotificationController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -152,5 +148,27 @@ public class NotificationController : ControllerBase
             _logger.LogError(ex, "Error deleting notification {NotificationId}", id);
             return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
         }
+    }
+    
+    private Guid GetCurrentUserId()
+    {
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        return Guid.Parse(userId);
+    }
+    
+    private string GetCurrentUserRole()
+    {
+        var role = User.FindFirstValue(ClaimTypes.Role);
+        if (string.IsNullOrEmpty(role))
+            throw new UnauthorizedAccessException("Role not found in token");
+        return role;
+    }
+    
+    private bool IsAdmin()
+    {
+        var role = GetCurrentUserRole();
+        if (role == "Admin")
+            return true;
+        return false;
     }
 }

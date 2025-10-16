@@ -33,38 +33,59 @@ public class NotificationService : INotificationService
         _logger = logger;
     }
     
-    public async Task<Notification> AddNotification(Guid participationId)
+    public async Task<IEnumerable<Notification>> AddNotification(Guid eventId, NotificationTypeEnum type, 
+        Validation validation)
     {
         _logger.LogDebug("Trying to add notification");
         try
         {
-            var participation = await _participationRepository.GetByIdAsync(participationId) 
+            var participations = await _participationRepository.GetByEventIdAsync(eventId) 
                 ?? throw new NotificationServiceException("Participation not found");
+            var notifications = new List<Notification>();
+
+            foreach (var participation in participations)
+            {
+                if (participation.Status != ParticipationStatusEnum.Invited)
+                    throw new NotificationServiceException("Cannot create invitation for non-invited participation");
+
+                var user = await _userRepository.GetByIdAsync(participation.UserId) 
+                           ?? throw new NotificationServiceException("User not found");
                 
-            if (participation.Status != ParticipationStatusEnum.Invited)
-                throw new NotificationServiceException("Cannot create invitation for non-invited participation");
+                var eventInfo = await _eventRepository.GetByIdAsync(participation.EventId) 
+                                ?? throw new NotificationServiceException("Event not found");
 
-            var user = await _userRepository.GetByIdAsync(participation.UserId) 
-                ?? throw new NotificationServiceException("User not found");
-                
-            var eventInfo = await _eventRepository.GetByIdAsync(participation.EventId) 
-                ?? throw new NotificationServiceException("Event not found");
-
-            var notification = new Notification(
-                Guid.NewGuid(),
-                participationId,
-                GenerateInvitationText(user, eventInfo),
-                DateTime.UtcNow);
-
-            await _notificationRepository.AddAsync(notification);
+                if (eventInfo.OrganizerId != validation.CurrentUserId && !validation.IsAdmin)
+                    throw new NotificationServiceException("Access denied.");
             
-            _logger.LogInformation("Notification created successfully. ID: {NotificationId}, Participation: {ParticipationId}, User: {UserId}, Event: {EventId}", 
-                notification.Id, participationId, user.Id, eventInfo.Id);
-            return notification;
+                string text = "";
+                if (type == NotificationTypeEnum.Invintation &&
+                    participation.Role != ParticipationRoleEnum.Organizer &&
+                    participation.Role != ParticipationRoleEnum.Left)
+                {
+                    GenerateInvitationText(user, eventInfo);
+                }
+                else if (type == NotificationTypeEnum.Reminder && participation.Role != ParticipationRoleEnum.Left)
+                {
+                    GenerateReminderText(user, eventInfo);
+                }
+                
+                var notification = new Notification(
+                    Guid.NewGuid(),
+                    participation.Id,
+                    text,
+                    DateTime.UtcNow,
+                    type);
+
+                await _notificationRepository.AddAsync(notification);
+                notifications.Append(notification);
+            }
+            
+            _logger.LogInformation("Notifications created successfully");
+            return notifications;
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Failed to create notification for participation {ParticipationId}", participationId);
+            _logger.LogError(ex, "Failed to create notification for event {EventId}", eventId);
             throw new NotificationServiceException("Failed to create notification", ex);
         }
     }
@@ -80,10 +101,15 @@ public class NotificationService : INotificationService
                 _logger.LogWarning("Notification not found. ID: {NotificationId}", id);
                 throw new NotificationServiceException("Notification not found");
             }
-            
-            _logger.LogInformation("Notification retrieved successfully. ID: {NotificationId}, Participation: {ParticipationId}", 
+
+            _logger.LogInformation(
+                "Notification retrieved successfully. ID: {NotificationId}, Participation: {ParticipationId}",
                 id, notification.ParticipationId);
             return notification;
+        }
+        catch (NotificationServiceException)
+        {
+            throw;
         }
         catch (Exception ex)
         {
@@ -108,6 +134,10 @@ public class NotificationService : INotificationService
                 notification.Id, participationId);
             return notification;
         }
+        catch (NotificationServiceException)
+        {
+            throw;
+        }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Failed to get notification for participation {ParticipationId}", participationId);
@@ -129,6 +159,50 @@ public class NotificationService : INotificationService
             
             _logger.LogInformation("Retrieved {NotificationCount} notifications successfully", notifications.Count());
             return notifications;
+        }
+        catch (NotificationServiceException)
+        {
+            throw;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Failed to retrieve notifications");
+            throw new NotificationServiceException("Failed to get notifications", ex);
+        }
+    }
+
+    public async Task<IEnumerable<Notification>> GetNotifications(Guid? participation_id, Validation validation)
+    {
+        _logger.LogDebug("Trying to get all notifications");
+        try
+        {
+            var notifications = await _notificationRepository.GetAllAsync();
+            if (notifications?.Any() != true)
+            {
+                _logger.LogWarning("No notifications found in repository");
+                throw new NotificationServiceException("No notifications found");
+            }
+
+            var filteredNotifications = new List<Notification>();
+            foreach (var notification in notifications)
+            {
+                var participation = await _participationRepository.GetByIdAsync(notification.ParticipationId);
+            
+                if (participation.UserId != validation.CurrentUserId && !validation.IsAdmin)
+                    continue;
+                
+                if (participation_id.HasValue && notification.ParticipationId != participation_id.Value)
+                    continue;
+                
+                filteredNotifications.Add(notification);
+            }
+
+            _logger.LogInformation("Retrieved {NotificationCount} notifications successfully", filteredNotifications.Count);
+            return filteredNotifications;
+        }
+        catch (NotificationServiceException)
+        {
+            throw;
         }
         catch (Exception ex)
         {
@@ -159,6 +233,10 @@ public class NotificationService : INotificationService
                 id, updatedNotification.Text?.Length ?? 0);
             return updatedNotification;
         }
+        catch (NotificationServiceException)
+        {
+            throw;
+        }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Failed to update notification. ID: {NotificationId}", id);
@@ -186,6 +264,14 @@ public class NotificationService : INotificationService
         return $"Dear {user.Name}! You are invited to the \"{eventInfo.Title}\" event, " +
                $"which will be held at \"{eventInfo.Address}\", " +
                $"at {eventInfo.DateTime:yyyy-MM-dd HH:mm}.\n" +
+               $"Notification sent at: {DateTime.UtcNow:yyyy-MM-dd HH:mm}.";
+    }
+    
+    private string GenerateReminderText(User user, Event eventInfo)
+    {
+        return $"Dear {user.Name}! Reminder! The \"{eventInfo.Title}\" event " +
+               $"at \"{eventInfo.Address}\", " +
+               $"at {eventInfo.DateTime:yyyy-MM-dd HH:mm}.\n! Don't be late!" +
                $"Notification sent at: {DateTime.UtcNow:yyyy-MM-dd HH:mm}.";
     }
 }

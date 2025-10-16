@@ -9,13 +9,15 @@ public static class NotificationConverter
         notification.Id,
         notification.ParticipationId,
         notification.Text,
-        notification.SentAt
+        notification.SentAt,
+        notification.Type
     );
 
     public static Notification ToDomain(this NotificationDb notificationDb) => new(
         notificationDb.Id,
         notificationDb.ParticipationId,
         notificationDb.Text,
-        notificationDb.SentAt
+        notificationDb.SentAt,
+        notificationDb.Type
     );
 }

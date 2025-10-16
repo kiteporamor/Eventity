@@ -14,7 +14,6 @@ using Eventity.Domain.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 
-//TODO: использование ErrorResponseDto
 namespace Eventity.Api.Controllers;
 
 [ApiController]
@@ -25,17 +24,19 @@ public class ParticipationController : ControllerBase
     private readonly IParticipationService _participationService;
     private readonly ILogger<ParticipationController> _logger;
     private readonly ParticipationDtoConverter _dtoConverter;
+    private readonly ValidationDtoConverter _validationDtoConverter;
 
     public ParticipationController(IParticipationService participationService, ILogger<ParticipationController> logger, 
-        ParticipationDtoConverter dtoConverter)
+        ParticipationDtoConverter dtoConverter, ValidationDtoConverter validationDtoConverter)
     {
         _participationService = participationService;
         _logger = logger;
         _dtoConverter = dtoConverter;
+        _validationDtoConverter = validationDtoConverter;
     }
     
     [HttpPost]
-    [Authorize]
+    [Authorize(Roles = "Admin,User")]
     [ProducesResponseType(typeof(ParticipationResponseDto), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -44,11 +45,13 @@ public class ParticipationController : ControllerBase
     {
         try
         {
+            var validation = _validationDtoConverter.ToDomain(new ValidationDto(GetCurrentUserId(), IsAdmin()));
             var newParticipation = await _participationService.AddParticipation(
                 requestDto.UserId,
                 requestDto.EventId,
                 requestDto.Role,
-                requestDto.Status);
+                requestDto.Status,
+                validation);
 
             return CreatedAtAction(
                 nameof(GetParticipationById), 
@@ -71,6 +74,7 @@ public class ParticipationController : ControllerBase
     }
     
     [HttpGet("{id}")]
+    [Authorize(Roles = "Admin")]
     [ProducesResponseType(typeof(ParticipationResponseDto), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -97,54 +101,29 @@ public class ParticipationController : ControllerBase
     }
     
     [HttpGet]
-    [Authorize]
+    [Authorize(Roles = "Admin,User")]
     [ProducesResponseType(typeof(IEnumerable<UserParticipationInfoResponseDto>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<ActionResult<IEnumerable<UserParticipationInfoResponseDto>>> GetParticipationsDetailed(
-        string? organizer_login, string? event_title)
+        string? organizer_login, string? event_title, Guid? user_id)
     {
         try
         {
-            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            if (string.IsNullOrEmpty(userIdClaim))
-            {
-                return Unauthorized("User ID not found in token");
-            }
-            if (!Guid.TryParse(userIdClaim, out var userId))
-            {
-                return BadRequest("Invalid user ID format");
-            }
+            var validation = _validationDtoConverter.ToDomain(new ValidationDto(GetCurrentUserId(), IsAdmin()));
 
-            IEnumerable<UserParticipationInfo> participations = new List<UserParticipationInfo>();
-            if (organizer_login == null && event_title == null)
-            {
-                participations = await _participationService
-                    .GetUserParticipationInfoByUserId(userId);
-            }
-            else
-            {
-                IEnumerable<UserParticipationInfo> participations_by_organizer = new List<UserParticipationInfo>();
-                IEnumerable<UserParticipationInfo> participations_by_title = new List<UserParticipationInfo>();
-                if (organizer_login != null)
-                {
-                    participations_by_organizer = await _participationService
-                        .GetUserParticipationInfoByOrganizerLogin(userId, organizer_login);
-                }
-                if (event_title != null)
-                {
-                    participations_by_title = await _participationService
-                        .GetUserParticipationInfoByEventTitle(userId, event_title);
-                }
-                if (organizer_login != null && event_title != null)
-                {
-                    participations = participations_by_organizer.Intersect(participations_by_title);
-                }
-                else
-                {
-                    participations = participations_by_organizer.Union(participations_by_title);
-                }
-            }
+            var participations = await _participationService
+                    .GetUserParticipationsDetailed(organizer_login, event_title, validation, user_id);
+            
             return Ok(participations.Select(_dtoConverter.ToResponseDto));
+        }
+        catch (ParticipationServiceException ex)
+        {
+            _logger.LogError(ex, "Failed to get participations");
+            return BadRequest(new ProblemDetails
+            {
+                Title = "Update failed",
+                Detail = ex.Message
+            });
         }
         catch (Exception ex)
         {
@@ -154,7 +133,7 @@ public class ParticipationController : ControllerBase
     }
     
     [HttpPatch("{id}")]
-    [Authorize]
+    [Authorize(Roles = "Admin,User")]
     [ProducesResponseType(typeof(ParticipationResponseDto), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
@@ -164,9 +143,9 @@ public class ParticipationController : ControllerBase
     {
         try
         {
+            var validation = _validationDtoConverter.ToDomain(new ValidationDto(GetCurrentUserId(), IsAdmin()));
             var updatedParticipation = await _participationService.UpdateParticipation(
-                id,
-                requestDto.Status);
+                id, requestDto.Status, validation);
 
             return Ok(_dtoConverter.ToResponseDto(updatedParticipation));
         }
@@ -187,7 +166,7 @@ public class ParticipationController : ControllerBase
     }
     
     [HttpDelete("{id}")]
-    [Authorize]
+    [Authorize(Roles = "Admin,User")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -195,7 +174,8 @@ public class ParticipationController : ControllerBase
     {
         try
         {
-            await _participationService.RemoveParticipation(id);
+            var validation = _validationDtoConverter.ToDomain(new ValidationDto(GetCurrentUserId(), IsAdmin()));
+            await _participationService.RemoveParticipation(id, validation);
             return NoContent();
         }
         catch (ParticipationServiceException ex)
@@ -211,5 +191,27 @@ public class ParticipationController : ControllerBase
             _logger.LogError(ex, "Error deleting participation {ParticipationId}", id);
             return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
         }
+    }
+    
+    private Guid GetCurrentUserId()
+    {
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        return Guid.Parse(userId);
+    }
+
+    private string GetCurrentUserRole()
+    {
+        var role = User.FindFirstValue(ClaimTypes.Role);
+        if (string.IsNullOrEmpty(role))
+            throw new UnauthorizedAccessException("Role not found in token");
+        return role;
+    }
+    
+    private bool IsAdmin()
+    {
+        var role = GetCurrentUserRole();
+        if (role == "Admin")
+            return true;
+        return false;
     }
 }

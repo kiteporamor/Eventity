@@ -36,6 +36,10 @@ public class UserRepository : IUserRepository
 
             return user;
         }
+        catch (ArgumentException)
+        {
+            throw;
+        }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Error occurred while creating user");
@@ -56,6 +60,10 @@ public class UserRepository : IUserRepository
             }
 
             return userDb.ToDomain();
+        }
+        catch (UserRepositoryException)
+        {
+            throw;
         }
         catch (Exception ex)
         {
@@ -121,6 +129,10 @@ public class UserRepository : IUserRepository
 
             return user;
         }
+        catch (UserRepositoryException)
+        {
+            throw;
+        }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Error occurred while updating user with Id {UserId}", user.Id);
@@ -142,6 +154,10 @@ public class UserRepository : IUserRepository
 
             _context.Users.Remove(userDb);
             await _context.SaveChangesAsync();
+        }
+        catch (UserRepositoryException)
+        {
+            throw;
         }
         catch (Exception ex)
         {

@@ -15,7 +15,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 
 namespace Eventity.Api.Controllers;
-//TODO: использование ErrorResponseDto
 
 [Authorize]
 [ApiController]
@@ -38,6 +37,7 @@ public class UserController : ControllerBase
     }
 
     [HttpGet("me")]
+    [Authorize(Roles = "Admin,User")]
     [ProducesResponseType(typeof(UserResponseDto), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -64,8 +64,9 @@ public class UserController : ControllerBase
             return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
         }
     }
-
+    
     [HttpGet("{id}")]
+    [Authorize(Roles = "Admin")]
     [ProducesResponseType(typeof(UserResponseDto), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
@@ -94,6 +95,7 @@ public class UserController : ControllerBase
     }
 
     [HttpGet]
+    [Authorize(Roles = "Admin,User")]
     [ProducesResponseType(typeof(List<UserResponseDto>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -101,18 +103,8 @@ public class UserController : ControllerBase
     {
         try
         {
-            IEnumerable<User> users = new List<User>();
-            if (login != null)
-            {
-                var user = await _userService.GetUserByLogin(login);
-                users.Append(user);
-            }
-            else
-            {
-                users = await _userService.GetAllUsers();
-            }
-            var userDtos = users.Select(u => _dtoConverter.ToResponseDto(u)).ToList();
-            return Ok(userDtos);
+            var users = await _userService.GetUsers(login);
+            return Ok(users.Select(_dtoConverter.ToResponseDto));
         }
         catch (UserServiceException ex)
         {

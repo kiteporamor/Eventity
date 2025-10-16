@@ -8,6 +8,7 @@ public interface IEventService
     Task<Event> GetEventById(Guid id);
     Task<IEnumerable<Event>> GetEventByTitle(string title);
     Task<IEnumerable<Event>> GetAllEvents();
-    Task<Event> UpdateEvent(Guid id, string? title, string? description, DateTime? dateTime, string? address);
-    Task RemoveEvent(Guid id);
+    Task<Event> UpdateEvent(Guid id, string? title, string? description, DateTime? dateTime, string? address,
+        Validation validation);
+    Task RemoveEvent(Guid id, Validation validation);
 }

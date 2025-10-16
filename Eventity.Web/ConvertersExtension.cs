@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Web;
 
-public static class ControllerExtension
+public static class ConvertersExtension
 {
     public static void AddDtoConverters(this IServiceCollection services)
     {
@@ -12,5 +12,6 @@ public static class ControllerExtension
         services.AddScoped<ParticipationDtoConverter>();
         services.AddScoped<NotificationDtoConverter>();
         services.AddScoped<AuthDtoConverter>();
+        services.AddScoped<ValidationDtoConverter>();
     }
 }

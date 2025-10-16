@@ -12,7 +12,8 @@ public class NotificationDtoConverter
             Id = notification.Id,
             ParticipationId = notification.ParticipationId,
             Text = notification.Text,
-            SentAt = notification.SentAt
+            SentAt = notification.SentAt,
+            Type = notification.Type
         };
     }
 }

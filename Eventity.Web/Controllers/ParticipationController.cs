@@ -121,7 +121,7 @@ public class ParticipationController : ControllerBase
             _logger.LogError(ex, "Failed to get participations");
             return BadRequest(new ProblemDetails
             {
-                Title = "Update failed",
+                Title = "Get failed",
                 Detail = ex.Message
             });
         }

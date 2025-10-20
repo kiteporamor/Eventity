@@ -128,7 +128,7 @@ public class UserService : IUserService
             else
             {
                 var user = await _userRepository.GetByLoginAsync(login);
-                users.Append(user);
+                users = users.Append(user);
             }
             var userList = users as User[] ?? users.ToArray();
 

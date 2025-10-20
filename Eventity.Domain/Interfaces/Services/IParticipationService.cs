@@ -10,6 +10,8 @@ public interface IParticipationService
     Task<Participation> GetParticipationById(Guid id);
     Task<IEnumerable<UserParticipationInfo>> GetUserParticipationsDetailed(
         string? organizer_login, string? event_title, Validation validation, Guid? user_id);
+
+    Task<IEnumerable<UserParticipationInfo>> GetAllParticipationInfos();
     Task<IEnumerable<UserParticipationInfo>> GetUserParticipationInfoByUserId(Guid userId);
     Task<IEnumerable<UserParticipationInfo>> GetUserParticipationInfoByEventTitle(Guid userId, string title);
     Task<IEnumerable<UserParticipationInfo>> GetUserParticipationInfoByOrganizerLogin(Guid userId, string name);

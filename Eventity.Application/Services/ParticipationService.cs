@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Eventity.Domain.Enums;
 using Eventity.Domain.Exceptions;
+using Eventity.Domain.Interfaces;
 using Eventity.Domain.Interfaces.Repositories;
 using Eventity.Domain.Interfaces.Services;
 using Eventity.Domain.Models;
@@ -18,16 +19,19 @@ public class ParticipationService : IParticipationService
     private readonly IEventRepository _eventRepository;
     private readonly IUserRepository _userRepository;
     private readonly INotificationService _notificationService;
+    private readonly IUnitOfWork _unitOfWork;
     private readonly ILogger<ParticipationService> _logger;
 
     public ParticipationService(IParticipationRepository participationRepository, 
         IEventRepository eventRepository, IUserRepository userRepository, 
-        INotificationService notificationService, ILogger<ParticipationService> logger)
+        INotificationService notificationService, 
+        IUnitOfWork unitOfWork, ILogger<ParticipationService> logger)
     {
         _participationRepository = participationRepository;
         _eventRepository = eventRepository;
         _userRepository = userRepository;
         _notificationService = notificationService;
+        _unitOfWork = unitOfWork;
         _logger = logger;
     }
 
@@ -45,10 +49,12 @@ public class ParticipationService : IParticipationService
 
             var participationId = Guid.NewGuid();
             var participation = new Participation(participationId, userId, eventId, participationRole, status);
+        
             await _participationRepository.AddAsync(participation);
+            await _unitOfWork.SaveChangesAsync();
 
-            _notificationService.AddNotification(participationId, NotificationTypeEnum.Invintation, validation);
-
+            await _notificationService.AddNotification(eventId, NotificationTypeEnum.Invitation, validation);
+            
             _logger.LogInformation("Participation created. ID: {ParticipationId}, " +
                                    "UserID: {UserId}, EventID: {EventId}", participationId, userId, eventId);
             return participation;
@@ -166,14 +172,17 @@ public class ParticipationService : IParticipationService
                 {
                     var eventItem = await _eventRepository.GetByIdAsync(participation.EventId);
                     var organizer = await _userRepository.GetByIdAsync(eventItem.OrganizerId);
-                    var userParticipationInfo = new UserParticipationInfo(eventItem, organizer.Id, organizer.Login);
+                    var userParticipationInfo = new UserParticipationInfo(eventItem, organizer.Login);
                     userParticipationInfos.Add(userParticipationInfo);
                 }
             }
             if (userParticipationInfos == null || !userParticipationInfos.Any())
             {
-                _logger.LogWarning("Failed to find participation by user id: {UserId}", userId);
-                throw new ParticipationServiceException("Failed to find participations by user id.");
+                if (participations == null || !participations.Any())
+                {
+                    _logger.LogWarning("No participations found for user {UserId}", userId);
+                    return Enumerable.Empty<UserParticipationInfo>();
+                }
             }
             
             _logger.LogInformation("Participation found by user id: {UserId}", userId);
@@ -270,7 +279,7 @@ public class ParticipationService : IParticipationService
             foreach (var eventItem in events)
             {
                 var organizer = await _userRepository.GetByIdAsync(eventItem.OrganizerId);
-                var userParticipationInfo = new UserParticipationInfo(eventItem, organizer.Id, organizer.Login);
+                var userParticipationInfo = new UserParticipationInfo(eventItem, organizer.Login);
                 userParticipationInfos.Add(userParticipationInfo);
             }
 
@@ -296,7 +305,7 @@ public class ParticipationService : IParticipationService
                     var organizer = await _userRepository.GetByIdAsync(eventItem.OrganizerId);
                     if (organizer.Login == login)
                     {
-                        var userParticipationInfo = new UserParticipationInfo(eventItem, organizer.Id, organizer.Login);
+                        var userParticipationInfo = new UserParticipationInfo(eventItem, organizer.Login);
                         userParticipationInfos.Add(userParticipationInfo);
                     }
                 }
@@ -420,6 +429,43 @@ public class ParticipationService : IParticipationService
         }
     }
     
+    public async Task<IEnumerable<UserParticipationInfo>> GetAllParticipationInfos()
+    {
+        _logger.LogDebug("Trying to get all participations");
+        try
+        {
+            var participations = await _participationRepository.GetAllAsync();
+            var participationDomainModels = participations as Participation[] ?? participations.ToArray();
+            if (participations == null || !participationDomainModels.Any())
+            {
+                _logger.LogWarning("Failed to retrieve participations or no participations found");
+                throw new ParticipationServiceException(
+                    "Failed to retrieve participations or no participations found.");
+            }
+
+            IEnumerable<UserParticipationInfo> infos = new List<UserParticipationInfo>();
+            foreach (var participation in participations)
+            {
+                var eventDomain = await _eventRepository.GetByIdAsync(participation.EventId);
+                var organizer = await _userRepository.GetByIdAsync(eventDomain.OrganizerId);
+                var info = new UserParticipationInfo(eventDomain, organizer.Login);
+                infos = infos.Append(info);
+            }
+
+            _logger.LogInformation("All participations found");
+            return infos;
+        }
+        catch (ParticipationRepositoryException)
+        {
+            throw;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Failed to get all participations");
+            throw new ParticipationServiceException("Failed to get all participations", ex);
+        }
+    }
+    
     public async Task<Participation> UpdateParticipation(Guid id, ParticipationStatusEnum? status, 
         Validation validation)
     {
@@ -519,7 +565,9 @@ public class ParticipationService : IParticipationService
         try
         {
             var participation = await _participationRepository.GetByIdAsync(id);
-            if (participation.UserId != validation.CurrentUserId && !validation.IsAdmin)
+            var eventDomain = await _eventRepository.GetByIdAsync(participation.EventId);
+            if (participation.UserId != validation.CurrentUserId && 
+                eventDomain.OrganizerId != validation.CurrentUserId && !validation.IsAdmin)
             {
                 throw new ParticipationRepositoryException("Access Denied.");
             }

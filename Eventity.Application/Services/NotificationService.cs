@@ -41,13 +41,10 @@ public class NotificationService : INotificationService
         {
             var participations = await _participationRepository.GetByEventIdAsync(eventId) 
                 ?? throw new NotificationServiceException("Participation not found");
-            var notifications = new List<Notification>();
+            IEnumerable<Notification> notifications = new List<Notification>();
 
             foreach (var participation in participations)
             {
-                if (participation.Status != ParticipationStatusEnum.Invited)
-                    throw new NotificationServiceException("Cannot create invitation for non-invited participation");
-
                 var user = await _userRepository.GetByIdAsync(participation.UserId) 
                            ?? throw new NotificationServiceException("User not found");
                 
@@ -58,15 +55,17 @@ public class NotificationService : INotificationService
                     throw new NotificationServiceException("Access denied.");
             
                 string text = "";
-                if (type == NotificationTypeEnum.Invintation &&
-                    participation.Role != ParticipationRoleEnum.Organizer &&
-                    participation.Role != ParticipationRoleEnum.Left)
+                if (type == NotificationTypeEnum.Invitation &&
+                    participation.Role != ParticipationRoleEnum.Left && 
+                    participation.Status == ParticipationStatusEnum.Invited)
                 {
-                    GenerateInvitationText(user, eventInfo);
+                    text = GenerateInvitationText(user, eventInfo);
                 }
-                else if (type == NotificationTypeEnum.Reminder && participation.Role != ParticipationRoleEnum.Left)
+                else if (type == NotificationTypeEnum.Reminder && 
+                         participation.Role != ParticipationRoleEnum.Left && 
+                         participation.Status == ParticipationStatusEnum.Accepted)
                 {
-                    GenerateReminderText(user, eventInfo);
+                    text = GenerateReminderText(user, eventInfo);
                 }
                 
                 var notification = new Notification(
@@ -77,7 +76,7 @@ public class NotificationService : INotificationService
                     type);
 
                 await _notificationRepository.AddAsync(notification);
-                notifications.Append(notification);
+                notifications = notifications.Append(notification);
             }
             
             _logger.LogInformation("Notifications created successfully");
@@ -261,17 +260,17 @@ public class NotificationService : INotificationService
     
     private string GenerateInvitationText(User user, Event eventInfo)
     {
-        return $"Dear {user.Name}! You are invited to the \"{eventInfo.Title}\" event, " +
-               $"which will be held at \"{eventInfo.Address}\", " +
-               $"at {eventInfo.DateTime:yyyy-MM-dd HH:mm}.\n" +
+        return $"Dear {user.Name}! You are invited to the {eventInfo.Title} event, " +
+               $"which will be held at {eventInfo.Address}, " +
+               $"at {eventInfo.DateTime:yyyy-MM-dd HH:mm}." +
                $"Notification sent at: {DateTime.UtcNow:yyyy-MM-dd HH:mm}.";
     }
     
     private string GenerateReminderText(User user, Event eventInfo)
     {
-        return $"Dear {user.Name}! Reminder! The \"{eventInfo.Title}\" event " +
-               $"at \"{eventInfo.Address}\", " +
-               $"at {eventInfo.DateTime:yyyy-MM-dd HH:mm}.\n! Don't be late!" +
+        return $"Dear {user.Name}! Reminder! The {eventInfo.Title} event " +
+               $"at {eventInfo.Address}, " +
+               $"at {eventInfo.DateTime:yyyy-MM-dd HH:mm}.! Don't be late!" +
                $"Notification sent at: {DateTime.UtcNow:yyyy-MM-dd HH:mm}.";
     }
 }

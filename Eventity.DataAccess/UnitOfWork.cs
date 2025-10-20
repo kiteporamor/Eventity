@@ -1,14 +1,19 @@
 using System.Threading.Tasks;
 using Eventity.DataAccess.Context;
 using Eventity.Domain.Interfaces;
+using Eventity.Domain.Interfaces.Repositories;
 using Microsoft.EntityFrameworkCore.Storage;
 
 namespace DataAccess;
+
+using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.Extensions.Logging;
 
 public class EfUnitOfWork : IUnitOfWork
 {
     private readonly EventityDbContext _context;
     private IDbContextTransaction _transaction;
+    private bool _disposed = false;
 
     public EfUnitOfWork(EventityDbContext context)
     {
@@ -17,17 +22,39 @@ public class EfUnitOfWork : IUnitOfWork
 
     public async Task BeginTransactionAsync()
     {
+        if (_transaction != null)
+        {
+            return;
+        }
         _transaction = await _context.Database.BeginTransactionAsync();
     }
 
     public async Task CommitAsync()
     {
-        await _transaction.CommitAsync();
+        try
+        {
+            if (_transaction != null)
+            {
+                await _transaction.CommitAsync();
+                await _transaction.DisposeAsync();
+                _transaction = null;
+            }
+        }
+        catch (Exception)
+        {
+            await RollbackAsync();
+            throw;
+        }
     }
 
     public async Task RollbackAsync()
     {
-        await _transaction.RollbackAsync();
+        if (_transaction != null)
+        {
+            await _transaction.RollbackAsync();
+            await _transaction.DisposeAsync();
+            _transaction = null;
+        }
     }
 
     public async Task SaveChangesAsync()
@@ -37,6 +64,17 @@ public class EfUnitOfWork : IUnitOfWork
 
     public void Dispose()
     {
-        _transaction?.Dispose();
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    public void Dispose(bool disposing)
+    {
+        if (!_disposed && disposing)
+        {
+            _transaction?.Dispose();
+            _context?.Dispose();
+        }
+        _disposed = true;
     }
 }

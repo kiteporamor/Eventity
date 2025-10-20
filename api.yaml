@@ -433,6 +433,11 @@ paths:
           in: query
           schema:
             type: string
+        - name: user_id
+          in: query
+          schema:
+            type: string
+            format: uuid
       responses:
         200:
           description: Success
@@ -800,7 +805,6 @@ components:
         - address
         - dateTime
         - description
-        - organizerId
         - title
       type: object
       properties:
@@ -819,9 +823,6 @@ components:
           type: string
           minLength: 0
           maxLength: 200
-        organizerId:
-          type: string
-          format: uuid
       additionalProperties: false
 
     ErrorResponseDto:
@@ -872,9 +873,11 @@ components:
     NotificationRequestDto:
       type: object
       properties:
-        participationId:
+        eventId:
           type: string
           format: uuid
+        type:
+          $ref: "#/components/schemas/NotificationTypeEnum"
       additionalProperties: false
 
     NotificationResponseDto:
@@ -941,6 +944,13 @@ components:
         - Invited
         - Accepted
         - Rejected
+        
+    NotificationTypeEnum:
+      type: integer
+      format: int32
+      enum:
+        - Reminder
+        - Invintation
 
     ProblemDetails:
       type: object

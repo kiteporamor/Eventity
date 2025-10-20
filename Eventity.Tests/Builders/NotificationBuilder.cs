@@ -1,3 +1,5 @@
+using Eventity.Domain.Enums;
+
 namespace Eventity.UnitTests.DalUnitTests.ConvertersUnitTests;
 
 public class NotificationBuilder
@@ -10,7 +12,8 @@ public class NotificationBuilder
             Guid.NewGuid(),
             Guid.NewGuid(),
             "Default notification text",
-            DateTime.UtcNow
+            DateTime.UtcNow,
+            NotificationTypeEnum.Invitation
         );
     }
 

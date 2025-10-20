@@ -27,7 +27,9 @@ public class EventBuilder
     public EventBuilder WithDescription(string description) => With(e => e.Description = description);
     public EventBuilder WithDateTime(DateTime dateTime) => With(e => e.DateTime = dateTime);
     public EventBuilder WithAddress(string address) => With(e => e.Address = address);
+    public EventBuilder WithOrganizerId(Guid organizer_id) => With(e => e.OrganizerId = organizer_id);
     
     public Event Build() => _event;
     public static Event Default() => new EventBuilder().Build();
+
 }

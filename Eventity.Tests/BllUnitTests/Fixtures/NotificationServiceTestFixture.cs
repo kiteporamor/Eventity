@@ -1,12 +1,15 @@
 using Eventity.Application.Services;
+using Eventity.Domain.Models;
+using Eventity.Domain.Interfaces.Repositories;
 using Microsoft.Extensions.Logging;
+using Moq;
 
 namespace Eventity.Tests.Services;
 
 public class NotificationServiceTestFixture
 {
     public Mock<INotificationRepository> NotificationRepoMock { get; }
-    public Mock<IParticipationRepository> ParticipationRepoMock { get; }
+    public Mock<IParticipationRepository> PartRepoMock { get; }
     public Mock<IUserRepository> UserRepoMock { get; }
     public Mock<IEventRepository> EventRepoMock { get; }
     public Mock<ILogger<NotificationService>> LoggerMock { get; }
@@ -15,14 +18,14 @@ public class NotificationServiceTestFixture
     public NotificationServiceTestFixture()
     {
         NotificationRepoMock = new Mock<INotificationRepository>();
-        ParticipationRepoMock = new Mock<IParticipationRepository>();
+        PartRepoMock = new Mock<IParticipationRepository>();
         UserRepoMock = new Mock<IUserRepository>();
         EventRepoMock = new Mock<IEventRepository>();
         LoggerMock = new Mock<ILogger<NotificationService>>();
         
         Service = new NotificationService(
             NotificationRepoMock.Object,
-            ParticipationRepoMock.Object,
+            PartRepoMock.Object,
             UserRepoMock.Object,
             EventRepoMock.Object,
             LoggerMock.Object);
@@ -31,7 +34,7 @@ public class NotificationServiceTestFixture
     public void ResetMocks()
     {
         NotificationRepoMock.Reset();
-        ParticipationRepoMock.Reset();
+        PartRepoMock.Reset();
         UserRepoMock.Reset();
         EventRepoMock.Reset();
         LoggerMock.Reset();
@@ -57,8 +60,14 @@ public class NotificationServiceTestFixture
 
     public void SetupParticipationExists(Participation participation)
     {
-        ParticipationRepoMock.Setup(r => r.GetByIdAsync(participation.Id))
+        PartRepoMock.Setup(r => r.GetByIdAsync(participation.Id))
             .ReturnsAsync(participation);
+    }
+
+    public void SetupParticipationByEventId(Guid eventId, List<Participation> participations)
+    {
+        PartRepoMock.Setup(r => r.GetByEventIdAsync(eventId))
+            .ReturnsAsync(participations);
     }
 
     public void SetupUserExists(Guid userId, User user)
@@ -67,21 +76,51 @@ public class NotificationServiceTestFixture
             .ReturnsAsync(user);
     }
     
-    public void SetupEventExists(Guid eventInfo, Event eventItem)
+    public void SetupEventExists(Guid eventId, Event eventItem)
     {
-        EventRepoMock.Setup(r => r.GetByIdAsync(eventItem.Id))
+        EventRepoMock.Setup(r => r.GetByIdAsync(eventId))
             .ReturnsAsync(eventItem);
     }
     
     public void SetupParticipationNotFound(Guid participationId)
     {
-        ParticipationRepoMock.Setup(r => r.GetByIdAsync(participationId))
+        PartRepoMock.Setup(r => r.GetByIdAsync(participationId))
             .ReturnsAsync((Participation)null);
     }
     
-    public void SetupNotificationAddedSuccessfully()
+    public void SetupEventNotFound(Guid eventId)
     {
-        NotificationRepoMock.Setup(r => r.AddAsync(It.IsAny<Notification>()))
+        EventRepoMock.Setup(r => r.GetByIdAsync(eventId))
+            .ReturnsAsync((Event)null);
+    }
+    
+    public void SetupParticipationByEventIdNotFound(Guid eventId)
+    {
+        PartRepoMock.Setup(r => r.GetByEventIdAsync(eventId))
+            .ReturnsAsync((IEnumerable<Participation>)null);
+    }
+    
+    public void SetupNotificationUpdatedSuccessfully()
+    {
+        NotificationRepoMock.Setup(r => r.UpdateAsync(It.IsAny<Notification>()))
             .ReturnsAsync((Notification n) => n);
+    }
+    
+    public void SetupParticipationById(Guid participationId, Participation participation)
+    {
+        PartRepoMock.Setup(r => r.GetByIdAsync(participationId))
+            .ReturnsAsync(participation);
+    }
+    
+    public void SetupNotificationByParticipationId(Guid participationId, Notification notification)
+    {
+        NotificationRepoMock.Setup(r => r.GetByParticipationIdAsync(participationId))
+            .ReturnsAsync(notification);
+    }
+    
+    public void SetupNotificationByParticipationIdNotFound(Guid participationId)
+    {
+        NotificationRepoMock.Setup(r => r.GetByParticipationIdAsync(participationId))
+            .ReturnsAsync((Notification)null);
     }
 }

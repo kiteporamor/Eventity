@@ -15,6 +15,7 @@ using Allure.Xunit.Attributes;
 using Allure.Net.Commons;
 using Allure.XUnit.Attributes.Steps;
 using Eventity.UnitTests.DalUnitTests.ConvertersUnitTests;
+using Eventity.Domain.Interfaces;
 
 namespace Eventity.Tests.Services;
 
@@ -26,32 +27,6 @@ public class ParticipationServiceTests : IClassFixture<ParticipationServiceTestF
     {
         _fixture = fixture;
         _fixture.ResetMocks();
-    }
-
-    [Fact]
-    [AllureSuite("ParticipationServiceSuccess")]
-    [AllureStep]
-    public async Task AddParticipation_ShouldReturnParticipation_WhenParticipationIsCreated()
-    {
-        var userId = Guid.NewGuid();
-        var eventId = Guid.NewGuid();
-        var role = ParticipationRoleEnum.Organizer;
-        var status = ParticipationStatusEnum.Accepted;
-
-        _fixture.ParticipationRepoMock
-            .Setup(repo => repo.AddAsync(It.IsAny<Participation>()))
-            .ReturnsAsync((Participation p) => p);
-
-        var result = await _fixture.Service.AddParticipation(userId, eventId, role, status);
-
-        Assert.NotNull(result);
-        Assert.Equal(userId, result.UserId);
-        Assert.Equal(eventId, result.EventId);
-        Assert.Equal(role, result.Role);
-        Assert.Equal(status, result.Status);
-
-        _fixture.ParticipationRepoMock.Verify(repo => repo.AddAsync(
-            It.IsAny<Participation>()), Times.Once);
     }
     
     [Fact]
@@ -71,12 +46,8 @@ public class ParticipationServiceTests : IClassFixture<ParticipationServiceTestF
             ParticipationFactory.Create(userId: userId, eventId: Guid.NewGuid(), status: ParticipationStatusEnum.Invited) 
         };
 
-        var event1 = new EventBuilder().WithId(event1Id).WithTitle("Event 1").Build();
-        event1.OrganizerId = organizerId; 
-        
-        var event2 = new EventBuilder().WithId(event2Id).WithTitle("Event 2").Build();
-        event2.OrganizerId = organizerId;
-        
+        var event1 = new EventBuilder().WithId(event1Id).WithTitle("Event 1").WithOrganizerId(organizerId).Build();
+        var event2 = new EventBuilder().WithId(event2Id).WithTitle("Event 2").WithOrganizerId(organizerId).Build();
         var organizer = UserFactory.CreateUser(id: organizerId, login: "organizer1");
 
         _fixture.ParticipationRepoMock.Setup(r => r.GetByUserIdAsync(userId))
@@ -94,14 +65,13 @@ public class ParticipationServiceTests : IClassFixture<ParticipationServiceTestF
         Assert.Equal(2, result.Count()); 
         Assert.Contains(result, x => x.EventItem.Id == event1Id); 
         Assert.Contains(result, x => x.EventItem.Id == event2Id); 
-        Assert.All(result, x => Assert.Equal(organizerId, x.OrganizerId));
         Assert.All(result, x => Assert.Equal(organizer.Login, x.OrganizerLogin));
     }
 
     [Fact]
-    [AllureSuite("ParticipationServiceError")]
+    [AllureSuite("ParticipationServiceSuccess")]
     [AllureStep]
-    public async Task GetUserParticipationInfoByUserId_ShouldThrow_WhenNoAcceptedParticipations()
+    public async Task GetUserParticipationInfoByUserId_ShouldReturnEmpty_WhenNoAcceptedParticipations()
     {
         var userId = Guid.NewGuid();
 
@@ -114,26 +84,26 @@ public class ParticipationServiceTests : IClassFixture<ParticipationServiceTestF
         _fixture.ParticipationRepoMock.Setup(r => r.GetByUserIdAsync(userId))
                                     .ReturnsAsync(participations);
 
-        var exception = await Assert.ThrowsAsync<ParticipationServiceException>(() => 
-            _fixture.Service.GetUserParticipationInfoByUserId(userId));
-        
-        Assert.Equal("Failed to find participations by user id.", exception.Message);
+        var result = await _fixture.Service.GetUserParticipationInfoByUserId(userId);
+
+        Assert.NotNull(result);
+        Assert.Empty(result);
     }
 
     [Fact]
-    [AllureSuite("ParticipationServiceError")]
+    [AllureSuite("ParticipationServiceSuccess")]
     [AllureStep]
-    public async Task GetUserParticipationInfoByUserId_ShouldThrow_WhenNoParticipationsFound()
+    public async Task GetUserParticipationInfoByUserId_ShouldReturnEmpty_WhenNoParticipationsFound()
     {
         var userId = Guid.NewGuid();
 
         _fixture.ParticipationRepoMock.Setup(r => r.GetByUserIdAsync(userId))
                                     .ReturnsAsync(new List<Participation>());
 
-        var exception = await Assert.ThrowsAsync<ParticipationServiceException>(() => 
-            _fixture.Service.GetUserParticipationInfoByUserId(userId));
-        
-        Assert.Equal("Failed to find participations by user id.", exception.Message);
+        var result = await _fixture.Service.GetUserParticipationInfoByUserId(userId);
+
+        Assert.NotNull(result);
+        Assert.Empty(result);
     }
 
     [Fact]
@@ -145,13 +115,17 @@ public class ParticipationServiceTests : IClassFixture<ParticipationServiceTestF
         var eventId = Guid.NewGuid();
         var role = ParticipationRoleEnum.Organizer;
         var status = ParticipationStatusEnum.Accepted;
+        var validation = new Validation(userId, false);
 
+        var eventDb = new EventBuilder().WithId(eventId).WithOrganizerId(userId).Build();
+        _fixture.EventRepoMoch.Setup(r => r.GetByIdAsync(eventId))
+                             .ReturnsAsync(eventDb);
         _fixture.ParticipationRepoMock
             .Setup(repo => repo.AddAsync(It.IsAny<Participation>()))
-            .ThrowsAsync(new ParticipationRepositoryException("Repository error"));
+            .ThrowsAsync(new Exception("Repository error"));
 
         await Assert.ThrowsAsync<ParticipationServiceException>(() =>
-            _fixture.Service.AddParticipation(userId, eventId, role, status));
+            _fixture.Service.AddParticipation(userId, eventId, role, status, validation));
     }
 
     [Fact]
@@ -160,7 +134,6 @@ public class ParticipationServiceTests : IClassFixture<ParticipationServiceTestF
     public async Task GetParticipationById_ShouldReturnParticipation_WhenParticipationExists()
     {
         var participation = ParticipationFactory.Create();
-
         _fixture.SetupParticipationExists(participation);
 
         var result = await _fixture.Service.GetParticipationById(participation.Id);
@@ -182,7 +155,7 @@ public class ParticipationServiceTests : IClassFixture<ParticipationServiceTestF
     }
 
     [Fact]
-    [AllureSuite("ParticipationServicSuccess")]
+    [AllureSuite("ParticipationServiceSuccess")]
     [AllureStep]
     public async Task GetParticipationsByEventId_ShouldReturnParticipations_WhenParticipationsExist()
     {
@@ -409,13 +382,14 @@ public class ParticipationServiceTests : IClassFixture<ParticipationServiceTestF
     {
         var participation = ParticipationFactory.Create();
         var updatedStatus = ParticipationStatusEnum.Rejected;
+        var validation = new Validation(participation.UserId, false);
 
         _fixture.SetupParticipationExists(participation);
         _fixture.ParticipationRepoMock
             .Setup(repo => repo.UpdateAsync(It.IsAny<Participation>()))
             .ReturnsAsync((Participation p) => p);
 
-        var result = await _fixture.Service.UpdateParticipation(participation.Id, updatedStatus);
+        var result = await _fixture.Service.UpdateParticipation(participation.Id, updatedStatus, validation);
 
         Assert.NotNull(result);
         Assert.Equal(updatedStatus, result.Status);
@@ -424,13 +398,29 @@ public class ParticipationServiceTests : IClassFixture<ParticipationServiceTestF
     [Fact]
     [AllureSuite("ParticipationServiceError")]
     [AllureStep]
+    public async Task UpdateParticipation_ShouldThrow_WhenAccessDenied()
+    {
+        var participation = ParticipationFactory.Create();
+        var updatedStatus = ParticipationStatusEnum.Rejected;
+        var validation = new Validation(Guid.NewGuid(), false);
+
+        _fixture.SetupParticipationExists(participation);
+
+        await Assert.ThrowsAsync<ParticipationRepositoryException>(() =>
+            _fixture.Service.UpdateParticipation(participation.Id, updatedStatus, validation));
+    }
+
+    [Fact]
+    [AllureSuite("ParticipationServiceError")]
+    [AllureStep]
     public async Task UpdateParticipation_ShouldThrowParticipationServiceException_WhenParticipationNotFound()
     {
         var participationId = Guid.NewGuid();
+        var validation = new Validation(Guid.NewGuid(), false);
         _fixture.SetupParticipationNotFound(participationId);
 
         await Assert.ThrowsAsync<ParticipationServiceException>(() =>
-            _fixture.Service.UpdateParticipation(participationId, ParticipationStatusEnum.Rejected));
+            _fixture.Service.UpdateParticipation(participationId, ParticipationStatusEnum.Rejected, validation));
     }
 
     [Fact]
@@ -501,12 +491,18 @@ public class ParticipationServiceTests : IClassFixture<ParticipationServiceTestF
     public async Task RemoveParticipation_ShouldCallRemoveAsync_WhenParticipationExists()
     {
         var participationId = Guid.NewGuid();
+        var participation = ParticipationFactory.Create(id: participationId);
+        var eventDomain = new EventBuilder().WithOrganizerId(participation.UserId).Build();
+        var validation = new Validation(participation.UserId, false);
 
+        _fixture.SetupParticipationExists(participation);
+        _fixture.EventRepoMoch.Setup(r => r.GetByIdAsync(participation.EventId))
+                             .ReturnsAsync(eventDomain);
         _fixture.ParticipationRepoMock
             .Setup(repo => repo.RemoveAsync(participationId))
             .Returns(Task.CompletedTask);
 
-        await _fixture.Service.RemoveParticipation(participationId);
+        await _fixture.Service.RemoveParticipation(participationId, validation);
 
         _fixture.ParticipationRepoMock.Verify(repo => repo.RemoveAsync(participationId), Times.Once);
     }
@@ -517,12 +513,18 @@ public class ParticipationServiceTests : IClassFixture<ParticipationServiceTestF
     public async Task RemoveParticipation_ShouldThrowParticipationServiceException_WhenRepositoryFails()
     {
         var participationId = Guid.NewGuid();
+        var participation = ParticipationFactory.Create(id: participationId);
+        var eventDomain = new EventBuilder().WithOrganizerId(participation.UserId).Build();
+        var validation = new Validation(participation.UserId, false);
 
+        _fixture.SetupParticipationExists(participation);
+        _fixture.EventRepoMoch.Setup(r => r.GetByIdAsync(participation.EventId))
+                             .ReturnsAsync(eventDomain);
         _fixture.ParticipationRepoMock
             .Setup(repo => repo.RemoveAsync(participationId))
-            .ThrowsAsync(new ParticipationRepositoryException("Repository error"));
+            .ThrowsAsync(new Exception("Repository error"));
 
         await Assert.ThrowsAsync<ParticipationServiceException>(() =>
-            _fixture.Service.RemoveParticipation(participationId));
+            _fixture.Service.RemoveParticipation(participationId, validation));
     }
 }

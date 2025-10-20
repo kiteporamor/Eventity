@@ -124,6 +124,10 @@ public class ParticipationRepository : IParticipationRepository
 
             return participation;
         }
+        catch (ParticipationRepositoryException)
+        {
+            throw;
+        }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Error occurred while updating participation with Id {ParticipationId}", participation.Id);
@@ -145,6 +149,10 @@ public class ParticipationRepository : IParticipationRepository
 
             _context.Participations.Remove(participationDb);
             await _context.SaveChangesAsync();
+        }
+        catch (ParticipationRepositoryException)
+        {
+            throw;
         }
         catch (Exception ex)
         {

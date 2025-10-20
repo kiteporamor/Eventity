@@ -5,12 +5,21 @@ namespace Eventity.Domain.Attributes;
 
 public class FutureDateAttribute : ValidationAttribute
 {
-    public override bool IsValid(object value)
+    protected override ValidationResult IsValid(object value, ValidationContext validationContext)
     {
+        if (value == null)
+        {
+            return ValidationResult.Success;
+        }
+
         if (value is DateTime dateTime)
         {
-            return dateTime > DateTime.UtcNow;
+            if (dateTime <= DateTime.Now)
+            {
+                return new ValidationResult("Date must be in the future.");
+            }
         }
-        return false;
+
+        return ValidationResult.Success;
     }
 }

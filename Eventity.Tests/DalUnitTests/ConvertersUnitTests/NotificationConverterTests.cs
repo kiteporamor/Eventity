@@ -2,6 +2,7 @@ using Eventity.DataAccess.Converters;
 using Eventity.DataAccess.Models;
 using System;
 using Allure.XUnit.Attributes.Steps;
+using Eventity.Domain.Enums;
 using Xunit;
 
 namespace Eventity.UnitTests.DalUnitTests.ConvertersUnitTests;
@@ -34,7 +35,8 @@ public class NotificationConverterTests
             Guid.NewGuid(),
             Guid.NewGuid(),
             "Test notification message",
-            sentAt
+            sentAt,
+            NotificationTypeEnum.Invitation
         );
 
         var result = notificationDb.ToDomain();
@@ -86,7 +88,8 @@ public class NotificationConverterTests
             Guid.NewGuid(),
             Guid.NewGuid(),
             longText,
-            DateTime.UtcNow
+            DateTime.UtcNow,
+            NotificationTypeEnum.Invitation
         );
 
         var result = notificationDb.ToDomain();

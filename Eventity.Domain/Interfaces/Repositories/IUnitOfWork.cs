@@ -1,3 +1,5 @@
+using Eventity.Domain.Interfaces.Repositories;
+
 namespace Eventity.Domain.Interfaces;
 
 public interface IUnitOfWork : IDisposable

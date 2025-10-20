@@ -28,116 +28,44 @@ public class NotificationServiceTests : IClassFixture<NotificationServiceTestFix
         _fixture = fixture;
         _fixture.ResetMocks();
     }
-    
-    [Fact]
-    [AllureSuite("NotificationServiceSuccess")]
-    [AllureStep]
-    public async Task AddNotification_ShouldCreateNotification_WhenValidParticipation()
-    {
-        var participationId = Guid.NewGuid();
-        var userId = Guid.NewGuid();
-        var eventId = Guid.NewGuid();
-    
-        var participation = ParticipationFactory.Create(
-            id: participationId,
-            userId: userId,
-            eventId: eventId,
-            status: ParticipationStatusEnum.Invited
-        );
-    
-        var user = UserFactory.CreateUser(id: userId, name: "John Doe", email: "john@example.com");
-        var eventInfo = new EventBuilder()
-            .WithId(eventId)
-            .WithTitle("Test Event")
-            .WithAddress("Test Address")
-            .WithDateTime(DateTime.UtcNow.AddDays(1))
-            .Build();
-    
-        _fixture.SetupParticipationExists(participation);
-        _fixture.SetupUserExists(userId, user);
-        _fixture.SetupEventExists(eventId, eventInfo);
-        _fixture.SetupNotificationAddedSuccessfully();
-
-        var result = await _fixture.Service.AddNotification(participationId);
-
-        Assert.NotNull(result);
-        Assert.Equal(participationId, result.ParticipationId);
-        Assert.Contains(user.Name, result.Text);
-        Assert.Contains(eventInfo.Title, result.Text);
-        Assert.Contains(eventInfo.Address, result.Text);
-    
-        _fixture.NotificationRepoMock.Verify(r => r.AddAsync(It.IsAny<Notification>()), Times.Once);
-    }
-
-    [Fact]
-    [AllureSuite("NotificationServiceSuccess")]
-    [AllureStep]
-    public async Task AddNotification_ShouldGenerateCorrectInvitationText()
-    {
-        var participationId = Guid.NewGuid();
-        var userId = Guid.NewGuid();
-        var eventId = Guid.NewGuid();
-        
-        var participation = ParticipationFactory.Create(
-            id: participationId,
-            userId: userId,
-            eventId: eventId,
-            status: ParticipationStatusEnum.Invited
-        );
-        
-        var user = UserFactory.CreateUser(id: userId, name: "Name", email: "email@mail.ru");
-        var eventDateTime = new DateTime(2024, 12, 25, 18, 0, 0);
-        var eventInfo = new EventBuilder()
-            .WithId(eventId)
-            .WithTitle("Event")
-            .WithAddress("Adress")
-            .WithDateTime(eventDateTime)
-            .Build();
-        
-        _fixture.SetupParticipationExists(participation);
-        _fixture.SetupUserExists(userId, user);
-        _fixture.SetupEventExists(eventId, eventInfo);
-        _fixture.SetupNotificationAddedSuccessfully();
-
-        var result = await _fixture.Service.AddNotification(participationId);
-
-        var expectedText = $"Dear {user.Name}! You are invited to the \"{eventInfo.Title}\" event, " +
-                          $"which will be held at \"{eventInfo.Address}\", " +
-                          $"at {eventInfo.DateTime:yyyy-MM-dd HH:mm}.\n" +
-                          $"Notification sent at: {DateTime.UtcNow:yyyy-MM-dd HH:mm}.";
-        
-        Assert.Equal(expectedText, result.Text);
-    }
-
-    [Fact]
-    [AllureSuite("NotificationServiceError")]
-    [AllureStep]
-    public async Task AddNotification_ShouldThrow_WhenParticipationStatusNotInvited()
-    {
-        var participationId = Guid.NewGuid();
-
-        var confirmedParticipation = ParticipationFactory.AcceptedParticipant();
-        confirmedParticipation = new Participation(participationId, confirmedParticipation.UserId,
-            confirmedParticipation.EventId, confirmedParticipation.Role, confirmedParticipation.Status);
-
-        _fixture.SetupParticipationExists(confirmedParticipation);
-
-        var exception = await Assert.ThrowsAsync<NotificationServiceException>(() =>
-            _fixture.Service.AddNotification(participationId));
-
-        Assert.Equal("Failed to create notification", exception.Message);
-    }
 
     [Fact]
     [AllureSuite("NotificationServiceError")]
     [AllureStep]
     public async Task AddNotification_ShouldThrow_WhenParticipationNotFound()
     {
-        var participationId = Guid.NewGuid();
-        _fixture.SetupParticipationNotFound(participationId);
+        var eventId = Guid.NewGuid();
+        _fixture.PartRepoMock.Setup(x => x.GetByEventIdAsync(eventId))
+                            .ReturnsAsync((IEnumerable<Participation>)null);
 
+        var validation = new Validation(Guid.NewGuid(), false);
         await Assert.ThrowsAsync<NotificationServiceException>(() => 
-            _fixture.Service.AddNotification(participationId));
+            _fixture.Service.AddNotification(eventId, NotificationTypeEnum.Invitation, validation));
+    }
+
+    [Fact]
+    [AllureSuite("NotificationServiceError")]
+    [AllureStep]
+    public async Task AddNotification_ShouldThrow_WhenAccessDenied()
+    {
+        var eventId = Guid.NewGuid();
+        var organizerId = Guid.NewGuid();
+        var otherUserId = Guid.NewGuid();
+        
+        var participation = ParticipationFactory.Create(eventId: eventId);
+        var eventInfo = new EventBuilder()
+            .WithId(eventId)
+            .WithOrganizerId(organizerId)
+            .Build();
+        
+        _fixture.PartRepoMock.Setup(x => x.GetByEventIdAsync(eventId))
+                            .ReturnsAsync(new List<Participation> { participation });
+        _fixture.EventRepoMock.Setup(x => x.GetByIdAsync(eventId)).ReturnsAsync(eventInfo);
+
+        var validation = new Validation(otherUserId, false);
+        
+        await Assert.ThrowsAsync<NotificationServiceException>(() => 
+            _fixture.Service.AddNotification(eventId, NotificationTypeEnum.Invitation, validation));
     }
 
     [Fact]
@@ -182,6 +110,19 @@ public class NotificationServiceTests : IClassFixture<NotificationServiceTestFix
     }
 
     [Fact]
+    [AllureSuite("NotificationServiceError")]
+    [AllureStep]
+    public async Task GetNotificationByParticipationId_ShouldThrow_WhenNotFound()
+    {
+        var participationId = Guid.NewGuid();
+        _fixture.NotificationRepoMock.Setup(r => r.GetByParticipationIdAsync(participationId))
+                                    .ReturnsAsync((Notification)null);
+
+        await Assert.ThrowsAsync<NotificationServiceException>(() => 
+            _fixture.Service.GetNotificationByParticipationId(participationId));
+    }
+
+    [Fact]
     [AllureSuite("NotificationServiceSuccess")]
     [AllureStep]
     public async Task GetAllNotifications_ShouldReturnList_WhenFound()
@@ -212,6 +153,36 @@ public class NotificationServiceTests : IClassFixture<NotificationServiceTestFix
     [Fact]
     [AllureSuite("NotificationServiceSuccess")]
     [AllureStep]
+    public async Task GetNotifications_ShouldFilterByUserAndParticipation()
+    {
+        var userId = Guid.NewGuid();
+        var otherUserId = Guid.NewGuid();
+        var participationId = Guid.NewGuid();
+        
+        var notifications = new List<Notification>
+        {
+            NotificationBuilder.WithParticipation(participationId),
+            NotificationBuilder.WithParticipation(Guid.NewGuid())
+        };
+        
+        var participation = ParticipationFactory.Create(userId: userId, id: participationId);
+        
+        _fixture.SetupNotificationsList(notifications);
+        _fixture.PartRepoMock.Setup(x => x.GetByIdAsync(participationId))
+                            .ReturnsAsync(participation);
+        _fixture.PartRepoMock.Setup(x => x.GetByIdAsync(It.Is<Guid>(id => id != participationId)))
+                            .ReturnsAsync(ParticipationFactory.Create(userId: otherUserId));
+
+        var validation = new Validation(userId, false);
+        var result = await _fixture.Service.GetNotifications(participationId, validation);
+
+        Assert.Single(result);
+        Assert.Equal(participationId, result.First().ParticipationId);
+    }
+
+    [Fact]
+    [AllureSuite("NotificationServiceSuccess")]
+    [AllureStep]
     public async Task UpdateNotification_ShouldUpdateFields()
     {
         var notification = NotificationBuilder.Default();
@@ -227,6 +198,18 @@ public class NotificationServiceTests : IClassFixture<NotificationServiceTestFix
     }
 
     [Fact]
+    [AllureSuite("NotificationServiceError")]
+    [AllureStep]
+    public async Task UpdateNotification_ShouldThrow_WhenNotFound()
+    {
+        var notificationId = Guid.NewGuid();
+        _fixture.SetupNotificationNotFound(notificationId);
+
+        await Assert.ThrowsAsync<NotificationServiceException>(() => 
+            _fixture.Service.UpdateNotification(notificationId, null, "text", null));
+    }
+
+    [Fact]
     [AllureSuite("NotificationServiceSuccess")]
     [AllureStep]
     public async Task RemoveNotification_ShouldCallRepository()
@@ -238,5 +221,18 @@ public class NotificationServiceTests : IClassFixture<NotificationServiceTestFix
         await _fixture.Service.RemoveNotification(notificationId);
 
         _fixture.NotificationRepoMock.Verify(r => r.RemoveAsync(notificationId), Times.Once);
+    }
+
+    [Fact]
+    [AllureSuite("NotificationServiceError")]
+    [AllureStep]
+    public async Task RemoveNotification_ShouldThrow_OnError()
+    {
+        var notificationId = Guid.NewGuid();
+        _fixture.NotificationRepoMock.Setup(r => r.RemoveAsync(notificationId))
+                                    .ThrowsAsync(new Exception("DB error"));
+
+        await Assert.ThrowsAsync<NotificationServiceException>(() => 
+            _fixture.Service.RemoveNotification(notificationId));
     }
 }

@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Eventity.DataAccess.Migrations
 {
     [DbContext(typeof(EventityDbContext))]
-    [Migration("20250413214505_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20251020143131_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -68,6 +68,9 @@ namespace Eventity.DataAccess.Migrations
                     b.Property<string>("Text")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 

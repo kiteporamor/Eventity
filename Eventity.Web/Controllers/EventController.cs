@@ -17,22 +17,26 @@ namespace Eventity.Api.Controllers;
 
 [ApiController]
 [Route("api/events")]
+[Authorize]
 [Produces("application/json")]
 public class EventController : ControllerBase
 {
     private readonly IEventService _eventService;
     private readonly ILogger<EventController> _logger;
     private readonly EventDtoConverter _dtoConverter;
+    private readonly ValidationDtoConverter _validationDtoConverter;
 
-    public EventController(IEventService eventService, ILogger<EventController> logger, EventDtoConverter dtoConverter)
+    public EventController(IEventService eventService, ILogger<EventController> logger, 
+        EventDtoConverter dtoConverter, ValidationDtoConverter validationDtoConverter)
     {
         _eventService = eventService;
         _logger = logger;
         _dtoConverter = dtoConverter;
+        _validationDtoConverter = validationDtoConverter;
     }
 
     [HttpPost]
-    [Authorize]
+    [Authorize(Roles = "Admin,User")]
     [ProducesResponseType(typeof(EventResponseDto), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -40,12 +44,13 @@ public class EventController : ControllerBase
     {
         try
         {
+            var currentUserId = GetCurrentUserId();
             var newEvent = await _eventService.AddEvent(
                 requestDto.Title,
                 requestDto.Description,
                 requestDto.DateTime,
                 requestDto.Address,
-                requestDto.OrganizerId);
+                currentUserId);
 
             return CreatedAtAction(
                 nameof(GetEventById), 
@@ -68,6 +73,7 @@ public class EventController : ControllerBase
     }
 
     [HttpGet("{id}")]
+    [Authorize(Roles = "Admin")]
     [ProducesResponseType(typeof(EventResponseDto), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -94,6 +100,7 @@ public class EventController : ControllerBase
     }
 
     [HttpGet]
+    [Authorize(Roles = "Admin")]
     [ProducesResponseType(typeof(IEnumerable<EventResponseDto>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<ActionResult<IEnumerable<EventResponseDto>>> GetAllEvents()
@@ -111,7 +118,7 @@ public class EventController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    [Authorize]
+    [Authorize(Roles = "Admin,User")]
     [ProducesResponseType(typeof(EventResponseDto), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
@@ -122,12 +129,16 @@ public class EventController : ControllerBase
     {
         try
         {
+            var validation = _validationDtoConverter.ToDomain(new ValidationDto(GetCurrentUserId(), IsAdmin()));
+            
             var updatedEvent = await _eventService.UpdateEvent(
                 id,
                 requestDto.Title,
                 requestDto.Description,
                 requestDto.DateTime,
-                requestDto.Address);
+                requestDto.Address,
+                validation
+            );
 
             return Ok(_dtoConverter.ToResponseDto(updatedEvent));
         }
@@ -147,7 +158,7 @@ public class EventController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    [Authorize]
+    [Authorize(Roles = "Admin,User")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -155,7 +166,9 @@ public class EventController : ControllerBase
     {
         try
         {
-            await _eventService.RemoveEvent(id);
+            var validation = _validationDtoConverter.ToDomain(new ValidationDto(GetCurrentUserId(), IsAdmin()));
+            
+            await _eventService.RemoveEvent(id, validation);
             return NoContent();
         }
         catch (EventServiceException ex)
@@ -177,5 +190,21 @@ public class EventController : ControllerBase
     {
         var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
         return Guid.Parse(userId);
+    }
+
+    private string GetCurrentUserRole()
+    {
+        var role = User.FindFirstValue(ClaimTypes.Role);
+        if (string.IsNullOrEmpty(role))
+            throw new UnauthorizedAccessException("Role not found in token");
+        return role;
+    }
+    
+    private bool IsAdmin()
+    {
+        var role = GetCurrentUserRole();
+        if (role == "Admin")
+            return true;
+        return false;
     }
 }

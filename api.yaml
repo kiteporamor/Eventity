@@ -1,152 +1,146 @@
-openapi: 3.1.1
+openapi: 3.0.1
 info:
   title: Eventity API
-  description: REST API для системы управления мероприятиями
-  version: 1.0.0
-
-servers:
-  - url: http://localhost:5000/api/v1
-    description: Local development server
+  version: v1
 
 paths:
-  /auth/login:
+  /api/auth/login:
     post:
       tags:
-        - Authentication
-      summary: Вход в систему
-      description: Аутентификация пользователя по логину и паролю
-      operationId: login
+        - Auth
       requestBody:
-        required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/LoginRequestDto'
+              $ref: "#/components/schemas/LoginRequestDto"
+          text/json:
+            schema:
+              $ref: "#/components/schemas/LoginRequestDto"
+          application/*+json:
+            schema:
+              $ref: "#/components/schemas/LoginRequestDto"
       responses:
-        '200':
-          description: Успешная аутентификация
+        200:
+          description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthResult'
-        '401':
-          description: Неверный пароль
+                $ref: "#/components/schemas/AuthResult"
+        401:
+          description: Unauthorized
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '404':
-          description: Пользователь не найден
+                $ref: "#/components/schemas/ErrorResponseDto"
+        404:
+          description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '500':
-          description: Внутренняя ошибка сервера
+                $ref: "#/components/schemas/ErrorResponseDto"
+        500:
+          description: Server Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponseDto"
 
-  /auth/register:
+  /api/auth/register:
     post:
       tags:
-        - Authentication
-      summary: Регистрация пользователя
-      description: Создание нового пользователя в системе
-      operationId: register
+        - Auth
       requestBody:
-        required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/RegisterRequestDto'
+              $ref: "#/components/schemas/RegisterRequestDto"
+          text/json:
+            schema:
+              $ref: "#/components/schemas/RegisterRequestDto"
+          application/*+json:
+            schema:
+              $ref: "#/components/schemas/RegisterRequestDto"
       responses:
-        '200':
-          description: Успешная регистрация
+        200:
+          description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthResult'
-        '409':
-          description: Пользователь уже существует
+                $ref: "#/components/schemas/AuthResult"
+        409:
+          description: Conflict
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '500':
-          description: Внутренняя ошибка сервера
+                $ref: "#/components/schemas/ErrorResponseDto"        
+        500:
+          description: Server Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponseDto"
 
-  /events:
+  /api/events:
+    post:
+      tags:
+        - Event
+      security:
+      - Bearer: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateEventRequestDto"
+          text/json:
+            schema:
+              $ref: "#/components/schemas/CreateEventRequestDto"
+          application/*+json:
+            schema:
+              $ref: "#/components/schemas/CreateEventRequestDto"
+      responses:
+        201:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EventResponseDto"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDto"
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+        500:
+          description: Server Error
     get:
       tags:
-        - Events
-      summary: Получить все события
-      description: Возвращает список всех событий в системе
-      operationId: getAllEvents
+        - Event
+      security:
+      - Bearer: []
       responses:
-        '200':
-          description: Успешное получение списка событий
+        200:
+          description: Success
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/EventResponseDto'
-        '500':
-          description: Внутренняя ошибка сервера
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                  $ref: "#/components/schemas/EventResponseDto"
+        500:
+          description: Server Error
 
-    post:
-      tags:
-        - Events
-      summary: Создать новое событие
-      description: Создание нового события (требуется аутентификация)
-      operationId: createEvent
-      security:
-        - bearerAuth: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CreateEventRequestDto'
-      responses:
-        '201':
-          description: Событие успешно создано
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EventResponseDto'
-        '400':
-          description: Ошибка валидации данных
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-        '401':
-          description: Требуется аутентификация
-        '500':
-          description: Внутренняя ошибка сервера
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-
-  /events/{id}:
+  /api/events/{id}:
     get:
       tags:
-        - Events
-      summary: Получить событие по ID
-      description: Возвращает информацию о конкретном событии
-      operationId: getEventById
+        - Event
+      security:
+      - Bearer: []
       parameters:
         - name: id
           in: path
@@ -154,35 +148,32 @@ paths:
           schema:
             type: string
             format: uuid
-          description: UUID события
       responses:
-        '200':
-          description: Успешное получение события
+        200:
+          description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EventResponseDto'
-        '404':
-          description: Событие не найдено
+                $ref: "#/components/schemas/EventResponseDto"
+        401:
+          description: Unauthorized
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProblemDetails'
-        '500':
-          description: Внутренняя ошибка сервера
+                $ref: "#/components/schemas/ErrorResponseDto"
+        404:
+          description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-
+                $ref: "#/components/schemas/ProblemDetails"
+        500:
+          description: Server Error
     put:
       tags:
-        - Events
-      summary: Полное обновление события
-      description: Полное обновление информации о событии (требуется аутентификация)
-      operationId: updateEvent
+        - Event
       security:
-        - bearerAuth: []
+      - Bearer: []
       parameters:
         - name: id
           in: path
@@ -190,45 +181,49 @@ paths:
           schema:
             type: string
             format: uuid
-          description: UUID события
       requestBody:
-        required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateEventRequestDto'
+              $ref: "#/components/schemas/UpdateEventRequestDto"
+          text/json:
+            schema:
+              $ref: "#/components/schemas/UpdateEventRequestDto"
+          application/*+json:
+            schema:
+              $ref: "#/components/schemas/UpdateEventRequestDto"
       responses:
-        '200':
-          description: Событие успешно обновлено
+        200:
+          description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EventResponseDto'
-        '400':
-          description: Ошибка валидации данных
+                $ref: "#/components/schemas/EventResponseDto"
+        400:
+          description: Bad Request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProblemDetails'
-        '401':
-          description: Требуется аутентификация
-        '403':
-          description: Недостаточно прав
-        '500':
-          description: Внутренняя ошибка сервера
+                $ref: "#/components/schemas/ProblemDetails"
+        401:
+          description: Unauthorized
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-
+                $ref: "#/components/schemas/ErrorResponseDto"
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+        500:
+          description: Server Error
     delete:
       tags:
-        - Events
-      summary: Удалить событие
-      description: Удаление события по ID (требуется аутентификация)
-      operationId: deleteEvent
+        - Event
       security:
-        - bearerAuth: []
+      - Bearer: []
       parameters:
         - name: id
           in: path
@@ -236,95 +231,97 @@ paths:
           schema:
             type: string
             format: uuid
-          description: UUID события
       responses:
-        '204':
-          description: Событие успешно удалено
-        '401':
-          description: Требуется аутентификация
-        '404':
-          description: Событие не найдено
+        204:
+          description: Success
+        401:
+          description: Unauthorized
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProblemDetails'
-        '500':
-          description: Внутренняя ошибка сервера
+                $ref: "#/components/schemas/ErrorResponseDto"
+        404:
+          description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ProblemDetails"
+        500:
+          description: Server Error
 
-  /participations:
+  /api/notifications:
+    post:
+      tags:
+        - Notification
+      security:
+      - Bearer: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NotificationRequestDto"
+          text/json:
+            schema:
+              $ref: "#/components/schemas/NotificationRequestDto"
+          application/*+json:
+            schema:
+              $ref: "#/components/schemas/NotificationRequestDto"
+      responses:
+        201:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NotificationResponseDto"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDto"
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+        500:
+          description: Server Error
     get:
       tags:
-        - Participations
-      summary: Получить все участия
-      description: Возвращает список всех участий (требуется аутентификация)
-      operationId: getAllParticipations
+        - Notification
+      parameters:
+        - name: participation_id
+          in: query
+          schema:
+            type: string
+            format: uuid
       security:
-        - bearerAuth: []
+      - Bearer: []
       responses:
-        '200':
-          description: Успешное получение списка участий
+        200:
+          description: Success
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/ParticipationResponseDto'
-        '401':
-          description: Требуется аутентификация
-        '500':
-          description: Внутренняя ошибка сервера
+                  $ref: "#/components/schemas/NotificationResponseDto"
+        401:
+          description: Unauthorized
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponseDto"
+        500:
+          description: Server Error
 
-    post:
-      tags:
-        - Participations
-      summary: Создать участие
-      description: Создание новой записи об участии (требуется аутентификация)
-      operationId: createParticipation
-      security:
-        - bearerAuth: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ParticipationRequestDto'
-      responses:
-        '201':
-          description: Участие успешно создано
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ParticipationResponseDto'
-        '400':
-          description: Ошибка валидации данных
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-        '401':
-          description: Требуется аутентификация
-        '500':
-          description: Внутренняя ошибка сервера
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-
-  /participations/{id}:
+  /api/notifications/{id}:
     get:
       tags:
-        - Participations
-      summary: Получить участие по ID
-      description: Возвращает информацию о конкретном участии
-      operationId: getParticipationById
+        - Notification
+      security:
+      - Bearer: []
       parameters:
         - name: id
           in: path
@@ -332,35 +329,184 @@ paths:
           schema:
             type: string
             format: uuid
-          description: UUID участия
       responses:
-        '200':
-          description: Успешное получение участия
+        200:
+          description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ParticipationResponseDto'
-        '404':
-          description: Участие не найдено
+                $ref: "#/components/schemas/NotificationResponseDto"
+        401:
+          description: Unauthorized
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProblemDetails'
-        '500':
-          description: Внутренняя ошибка сервера
+                $ref: "#/components/schemas/ErrorResponseDto"
+        404:
+          description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ProblemDetails"
+        500:
+          description: Server Error
+    delete:
+      tags:
+        - Notification
+      security:
+      - Bearer: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        204:
+          description: Success
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDto"
+        500:
+          description: Server Error
 
+
+  /api/participations:
+    post:
+      tags:
+        - Participation
+      security:
+      - Bearer: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ParticipationRequestDto"
+          text/json:
+            schema:
+              $ref: "#/components/schemas/ParticipationRequestDto"
+          application/*+json:
+            schema:
+              $ref: "#/components/schemas/ParticipationRequestDto"
+      responses:
+        201:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ParticipationResponseDto"
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDto"
+        500:
+          description: Server Error
+    get:
+      tags:
+        - Participation
+      security:
+      - Bearer: []
+      parameters:
+        - name: organizer_login
+          in: query
+          schema:
+            type: string
+        - name: event_title
+          in: query
+          schema:
+            type: string
+        - name: user_id
+          in: query
+          schema:
+            type: string
+            format: uuid
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/UserParticipationInfoResponseDto"
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDto"
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+        500:
+          description: Server Error
+
+  /api/participations/{id}:
+    get:
+      tags:
+        - Participation
+      security:
+      - Bearer: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ParticipationResponseDto"
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDto"
+        500:
+          description: Server Error
     patch:
       tags:
-        - Participations
-      summary: Частичное обновление участия (PATCH)
-      description: Частичное обновление информации об участии - только статус (требуется аутентификация)
-      operationId: updateParticipationPartial
+        - Participation
       security:
-        - bearerAuth: []
+      - Bearer: []
       parameters:
         - name: id
           in: path
@@ -368,238 +514,56 @@ paths:
           schema:
             type: string
             format: uuid
-          description: UUID участия
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateParticipationStatusRequestDto'
-      responses:
-        '200':
-          description: Участие успешно обновлено
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ParticipationResponseDto'
-        '400':
-          description: Ошибка валидации данных
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-        '401':
-          description: Требуется аутентификация
-        '403':
-          description: Недостаточно прав
-        '500':
-          description: Внутренняя ошибка сервера
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-
-    put:
-      tags:
-        - Participations
-      summary: Полное обновление участия
-      description: Полное обновление информации об участии (требуется аутентификация)
-      operationId: updateParticipation
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
-          description: UUID участия
-      requestBody:
-        required: true
-        content:
-          application/json:
+              $ref: "#/components/schemas/UpdateParticipationStatusRequestDto"
+          text/json:
             schema:
-              $ref: '#/components/schemas/UpdateParticipationRequestDto'
-      responses:
-        '200':
-          description: Участие успешно обновлено
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ParticipationResponseDto'
-        '400':
-          description: Ошибка валидации данных
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-        '401':
-          description: Требуется аутентификация
-        '403':
-          description: Недостаточно прав
-        '500':
-          description: Внутренняя ошибка сервера
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-
-  /participations/user/{user_id}:
-    get:
-      tags:
-        - Participations
-      summary: Получить участия пользователя
-      description: Возвращает информацию об участиях конкретного пользователя (требуется аутентификация)
-      operationId: getAllUserParticipations
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: user_id
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
-          description: UUID пользователя
-      responses:
-        '200':
-          description: Успешное получение списка участий
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/UserParticipationInfoResponseDto'
-        '401':
-          description: Требуется аутентификация
-        '500':
-          description: Внутренняя ошибка сервера
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-
-  /users/me:
-    get:
-      tags:
-        - Users
-      summary: Получить текущего пользователя
-      description: Возвращает информацию о текущем аутентифицированном пользователе
-      operationId: getCurrentUser
-      security:
-        - bearerAuth: []
-      responses:
-        '200':
-          description: Успешное получение данных пользователя
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UserResponseDto'
-        '401':
-          description: Требуется аутентификация
-        '500':
-          description: Внутренняя ошибка сервера
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-
-  /users/{id}:
-    get:
-      tags:
-        - Users
-      summary: Получить пользователя по ID
-      description: Возвращает информацию о пользователе по ID (требуется аутентификация)
-      operationId: getUserById
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
-          description: UUID пользователя
-      responses:
-        '200':
-          description: Успешное получение пользователя
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UserResponseDto'
-        '401':
-          description: Требуется аутентификация
-        '403':
-          description: Недостаточно прав
-        '404':
-          description: Пользователь не найден
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
-        '500':
-          description: Внутренняя ошибка сервера
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-
-    put:
-      tags:
-        - Users
-      summary: Обновить пользователя
-      description: Обновление информации о пользователе (требуются права администратора)
-      operationId: updateUser
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
-          description: UUID пользователя
-      requestBody:
-        required: true
-        content:
-          application/json:
+              $ref: "#/components/schemas/UpdateParticipationStatusRequestDto"
+          application/*+json:
             schema:
-              $ref: '#/components/schemas/UpdateUserRequestDto'
+              $ref: "#/components/schemas/UpdateParticipationStatusRequestDto"
       responses:
-        '200':
-          description: Пользователь успешно обновлен
+        200:
+          description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserResponseDto'
-        '400':
-          description: Ошибка валидации данных
+                $ref: "#/components/schemas/ParticipationResponseDto"
+        400:
+          description: Bad Request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProblemDetails'
-        '401':
-          description: Требуется аутентификация
-        '403':
-          description: Недостаточно прав (требуется роль Admin)
-        '500':
-          description: Внутренняя ошибка сервера
+                $ref: "#/components/schemas/ProblemDetails"
+        403:
+          description: Forbidden
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-
+                $ref: "#/components/schemas/ProblemDetails"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDto"
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+        500:
+          description: Server Error
     delete:
       tags:
-        - Users
-      summary: Удалить пользователя
-      description: Удаление пользователя по ID (требуются права администратора)
-      operationId: deleteUser
+        - Participation
       security:
-        - bearerAuth: []
+      - Bearer: []
       parameters:
         - name: id
           in: path
@@ -607,213 +571,270 @@ paths:
           schema:
             type: string
             format: uuid
-          description: UUID пользователя
       responses:
-        '204':
-          description: Пользователь успешно удален
-        '401':
-          description: Требуется аутентификация
-        '403':
-          description: Недостаточно прав (требуется роль Admin)
-        '404':
-          description: Пользователь не найден
+        204:
+          description: Success
+        404:
+          description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProblemDetails'
-        '500':
-          description: Внутренняя ошибка сервера
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ProblemDetails"
+        500:
+          description: Server Error
+        
 
-  /users/user/{login}:
+  /api/users/me:
     get:
       tags:
-        - Users
-      summary: Получить пользователя по логину
-      description: Возвращает информацию о пользователе по логину (требуется аутентификация)
-      operationId: getUserByLogin
+        - User
       security:
-        - bearerAuth: []
+      - Bearer: []
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserResponseDto"
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDto"
+        500:
+          description: Server Error
+          
+  /api/users/{id}:
+    get:
+      tags:
+        - User
+      security:
+      - Bearer: []
       parameters:
-        - name: login
+        - name: id
           in: path
           required: true
           schema:
             type: string
-          description: Логин пользователя
+            format: uuid
       responses:
-        '200':
-          description: Успешное получение пользователя
+        200:
+          description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserResponseDto'
-        '401':
-          description: Требуется аутентификация
-        '403':
-          description: Недостаточно прав
-        '404':
-          description: Пользователь не найден
+                $ref: "#/components/schemas/UserResponseDto"
+        403:
+          description: Forbidden
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProblemDetails'
-        '500':
-          description: Внутренняя ошибка сервера
+                $ref: "#/components/schemas/ProblemDetails"
+        404:
+          description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-
-  /users/all:
+                $ref: "#/components/schemas/ProblemDetails"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDto"
+        500:
+          description: Server Error
+    put:
+      tags:
+        - User
+      security:
+      - Bearer: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateUserRequestDto"
+          text/json:
+            schema:
+              $ref: "#/components/schemas/UpdateUserRequestDto"
+          application/*+json:
+            schema:
+              $ref: "#/components/schemas/UpdateUserRequestDto"
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserResponseDto"
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDto"
+        500:
+          description: Server Error
+    delete:
+      tags:
+        - User
+      security:
+      - Bearer: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        204:
+          description: Success
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDto"
+        500:
+          description: Server Error
+        
+  /api/users:
     get:
       tags:
-        - Users
-      summary: Получить всех пользователей
-      description: Возвращает список всех пользователей (требуется аутентификация)
-      operationId: getAllUsers
+        - User
       security:
-        - bearerAuth: []
+      - Bearer: []
+      parameters:
+        - name: login
+          in: query
+          schema:
+            type: string
       responses:
-        '200':
-          description: Успешное получение списка пользователей
+        200:
+          description: Success
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/UserResponseDto'
-        '401':
-          description: Требуется аутентификация
-        '500':
-          description: Внутренняя ошибка сервера
+                  $ref: "#/components/schemas/UserResponseDto"
+        401:
+          description: Unauthorized
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ProblemDetails"
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+        500:
+          description: Server Error
 
 components:
-  securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
-      description: JWT токен аутентификации
-
   schemas:
-    LoginRequestDto:
-      type: object
-      required:
-        - login
-        - password
-      properties:
-        login:
-          type: string
-          description: Логин пользователя
-          example: "login"
-        password:
-          type: string
-          format: password
-          description: Пароль пользователя
-          example: "password"
-
-    RegisterRequestDto:
-      type: object
-      required:
-        - name
-        - email
-        - login
-        - password
-        - role
-      properties:
-        name:
-          type: string
-          description: Полное имя пользователя
-          example: "Иванов Иван Иванович"
-        email:
-          type: string
-          format: email
-          description: Email пользователя
-          example: "email@mail.ru"
-        login:
-          type: string
-          description: Логин пользователя
-          example: "login"
-        password:
-          type: string
-          format: password
-          description: Пароль пользователя
-          example: "password"
-        role:
-          $ref: '#/components/schemas/UserRoleEnum'
-
     AuthResult:
       type: object
       properties:
-        user:
-          $ref: '#/components/schemas/UserResponseDto'
-        token:
-          type: string
-          description: JWT токен для аутентификации
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
-
-    CreateEventRequestDto:
-      type: object
-      required:
-        - title
-        - description
-        - dateTime
-        - address
-        - organizerId
-      properties:
-        title:
-          type: string
-          maxLength: 100
-          description: Название события
-          example: "Событие"
-        description:
-          type: string
-          description: Описание события
-          example: "Описание"
-        dateTime:
-          type: string
-          format: date-time
-          description: Дата и время проведения события (должна быть в будущем)
-          example: "2024-12-15T10:00:00Z"
-        address:
-          type: string
-          description: Адрес проведения
-          example: "Адрес"
-        organizerId:
+        id:
           type: string
           format: uuid
-          description: UUID организатора
-          example: "123e4567-e89b-12d3-a456-426614174000"
+        name:
+          type: string
+        email:
+          type: string
+        login:
+          type: string
+        role:
+          $ref: "#/components/schemas/UserRoleEnum"
+        token:
+          type: string
+          nullable: true
+      additionalProperties: false
 
-    UpdateEventRequestDto:
+    CreateEventRequestDto:
+      required:
+        - address
+        - dateTime
+        - description
+        - title
       type: object
       properties:
         title:
           type: string
+          minLength: 3
           maxLength: 100
-          description: Название события
-          example: "Обновленное название конференции"
         description:
           type: string
-          description: Описание события
-          example: "Обновленное описание конференции"
+          minLength: 0
+          maxLength: 1000
         dateTime:
           type: string
           format: date-time
-          description: Дата и время проведения события (должна быть в будущем)
-          example: "2024-12-20T10:00:00Z"
         address:
           type: string
-          description: Адрес проведения
-          example: "Адрес"
+          minLength: 0
+          maxLength: 200
+      additionalProperties: false
+
+    ErrorResponseDto:
+      type: object
+      properties:
+        message:
+          type: string
+          nullable: true
+        details:
+          type: string
+          nullable: true
+      additionalProperties: false
 
     EventResponseDto:
       type: object
@@ -821,69 +842,75 @@ components:
         id:
           type: string
           format: uuid
-          description: UUID события
-          example: "123e4567-e89b-12d3-a456-426614174000"
         title:
           type: string
-          description: Название события
-          example: "Название"
+          nullable: true
         description:
           type: string
-          description: Описание события
-          example: "Описание"
+          nullable: true
         dateTime:
           type: string
           format: date-time
-          description: Дата и время проведения
-          example: "2024-12-15T10:00:00Z"
         address:
           type: string
-          description: Адрес проведения
-          example: "Адрес"
+          nullable: true
         organizerId:
           type: string
           format: uuid
-          description: UUID организатора
-          example: "123e4567-e89b-12d3-a456-426614174000"
+      additionalProperties: false
+
+    LoginRequestDto:
+      type: object
+      properties:
+        login:
+          type: string
+          nullable: true
+        password:
+          type: string
+          nullable: true
+      additionalProperties: false
+
+    NotificationRequestDto:
+      type: object
+      properties:
+        eventId:
+          type: string
+          format: uuid
+        type:
+          $ref: "#/components/schemas/NotificationTypeEnum"
+      additionalProperties: false
+
+    NotificationResponseDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        participationId:
+          type: string
+          format: uuid
+        text:
+          type: string
+          nullable: true
+        sentAt:
+          type: string
+          format: date-time
+      additionalProperties: false
 
     ParticipationRequestDto:
       type: object
-      required:
-        - userId
-        - eventId
-        - role
-        - status
       properties:
         userId:
           type: string
           format: uuid
-          description: UUID пользователя
-          example: "123e4567-e89b-12d3-a456-426614174000"
         eventId:
           type: string
           format: uuid
-          description: UUID события
-          example: "123e4567-e89b-12d3-a456-426614174001"
         role:
-          $ref: '#/components/schemas/ParticipationRoleEnum'
+          $ref: "#/components/schemas/ParticipationRoleEnum"
         status:
-          $ref: '#/components/schemas/ParticipationStatusEnum'
-
-    UpdateParticipationRequestDto:
-      type: object
-      properties:
-        status:
-          $ref: '#/components/schemas/ParticipationStatusEnum'
-
-    UpdateParticipationStatusRequestDto:
-      type: object
-      required:
-        - status
-      properties:
-        status:
-          $ref: '#/components/schemas/ParticipationStatusEnum'
-          description: Новый статус участия
-          example: "Accepted"
+          $ref: "#/components/schemas/ParticipationStatusEnum"
+      additionalProperties: false
 
     ParticipationResponseDto:
       type: object
@@ -891,59 +918,190 @@ components:
         id:
           type: string
           format: uuid
-          description: UUID участия
-          example: "123e4567-e89b-12d3-a456-426614174002"
         userId:
           type: string
           format: uuid
-          description: UUID пользователя
-          example: "123e4567-e89b-12d3-a456-426614174000"
         eventId:
           type: string
           format: uuid
-          description: UUID события
-          example: "123e4567-e89b-12d3-a456-426614174001"
         role:
-          $ref: '#/components/schemas/ParticipationRoleEnum'
+          $ref: "#/components/schemas/ParticipationRoleEnum"
         status:
-          $ref: '#/components/schemas/ParticipationStatusEnum'
+          $ref: "#/components/schemas/ParticipationStatusEnum"
+      additionalProperties: false
 
+    ParticipationRoleEnum:
+      type: integer
+      format: int32
+      enum:
+        - Participant
+        - Organizer
+        - Left
+
+    ParticipationStatusEnum:
+      type: integer
+      enum:
+        - Invited
+        - Accepted
+        - Rejected
+        
+    NotificationTypeEnum:
+      type: integer
+      format: int32
+      enum:
+        - Reminder
+        - Invintation
+
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+      additionalProperties: {}
+
+    RegisterRequestDto:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        email:
+          type: string
+          nullable: true
+        login:
+          type: string
+          nullable: true
+        password:
+          type: string
+          nullable: true
+        role:
+          $ref: "#/components/schemas/UserRoleEnum"
+      additionalProperties: false
+
+    UpdateEventRequestDto:
+      type: object
+      properties:
+        title:
+          type: string
+          minLength: 3
+          maxLength: 100
+          nullable: true
+        description:
+          type: string
+          minLength: 0
+          maxLength: 1000
+          nullable: true
+        dateTime:
+          type: string
+          format: date-time
+          nullable: true
+        address:
+          type: string
+          minLength: 0
+          maxLength: 200
+          nullable: true
+      additionalProperties: false
+      
     UserParticipationInfoResponseDto:
       type: object
       properties:
-        eventItem:
-          $ref: '#/components/schemas/EventResponseDto'
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        dateTime:
+          type: string
+          format: date-time
+        address:
+          type: string
+          nullable: true
         organizerId:
           type: string
           format: uuid
-          description: UUID организатора
-          example: "123e4567-e89b-12d3-a456-426614174000"
         organizerLogin:
           type: string
-          description: Логин организатора
-          example: "organizer123"
+          nullable: true
+      additionalProperties: false
+
+    UpdateParticipationRequestDto:
+      type: object
+      properties:
+        status:
+          $ref: "#/components/schemas/ParticipationStatusEnum"
+      additionalProperties: false
+      
+    UpdateParticipationStatusRequestDto:
+      type: object
+      required:
+        - status
+      properties:
+        status:
+          $ref: "#/components/schemas/ParticipationStatusEnum"
+      additionalProperties: false
 
     UpdateUserRequestDto:
       type: object
       properties:
         name:
           type: string
-          description: Полное имя пользователя
-          example: "Иванов Иван Иванович"
+          nullable: true
         email:
           type: string
-          format: email
-          description: Email пользователя
-          example: "email@mail.ru"
+          nullable: true
         login:
           type: string
-          description: Логин пользователя
-          example: "login"
+          minLength: 3
+          maxLength: 20
+          nullable: true
         password:
           type: string
-          format: password
-          description: Пароль пользователя
-          example: "password"
+          minLength: 6
+          maxLength: 100
+          nullable: true
+      additionalProperties: false
+
+    User:
+      required:
+        - email
+        - login
+        - name
+        - password
+        - role
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        email:
+          type: string
+        login:
+          type: string
+        password:
+          type: string
+        role:
+          $ref: "#/components/schemas/UserRoleEnum"
+      additionalProperties: false
 
     UserResponseDto:
       type: object
@@ -951,73 +1109,31 @@ components:
         id:
           type: string
           format: uuid
-          description: UUID пользователя
-          example: "123e4567-e89b-12d3-a456-426614174000"
         name:
           type: string
-          description: Полное имя пользователя
-          example: "Иванов Иван Иванович"
+          nullable: true
         email:
           type: string
-          format: email
-          description: Email пользователя
-          example: "mail@mail.ru"
+          nullable: true
         login:
           type: string
-          description: Логин пользователя
-          example: "login"
+          nullable: true
         role:
-          $ref: '#/components/schemas/UserRoleEnum'
+          $ref: "#/components/schemas/UserRoleEnum"
+      additionalProperties: false
 
-    # ==================== ENUMS ====================
     UserRoleEnum:
-      type: string
+      type: integer
       enum:
-        - Organizer
-        - Participant
+        - User
         - Admin
-      description: Роли пользователей в системе
-      example: "Participant"
 
-    ParticipationRoleEnum:
-      type: string
-      enum:
-        - Guest
-        - Speaker
-        - Volunteer
-      description: Роли участников в событиях
-      example: "Guest"
+  securitySchemes:
+    Bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Enter JWT Bearer token **_only_**
 
-    ParticipationStatusEnum:
-      type: string
-      enum:
-        - Pending
-        - Accepted
-        - Declined
-        - Cancelled
-      description: Статусы участия в событиях
-      example: "Pending"
-
-    ErrorResponse:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Сообщение об ошибке
-          example: "Пользователь не найден"
-
-    ProblemDetails:
-      type: object
-      properties:
-        title:
-          type: string
-          description: Заголовок ошибки
-          example: "Event not found"
-        detail:
-          type: string
-          description: Детальное описание ошибки
-          example: "Event with specified ID was not found"
-        status:
-          type: integer
-          description: HTTP статус код
-          example: 404
+security:
+  - Bearer: []

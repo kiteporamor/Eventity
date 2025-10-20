@@ -86,6 +86,10 @@ public class EventService : IEventService
                 id, eventDomain.Title);
             return eventDomain;
         }
+        catch (EventServiceException)
+        {
+            throw;
+        }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Failed to get event. ID: {EventId}", id);
@@ -104,8 +108,12 @@ public class EventService : IEventService
                 _logger.LogWarning("Event not found. title: {title}", title);
                 throw new EventServiceException("Event not found");
             }
-            
+
             return eventDomains;
+        }
+        catch (EventServiceException)
+        {
+            throw;
         }
         catch (Exception ex)
         {
@@ -129,6 +137,10 @@ public class EventService : IEventService
             _logger.LogInformation("Retrieved {EventCount} events successfully", events.Count());
             return events;
         }
+        catch (EventServiceException)
+        {
+            throw;
+        }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Failed to get events");
@@ -136,7 +148,8 @@ public class EventService : IEventService
         }
     }
     
-    public async Task<Event> UpdateEvent(Guid id, string? title, string? description, DateTime? dateTime, string? address)
+    public async Task<Event> UpdateEvent(Guid id, string? title, string? description, DateTime? dateTime, 
+        string? address, Validation validation)
     {
         _logger.LogDebug("Trying to update event");
         try
@@ -148,16 +161,26 @@ public class EventService : IEventService
                 throw new EventServiceException("Event not found");
             }
 
+            if (validation.CurrentUserId != eventDomain.OrganizerId && !validation.IsAdmin)
+            {
+                _logger.LogWarning("Access denied. ID: {EventId}", id);
+                throw new EventServiceException("Access denied.");
+            }
+
             eventDomain.Title = title ?? eventDomain.Title;
             eventDomain.Description = description ?? eventDomain.Description;
             eventDomain.DateTime = dateTime ?? eventDomain.DateTime;
             eventDomain.Address = address ?? eventDomain.Address;
 
             var updatedEvent = await _eventRepository.UpdateAsync(eventDomain);
-            
-            _logger.LogInformation("Event updated successfully. ID: {EventId}, New title: {Title}", 
+
+            _logger.LogInformation("Event updated successfully. ID: {EventId}, New title: {Title}",
                 id, updatedEvent.Title);
             return updatedEvent;
+        }
+        catch (EventServiceException)
+        {
+            throw;
         }
         catch (Exception ex)
         {
@@ -166,13 +189,23 @@ public class EventService : IEventService
         }
     }
 
-    public async Task RemoveEvent(Guid id)
+    public async Task RemoveEvent(Guid id, Validation validation)
     {
         _logger.LogDebug("Trying to remove event");
         try
         {
+            var eventDomain = await _eventRepository.GetByIdAsync(id);
+            if (validation.CurrentUserId != eventDomain.OrganizerId && !validation.IsAdmin)
+            {
+                _logger.LogWarning("Access denied. ID: {EventId}", id);
+                throw new EventServiceException("Access denied.");
+            }
             await _eventRepository.RemoveAsync(id);
             _logger.LogInformation("Event removed successfully. ID: {EventId}", id);
+        }
+        catch (EventServiceException)
+        {
+            throw;
         }
         catch(Exception ex)
         {

@@ -89,6 +89,35 @@ public class EventServiceTests : IClassFixture<EventServiceTestFixture>
     [Fact]
     [AllureSuite("EventServiceSuccess")]
     [AllureStep]
+    public async Task GetEventByTitle_Should_Return_Events_If_Exists()
+    {
+        var expectedEvents = new List<Event> { EventBuilder.Default() };
+        _fixture.EventRepoMock.Setup(x => x.GetByTitleAsync(It.IsAny<string>()))
+                             .ReturnsAsync(expectedEvents);
+
+        var result = await _fixture.Service.GetEventByTitle("Test");
+
+        Assert.Single(result);
+        _fixture.EventRepoMock.Verify(x => x.GetByTitleAsync("Test"), Times.Once);
+    }
+
+    [Fact]
+    [AllureSuite("EventServiceError")]
+    [AllureStep]
+    public async Task GetEventByTitle_Should_Throw_If_Not_Exists()
+    {
+        _fixture.EventRepoMock.Setup(x => x.GetByTitleAsync(It.IsAny<string>()))
+                             .ReturnsAsync((IEnumerable<Event>)null);
+
+        await Assert.ThrowsAsync<EventServiceException>(() => 
+            _fixture.Service.GetEventByTitle("NonExistent"));
+        
+        _fixture.EventRepoMock.Verify(x => x.GetByTitleAsync("NonExistent"), Times.Once);
+    }
+
+    [Fact]
+    [AllureSuite("EventServiceSuccess")]
+    [AllureStep]
     public async Task GetAllEvents_Should_Return_List_If_Any()
     {
         var events = new List<Event> 
@@ -128,12 +157,14 @@ public class EventServiceTests : IClassFixture<EventServiceTestFixture>
         _fixture.EventRepoMock.Setup(x => x.UpdateAsync(It.IsAny<Event>()))
                              .ReturnsAsync((Event e) => e);
 
+        var validation = new Validation(originalEvent.OrganizerId, false);
         var result = await _fixture.Service.UpdateEvent(
             originalEvent.Id, 
             "NewTitle", 
             null, 
             null, 
-            "NewAddress");
+            "NewAddress",
+            validation);
 
         Assert.Equal("NewTitle", result.Title);
         Assert.Equal("NewAddress", result.Address);
@@ -152,23 +183,46 @@ public class EventServiceTests : IClassFixture<EventServiceTestFixture>
         var eventId = Guid.NewGuid();
         _fixture.SetupEventNotFound(eventId);
 
+        var validation = new Validation(Guid.NewGuid(), false);
         await Assert.ThrowsAsync<EventServiceException>(() => 
-            _fixture.Service.UpdateEvent(eventId, "T", "D", DateTime.Now, "A"));
+            _fixture.Service.UpdateEvent(eventId, "T", "D", DateTime.Now, "A", validation));
         
         _fixture.EventRepoMock.Verify(x => x.GetByIdAsync(eventId), Times.Once);
         _fixture.EventRepoMock.Verify(x => x.UpdateAsync(It.IsAny<Event>()), Times.Never);
     }
 
     [Fact]
+    [AllureSuite("EventServiceError")]
+    [AllureStep]
+    public async Task UpdateEvent_Should_Throw_If_Access_Denied()
+    {
+        var originalEvent = EventBuilder.Default();
+        _fixture.SetupEventExists(originalEvent);
+
+        var validation = new Validation(Guid.NewGuid(), false);
+        
+        await Assert.ThrowsAsync<EventServiceException>(() => 
+            _fixture.Service.UpdateEvent(originalEvent.Id, "NewTitle", null, null, null, validation));
+        
+        _fixture.EventRepoMock.Verify(x => x.GetByIdAsync(originalEvent.Id), Times.Once);
+        _fixture.EventRepoMock.Verify(x => x.UpdateAsync(It.IsAny<Event>()), Times.Never);
+    }
+
+    [Fact]
     [AllureSuite("EventServiceSuccess")]
     [AllureStep]
-    public async Task RemoveEvent_Should_Call_Repository()
+    public async Task RemoveEvent_Should_Call_Repository_When_Authorized()
     {
         var eventId = Guid.NewGuid();
+        var organizerId = Guid.NewGuid();
+        var existingEvent = new Event(eventId, "Test", "Desc", DateTime.Now.AddDays(1), "Addr", organizerId);
+        
+        _fixture.SetupEventExists(existingEvent);
         _fixture.EventRepoMock.Setup(x => x.RemoveAsync(eventId))
                              .Returns(Task.CompletedTask);
 
-        await _fixture.Service.RemoveEvent(eventId);
+        var validation = new Validation(organizerId, false); 
+        await _fixture.Service.RemoveEvent(eventId, validation);
 
         _fixture.EventRepoMock.Verify(x => x.RemoveAsync(eventId), Times.Once);
     }
@@ -179,12 +233,36 @@ public class EventServiceTests : IClassFixture<EventServiceTestFixture>
     public async Task RemoveEvent_Should_Throw_On_Exception()
     {
         var eventId = Guid.NewGuid();
+        var organizerId = Guid.NewGuid();
+        var existingEvent = new Event(eventId, "Test", "Desc", DateTime.Now.AddDays(1), "Addr", organizerId);
+        
+        _fixture.SetupEventExists(existingEvent);
         _fixture.EventRepoMock.Setup(x => x.RemoveAsync(eventId))
                              .ThrowsAsync(new Exception("DB error"));
 
+        var validation = new Validation(organizerId, false);
         await Assert.ThrowsAsync<EventServiceException>(() => 
-            _fixture.Service.RemoveEvent(eventId));
+            _fixture.Service.RemoveEvent(eventId, validation));
         
         _fixture.EventRepoMock.Verify(x => x.RemoveAsync(eventId), Times.Once);
+    }
+
+    [Fact]
+    [AllureSuite("EventServiceError")]
+    [AllureStep]
+    public async Task RemoveEvent_Should_Throw_If_Access_Denied()
+    {
+        var eventId = Guid.NewGuid();
+        var organizerId = Guid.NewGuid();
+        var existingEvent = new Event(eventId, "Test", "Desc", DateTime.Now.AddDays(1), "Addr", organizerId);
+        
+        _fixture.SetupEventExists(existingEvent);
+
+        var validation = new Validation(Guid.NewGuid(), false);
+        
+        await Assert.ThrowsAsync<EventServiceException>(() => 
+            _fixture.Service.RemoveEvent(eventId, validation));
+        
+        _fixture.EventRepoMock.Verify(x => x.RemoveAsync(eventId), Times.Never);
     }
 }

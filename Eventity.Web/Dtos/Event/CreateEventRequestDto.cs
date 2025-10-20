@@ -21,7 +21,4 @@ public class CreateEventRequestDto
     [Required]
     [StringLength(200)]
     public string Address { get; set; }
-    
-    [Required]
-    public Guid OrganizerId { get; set; }
 }

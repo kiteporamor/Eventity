@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Eventity.Domain.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 
@@ -23,32 +24,33 @@ public class NotificationController : ControllerBase
     private readonly INotificationService _notificationService;
     private readonly ILogger<NotificationController> _logger;
     private readonly NotificationDtoConverter _dtoConverter;
+    private readonly ValidationDtoConverter _validationDtoConverter;
 
     public NotificationController(INotificationService notificationService, ILogger<NotificationController> logger, 
-        NotificationDtoConverter dtoConverter)
+        NotificationDtoConverter dtoConverter, ValidationDtoConverter validationDtoConverter)
     {
         _notificationService = notificationService;
         _logger = logger;
         _dtoConverter = dtoConverter;
+        _validationDtoConverter = validationDtoConverter;
     }
     
     [HttpPost]
-    [Authorize]
+    [Authorize(Roles = "Admin,User")]
     [ProducesResponseType(typeof(NotificationResponseDto), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult<NotificationResponseDto>> CreateNotification([FromBody] 
+    public async Task<ActionResult<IEnumerable<NotificationResponseDto>>> CreateNotifications([FromBody] 
         NotificationRequestDto requestDto)
     {
         try
         {
-            var newNotification = await _notificationService.AddNotification(
-                requestDto.ParticipationId);
+            var validation = _validationDtoConverter.ToDomain(new ValidationDto(GetCurrentUserId(), IsAdmin()));
+            
+            var newNotifications = await _notificationService.AddNotification(
+                requestDto.EventId, requestDto.Type, validation);
 
-            return CreatedAtAction(
-                nameof(GetNotificationId), 
-                new { id = newNotification.Id }, 
-                _dtoConverter.ToResponseDto(newNotification));
+            return StatusCode(StatusCodes.Status201Created, newNotifications);
         }
         catch (NotificationServiceException ex)
         {
@@ -66,6 +68,7 @@ public class NotificationController : ControllerBase
     }
     
     [HttpGet("{id}")]
+    [Authorize(Roles = "Admin")]
     [ProducesResponseType(typeof(NotificationResponseDto), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -91,20 +94,23 @@ public class NotificationController : ControllerBase
         }
     }
     
-    [HttpGet("{participation_id}")]
+    [HttpGet]
+    [Authorize(Roles = "Admin,User")]
     [ProducesResponseType(typeof(NotificationResponseDto), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult<NotificationResponseDto>> GetNotificationByParticipationId(Guid id)
+    public async Task<ActionResult<NotificationResponseDto>> GetAllNotifications(Guid? participation_id)
     {
         try
         {
-            var notification = await _notificationService.GetNotificationByParticipationId(id);
-            return Ok(_dtoConverter.ToResponseDto(notification));
+            var validation = _validationDtoConverter.ToDomain(new ValidationDto(GetCurrentUserId(), IsAdmin()));
+            var notifications = await _notificationService.GetNotifications(participation_id, validation);
+
+            return Ok(notifications.Select(_dtoConverter.ToResponseDto));
         }
         catch (NotificationServiceException ex)
         {
-            _logger.LogWarning(ex, "Notification not found: {NotificationId}", id);
+            _logger.LogWarning(ex, "Notification not found: {NotificationId}", participation_id);
             return NotFound(new ProblemDetails { 
                 Title = "Notification not found", 
                 Detail = ex.Message 
@@ -112,31 +118,13 @@ public class NotificationController : ControllerBase
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error getting notification by ID {Id}", id);
+            _logger.LogError(ex, "Error getting notification by ID {Id}", participation_id);
             return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
         }
     }
-    
-    [HttpGet]
-    [Authorize]
-    [ProducesResponseType(typeof(IEnumerable<NotificationResponseDto>), StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult<IEnumerable<NotificationResponseDto>>> GetAllNotifications()
-    {
-        try
-        {
-            var notifications = await _notificationService.GetAllNotifications();
-            return Ok(notifications.Select(_dtoConverter.ToResponseDto));
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "Error getting all notifications");
-            return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
-        }
-    }
-    
+
     [HttpDelete("{id}")]
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -160,5 +148,27 @@ public class NotificationController : ControllerBase
             _logger.LogError(ex, "Error deleting notification {NotificationId}", id);
             return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
         }
+    }
+    
+    private Guid GetCurrentUserId()
+    {
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        return Guid.Parse(userId);
+    }
+    
+    private string GetCurrentUserRole()
+    {
+        var role = User.FindFirstValue(ClaimTypes.Role);
+        if (string.IsNullOrEmpty(role))
+            throw new UnauthorizedAccessException("Role not found in token");
+        return role;
+    }
+    
+    private bool IsAdmin()
+    {
+        var role = GetCurrentUserRole();
+        if (role == "Admin")
+            return true;
+        return false;
     }
 }

@@ -21,12 +21,12 @@ public class ParticipationDtoConverter
     {
         return new UserParticipationInfoResponseDto
         {
-            Id = userParticipationInfo.EventItem.Id,
+            EventId = userParticipationInfo.EventItem.Id,
             Title = userParticipationInfo.EventItem.Title,
             Address = userParticipationInfo.EventItem.Address,
             DateTime = userParticipationInfo.EventItem.DateTime,
             Description = userParticipationInfo.EventItem.Description,
-            OrganizerId = userParticipationInfo.OrganizerId,
+            OrganizerId = userParticipationInfo.EventItem.OrganizerId,
             OrganizerLogin = userParticipationInfo.OrganizerLogin
         };
     }

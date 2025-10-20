@@ -84,6 +84,10 @@ public class NotificationRepository : INotificationRepository
             _logger.LogDebug("Notification found: {Notification}", notificationDb);
             return notificationDb.ToDomain();
         }
+        catch (NotificationRepositoryException)
+        {
+            throw;
+        }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Failed to retrieve notification with ParticipationId {ParticipationId}", participationId);
@@ -131,6 +135,10 @@ public class NotificationRepository : INotificationRepository
             _logger.LogDebug("SaveChanges result: {IsSave}", isSave);
             return notification;
         }
+        catch (NotificationRepositoryException)
+        {
+            throw;
+        }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Failed to update notification with Id {Id}", notification.Id);
@@ -154,6 +162,10 @@ public class NotificationRepository : INotificationRepository
             _context.Notifications.Remove(notificationDb);
             var isSave = await _context.SaveChangesAsync() > 0;
             _logger.LogDebug("SaveChanges result: {IsSave}", isSave);
+        }
+        catch (NotificationRepositoryException)
+        {
+            throw;
         }
         catch (Exception ex)
         {

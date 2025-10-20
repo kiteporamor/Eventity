@@ -1,0 +1,18 @@
+services:
+  tests:
+    build: 
+      context: . 
+      dockerfile: Dockerfile
+    depends_on:
+      - test-db
+    environment:
+      - ConnectionStrings__DataBaseConnect=User ID=postgres;Password=postgres;Host=test-db;Database=EventityTest;Port=5432
+
+  test-db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: EventityTest
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ./scripts:/docker-entrypoint-initdb.d  # скрипты из Eventity/scripts

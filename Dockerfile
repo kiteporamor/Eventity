@@ -12,6 +12,9 @@ RUN curl -o allure-2.20.1.tgz -Ls https://github.com/allure-framework/allure2/re
 RUN dotnet tool install --global dotnet-ef --version 7.0.0
 
 COPY ./src/ .
+
+RUN dotnet nuget locals all --clear
+
 RUN dotnet restore
 RUN dotnet build --no-restore
 

@@ -10,7 +10,7 @@
 
     <ItemGroup>
         <PackageReference Include="FluentAssertions" Version="8.7.1" />
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.10" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.20" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0"/>
         <PackageReference Include="allure.xunit" Version="2.9.5" />
         <PackageReference Include="Allure.Net.Commons" Version="2.9.5" />

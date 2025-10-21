@@ -1,0 +1,27 @@
+services:
+  tests:
+    build: 
+      context: . 
+      dockerfile: Dockerfile
+    depends_on:
+      test-db:
+        condition: service_healthy
+    environment:
+      - ConnectionStrings__DataBaseConnect=User ID=postgres;Password=postgres;Host=test-db;Database=EventityTest;Port=5432
+    volumes:
+      - ./test-results:/src/test-results
+      - ./allure-report:/src/allure-report
+
+  test-db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: EventityTest
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d EventityTest"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - ./scripts:/docker-entrypoint-initdb.d

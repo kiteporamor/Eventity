@@ -1,0 +1,1 @@
+TRUNCATE TABLE "Notifications", "Participations", "Events", "Users" RESTART IDENTITY;

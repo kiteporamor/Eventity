@@ -1,6 +1,6 @@
 {
   "allure": {
-    "directory": "../../../allure-results",
+    "directory": "../../../../allure-results",
     "links": [
       "https://github.com/allure-framework/allure2/issues/{issue}",
       "https://example.com/tms/{tms}"

@@ -41,14 +41,14 @@ public class E2ETests : IAsyncLifetime
                 ["Jwt:Issuer"] = "Eventity.Web.Test",
                 ["Jwt:Audience"] = "http://localhost:5001",
                 ["Jwt:ExpireMinutes"] = "120",
-                ["ConnectionStrings:DataBaseConnect"] = "User ID=postgres;Password=postgres;Host=localhost;Database=EventityTest;Port=5432"
+                ["ConnectionStrings:DataBaseConnect"] = "User ID=postgres;Password=postgres;Host=test-db;Database=EventityTest;Port=5432"
             })
             .Build();
             
         services.AddSingleton<IConfiguration>(configuration);
 
         services.AddDbContext<EventityDbContext>(options =>
-            options.UseNpgsql("User ID=postgres;Password=postgres;Host=localhost;Database=EventityTest;Port=5432"));
+            options.UseNpgsql("User ID=postgres;Password=postgres;Host=test-db;Database=EventityTest;Port=5432"));
 
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IEventRepository, EventRepository>();

@@ -1,18 +1,27 @@
+using Allure.Xunit.Attributes;
 using Eventity.Application.Services;
 using Eventity.Domain.Enums;
 using Eventity.Domain.Interfaces.Repositories;
+using Eventity.Domain.Interfaces.Services;
 using Eventity.Domain.Models;
 using FluentAssertions;
 
 namespace Eventity.Tests.Integration;
 
+[AllureSuite("Integration Tests")]
+[AllureSubSuite("Event Service")]
+[AllureFeature("Event Management")]
 public class EventServiceIntegrationTests : IntegrationTestBase
 {
     [Fact]
+    [AllureFeature("Event Creation")]
+    [AllureStory("Create Event with Organizer")]
+    [AllureTag("Event")]
+    [AllureTag("Organizer")]
     public async Task CreateEvent_ShouldCreateEventAndOrganizerParticipation()
     {
-        var eventService = GetService<EventService>();
-        var userService = GetService<UserService>();
+        var eventService = GetService<IEventService>();
+        var userService = GetService<IUserService>();
         var participationRepository = GetService<IParticipationRepository>();
 
         var organizer = await userService.AddUser("Organizer", "org@test.com", "organizer", "pass", UserRoleEnum.User);
@@ -35,10 +44,14 @@ public class EventServiceIntegrationTests : IntegrationTestBase
     }
 
     [Fact]
+    [AllureFeature("Event Retrieval")]
+    [AllureStory("Get Event by ID")]
+    [AllureTag("Event")]
+    [AllureTag("Retrieval")]
     public async Task GetEventById_ShouldReturnEvent()
     {
-        var eventService = GetService<EventService>();
-        var userService = GetService<UserService>();
+        var eventService = GetService<IEventService>();
+        var userService = GetService<IUserService>();
         
         var organizer = await userService.AddUser("Organizer", "org@test.com", "organizer", "pass", UserRoleEnum.User);
         var createdEvent = await eventService.AddEvent("Test Event", "Desc", DateTime.UtcNow.AddDays(1), "Location", organizer.Id);

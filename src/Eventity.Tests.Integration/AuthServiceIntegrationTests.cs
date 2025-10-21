@@ -1,17 +1,25 @@
+using Allure.Xunit.Attributes;
 using Eventity.Application.Services;
 using Eventity.Domain.Enums;
 using Eventity.Domain.Exceptions;
 using Eventity.Domain.Interfaces.Repositories;
+using Eventity.Domain.Interfaces.Services;
 using FluentAssertions;
 
 namespace Eventity.Tests.Integration;
 
+[AllureSuite("Integration Tests")]
+[AllureSubSuite("Authentication Service")]
+[AllureFeature("User Authentication")]
 public class AuthServiceIntegrationTests : IntegrationTestBase
 {
     [Fact]
+    [AllureFeature("User Registration")]
+    [AllureStory("Successful User Registration")]
+    [AllureTag("Authentication")]
     public async Task RegisterUser_ShouldCreateUserAndReturnToken()
     {
-        var authService = GetService<AuthService>();
+        var authService = GetService<IAuthService>();
         var userRepository = GetService<IUserRepository>();
 
         var result = await authService.RegisterUser(
@@ -28,9 +36,12 @@ public class AuthServiceIntegrationTests : IntegrationTestBase
     }
 
     [Fact]
+    [AllureFeature("User Authentication")]
+    [AllureStory("Successful Login")]
+    [AllureTag("Authentication")]
     public async Task AuthenticateUser_WithValidCredentials_ShouldReturnToken()
     {
-        var authService = GetService<AuthService>();
+        var authService = GetService<IAuthService>();
         await authService.RegisterUser("Test User", "test@email.com", "testuser", "password123", UserRoleEnum.User);
 
         var result = await authService.AuthenticateUser("testuser", "password123");
@@ -41,9 +52,12 @@ public class AuthServiceIntegrationTests : IntegrationTestBase
     }
 
     [Fact]
+    [AllureFeature("User Authentication")]
+    [AllureStory("Failed Login - Invalid Password")]
+    [AllureTag("Authentication")]
     public async Task AuthenticateUser_WithInvalidPassword_ShouldThrowException()
     {
-        var authService = GetService<AuthService>();
+        var authService = GetService<IAuthService>();
         await authService.RegisterUser("Test User", "test@email.com", "testuser", "password123", UserRoleEnum.User);
 
         await Assert.ThrowsAsync<InvalidPasswordException>(() =>

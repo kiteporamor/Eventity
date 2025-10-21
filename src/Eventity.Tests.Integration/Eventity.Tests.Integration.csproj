@@ -12,6 +12,8 @@
         <PackageReference Include="FluentAssertions" Version="8.7.1" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.20" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0"/>
+        <PackageReference Include="allure.xunit" Version="2.9.5" />
+        <PackageReference Include="Allure.Net.Commons" Version="2.9.5" />
         <PackageReference Include="xunit" Version="2.4.1"/>
         <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -26,6 +28,18 @@
     <ItemGroup>
       <ProjectReference Include="..\Eventity.Application\Eventity.Application.csproj" />
       <ProjectReference Include="..\Eventity.DataAccess\Eventity.DataAccess.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="allureConfig.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="xunit.runner.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
     </ItemGroup>
 
 </Project>

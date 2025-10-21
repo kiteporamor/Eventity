@@ -1,19 +1,28 @@
+using Allure.Xunit.Attributes;
 using Eventity.Application.Services;
 using Eventity.Domain.Enums;
+using Eventity.Domain.Interfaces.Services;
 using Eventity.Domain.Models;
 using FluentAssertions;
 
 namespace Eventity.Tests.Integration;
 
+[AllureSuite("Integration Tests")]
+[AllureSubSuite("Event Invitation Flow")]
+[AllureFeature("Event Participation")]
 public class CreateInviteSentIntegrationTests : IntegrationTestBase
 {
     [Fact]
+    [AllureFeature("Event Invitation")]
+    [AllureStory("Complete Invitation Flow")]
+    [AllureTag("Invitation")]
+    [AllureTag("Notification")]
     public async Task CreateInviteSent_ShouldWorkCorrectly()
     {
-        var authService = GetService<AuthService>();
-        var eventService = GetService<EventService>();
-        var participationService = GetService<ParticipationService>();
-        var notificationService = GetService<NotificationService>();
+        var authService = GetService<IAuthService>();
+        var eventService = GetService<IEventService>();
+        var participationService = GetService<IParticipationService>();
+        var notificationService = GetService<INotificationService>();
 
         var organizerAuth = await authService.RegisterUser(
             "Event Organizer", "organizer@test.com", "eventorg", "password123", UserRoleEnum.User);
@@ -49,11 +58,11 @@ public class CreateInviteSentIntegrationTests : IntegrationTestBase
         acceptedParticipation.Status.Should().Be(ParticipationStatusEnum.Accepted);
 
         notifications.Should().NotBeEmpty();
-        notifications.First().Type.Should().Be(NotificationTypeEnum.Reminder);
         
-        var participationForNotification = (await participationService.GetParticipationsByEventId(newEvent.Id))
-            .First(p => p.UserId == participant.Id && p.Status == ParticipationStatusEnum.Accepted);
+        var notificationForParticipant = notifications
+            .FirstOrDefault(n => n.ParticipationId == participation.Id);
         
-        notifications.First().ParticipationId.Should().Be(participationForNotification.Id);
+        notificationForParticipant.Should().NotBeNull();
+        notificationForParticipant.Type.Should().Be(NotificationTypeEnum.Reminder);
     }
 }

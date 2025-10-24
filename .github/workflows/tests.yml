@@ -19,6 +19,14 @@ jobs:
       with:
         dotnet-version: 6.0.x
 
+    - name: Install Allure 
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y openjdk-11-jre
+        curl -o allure-2.20.1.tgz -Ls https://github.com/allure-framework/allure2/releases/download/2.20.1/allure-2.20.1.tgz
+        sudo tar -zxvf allure-2.20.1.tgz -C /opt/
+        sudo ln -s /opt/allure-2.20.1/bin/allure /usr/local/bin/allure
+
     - name: Build and run tests with Docker Compose
       run: |
         sudo curl -L "https://github.com/docker/compose/releases/download/v2.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
@@ -33,14 +41,20 @@ jobs:
         name: test-results
         path: |
           src/test-results/
-          src/allure-report/
         retention-days: 30
 
-    - name: Generate Allure Report
+    - name: Generate Allure Report 
       if: always()
       run: |
         cd src
         allure generate test-results -o allure-report --clean
+
+    - name: Upload Allure Report 
+      uses: actions/upload-artifact@v4
+      with:
+        name: allure-report
+        path: src/allure-report/
+        retention-days: 30
 
     - name: Deploy Allure Report to GitHub Pages
       if: github.ref == 'refs/heads/main'

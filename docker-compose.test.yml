@@ -9,8 +9,8 @@ services:
     environment:
       - ConnectionStrings__DataBaseConnect=User ID=postgres;Password=postgres;Host=test-db;Database=EventityTest;Port=5432
     volumes:
-      - ./allure-results:/src/allure-results
-      - ./allure-report:/src/allure-report
+      - ./src/allure-results:/src/allure-results 
+      - ./src/allure-report:/src/allure-report  
 
   test-db:
     image: postgres:15

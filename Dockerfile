@@ -22,7 +22,7 @@ RUN dotnet build --no-restore
 
 CMD ["sh", "-c", "\
 echo 'Starting network capture...' && \
-tshark -i any -f 'port 5432' -w /src/db-traffic.pcapng & \
+tshark -i any -f 'port 5432' -w /src/allure-results/db-traffic.pcapng \
 TSHARK_PID=$! && \
 sleep 3 && \
 echo 'Running tests with Allure...' && \

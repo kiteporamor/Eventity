@@ -21,9 +21,18 @@ RUN dotnet restore
 RUN dotnet build --no-restore
 
 CMD ["sh", "-c", "\
-  mkdir -p allure-results allure-report && \
-  tshark -i any -f 'tcp port 5432' -w allure-results/db-traffic.pcapng -q & \
-  dotnet test && \
-  kill %1 && \
-  allure generate allure-results -o allure-report --clean\
+echo 'Starting network capture...' && \
+tshark -i any -f 'port 5432' -w /src/db-traffic.pcapng & \
+TSHARK_PID=$! && \
+sleep 3 && \
+echo 'Running tests with Allure...' && \
+dotnet test Eventity.Tests.Unit/ --logger trx && \
+dotnet test Eventity.Tests.Integration/ --logger trx && \
+dotnet test Eventity.Tests.E2E/ --logger trx && \
+echo 'Stopping network capture...' && \
+kill $TSHARK_PID && \
+sleep 2 && \
+echo 'Generating Allure report...' && \
+allure generate allure-results -o allure-report --clean && \
+echo 'Tests completed'\
 "]

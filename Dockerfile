@@ -22,7 +22,7 @@ RUN dotnet build --no-restore
 
 CMD ["sh", "-c", "\
 echo 'Starting network capture...' && \
-tshark -i any -f 'tcp port 5432' -w /src/allure-results/db-traffic.pcapng & \
+tshark -i any -f 'tcp port 5432' -w /src/allure-results/db-traffic.pcapng -q & \
 TSHARK_PID=$! && \
 sleep 3 && \
 echo 'Running tests with Allure...' && \
@@ -32,6 +32,8 @@ dotnet test Eventity.Tests.E2E/ --logger trx && \
 echo 'Stopping network capture...' && \
 kill $TSHARK_PID && \
 sleep 2 && \
+echo 'Fixing file permissions...' && \
+chmod 644 /src/allure-results/db-traffic.pcapng && \
 echo 'Generating Allure report...' && \
 allure generate allure-results -o allure-report --clean && \
 echo 'Tests completed'\

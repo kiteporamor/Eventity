@@ -104,7 +104,7 @@ public class UserController : ControllerBase
         try
         {
             var users = await _userService.GetUsers(login);
-            return Ok(users.Select(_dtoConverter.ToResponseDto));
+            return Ok(users.Where(u => u != null).Select(_dtoConverter.ToResponseDto));
         }
         catch (UserServiceException ex)
         {

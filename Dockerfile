@@ -33,6 +33,6 @@ echo 'Stopping network capture...' && \
 kill $TSHARK_PID && \
 sleep 2 && \
 echo 'Generating Allure report...' && \
-allure generate allure-results -o allure-report --clean && \
+allure generate allure-results -o allure-report && \
 echo 'Tests completed'\
 "]

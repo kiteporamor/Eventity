@@ -47,12 +47,7 @@ jobs:
       if: always()
       run: |
         cd src
-        rm -rf allure-report
-        mkdir -p allure-report
-        chmod -R 755 allure-results
-        chmod -R 755 allure-report
-        allure generate allure-results -o allure-report --clean
-        chmod -R 755 allure-report
+        allure generate allure-results -o allure-report
 
     - name: Upload Allure Report 
       uses: actions/upload-artifact@v4

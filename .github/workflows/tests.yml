@@ -47,6 +47,7 @@ jobs:
       if: always()
       run: |
         cd src
+        rm -rf allure-report
         allure generate allure-results -o allure-report
 
     - name: Upload Allure Report 

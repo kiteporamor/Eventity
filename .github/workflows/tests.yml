@@ -38,16 +38,16 @@ jobs:
     - name: Upload test results
       uses: actions/upload-artifact@v4
       with:
-        name: test-results
+        name: allure-results
         path: |
-          src/test-results/
+          src/allure-results/
         retention-days: 30
 
     - name: Generate Allure Report 
       if: always()
       run: |
         cd src
-        allure generate test-results -o allure-report --clean
+        allure generate allure-results -o allure-report --clean
 
     - name: Upload Allure Report 
       uses: actions/upload-artifact@v4
@@ -68,5 +68,5 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: network-capture
-        path: src/test-results/db-traffic.pcapng
+        path: src/allure-results/db-traffic.pcapng
         retention-days: 7

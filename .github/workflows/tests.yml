@@ -42,14 +42,7 @@ jobs:
         path: |
           src/allure-results/
         retention-days: 30
-
-    - name: Generate Allure Report 
-      if: always()
-      run: |
-        cd src
-        rm -rf allure-report
-        allure generate allure-results -o allure-report
-
+        
     - name: Upload Allure Report 
       uses: actions/upload-artifact@v4
       with:

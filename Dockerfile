@@ -21,25 +21,24 @@ RUN dotnet restore
 RUN dotnet build --no-restore
 
 CMD ["sh", "-c", "\
-echo 'Creating directories...' && \
-mkdir -p /src/allure-results && \
-mkdir -p /src/allure-report && \
+set -e && \
+echo 'Setting up directories and permissions...' && \
+mkdir -p /src/allure-results /src/allure-report && \
+chmod -R 755 /src/allure-results /src/allure-report && \
 echo 'Starting network capture...' && \
 tshark -i any -f 'tcp port 5432' -w /src/allure-results/db-traffic.pcapng -q & \
 TSHARK_PID=$! && \
-sleep 3 && \
-echo 'Running tests with Allure...' && \
+sleep 5 && \
+echo 'Running tests...' && \
 dotnet test Eventity.Tests.Unit/ --logger trx && \
 dotnet test Eventity.Tests.Integration/ --logger trx && \
 dotnet test Eventity.Tests.E2E/ --logger trx && \
 echo 'Stopping network capture...' && \
 kill $TSHARK_PID && \
 sleep 2 && \
-echo 'Fixing file permissions...' && \
-chmod -R 755 /src/allure-results && \
-chmod 644 /src/allure-results/db-traffic.pcapng && \
 echo 'Generating Allure report...' && \
+chmod -R 755 /src/allure-results && \
 allure generate allure-results -o allure-report --clean && \
 chmod -R 755 /src/allure-report && \
-echo 'Tests completed'\
+echo 'All operations completed successfully'\
 "]

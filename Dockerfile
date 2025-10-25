@@ -21,6 +21,9 @@ RUN dotnet restore
 RUN dotnet build --no-restore
 
 CMD ["sh", "-c", "\
+echo 'Creating directories...' && \
+mkdir -p /src/allure-results && \
+mkdir -p /src/allure-report && \
 echo 'Starting network capture...' && \
 tshark -i any -f 'tcp port 5432' -w /src/allure-results/db-traffic.pcapng -q & \
 TSHARK_PID=$! && \
@@ -33,8 +36,10 @@ echo 'Stopping network capture...' && \
 kill $TSHARK_PID && \
 sleep 2 && \
 echo 'Fixing file permissions...' && \
+chmod -R 755 /src/allure-results && \
 chmod 644 /src/allure-results/db-traffic.pcapng && \
 echo 'Generating Allure report...' && \
 allure generate allure-results -o allure-report --clean && \
+chmod -R 755 /src/allure-report && \
 echo 'Tests completed'\
 "]

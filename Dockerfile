@@ -20,9 +20,7 @@ RUN dotnet nuget locals all --clear
 RUN dotnet restore
 RUN dotnet build --no-restore
 
-CMD ["sh", "-c", "\
-dotnet test Eventity.Tests.Unit/ --logger trx && \
-dotnet test Eventity.Tests.Integration/ --logger trx && \
-dotnet test Eventity.Tests.E2E/ --logger trx && \
-allure generate src/allure-results -o allure-report && \
-"]
+CMD dotnet test Eventity.Tests.Unit/ --logger trx && \
+    dotnet test Eventity.Tests.Integration/ --logger trx && \
+    dotnet test Eventity.Tests.E2E/ --logger trx && \
+    allure generate /src/allure-results -o /src/allure-report

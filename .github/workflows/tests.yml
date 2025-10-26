@@ -19,21 +19,38 @@ jobs:
       with:
         dotnet-version: 6.0.x
 
-    - name: Install Allure 
+    - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y openjdk-11-jre
+        sudo apt-get install -y openjdk-11-jre tshark
         curl -o allure-2.20.1.tgz -Ls https://github.com/allure-framework/allure2/releases/download/2.20.1/allure-2.20.1.tgz
         sudo tar -zxvf allure-2.20.1.tgz -C /opt/
         sudo ln -s /opt/allure-2.20.1/bin/allure /usr/local/bin/allure
 
-    - name: Build and run tests with Docker Compose
+    - name: Setup Docker Compose
       run: |
         sudo curl -L "https://github.com/docker/compose/releases/download/v2.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
         sudo chmod +x /usr/local/bin/docker-compose
-        
+
+    - name: Start network capture on host
+      run: |
+        echo "Starting network capture for PostgreSQL traffic..."
+        sudo tshark -i any -f "port 5432" -w ./db-traffic.pcapng &
+        echo $! > tshark.pid
+        sleep 10  # Даем время tshark запуститься перед тестами
+
+    - name: Build and run tests with Docker Compose
+      run: |
         docker-compose -f docker-compose.test.yml up --build --abort-on-container-exit
         docker-compose -f docker-compose.test.yml down
+
+    - name: Stop network capture
+      run: |
+        echo "Stopping network capture..."
+        sudo kill -INT $(cat tshark.pid) || true
+        sleep 5  # Даем время на завершение записи файла
+        # Проверяем что файл создался
+        ls -la ./db-traffic.pcapng || echo "Capture file not found"
 
     - name: Upload test results
       uses: actions/upload-artifact@v4
@@ -50,6 +67,13 @@ jobs:
         path: src/allure-report/
         retention-days: 30
 
+    - name: Upload network capture
+      uses: actions/upload-artifact@v4
+      with:
+        name: network-capture
+        path: ./db-traffic.pcapng
+        retention-days: 7
+
     - name: Deploy Allure Report to GitHub Pages
       if: github.ref == 'refs/heads/main'
       uses: peaceiris/actions-gh-pages@v3
@@ -58,9 +82,10 @@ jobs:
         publish_dir: src/allure-report
         destination_dir: allure-report
 
-    - name: Upload network capture
-      uses: actions/upload-artifact@v4
-      with:
-        name: network-capture
-        path: src/allure-results/db-traffic.pcapng
-        retention-days: 7
+    - name: Cleanup
+      if: always()
+      run: |
+        # Убедимся что tshark завершен
+        sudo pkill -f tshark || true
+        # Удаляем временные файлы
+        rm -f tshark.pid

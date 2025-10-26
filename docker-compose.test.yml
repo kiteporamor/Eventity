@@ -11,6 +11,7 @@ services:
     volumes:
       - ./src/allure-results:/src/allure-results 
       - ./src/allure-report:/src/allure-report  
+      - ./src/allure-results:/src/allure-results/db-traffic.pcapng
 
   test-db:
     image: postgres:15

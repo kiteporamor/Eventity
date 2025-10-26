@@ -62,5 +62,5 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: network-capture
-        path: /src/allure-results/db-traffic.pcapng
+        path: src/allure-results/db-traffic.pcapng
         retention-days: 7

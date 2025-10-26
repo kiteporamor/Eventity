@@ -26,13 +26,13 @@ tshark -i any -f 'port 5432' -w /src/db-traffic.pcapng & \
 TSHARK_PID=$! && \
 sleep 3 && \
 echo 'Running tests with Allure...' && \
-dotnet test Eventity.Tests.Unit/ --logger 'allure' && \
-dotnet test Eventity.Tests.Integration/ --logger 'allure' && \
-dotnet test Eventity.Tests.E2E/ --logger 'allure' && \
+dotnet test Eventity.Tests.Unit/ --logger trx && \
+dotnet test Eventity.Tests.Integration/ --logger trx && \
+dotnet test Eventity.Tests.E2E/ --logger trx && \
 echo 'Stopping network capture...' && \
 kill $TSHARK_PID && \
 sleep 2 && \
 echo 'Generating Allure report...' && \
-allure generate /src/allure-results -o /src/allure-report && \
+allure generate src/allure-results -o allure-report && \
 echo 'Tests completed'\
 "]

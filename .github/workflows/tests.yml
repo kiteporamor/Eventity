@@ -37,7 +37,7 @@ jobs:
         echo "Starting network capture for PostgreSQL traffic..."
         sudo tshark -i any -f "port 5432" -w ./db-traffic.pcapng &
         echo $! > tshark.pid
-        sleep 10  # Даем время tshark запуститься перед тестами
+        sleep 10 
 
     - name: Build and run tests with Docker Compose
       run: |
@@ -48,8 +48,7 @@ jobs:
       run: |
         echo "Stopping network capture..."
         sudo kill -INT $(cat tshark.pid) || true
-        sleep 5  # Даем время на завершение записи файла
-        # Проверяем что файл создался
+        sleep 5 
         ls -la ./db-traffic.pcapng || echo "Capture file not found"
 
     - name: Upload test results
@@ -74,18 +73,20 @@ jobs:
         path: ./db-traffic.pcapng
         retention-days: 7
 
+    - name: Generate Allure Report
+      if: always()
+      run: |
+        allure generate src/allure-results -o ./allure-report --clean
+
     - name: Deploy Allure Report to GitHub Pages
       if: github.ref == 'refs/heads/main'
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: src/allure-report
-        destination_dir: allure-report
+        publish_dir: ./allure-report
 
     - name: Cleanup
       if: always()
       run: |
-        # Убедимся что tshark завершен
         sudo pkill -f tshark || true
-        # Удаляем временные файлы
         rm -f tshark.pid

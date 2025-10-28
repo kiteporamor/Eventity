@@ -1,4 +1,4 @@
-name: Run Tests
+name: Run Tests and Deploy Report
 
 on:
   push:
@@ -8,6 +8,7 @@ on:
 
 jobs:
   test:
+    name: Run Tests
     runs-on: ubuntu-latest
 
     steps:
@@ -59,13 +60,6 @@ jobs:
           src/allure-results/
         retention-days: 30
 
-    - name: Upload Allure Report 
-      uses: actions/upload-artifact@v4
-      with:
-        name: allure-report
-        path: src/allure-report/
-        retention-days: 30
-
     - name: Upload network capture
       uses: actions/upload-artifact@v4
       with:
@@ -73,20 +67,93 @@ jobs:
         path: ./db-traffic.pcapng
         retention-days: 7
 
-    - name: Generate Allure Report
-      if: always()
-      run: |
-        allure generate src/allure-results -o ./allure-report --clean
-
-    - name: Deploy Allure Report to GitHub Pages
-      if: github.ref == 'refs/heads/main'
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./allure-report
-
     - name: Cleanup
       if: always()
       run: |
         sudo pkill -f tshark || true
         rm -f tshark.pid
+
+  generate-allure:
+    name: Generate Allure Report
+    runs-on: ubuntu-latest
+    needs: test
+    if: always()
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Install Allure
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y openjdk-11-jre
+        curl -o allure-2.20.1.tgz -Ls https://github.com/allure-framework/allure2/releases/download/2.20.1/allure-2.20.1.tgz
+        sudo tar -zxvf allure-2.20.1.tgz -C /opt/
+        sudo ln -s /opt/allure-2.20.1/bin/allure /usr/local/bin/allure
+
+    - name: Download test results
+      uses: actions/download-artifact@v4
+      with:
+        name: allure-results
+        path: ./allure-results
+
+    - name: Generate Allure report
+      run: |
+        echo "=== Generating Allure Report ==="
+        allure generate ./allure-results -o ./allure-report --clean
+        echo "=== Report generated ==="
+        ls -la ./allure-report/
+
+    - name: Upload Allure report artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: allure-report
+        path: ./allure-report/
+        retention-days: 30
+
+  deploy-pages:
+    name: Deploy to GitHub Pages
+    runs-on: ubuntu-latest
+    needs: generate-allure
+    if: needs.generate-allure.result == 'success' && github.ref == 'refs/heads/main'
+    
+    permissions:
+      pages: write
+      id-token: write
+      contents: read
+      
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+      
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Download Allure report artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: allure-report
+        path: ./public
+        
+    - name: Verify Allure report files
+      run: |
+        echo "=== Checking Allure report contents ==="
+        ls -la ./public/ || echo "No public directory"
+        find ./public -name "*.html" | head -5 || echo "No HTML files found"
+        echo "=== File structure ==="
+        find ./public -type f | head -10
+        echo "=== File count ==="
+        find ./public -type f | wc -l
+        
+    - name: Setup Pages
+      uses: actions/configure-pages@v3
+      
+    - name: Upload to Pages
+      uses: actions/upload-pages-artifact@v4
+      with:
+        path: ./public
+        
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4

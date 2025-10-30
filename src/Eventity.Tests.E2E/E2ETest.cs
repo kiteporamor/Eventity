@@ -1,5 +1,6 @@
 using System.Net;
 using System.Net.Http.Json;
+using Allure.Xunit.Attributes;
 using Eventity.Domain.Enums;
 using Eventity.Web.Dtos;
 using FluentAssertions;
@@ -7,6 +8,9 @@ using Xunit;
 
 namespace Eventity.Tests.E2E;
 
+[AllureSuite("E2E Tests")]
+[AllureSubSuite("E2E-tests")]
+[AllureFeature("Event Management")]
 public class E2ETests : IAsyncLifetime
 {
     private readonly HttpClient _client;
@@ -33,6 +37,8 @@ public class E2ETests : IAsyncLifetime
     }
 
     [Fact]
+    [AllureFeature("End to End")]
+    [AllureStory("Scenario")]
     public async Task CompleteEventScenario_ShouldWorkEndToEnd()
     {
         var timestamp = DateTime.Now.Ticks;
@@ -137,6 +143,8 @@ public class E2ETests : IAsyncLifetime
     }
 
     [Fact]
+    [AllureFeature("End to End Multiple participants")]
+    [AllureStory("Multiple participants")]
     public async Task EventCreationAndManagement_ShouldHandleMultipleParticipants()
     {
         var timestamp = DateTime.Now.Ticks;
@@ -202,6 +210,8 @@ public class E2ETests : IAsyncLifetime
     }
 
     [Fact]
+    [AllureFeature("End to End Registration")]
+    [AllureStory("Registration")]
     public async Task UserRegistrationAndLogin_ShouldWorkCorrectly()
     {
         var timestamp = DateTime.Now.Ticks;

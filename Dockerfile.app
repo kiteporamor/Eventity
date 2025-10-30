@@ -1,9 +1,12 @@
-FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS runtime
-WORKDIR /app
+FROM mcr.microsoft.com/dotnet/sdk:6.0
+WORKDIR /src
 
-COPY ./src/Eventity.Web/bin/Release/net6.0/publish/ .
+COPY ./src/ .
+
+RUN dotnet restore
+RUN dotnet build --no-restore
 
 ENV ASPNETCORE_URLS=http://*:5001
 EXPOSE 5001
 
-ENTRYPOINT ["dotnet", "Eventity.Web.dll"]
+CMD ["dotnet", "run", "--project", "Eventity.Web", "--urls", "http://0.0.0.0:5001"]

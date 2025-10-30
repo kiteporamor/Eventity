@@ -1,13 +1,34 @@
 services:
+  eventity-app:
+    build: 
+      context: .
+      dockerfile: Dockerfile.app
+    ports:
+      - "5001:5001"
+    environment:
+      - ConnectionStrings__DataBaseConnect=User ID=postgres;Password=postgres;Host=test-db;Database=EventityTest;Port=5432
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5001/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    depends_on:
+      test-db:
+        condition: service_healthy
+
   tests:
     build: 
       context: . 
       dockerfile: Dockerfile
     depends_on:
+      eventity-app: 
+        condition: service_healthy
       test-db:
         condition: service_healthy
     environment:
       - ConnectionStrings__DataBaseConnect=User ID=postgres;Password=postgres;Host=test-db;Database=EventityTest;Port=5432
+      - EVENTITY_API_URL=http://eventity-app:5001
     volumes:
       - ./src/allure-results:/src/allure-results 
       - ./src/allure-report:/src/allure-report  

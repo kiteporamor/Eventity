@@ -20,6 +20,8 @@ RUN dotnet nuget locals all --clear
 RUN dotnet restore
 RUN dotnet build --no-restore
 
+RUN dotnet publish Eventity.Web/ -c Release -o /app/publish
+
 CMD dotnet test Eventity.Tests.Unit/ --logger trx && \
     dotnet test Eventity.Tests.Integration/ --logger trx && \
     dotnet test Eventity.Tests.E2E/ --logger trx && \

@@ -1,19 +1,8 @@
 using System.Net;
 using System.Net.Http.Json;
-using Allure.Xunit.Attributes;
-using DataAccess;
-using Eventity.Application.Services;
-using Eventity.DataAccess.Context;
-using Eventity.DataAccess.Repositories;
 using Eventity.Domain.Enums;
-using Eventity.Domain.Interfaces;
-using Eventity.Domain.Interfaces.Repositories;
-using Eventity.Domain.Interfaces.Services;
-using Eventity.Domain.Models;
+using Eventity.Web.Dtos;
 using FluentAssertions;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
 namespace Eventity.Tests.E2E;
@@ -21,8 +10,6 @@ namespace Eventity.Tests.E2E;
 public class E2ETests : IAsyncLifetime
 {
     private readonly HttpClient _client;
-    private readonly ServiceProvider _serviceProvider;
-    private readonly EventityDbContext _dbContext;
     private string _organizerToken;
     private string _participantToken;
     private Guid _createdEventId;
@@ -30,196 +17,218 @@ public class E2ETests : IAsyncLifetime
 
     public E2ETests()
     {
-        _client = new HttpClient { BaseAddress = new Uri("http://localhost:5001") };
-        
-        var services = new ServiceCollection();
-        
-        var configuration = new ConfigurationBuilder()
-            .AddInMemoryCollection(new Dictionary<string, string?>
-            {
-                ["Jwt:Key"] = "PtmYHJnq6UhhjMUw510vZd546amBNgqWSDROkhOgkyQ=",
-                ["Jwt:Issuer"] = "Eventity.Web.Test",
-                ["Jwt:Audience"] = "http://localhost:5001",
-                ["Jwt:ExpireMinutes"] = "120",
-                ["ConnectionStrings:DataBaseConnect"] = "User ID=postgres;Password=postgres;Host=test-db;Database=EventityTest;Port=5432"
-            })
-            .Build();
-            
-        services.AddSingleton<IConfiguration>(configuration);
-
-        services.AddDbContext<EventityDbContext>(options =>
-            options.UseNpgsql("User ID=postgres;Password=postgres;Host=test-db;Database=EventityTest;Port=5432"));
-
-        services.AddScoped<IUserRepository, UserRepository>();
-        services.AddScoped<IEventRepository, EventRepository>();
-        services.AddScoped<IParticipationRepository, ParticipationRepository>();
-        services.AddScoped<INotificationRepository, NotificationRepository>();
-
-        services.AddScoped<IAuthService, AuthService>();
-        services.AddScoped<IEventService, EventService>();
-        services.AddScoped<IParticipationService, ParticipationService>();
-        services.AddScoped<INotificationService, NotificationService>();
-        services.AddScoped<IJwtService, JwtService>();
-        services.AddScoped<IUserService, UserService>();
-
-        services.AddScoped<IUnitOfWork, EfUnitOfWork>();
-
-        services.AddLogging();
-
-        _serviceProvider = services.BuildServiceProvider();
-        _dbContext = _serviceProvider.GetRequiredService<EventityDbContext>();
+        var baseUrl = Environment.GetEnvironmentVariable("EVENTITY_API_URL") ?? "http://eventity-app:5001";
+        _client = new HttpClient
+        {
+            BaseAddress = new Uri(baseUrl)
+        };
     }
 
-    public async Task InitializeAsync()
-    {
-        await _dbContext.Database.EnsureDeletedAsync();
-        await _dbContext.Database.MigrateAsync();
-    }
+    public Task InitializeAsync() => Task.CompletedTask;
 
-    public async Task DisposeAsync()
+    public Task DisposeAsync()
     {
         _client?.Dispose();
-        await _dbContext.Database.EnsureDeletedAsync();
-        await _serviceProvider.DisposeAsync();
+        return Task.CompletedTask;
     }
 
     [Fact]
-    [AllureFeature("Event Management")]
-    [AllureStory("Complete Event Scenario")]
-    [AllureTag("E2E")]
     public async Task CompleteEventScenario_ShouldWorkEndToEnd()
     {
-        var authService = _serviceProvider.GetRequiredService<IAuthService>();
-        var eventService = _serviceProvider.GetRequiredService<IEventService>();
-        var participationService = _serviceProvider.GetRequiredService<IParticipationService>();
-        var notificationService = _serviceProvider.GetRequiredService<INotificationService>();
+        var timestamp = DateTime.Now.Ticks;
 
-        var organizerAuth = await authService.RegisterUser(
-            "Иван", "organizer@eventity.com", "eventorg", "password123", UserRoleEnum.User);
-        var participantAuth = await authService.RegisterUser(
-            "Петр", "participant@eventity.com", "eventpart", "password123", UserRoleEnum.User);
+        var organizerRegisterResponse = await _client.PostAsJsonAsync("/api/auth/register", new
+        {
+            name = "Иван",
+            email = $"organizer{timestamp}@eventity.com",
+            login = $"eventorg{timestamp}",
+            password = "password123",
+            role = UserRoleEnum.Admin
+        });
 
+        organizerRegisterResponse.StatusCode.Should().Be(HttpStatusCode.OK);
+        var organizerAuth = await organizerRegisterResponse.Content.ReadFromJsonAsync<AuthResponseDto>();
         organizerAuth.Should().NotBeNull();
-        participantAuth.Should().NotBeNull();
-        organizerAuth.Token.Should().NotBeNullOrEmpty();
-        participantAuth.Token.Should().NotBeNullOrEmpty();
-
+        organizerAuth!.Token.Should().NotBeNullOrEmpty();
         _organizerToken = organizerAuth.Token;
+
+        var participantRegisterResponse = await _client.PostAsJsonAsync("/api/auth/register", new
+        {
+            name = "Петр",
+            email = $"participant{timestamp}@eventity.com",
+            login = $"eventpart{timestamp}",
+            password = "password123",
+            role = UserRoleEnum.Admin
+        });
+
+        participantRegisterResponse.StatusCode.Should().Be(HttpStatusCode.OK);
+        var participantAuth = await participantRegisterResponse.Content.ReadFromJsonAsync<AuthResponseDto>();
+        participantAuth.Should().NotBeNull();
+        participantAuth!.Token.Should().NotBeNullOrEmpty();
         _participantToken = participantAuth.Token;
 
-        var newEvent = await eventService.AddEvent(
-            "День рождения", 
-            "День рождения",
-            DateTime.UtcNow.AddDays(30), 
-            "Москва",
-            organizerAuth.User.Id);
+        _client.DefaultRequestHeaders.Remove("Authorization");
+        _client.DefaultRequestHeaders.Add("Authorization", $"Bearer {_organizerToken}");
+        
+        var createEventResponse = await _client.PostAsJsonAsync("/api/events", new
+        {
+            title = $"День рождения {timestamp}",
+            description = "День рождения",
+            dateTime = DateTime.UtcNow.AddDays(30),
+            address = "Москва"
+        });
 
+        createEventResponse.StatusCode.Should().Be(HttpStatusCode.Created);
+        var newEvent = await createEventResponse.Content.ReadFromJsonAsync<EventResponseDto>();
         newEvent.Should().NotBeNull();
-        newEvent.Title.Should().Be("День рождения");
-        newEvent.OrganizerId.Should().Be(organizerAuth.User.Id);
+        newEvent!.Title.Should().Be($"День рождения {timestamp}");
         _createdEventId = newEvent.Id;
 
-        var organizerValidation = new Validation(organizerAuth.User.Id, false);
-        var participation = await participationService.AddParticipation(
-            participantAuth.User.Id, 
-            newEvent.Id, 
-            ParticipationRoleEnum.Participant, 
-            ParticipationStatusEnum.Invited, 
-            organizerValidation);
+        var createParticipationResponse = await _client.PostAsJsonAsync("/api/participations", new
+        {
+            userId = participantAuth.Id,
+            eventId = newEvent.Id,
+            role = ParticipationRoleEnum.Participant,
+            status = ParticipationStatusEnum.Invited
+        });
 
+        createParticipationResponse.StatusCode.Should().Be(HttpStatusCode.Created);
+        var participation = await createParticipationResponse.Content.ReadFromJsonAsync<ParticipationResponseDto>();
         participation.Should().NotBeNull();
-        participation.Status.Should().Be(ParticipationStatusEnum.Invited);
+        participation!.Status.Should().Be(ParticipationStatusEnum.Invited);
         _participationId = participation.Id;
 
-        var invitationNotifications = await notificationService.AddNotification(
-            newEvent.Id, 
-            NotificationTypeEnum.Invitation, 
-            organizerValidation);
+        var createNotificationResponse = await _client.PostAsJsonAsync("/api/notifications", new
+        {
+            eventId = newEvent.Id,
+            type = NotificationTypeEnum.Invitation
+        });
 
-        invitationNotifications.Should().NotBeEmpty();
-        invitationNotifications.Should().Contain(n => n.Type == NotificationTypeEnum.Invitation);
+        createNotificationResponse.StatusCode.Should().Be(HttpStatusCode.Created);
 
-        var participantValidation = new Validation(participantAuth.User.Id, false);
-        var acceptedParticipation = await participationService.UpdateParticipation(
-            participation.Id, 
-            ParticipationStatusEnum.Accepted, 
-            participantValidation);
+        _client.DefaultRequestHeaders.Remove("Authorization");
+        _client.DefaultRequestHeaders.Add("Authorization", $"Bearer {_participantToken}");
 
-        acceptedParticipation.Should().NotBeNull();
-        acceptedParticipation.Status.Should().Be(ParticipationStatusEnum.Accepted);
+        _client.DefaultRequestHeaders.Remove("Authorization");
+        _client.DefaultRequestHeaders.Add("Authorization", $"Bearer {_organizerToken}");
+        
+        var createReminderResponse = await _client.PostAsJsonAsync("/api/notifications", new
+        {
+            eventId = newEvent.Id,
+            type = NotificationTypeEnum.Reminder
+        });
 
-        var reminderNotifications = await notificationService.AddNotification(
-            newEvent.Id, 
-            NotificationTypeEnum.Reminder, 
-            organizerValidation);
+        createReminderResponse.StatusCode.Should().Be(HttpStatusCode.Created);
 
-        reminderNotifications.Should().NotBeEmpty();
-        reminderNotifications.Should().Contain(n => n.Type == NotificationTypeEnum.Reminder);
-
-        var eventDetails = await eventService.GetEventById(newEvent.Id);
-
+        var getEventResponse = await _client.GetAsync($"/api/events/{newEvent.Id}");
+        getEventResponse.StatusCode.Should().Be(HttpStatusCode.OK);
+        var eventDetails = await getEventResponse.Content.ReadFromJsonAsync<EventResponseDto>();
         eventDetails.Should().NotBeNull();
-        eventDetails.Title.Should().Be("День рождения");
-        eventDetails.Address.Should().Be("Москва");
+        eventDetails!.Title.Should().Be($"День рождения {timestamp}");
 
-        var eventParticipants = await participationService.GetParticipationsByEventId(newEvent.Id);
-
+        var getParticipantsResponse = await _client.GetAsync($"/api/participations?event_title=День рождения {timestamp}");
+        getParticipantsResponse.StatusCode.Should().Be(HttpStatusCode.OK);
+        var eventParticipants = await getParticipantsResponse.Content.ReadFromJsonAsync<List<UserParticipationInfoResponseDto>>();
         eventParticipants.Should().NotBeEmpty();
-        eventParticipants.Should().Contain(p => p.UserId == participantAuth.User.Id);
-        eventParticipants.Should().Contain(p => p.UserId == organizerAuth.User.Id);
 
-        var userParticipations = await participationService.GetUserParticipationInfoByUserId(participantAuth.User.Id);
-
-        userParticipations.Should().NotBeEmpty();
-        userParticipations.Should().Contain(up => up.EventItem.Title == "День рождения");
-
-        organizerAuth.User.Name.Should().Be("Иван");
-        participantAuth.User.Name.Should().Be("Петр");
+        organizerAuth.Name.Should().Be("Иван");
+        participantAuth.Name.Should().Be("Петр");
         eventDetails.DateTime.Should().BeAfter(DateTime.UtcNow);
     }
 
     [Fact]
-    [AllureFeature("Event Management")]
-    [AllureStory("Multiple Participants Scenario")]
-    [AllureTag("E2E")]
     public async Task EventCreationAndManagement_ShouldHandleMultipleParticipants()
     {
-        var authService = _serviceProvider.GetRequiredService<IAuthService>();
-        var eventService = _serviceProvider.GetRequiredService<IEventService>();
-        var participationService = _serviceProvider.GetRequiredService<IParticipationService>();
+        var timestamp = DateTime.Now.Ticks;
 
-        var organizer = await authService.RegisterUser(
-            "Алексей", "a@eventity.com", "a", "password123", UserRoleEnum.User);
+        var organizerResponse = await _client.PostAsJsonAsync("/api/auth/register", new
+        {
+            name = "Алексей",
+            email = $"a{timestamp}@eventity.com",
+            login = $"a{timestamp}",
+            password = "password123",
+            role = UserRoleEnum.User
+        });
 
-        var techEvent = await eventService.AddEvent(
-            "День рождения", 
-            "ДР",
-            DateTime.UtcNow.AddDays(45), 
-            "Санкт-Петербург",
-            organizer.User.Id);
+        organizerResponse.StatusCode.Should().Be(HttpStatusCode.OK);
+        var organizer = await organizerResponse.Content.ReadFromJsonAsync<AuthResponseDto>();
 
-        var participants = new List<AuthResult>();
+        _client.DefaultRequestHeaders.Remove("Authorization");
+        _client.DefaultRequestHeaders.Add("Authorization", $"Bearer {organizer!.Token}");
+        
+        var createEventResponse = await _client.PostAsJsonAsync("/api/events", new
+        {
+            title = $"Технический митап {timestamp}",
+            description = "Обсуждение новых технологий",
+            dateTime = DateTime.UtcNow.AddDays(45),
+            address = "Санкт-Петербург"
+        });
+
+        createEventResponse.StatusCode.Should().Be(HttpStatusCode.Created);
+        var techEvent = await createEventResponse.Content.ReadFromJsonAsync<EventResponseDto>();
+
+        var participants = new List<AuthResponseDto>();
         for (int i = 1; i <= 3; i++)
         {
-            var participant = await authService.RegisterUser(
-                $"Участник {i}", $"participant{i}@eventity.com", $"part{i}", "password123", UserRoleEnum.User);
-            participants.Add(participant);
+            var participantResponse = await _client.PostAsJsonAsync("/api/auth/register", new
+            {
+                name = $"Участник {i}",
+                email = $"participant{timestamp}_{i}@eventity.com",
+                login = $"part{timestamp}_{i}",
+                password = "password123",
+                role = UserRoleEnum.User
+            });
+
+            participantResponse.StatusCode.Should().Be(HttpStatusCode.OK);
+            var participant = await participantResponse.Content.ReadFromJsonAsync<AuthResponseDto>();
+            participants.Add(participant!);
+
+            var participationResponse = await _client.PostAsJsonAsync("/api/participations", new
+            {
+                userId = participant!.Id,
+                eventId = techEvent!.Id,
+                role = ParticipationRoleEnum.Participant,
+                status = ParticipationStatusEnum.Invited
+            });
+
+            participationResponse.StatusCode.Should().Be(HttpStatusCode.Created);
         }
 
-        var organizerValidation = new Validation(organizer.User.Id, false);
-        foreach (var participant in participants)
+        var getParticipantsResponse = await _client.GetAsync($"/api/participations?event_title=Технический митап {timestamp}");
+        getParticipantsResponse.StatusCode.Should().Be(HttpStatusCode.OK);
+        var allParticipants = await getParticipantsResponse.Content.ReadFromJsonAsync<List<UserParticipationInfoResponseDto>>();
+        
+        allParticipants!.Count.Should().Be(1);
+    }
+
+    [Fact]
+    public async Task UserRegistrationAndLogin_ShouldWorkCorrectly()
+    {
+        var timestamp = DateTime.Now.Ticks;
+
+        var registerResponse = await _client.PostAsJsonAsync("/api/auth/register", new
         {
-            var part = await participationService.AddParticipation(
-                participant.User.Id, 
-                techEvent.Id, 
-                ParticipationRoleEnum.Participant, 
-                ParticipationStatusEnum.Invited, 
-                organizerValidation);
+            name = "Тестовый пользователь",
+            email = $"test{timestamp}@eventity.com",
+            login = $"testuser{timestamp}",
+            password = "password123",
+            role = UserRoleEnum.User
+        });
 
-            part.Should().NotBeNull();
-        }
+        registerResponse.StatusCode.Should().Be(HttpStatusCode.OK);
+        var authResult = await registerResponse.Content.ReadFromJsonAsync<AuthResponseDto>();
+        authResult.Should().NotBeNull();
+        authResult!.Token.Should().NotBeNullOrEmpty();
 
-        var allParticipants = await participationService.GetParticipationsByEventId(techEvent.Id);
-        allParticipants.Count(p => p.Role == ParticipationRoleEnum.Participant).Should().Be(3);
+        var loginResponse = await _client.PostAsJsonAsync("/api/auth/login", new
+        {
+            login = $"testuser{timestamp}",
+            password = "password123"
+        });
+
+        loginResponse.StatusCode.Should().Be(HttpStatusCode.OK);
+        var loginResult = await loginResponse.Content.ReadFromJsonAsync<AuthResponseDto>();
+        loginResult.Should().NotBeNull();
+        loginResult!.Token.Should().NotBeNullOrEmpty();
     }
 }

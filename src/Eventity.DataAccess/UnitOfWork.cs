@@ -3,11 +3,11 @@ using Eventity.DataAccess.Context;
 using Eventity.Domain.Interfaces;
 using Eventity.Domain.Interfaces.Repositories;
 using Microsoft.EntityFrameworkCore.Storage;
-
-namespace DataAccess;
-
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Logging;
+
+
+namespace DataAccess;
 
 public class EfUnitOfWork : IUnitOfWork
 {

@@ -18,7 +18,7 @@ namespace Eventity.Api.Controllers;
 
 [Authorize]
 [ApiController]
-[Route("api/users")]
+[Route("api/v1/users")]
 [Produces("application/json")]
 public class UserController : ControllerBase
 {

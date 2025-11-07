@@ -17,7 +17,7 @@ using Microsoft.Extensions.Logging;
 namespace Eventity.Api.Controllers;
 
 [ApiController]
-[Route("api/participations")]
+[Route("api/v1/participations")]
 [Produces("application/json")]
 public class ParticipationController : ControllerBase
 {

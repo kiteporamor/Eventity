@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Eventity.Web.Controllers
 {
     [ApiController]
-    [Route("api/auth")]
+    [Route("api/v1/auth")]
     [Produces("application/json")]
     public class AuthController : ControllerBase
     {

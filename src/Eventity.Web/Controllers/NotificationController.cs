@@ -17,7 +17,7 @@ using Microsoft.Extensions.Logging;
 namespace Eventity.Api.Controllers;
 
 [ApiController]
-[Route("api/notifications")]
+[Route("api/v1/notifications")]
 [Produces("application/json")]
 public class NotificationController : ControllerBase
 {

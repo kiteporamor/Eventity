@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Mvc;
 using Serilog;
 using Web;
 
@@ -115,14 +116,14 @@ using (var scope = app.Services.CreateScope())
 
 if (isSwaggerEnabled)
 {
-    app.UseSwagger();
+    app.UseSwagger(); 
+    
     app.UseSwaggerUI(c => 
     {
-        c.RoutePrefix = "swagger";
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Eventity API v1");
+        c.RoutePrefix = "api/v1/swagger";
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Eventity API v1"); 
     });
 }
-
 app.UseRouting();
 
 app.UseCors("AllowAll");

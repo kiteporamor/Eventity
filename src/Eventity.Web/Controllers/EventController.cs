@@ -16,7 +16,7 @@ using Microsoft.Extensions.Logging;
 namespace Eventity.Api.Controllers;
 
 [ApiController]
-[Route("api/events")]
+[Route("api/v1/events")]
 [Authorize]
 [Produces("application/json")]
 public class EventController : ControllerBase

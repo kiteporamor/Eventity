@@ -1,5 +1,5 @@
-using Eventity.DataAccess.Converters;
-using Eventity.DataAccess.Models;
+using Eventity.DataAccess.Converters.Postgres;
+using Eventity.DataAccess.Models.Postgres;
 using System;
 using Allure.XUnit.Attributes.Steps;
 using Xunit;

@@ -3,27 +3,34 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Eventity.Domain.Enums;
+using Eventity.Domain.Interfaces.Services;
 using Eventity.Domain.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Eventity.Application.Services;
 
-public interface IJwtService
+public class JwtConfiguration
 {
-    string GenerateToken(User user);
+    public const string JwtSection = "Jwt";
+    
+    public string Key { get; set; }
+    public string Issuer { get; set; }
+    public string Audience { get; set; }
+    public int ExpireMinutes { get; set; } = 120;
 }
 
 public class JwtService : IJwtService
 {
-    private readonly IConfiguration _configuration;
+    private readonly JwtConfiguration _jwtConfig;
     private readonly ILogger<JwtService> _logger;
 
-    public JwtService(IConfiguration configuration, ILogger<JwtService> logger)
+    public JwtService(IOptions<JwtConfiguration> jwtOptions, ILogger<JwtService> logger)
     {
-        _configuration = configuration;
+        _jwtConfig = jwtOptions.Value;
         _logger = logger;
     }
 
@@ -31,7 +38,7 @@ public class JwtService : IJwtService
     {
         try
         {
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtConfig.Key));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
             var claims = new[]
@@ -43,10 +50,10 @@ public class JwtService : IJwtService
             };
 
             var token = new JwtSecurityToken(
-                issuer: _configuration["Jwt:Issuer"],
-                audience: _configuration["Jwt:Audience"],
+                issuer: _jwtConfig.Issuer,
+                audience: _jwtConfig.Audience,
                 claims: claims,
-                expires: DateTime.Now.AddMinutes(Convert.ToInt32(_configuration["Jwt:ExpireMinutes"])),
+                expires: DateTime.Now.AddMinutes(_jwtConfig.ExpireMinutes),
                 signingCredentials: credentials);
 
             _logger.LogInformation("JWT token generated for user {UserId}", user.Id);

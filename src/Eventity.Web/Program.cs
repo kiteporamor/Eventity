@@ -2,16 +2,18 @@ using System;
 using System.Text;
 using DataAccess;
 using Eventity.Application.Services;
-using Eventity.DataAccess.Context;
+using Eventity.DataAccess.Context.Postgres;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Serilog;
 using Web;
+using MongoDB.Driver;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,6 +35,9 @@ builder.Host.UseSerilog();
 
 builder.Services.AddControllers();
 
+builder.Services.Configure<JwtConfiguration>(
+    builder.Configuration.GetSection(JwtConfiguration.JwtSection));
+
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -40,12 +45,13 @@ builder.Services.AddAuthentication(options =>
     options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
 }).AddJwtBearer(o =>
 {
+    var jwtConfig = builder.Configuration.GetSection(JwtConfiguration.JwtSection).Get<JwtConfiguration>();
+    
     o.TokenValidationParameters = new TokenValidationParameters
     {
-        ValidIssuer = builder.Configuration["Jwt:Issuer"],
-        ValidAudience = builder.Configuration["Jwt:Audience"],
-        IssuerSigningKey = new SymmetricSecurityKey(
-            Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"])),
+        ValidIssuer = jwtConfig.Issuer,
+        ValidAudience = jwtConfig.Audience,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtConfig.Key)),
         ValidateIssuer = true,
         ValidateAudience = true,
         ValidateLifetime = true,
@@ -101,6 +107,9 @@ builder.Services.AddAuthorization(options =>
         policy.RequireRole("Admin", "User"));
 });
 
+builder.Services.Configure<DatabaseConfiguration>(
+    builder.Configuration.GetSection(DatabaseConfiguration.ConnectionSettingsString));
+
 builder.Services.AddDataBase(builder.Configuration);
 builder.Services.AddServices();
 builder.Services.AddDtoConverters();
@@ -109,8 +118,33 @@ var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
 {
-    var db = scope.ServiceProvider.GetRequiredService<EventityDbContext>();
-    // db.Database.Migrate();
+    var dbConfig = scope.ServiceProvider.GetRequiredService<IOptions<DatabaseConfiguration>>().Value;
+    
+    if (dbConfig.DatabaseProvider?.ToLower() == "postgresql")
+    {
+        try
+        {
+            var db = scope.ServiceProvider.GetRequiredService<EventityDbContext>();
+            // db.Database.Migrate();
+            Console.WriteLine("PostgreSQL database initialized");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"PostgreSQL initialization failed: {ex.Message}");
+        }
+    }
+    else
+    {
+        try
+        {
+            var mongoDatabase = scope.ServiceProvider.GetRequiredService<IMongoDatabase>();
+            Console.WriteLine("MongoDB database initialized");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"MongoDB initialization failed: {ex.Message}");
+        }
+    }
 }
 
 if (isSwaggerEnabled)
@@ -134,7 +168,17 @@ app.MapControllers();
 
 app.MapGet("/health", () => "Healthy");
 
+app.MapGet("/database-info", (IOptions<DatabaseConfiguration> dbOptions) => 
+{
+    var config = dbOptions.Value;
+    return new 
+    { 
+        DatabaseProvider = config.DatabaseProvider,
+        DatabaseName = config.DatabaseName,
+        Status = "Connected"
+    };
+});
+
 app.Run();
 
 public partial class Program { }
-

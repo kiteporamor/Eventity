@@ -1,6 +1,6 @@
 using DataAccess;
-using Eventity.DataAccess.Context;
-using Eventity.DataAccess.Repositories;
+using Eventity.DataAccess.Context.Postgres;
+using Eventity.DataAccess.Repositories.Postgres;
 using Eventity.Application.Services;
 using Eventity.Domain.Interfaces;
 using Eventity.Domain.Interfaces.Repositories;

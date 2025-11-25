@@ -1,12 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Eventity - Welcome</title>
+    <title>Eventity</title>
+    <meta charset="utf-8">
+    <style>
+        body { 
+            font-family: 
+            Arial; 
+            max-width: 1200px; 
+            margin: auto; 
+            padding: 20px; 
+        }
+        h1 { 
+            text-align: center; 
+        }
+        .images { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 20px; 
+            margin-top: 30px; 
+        }
+        .image { 
+            text-align: center; 
+            padding: 10px; 
+        }
+        .image img { 
+            max-width: 100%; 
+            height: auto; 
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to Eventity</h1>
-    <p>Future SPA application will be here</p>
-    <img src="/static/img/screenshot1.png" alt="Screenshot 1">
-    <img src="/static/img/screenshot2.png" alt="Screenshot 2">
+    <h1>Eventity</h1>
+    <p>Приложение для управления событиями</p>
+    
+    <div class="images">
+        <div class="image"><img src="/static/img/intro.png" alt="Главный экран"><div>Главный экран</div></div>
+        <div class="image"><img src="/static/img/auth.png" alt="Авторизация"><div>Авторизация</div></div>
+        <div class="image"><img src="/static/img/register.png" alt="Регистрация"><div>Регистрация</div></div>
+        <div class="image"><img src="/static/img/events.png" alt="Список событий"><div>Список событий</div></div>
+        <div class="image"><img src="/static/img/create-event.png" alt="Создание события"><div>Создание события</div></div>
+        <div class="image"><img src="/static/img/mine-events.png" alt="Мои события"><div>Мои события</div></div>
+        <div class="image"><img src="/static/img/notifications.png" alt="Уведомления"><div>Уведомления</div></div>
+    </div>
 </body>
 </html>

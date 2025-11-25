@@ -1,17 +1,15 @@
 FROM nginx:alpine
 
-# Копируем конфигурационные файлы
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY nginx-default.conf /etc/nginx/conf.d/default.conf
 
-# Создаем структуру директорий
 RUN mkdir -p /usr/share/nginx/html/static/legacy
 RUN mkdir -p /usr/share/nginx/html/static/img
+RUN mkdir -p /usr/share/nginx/html/docs
 
-# Копируем статические файлы
 COPY static/ /usr/share/nginx/html/static/
-COPY docs/ /usr/share/nginx/html/docs/
 COPY README.md /usr/share/nginx/html/
+COPY docs/ /usr/share/nginx/html/docs/
 
 EXPOSE 80
 

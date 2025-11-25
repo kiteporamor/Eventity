@@ -120,7 +120,7 @@ if (isSwaggerEnabled)
     
     app.UseSwaggerUI(c => 
     {
-        c.RoutePrefix = "api/v1/swagger";
+        c.RoutePrefix = "swagger";
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "Eventity API v1"); 
     });
 }

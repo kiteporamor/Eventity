@@ -8,7 +8,7 @@ services:
     depends_on:
       eventity-app:
         condition: service_healthy
-      pgadmin:
+      adminer:
         condition: service_started
     environment:
       - NGINX_HOST=localhost
@@ -42,16 +42,15 @@ services:
       - postgres_data:/var/lib/postgresql/data
       - ./scripts:/docker-entrypoint-initdb.d
 
-  pgadmin:
-    image: dpage/pgadmin4
+  adminer:
+    image: adminer:4.8.1
     environment:
-      PGADMIN_DEFAULT_EMAIL: admin@eventity.com
-      PGADMIN_DEFAULT_PASSWORD: admin
+      ADMINER_DEFAULT_SERVER: postgres
+      ADMINER_DESIGN: dracula
     expose:
-      - "80"
-    volumes:
-      - pgadmin_data:/var/lib/pgadmin
+      - "8080"
+    depends_on:
+      - postgres
 
 volumes:
   postgres_data:
-  pgadmin_data:

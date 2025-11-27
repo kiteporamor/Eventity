@@ -117,7 +117,7 @@ using (var scope = app.Services.CreateScope())
 if (isSwaggerEnabled)
 {
     app.UseSwagger(); 
-    
+
     app.UseSwaggerUI(c => 
     {
         c.RoutePrefix = "swagger";
@@ -133,7 +133,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.MapGet("/health", () => "Healthy");
+app.MapGet("/api/v1/health", () => "Healthy");
 
 app.Run();
 

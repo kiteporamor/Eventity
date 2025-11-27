@@ -10,6 +10,7 @@ services:
         condition: service_healthy
       adminer:
         condition: service_started
+    restart: always
     environment:
       - NGINX_HOST=localhost
       - NGINX_PORT=80

@@ -1,0 +1,124 @@
+services:
+  postgres-bench:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: EventityBench
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  app-postgres:
+    build:
+      context: .
+      dockerfile: Dockerfile.benchmark
+    ports:
+      - "5002:5001"
+    networks:
+      default:
+        aliases:
+          - app-postgres.local
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Benchmark
+      - ConnectionStrings__DatabaseProvider=PostgreSQL
+      - ConnectionStrings__PostgreSQL=User ID=postgres;Password=postgres;Host=postgres-bench;Database=EventityBench;Port=5432
+    depends_on:
+      postgres-bench:
+        condition: service_healthy
+
+  mongo-bench:
+    image: mongo:6
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: EventityBench
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 3
+
+  app-mongo:
+    build:
+      context: .
+      dockerfile: Dockerfile.benchmark
+    ports:
+      - "5003:5001"
+    networks:
+      default:
+        aliases:
+          - app-mongo.local
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Benchmark
+      - ConnectionStrings__DatabaseProvider=MongoDB
+      - ConnectionStrings__MongoDB=mongodb://mongo-bench:27017
+      - ConnectionStrings__DatabaseName=EventityBench
+    depends_on:
+      mongo-bench:
+        condition: service_healthy
+
+  influxdb:
+    image: influxdb:1.8
+    ports:
+      - "8086:8086"
+    environment:
+      - INFLUXDB_DB=k6
+      - INFLUXDB_USER=admin
+      - INFLUXDB_USER_PASSWORD=admin
+    volumes:
+      - influxdb_data:/var/lib/influxdb
+
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--storage.tsdb.retention.time=200h'
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+    depends_on:
+      - influxdb
+      - prometheus
+      
+  k6-runner:
+    image: grafana/k6:latest
+    volumes:
+      - ./k6:/scripts
+    networks:
+      - default
+    depends_on:
+      - influxdb
+
+  data-generator:
+    image: python:3.11-alpine
+    depends_on:
+      - postgres-bench
+      - mongo-bench
+    volumes:
+      - ./generator.py:/generator.py
+    command: >
+      sh -c "
+        apk add --no-cache postgresql-dev gcc python3-dev musl-dev &&
+        pip install --no-cache-dir psycopg2-binary pymongo &&
+        python /generator.py
+      "
+
+volumes:
+  prometheus_data:
+  influxdb_data:

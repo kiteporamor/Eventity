@@ -158,6 +158,7 @@ if (isSwaggerEnabled)
 }
 
 app.UseRouting();
+app.UseStaticFiles();
 
 app.UseCors("AllowAll");
 

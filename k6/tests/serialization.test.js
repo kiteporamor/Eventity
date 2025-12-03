@@ -1,7 +1,7 @@
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 
-const BASE_URL = __ENV.API_URL || 'http://localhost:5001';
+const BASE_URL = __ENV.API_URL || 'http://app-postgres:5001';
 let authToken = '';
 
 export function setup() {

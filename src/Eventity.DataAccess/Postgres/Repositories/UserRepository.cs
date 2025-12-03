@@ -76,11 +76,18 @@ public class UserRepository : IUserRepository
     {
         try
         {
-            var userDb = await _context.Users.FirstOrDefaultAsync(u => u.Login == login);
+            Console.WriteLine($"DBG: Searching for login '{login}'");
+            
+            // Проверим SQL запрос
+            var query = _context.Users.Where(u => u.Login == login);
+            Console.WriteLine($"DBG: SQL: {query.ToQueryString()}");
+            
+            var userDb = await query.FirstOrDefaultAsync();
 
+            Console.WriteLine($"DBG: Found user? {userDb != null}");
+            
             if (userDb is null)
             {
-                _logger.LogWarning("User with login {Login} not found", login);
                 return null;
             }
 
@@ -88,6 +95,10 @@ public class UserRepository : IUserRepository
         }
         catch (Exception ex)
         {
+            Console.WriteLine($"DBG: EXCEPTION TYPE: {ex.GetType().Name}");
+            Console.WriteLine($"DBG: EXCEPTION: {ex.Message}");
+            Console.WriteLine($"DBG: INNER: {ex.InnerException?.Message}");
+            Console.WriteLine($"DBG: STACK: {ex.StackTrace}");
             _logger.LogError(ex, "Error occurred while retrieving user with login {Login}", login);
             throw new UserRepositoryException("Failed to retrieve user", ex);
         }

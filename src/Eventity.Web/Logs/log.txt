@@ -1,0 +1,123 @@
+01:50:57 [Warning] Overriding address(es) '"http://localhost:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+01:51:34 [Information] Authentication attempt for login: "string"
+01:51:38 [Warning] User with login "string" not found
+01:51:38 [Warning] User not found. Login: "string"
+01:51:52 [Information] Authentication attempt for login: "user"
+01:51:52 [Information] Generated 2FA code for user 18eeefd1-b980-450b-b5b9-b87e4db5949d
+01:51:52 [Information] 2FA required for user 18eeefd1-b980-450b-b5b9-b87e4db5949d. Code generated.
+01:56:48 [Warning] Overriding address(es) '"http://localhost:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+01:57:03 [Information] Authentication attempt for login: "user"
+01:57:07 [Information] Generated 2FA code for user 18eeefd1-b980-450b-b5b9-b87e4db5949d
+01:57:07 [Information] Email to "user": "Your verification code" - "Your verification code is: 997449
+
+This code will expire in 5 minutes."
+01:57:07 [Information] 2FA email sent to "user" for user 18eeefd1-b980-450b-b5b9-b87e4db5949d
+01:57:07 [Information] 2FA required for user 18eeefd1-b980-450b-b5b9-b87e4db5949d. Code generated: "997449"
+01:57:35 [Information] Verifying 2FA code for user 18eeefd1-b980-450b-b5b9-b87e4db5949d
+01:57:35 [Error] 2FA verification failed for user 18eeefd1-b980-450b-b5b9-b87e4db5949d
+Eventity.Domain.Exceptions.Invalid2FACodeException: Invalid or expired verification code
+   at Eventity.Application.Services.AuthService.Verify2FA(Guid userId, String code) in /Users/ekaterinaparamonova/Eventity/src/Eventity.Application/Services/AuthService.cs:line 123
+02:00:46 [Warning] Overriding address(es) '"http://localhost:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+02:01:47 [Information] Authentication attempt for login: "user"
+02:01:52 [Information] Generated 2FA code for user 18eeefd1-b980-450b-b5b9-b87e4db5949d
+02:01:52 [Information] Email to "user": "Your verification code" - "Your verification code is: 103603
+
+This code will expire in 5 minutes."
+02:01:52 [Information] 2FA email sent to "user" for user 18eeefd1-b980-450b-b5b9-b87e4db5949d
+02:01:52 [Information] 2FA required for user 18eeefd1-b980-450b-b5b9-b87e4db5949d. Code generated: "103603"
+02:02:10 [Information] Verifying 2FA code for user 18eeefd1-b980-450b-b5b9-b87e4db5949d
+02:02:10 [Error] м 18eeefd1-b980-450b-b5b9-b87e4db5949d
+Eventity.Domain.Exceptions.Invalid2FACodeException: Invalid or expired verification code
+   at Eventity.Application.Services.AuthService.Verify2FA(Guid userId, String code)
+02:06:01 [Warning] Overriding address(es) '"http://localhost:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+02:06:09 [Information] Authentication attempt for login: "user"
+02:06:14 [Information] Generated 2FA code for user 18eeefd1-b980-450b-b5b9-b87e4db5949d
+02:06:14 [Information] Email to "user": "Your verification code" - "Your verification code is: 154783
+
+This code will expire in 5 minutes."
+02:06:14 [Information] 2FA email sent to "user" for user 18eeefd1-b980-450b-b5b9-b87e4db5949d
+02:06:14 [Information] 2FA required for user 18eeefd1-b980-450b-b5b9-b87e4db5949d. Code generated: "154783"
+02:06:29 [Information] Verifying 2FA code for user 18eeefd1-b980-450b-b5b9-b87e4db5949d
+02:06:29 [Error] 2FA verification failed for user 18eeefd1-b980-450b-b5b9-b87e4db5949d
+Eventity.Domain.Exceptions.Invalid2FACodeException: Invalid or expired verification code
+   at Eventity.Application.Services.AuthService.Verify2FA(Guid userId, String code) in /Users/ekaterinaparamonova/Eventity/src/Eventity.Application/Services/AuthService.cs:line 123
+02:09:48 [Warning] Overriding address(es) '"http://localhost:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+02:09:58 [Information] Authentication attempt for login: "user"
+02:10:02 [Information] Generated 2FA code for user 18eeefd1-b980-450b-b5b9-b87e4db5949d
+02:10:02 [Information] Email to "user": "Your verification code" - "Your verification code is: 565943
+
+This code will expire in 5 minutes."
+02:10:02 [Information] 2FA email sent to "user" for user 18eeefd1-b980-450b-b5b9-b87e4db5949d
+02:10:02 [Information] 2FA required for user 18eeefd1-b980-450b-b5b9-b87e4db5949d. Code generated: "565943"
+02:10:13 [Information] Verifying 2FA code for user 18eeefd1-b980-450b-b5b9-b87e4db5949d
+02:10:13 [Information] 2FA code for user 18eeefd1-b980-450b-b5b9-b87e4db5949d is "565943", inputed: "565943"
+02:10:13 [Information] 2FA code validated for user 18eeefd1-b980-450b-b5b9-b87e4db5949d
+02:10:13 [Information] JWT token generated for user 18eeefd1-b980-450b-b5b9-b87e4db5949d
+02:10:14 [Information] 2FA verification successful for user 18eeefd1-b980-450b-b5b9-b87e4db5949d
+02:15:54 [Warning] Overriding address(es) '"http://localhost:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+02:16:32 [Information] Registration attempt. Login: "string", Email: "kateparamore@mail.ru"
+02:16:35 [Warning] User with login "string" not found
+02:16:36 [Information] JWT token generated for user 41325897-1be3-4284-b7a4-a12bd12beee4
+02:16:36 [Information] User registered successfully. UserId: 41325897-1be3-4284-b7a4-a12bd12beee4
+02:16:49 [Information] Authentication attempt for login: "string"
+02:16:49 [Information] Generated 2FA code for user 41325897-1be3-4284-b7a4-a12bd12beee4
+02:16:53 [Error] Failed to send email to "kateparamore@mail.ru"
+System.Net.Mail.SmtpException: Syntax error, command unrecognized. The server response was: 5.7.0 NEOBHODIM parol prilozheniya https://help.mail.ru/mail/security/protection/external / Application password is REQUIRED
+   at System.Net.Mail.RecipientCommand.CheckResponse(SmtpStatusCode statusCode, String response)
+   at System.Net.Mail.RecipientCommand.EndSend(IAsyncResult result, String& response)
+   at System.Net.Mail.SendMailAsyncResult.SendToCollectionCompleted(IAsyncResult result)
+--- End of stack trace from previous location ---
+   at System.Net.Mail.SendMailAsyncResult.End(IAsyncResult result)
+   at System.Net.Mail.SmtpClient.SendMailCallback(IAsyncResult result)
+--- End of stack trace from previous location ---
+   at Eventity.Application.Services.EmailService.SendEmailAsync(String to, String subject, String body) in /Users/ekaterinaparamonova/Eventity/src/Eventity.Application/Services/EmailService.cs:line 59
+02:16:53 [Information] 2FA email sent to "kateparamore@mail.ru" for user 41325897-1be3-4284-b7a4-a12bd12beee4
+02:16:53 [Information] 2FA required for user 41325897-1be3-4284-b7a4-a12bd12beee4. Code generated: "643024"
+02:21:04 [Warning] Overriding address(es) '"http://localhost:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+02:21:13 [Information] Authentication attempt for login: "string"
+02:21:18 [Information] Generated 2FA code for user 41325897-1be3-4284-b7a4-a12bd12beee4
+02:21:19 [Information] Email sent successfully to "kateparamore@mail.ru"
+02:21:19 [Information] 2FA email sent to "kateparamore@mail.ru" for user 41325897-1be3-4284-b7a4-a12bd12beee4
+02:21:19 [Information] 2FA required for user 41325897-1be3-4284-b7a4-a12bd12beee4. Code generated: "170648"
+02:23:33 [Warning] Overriding address(es) '"http://localhost:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+02:23:43 [Information] Authentication attempt for login: "string"
+02:23:49 [Information] Generated 2FA code for user 41325897-1be3-4284-b7a4-a12bd12beee4
+02:23:50 [Information] Email sent successfully to "kateparamore@mail.ru"
+02:23:50 [Information] 2FA email sent to "kateparamore@mail.ru" for user 41325897-1be3-4284-b7a4-a12bd12beee4
+02:23:50 [Information] 2FA required for user 41325897-1be3-4284-b7a4-a12bd12beee4. Code generated: "387871"
+02:24:14 [Information] Verifying 2FA code for user 18eeefd1-b980-450b-b5b9-b87e4db5949d
+02:24:14 [Error] 2FA verification failed for user 18eeefd1-b980-450b-b5b9-b87e4db5949d
+Eventity.Domain.Exceptions.Invalid2FACodeException: Invalid or expired verification code
+   at Eventity.Application.Services.AuthService.Verify2FA(Guid userId, String code) in /Users/ekaterinaparamonova/Eventity/src/Eventity.Application/Services/AuthService.cs:line 123
+02:25:14 [Information] Verifying 2FA code for user 18eeefd1-b980-450b-b5b9-b87e4db5949d
+02:25:14 [Error] 2FA verification failed for user 18eeefd1-b980-450b-b5b9-b87e4db5949d
+Eventity.Domain.Exceptions.Invalid2FACodeException: Invalid or expired verification code
+   at Eventity.Application.Services.AuthService.Verify2FA(Guid userId, String code)
+02:25:18 [Information] Verifying 2FA code for user 18eeefd1-b980-450b-b5b9-b87e4db5949d
+02:25:18 [Error] 2FA verification failed for user 18eeefd1-b980-450b-b5b9-b87e4db5949d
+Eventity.Domain.Exceptions.Invalid2FACodeException: Invalid or expired verification code
+   at Eventity.Application.Services.AuthService.Verify2FA(Guid userId, String code)
+02:25:41 [Information] Verifying 2FA code for user 18eeefd1-b980-450b-b5b9-b87e4db5949d
+02:25:41 [Error] 2FA verification failed for user 18eeefd1-b980-450b-b5b9-b87e4db5949d
+Eventity.Domain.Exceptions.Invalid2FACodeException: Invalid or expired verification code
+   at Eventity.Application.Services.AuthService.Verify2FA(Guid userId, String code)
+02:25:46 [Information] Authentication attempt for login: "string"
+02:25:46 [Information] Generated 2FA code for user 41325897-1be3-4284-b7a4-a12bd12beee4
+02:25:47 [Information] Email sent successfully to "kateparamore@mail.ru"
+02:25:47 [Information] 2FA email sent to "kateparamore@mail.ru" for user 41325897-1be3-4284-b7a4-a12bd12beee4
+02:25:47 [Information] 2FA required for user 41325897-1be3-4284-b7a4-a12bd12beee4. Code generated: "905717"
+02:26:01 [Information] Verifying 2FA code for user 18eeefd1-b980-450b-b5b9-b87e4db5949d
+02:26:01 [Error] 2FA verification failed for user 18eeefd1-b980-450b-b5b9-b87e4db5949d
+Eventity.Domain.Exceptions.Invalid2FACodeException: Invalid or expired verification code
+   at Eventity.Application.Services.AuthService.Verify2FA(Guid userId, String code)
+02:27:32 [Warning] Overriding address(es) '"http://localhost:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+02:27:42 [Information] Authentication attempt for login: "string"
+02:27:46 [Information] Generated 2FA code for user 41325897-1be3-4284-b7a4-a12bd12beee4
+02:27:47 [Information] Email sent successfully to "kateparamore@mail.ru"
+02:27:47 [Information] 2FA email sent to "kateparamore@mail.ru" for user 41325897-1be3-4284-b7a4-a12bd12beee4
+02:27:47 [Information] 2FA required for user 41325897-1be3-4284-b7a4-a12bd12beee4. Code generated: "133862"
+02:28:14 [Information] Verifying 2FA code for user 41325897-1be3-4284-b7a4-a12bd12beee4
+02:28:14 [Information] 2FA code for user 41325897-1be3-4284-b7a4-a12bd12beee4 is "133862", inputed: "133862"
+02:28:14 [Information] 2FA code validated for user 41325897-1be3-4284-b7a4-a12bd12beee4
+02:28:14 [Information] JWT token generated for user 41325897-1be3-4284-b7a4-a12bd12beee4
+02:28:14 [Information] 2FA verification successful for user 41325897-1be3-4284-b7a4-a12bd12beee4

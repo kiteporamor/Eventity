@@ -14,5 +14,7 @@ public static class ServicesExtension
         services.AddScoped<INotificationService, NotificationService>();
         services.AddScoped<IParticipationService, ParticipationService>();
         services.AddScoped<IUserService, UserService>();
+        services.AddSingleton<ITwoFactorCodeService, TwoFactorCodeService>();
+        services.AddSingleton<IEmailService, EmailService>();
     }
 }

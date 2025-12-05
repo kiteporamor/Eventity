@@ -7,4 +7,5 @@ public interface IAuthService
 {
     Task<AuthResult> AuthenticateUser(string login, string password);
     Task<AuthResult> RegisterUser(string name, string email, string login, string password, UserRoleEnum role);
+    Task<AuthResult> Verify2FA(Guid userId, string code); // Новый метод
 }

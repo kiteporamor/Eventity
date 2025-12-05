@@ -22,3 +22,8 @@ public class UserAlreadyExistsException : AuthServiceException
 {
     public UserAlreadyExistsException(string message) : base(message) { }
 }
+
+public class Invalid2FACodeException : AuthServiceException
+{
+    public Invalid2FACodeException(string message) : base(message) { }
+}

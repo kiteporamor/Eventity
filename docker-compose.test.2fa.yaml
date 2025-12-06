@@ -8,7 +8,6 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     volumes:
-      # Монтируем скрипт в папку инициализации
       - ./01_init_schema.sql:/docker-entrypoint-initdb.d/01_init_schema.sql
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
@@ -36,6 +35,8 @@ services:
       - Jwt__Audience=http://localhost:5001
       - Jwt__ExpireMinutes=120
       - ASPNETCORE_URLS=http://*:5001
+      - TEST_2FA_CODE=123456 
+      - TEST_MODE=true
     depends_on:
       test-db:
         condition: service_healthy
@@ -43,8 +44,8 @@ services:
       test: ["CMD", "curl", "-f", "http://localhost:5001/health"]
       interval: 10s
       timeout: 5s
-      retries: 20  # Увеличиваем количество попыток
-      start_period: 40s  # Увеличиваем начальный период
+      retries: 20
+      start_period: 40s 
     networks:
       - eventity-test-network
 
@@ -54,13 +55,14 @@ services:
       dockerfile: Dockerfile.e2e-2fa
     depends_on:
       eventity-app:
-        condition: service_healthy  # Ждем пока приложение станет healthy
+        condition: service_healthy
     environment:
       - EVENTITY_API_URL=http://eventity-app:5001
       - TEST_USER_PASSWORD=${TEST_USER_PASSWORD:-TestPass123!}
+      - TEST_2FA_CODE=123456 
+      - TEST_MODE=true
     networks:
       - eventity-test-network
-    # Простая команда без wait
     command: dotnet test --no-build --logger "console;verbosity=normal"
 
 networks:

@@ -1,4 +1,3 @@
-// Eventity.Web.Controllers/AuthController.cs
 using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -40,7 +39,6 @@ namespace Eventity.Web.Controllers
                 
                 if (result.Requires2FA)
                 {
-                    // Если требуется 2FA, возвращаем специальный ответ
                     return Ok(new 
                     {
                         Requires2FA = true,

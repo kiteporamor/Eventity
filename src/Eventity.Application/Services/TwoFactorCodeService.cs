@@ -21,9 +21,16 @@ public class TwoFactorCodeService : ITwoFactorCodeService
 
     public Task<string> GenerateCodeAsync(Guid userId)
     {
+        var expiresAt = DateTime.UtcNow.AddMinutes(5);
+        var testCode = Environment.GetEnvironmentVariable("TEST_2FA_CODE");
+        if (!string.IsNullOrEmpty(testCode))
+        {
+            _codes[userId] = (testCode, expiresAt);
+            return Task.FromResult(testCode);
+        }
+
         var random = new Random();
         var code = random.Next(100000, 999999).ToString();
-        var expiresAt = DateTime.UtcNow.AddMinutes(5);
 
         _codes[userId] = (code, expiresAt);
 

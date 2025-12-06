@@ -204,7 +204,6 @@ public class AuthService : IAuthService
                 };
             }
 
-            // Проверяем текущий пароль
             if (user.Password != currentPassword)
             {
                 _logger.LogWarning("Invalid current password for user {UserId}", userId);
@@ -216,7 +215,6 @@ public class AuthService : IAuthService
                 };
             }
 
-            // Проверяем сложность нового пароля (опционально)
             if (!IsPasswordValid(newPassword))
             {
                 _logger.LogWarning("New password doesn't meet requirements for user {UserId}", userId);
@@ -228,8 +226,7 @@ public class AuthService : IAuthService
                 };
             }
 
-            // Обновляем пароль
-            user.Password = newPassword; // В реальном приложении здесь должно быть хеширование!
+            user.Password = newPassword;
             await _userRepository.UpdateAsync(user);
 
             _logger.LogInformation("Password successfully changed for user {UserId}", userId);
@@ -255,17 +252,11 @@ public class AuthService : IAuthService
 
     private bool IsPasswordValid(string password)
     {
-        // Минимальные требования к паролю
         if (string.IsNullOrWhiteSpace(password))
             return false;
         
         if (password.Length < 6)
             return false;
-        
-        // Можно добавить дополнительные проверки:
-        // - Наличие цифр
-        // - Наличие букв в разных регистрах
-        // - Наличие специальных символов
         
         return true;
     }

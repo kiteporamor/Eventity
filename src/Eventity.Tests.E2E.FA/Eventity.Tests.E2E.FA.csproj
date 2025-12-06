@@ -1,0 +1,54 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <!-- Настройки для тестового проекта -->
+        <OutputType>Library</OutputType>
+        <IsTestProject>true</IsTestProject>
+        <!-- SpecFlow настройки -->
+        <SpecFlow_UseUnitTestProvider>xunit</SpecFlow_UseUnitTestProvider>
+        <SpecFlow_GenerateAsyncCode>true</SpecFlow_GenerateAsyncCode>
+        <SpecFlow_TaskCapacity>10</SpecFlow_TaskCapacity>
+        <RootNamespace>Eventity.Tests.E2E.FA</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0"/>
+        <PackageReference Include="xunit" Version="2.6.6"/>
+        <PackageReference Include="xunit.runner.visualstudio" Version="2.5.6">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="coverlet.collector" Version="6.0.0">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <!-- SpecFlow пакеты -->
+        <PackageReference Include="SpecFlow" Version="3.9.74" />
+        <PackageReference Include="SpecFlow.xUnit" Version="3.9.74" />
+        <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.9.74" />
+        <PackageReference Include="FluentAssertions" Version="8.8.0" />
+        <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="7.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Eventity.Application\Eventity.Application.csproj" />
+        <ProjectReference Include="..\Eventity.DataAccess\Eventity.DataAccess.csproj" />
+        <ProjectReference Include="..\Eventity.Domain\Eventity.Domain.csproj" />
+        <ProjectReference Include="..\Eventity.Web\Eventity.Web.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="appsettings.tests.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Include="specflow.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://specflow.org/specflow-config.json",
+  "stepAssemblies": [
+    {
+      "assembly": "Eventity.Tests.E2E.FA"
+    }
+  ],
+  "language": {
+    "feature": "ru"
+  },
+  "bindingCulture": {
+    "name": "ru"
+  },
+  "generator": {
+    "allowDebugGeneratedFiles": true
+  }
+}

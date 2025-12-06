@@ -1,11 +1,13 @@
 // Eventity.Web.Controllers/AuthController.cs
 using System;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Eventity.Domain.Exceptions;
 using Eventity.Domain.Interfaces.Services;
 using Eventity.Domain.Models;
 using Eventity.Web.Converters;
 using Eventity.Web.Dtos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -115,6 +117,47 @@ namespace Eventity.Web.Controllers
             catch (AuthServiceException ex)
             {
                 return BadRequest(new ErrorResponseDto { Message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new ErrorResponseDto { Message = "Internal server error" });
+            }
+        }
+        
+        [HttpPost("change-password")]
+        [Authorize]
+        [ProducesResponseType(typeof(ChangePasswordResponseDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ChangePasswordResponseDto), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ErrorResponseDto), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(ErrorResponseDto), StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordRequestDto request)
+        {
+            try
+            {
+                var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+                if (userIdClaim == null || !Guid.TryParse(userIdClaim.Value, out var userId))
+                {
+                    return Unauthorized(new ErrorResponseDto { Message = "Invalid or missing user ID in token" });
+                }
+
+                var result = await _authService.ChangePassword(userId, request.CurrentPassword, request.NewPassword);
+        
+                if (!result.Success)
+                {
+                    return BadRequest(new ChangePasswordResponseDto
+                    {
+                        Success = false,
+                        Message = result.Message,
+                        ChangedAt = result.ChangedAt
+                    });
+                }
+
+                return Ok(new ChangePasswordResponseDto
+                {
+                    Success = true,
+                    Message = result.Message,
+                    ChangedAt = result.ChangedAt
+                });
             }
             catch (Exception ex)
             {

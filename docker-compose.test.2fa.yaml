@@ -1,0 +1,68 @@
+version: '3.8'
+
+services:
+  test-db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: EventityTest
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      # Монтируем скрипт в папку инициализации
+      - ./01_init_schema.sql:/docker-entrypoint-initdb.d/01_init_schema.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    ports:
+      - "5433:5432"
+    networks:
+      - eventity-test-network
+
+  eventity-app:
+    build: 
+      context: .
+      dockerfile: Dockerfile.app.prod
+    ports:
+      - "5001:5001"
+    environment:
+      - ConnectionStrings__DataBaseConnect=User ID=postgres;Password=postgres;Host=test-db;Database=EventityTest;Port=5432
+      - Auth__Require2FA=true 
+      - Email__SmtpEnabled=false
+      - ASPNETCORE_ENVIRONMENT=Development
+      - Jwt__Key=PtmYHJnq6UhhjMUw510vZd546amBNgqWSDROkhOgkyQ=
+      - Jwt__Issuer=Eventity.Web
+      - Jwt__Audience=http://localhost:5001
+      - Jwt__ExpireMinutes=120
+      - ASPNETCORE_URLS=http://*:5001
+    depends_on:
+      test-db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5001/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 20  # Увеличиваем количество попыток
+      start_period: 40s  # Увеличиваем начальный период
+    networks:
+      - eventity-test-network
+
+  e2e-2fa-tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.e2e-2fa
+    depends_on:
+      eventity-app:
+        condition: service_healthy  # Ждем пока приложение станет healthy
+    environment:
+      - EVENTITY_API_URL=http://eventity-app:5001
+      - TEST_USER_PASSWORD=${TEST_USER_PASSWORD:-TestPass123!}
+    networks:
+      - eventity-test-network
+    # Простая команда без wait
+    command: dotnet test --no-build --logger "console;verbosity=normal"
+
+networks:
+  eventity-test-network:
+    driver: bridge

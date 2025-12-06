@@ -185,4 +185,88 @@ public class AuthService : IAuthService
             throw new AuthServiceException("Failed to register user", ex);
         }
     }
+    
+    public async Task<ChangePasswordResult> ChangePassword(Guid userId, string currentPassword, string newPassword)
+    {
+        _logger.LogInformation("Changing password for user {UserId}", userId);
+        
+        try
+        {
+            var user = await _userRepository.GetByIdAsync(userId);
+            if (user == null)
+            {
+                _logger.LogWarning("User not found for password change. UserId: {UserId}", userId);
+                return new ChangePasswordResult
+                {
+                    Success = false,
+                    Message = "User not found",
+                    ChangedAt = DateTime.UtcNow
+                };
+            }
+
+            // Проверяем текущий пароль
+            if (user.Password != currentPassword)
+            {
+                _logger.LogWarning("Invalid current password for user {UserId}", userId);
+                return new ChangePasswordResult
+                {
+                    Success = false,
+                    Message = "Current password is incorrect",
+                    ChangedAt = DateTime.UtcNow
+                };
+            }
+
+            // Проверяем сложность нового пароля (опционально)
+            if (!IsPasswordValid(newPassword))
+            {
+                _logger.LogWarning("New password doesn't meet requirements for user {UserId}", userId);
+                return new ChangePasswordResult
+                {
+                    Success = false,
+                    Message = "New password doesn't meet security requirements",
+                    ChangedAt = DateTime.UtcNow
+                };
+            }
+
+            // Обновляем пароль
+            user.Password = newPassword; // В реальном приложении здесь должно быть хеширование!
+            await _userRepository.UpdateAsync(user);
+
+            _logger.LogInformation("Password successfully changed for user {UserId}", userId);
+            
+            return new ChangePasswordResult
+            {
+                Success = true,
+                Message = "Password changed successfully",
+                ChangedAt = DateTime.UtcNow
+            };
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Failed to change password for user {UserId}", userId);
+            return new ChangePasswordResult
+            {
+                Success = false,
+                Message = "Failed to change password due to server error",
+                ChangedAt = DateTime.UtcNow
+            };
+        }
+    }
+
+    private bool IsPasswordValid(string password)
+    {
+        // Минимальные требования к паролю
+        if (string.IsNullOrWhiteSpace(password))
+            return false;
+        
+        if (password.Length < 6)
+            return false;
+        
+        // Можно добавить дополнительные проверки:
+        // - Наличие цифр
+        // - Наличие букв в разных регистрах
+        // - Наличие специальных символов
+        
+        return true;
+    }
 }

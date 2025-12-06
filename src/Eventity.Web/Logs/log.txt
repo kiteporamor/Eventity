@@ -121,3 +121,4 @@ Eventity.Domain.Exceptions.Invalid2FACodeException: Invalid or expired verificat
 02:28:14 [Information] 2FA code validated for user 41325897-1be3-4284-b7a4-a12bd12beee4
 02:28:14 [Information] JWT token generated for user 41325897-1be3-4284-b7a4-a12bd12beee4
 02:28:14 [Information] 2FA verification successful for user 41325897-1be3-4284-b7a4-a12bd12beee4
+16:07:17 [Warning] Overriding address(es) '"http://localhost:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.

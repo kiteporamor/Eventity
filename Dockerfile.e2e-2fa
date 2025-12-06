@@ -1,0 +1,26 @@
+FROM mcr.microsoft.com/dotnet/sdk:6.0
+
+WORKDIR /src
+
+# Копируем ВСЕ исходники
+COPY ./src/ .
+
+# Отключаем SSL проверку для NuGet (только для тестов!)
+ENV NUGET_XMLDOC_MODE=skip
+ENV DOTNET_CLI_TELEMETRY_OPTOUT=1
+ENV DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1
+
+WORKDIR /src/Eventity.Tests.E2E.FA
+
+# Удаляем только сгенерированные файлы
+RUN find . -name "*.feature.cs" -delete 2>/dev/null || true
+RUN rm -rf obj bin 2>/dev/null || true
+
+# Восстановление пакетов
+RUN dotnet restore --force
+
+# Сборка (SpecFlow сгенерирует файлы во время сборки)
+RUN dotnet build --verbosity minimal /p:GenerateSpecFlowBindings=true
+
+# Запуск тестов
+CMD ["dotnet", "test", "--logger", "console;verbosity=normal"]

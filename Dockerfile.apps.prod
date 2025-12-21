@@ -1,0 +1,19 @@
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+WORKDIR /src
+
+COPY ./src/ .
+
+RUN dotnet restore
+RUN dotnet build --configuration Release --no-restore
+RUN dotnet publish Eventity.Web/Eventity.Web.csproj -c Release -o /app/publish
+
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS runtime
+WORKDIR /app
+
+RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
+
+COPY --from=build /app/publish .
+
+EXPOSE 5001 5002 5003 5004
+
+ENTRYPOINT ["dotnet", "Eventity.Web.dll"]

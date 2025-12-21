@@ -1,56 +1,295 @@
+version: "3.9"
+
 services:
-  nginx:
-    build:
-      context: .
-      dockerfile: Dockerfile.nginx
-    ports:
-      - "80:80"
-    depends_on:
-      eventity-app:
-        condition: service_healthy
-      adminer:
-        condition: service_started
+  postgres:
+    image: bitnami/postgresql:latest
     environment:
-      - NGINX_HOST=localhost
-      - NGINX_PORT=80
+      - POSTGRESQL_REPLICATION_MODE=master
+      - POSTGRESQL_USERNAME=postgres
+      - POSTGRESQL_PASSWORD=postgres
+      - POSTGRESQL_DATABASE=Eventity
+      - POSTGRESQL_REPLICATION_USER=replicator
+      - POSTGRESQL_REPLICATION_PASSWORD=replicator_pass
+    ports:
+      - "5432:5432"
+    networks:
+      - app-network
+    volumes:
+      - postgres_data:/bitnami/postgresql
+      - ./scripts/init.sql:/docker-entrypoint-initdb.d/init.sql:Z
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d Eventity"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  postgres-replica:
+    image: bitnami/postgresql:latest
+    environment:
+      - POSTGRESQL_REPLICATION_MODE=slave
+      - POSTGRESQL_PRIMARY_HOST=postgres
+      - POSTGRESQL_PRIMARY_PORT_NUMBER=5432
+      - POSTGRESQL_PRIMARY_USER=postgres
+      - POSTGRESQL_PRIMARY_PASSWORD=postgres
+      - POSTGRESQL_MASTER_HOST=postgres
+      - POSTGRESQL_MASTER_PORT_NUMBER=5432
+      - POSTGRESQL_MASTER_USER=postgres
+      - POSTGRESQL_MASTER_PASSWORD=postgres
+      - POSTGRESQL_REPLICATION_USER=replicator
+      - POSTGRESQL_REPLICATION_PASSWORD=replicator_pass
+      - POSTGRESQL_USERNAME=postgres
+      - POSTGRESQL_PASSWORD=postgres
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - app-network
+    volumes:
+      - postgres_replica_data:/bitnami/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d Eventity -h postgres-replica"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
 
   eventity-app:
     build:
       context: .
-      dockerfile: Dockerfile.app.prod
+      dockerfile: Dockerfile.apps.prod
     environment:
-      - ConnectionStrings__DataBaseConnect=User ID=postgres;Password=postgres;Host=postgres;Database=Eventity;Port=5432
-      - ASPNETCORE_URLS=http://*:5001
-    expose:
-      - "5001"
-    depends_on:
-      - postgres
+      ConnectionStrings__DataBaseConnect: User ID=postgres;Password=postgres;Host=postgres;Database=Eventity;Port=5432
+      ASPNETCORE_URLS: http://*:5001
+      READONLY_MODE: "false"
+      InstanceName: main
+    ports:
+      - "5001:5001"
+    networks:
+      - app-network
+    command: ["dotnet", "Eventity.Web.dll", "--urls", "http://0.0.0.0:5001"]
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:5001/api/v1/health"]
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 40s
-
-  postgres:
-    image: postgres:15
-    environment:
-      POSTGRES_DB: Eventity
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+    labels:
+      AppInstance: main
+      Role: write
     volumes:
-      - postgres_data:/var/lib/postgresql/data
-      - ./scripts:/docker-entrypoint-initdb.d
+      - ./logs/main:/app/logs:Z
+      - ./logs/main:/app/Logs:Z
+
+  eventity-app-readonly-1:
+    build:
+      context: .
+      dockerfile: Dockerfile.apps.prod
+    environment:
+      ConnectionStrings__DataBaseConnect: User ID=postgres_readonly;Password=readonly_pass;Host=postgres;Database=Eventity;Port=5432
+      ASPNETCORE_URLS: http://*:5002
+      READONLY_MODE: "true"
+      InstanceName: ro1
+    ports:
+      - "5002:5002"
+    networks:
+      - app-network
+    command: ["dotnet", "Eventity.Web.dll", "--urls", "http://0.0.0.0:5002"]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5002/api/v1/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    labels:
+      AppInstance: ro1
+      Role: read
+    volumes:
+      - ./logs/ro1:/app/logs:Z
+      - ./logs/ro1:/app/Logs:Z
+
+  eventity-app-readonly-2:
+    build:
+      context: .
+      dockerfile: Dockerfile.apps.prod
+    environment:
+      ConnectionStrings__DataBaseConnect: User ID=postgres_readonly;Password=readonly_pass;Host=postgres;Database=Eventity;Port=5432
+      ASPNETCORE_URLS: http://*:5003
+      READONLY_MODE: "true"
+      InstanceName: ro2
+    ports:
+      - "5003:5003"
+    networks:
+      - app-network
+    command: ["dotnet", "Eventity.Web.dll", "--urls", "http://0.0.0.0:5003"]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5003/api/v1/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    labels:
+      AppInstance: ro2
+      Role: read
+    volumes:
+      - ./logs/ro2:/app/logs:Z
+      - ./logs/ro2:/app/Logs:Z
+
+  eventity-app-mirror:
+    build:
+      context: .
+      dockerfile: Dockerfile.apps.prod
+    environment:
+      ConnectionStrings__DataBaseConnect: User ID=postgres_readonly;Password=readonly_pass;Host=postgres-replica;Database=Eventity;Port=5432
+      ASPNETCORE_URLS: http://*:5004
+      READONLY_MODE: "true"
+      InstanceName: mirror
+    ports:
+      - "5004:5004"
+    networks:
+      - app-network
+    command: ["dotnet", "Eventity.Web.dll", "--urls", "http://0.0.0.0:5004"]
+    depends_on:
+      postgres-replica:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5004/api/v1/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    labels:
+      AppInstance: mirror
+      Role: read
+    volumes:
+      - ./logs/mirror:/app/logs:Z
+      - ./logs/mirror:/app/Logs:Z
+
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    depends_on:
+      eventity-app:
+        condition: service_healthy
+      eventity-app-readonly-1:
+        condition: service_healthy
+      eventity-app-readonly-2:
+        condition: service_healthy
+      eventity-app-mirror:
+        condition: service_healthy
+      grafana:
+        condition: service_started
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro,Z
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro,Z
+      - ./logs/nginx:/var/log/nginx:Z
+    networks:
+      - app-network
+
+  loki:
+    image: grafana/loki:2.9.0
+    command: [ "-config.file=/etc/loki/config.yaml" ]
+    networks:
+      - app-network
+    volumes:
+      - ./monitoring/loki-config.yml:/etc/loki/config.yaml:ro,Z
+      - loki_data:/loki
+
+  promtail:
+    image: grafana/promtail:2.9.4 
+    command: -config.file=/etc/promtail/config.yml
+    user: root
+    privileged: true
+    networks:
+      - app-network
+    volumes:
+      - ./monitoring/promtail-config.yml:/etc/promtail/config.yml:ro,Z
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro,Z
+      - ./logs:/var/log/app:ro,Z
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+  # grafana:
+  #   image: grafana/grafana:10.4.3
+  #   environment:
+  #     - GF_SECURITY_ADMIN_USER=admin
+  #     - GF_SECURITY_ADMIN_PASSWORD=admin
+  #     - GF_SERVER_ROOT_URL=%(protocol)s://%(domain)s/monitoring/
+  #     - GF_SERVER_SERVE_FROM_SUB_PATH=true
+  #   depends_on:
+  #     - loki
+  #   networks:
+  #     - app-network
+  #   volumes:
+  #     - grafana_data:/var/lib/grafana
+  #     - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro,Z
+
+  # grafana:
+  #   image: grafana/grafana:10.4.3
+  #   environment:
+  #     - GF_SECURITY_ADMIN_USER=admin
+  #     - GF_SECURITY_ADMIN_PASSWORD=admin
+  #     - GF_SERVER_ROOT_URL=http://localhost/monitoring
+  #     - GF_SERVER_SERVE_FROM_SUB_PATH=true
+  #   ports:
+  #   - "3000:3000"
+  #   depends_on:
+  #     - loki
+  #   networks:
+  #     - app-network
+  #   volumes:
+  #     - grafana_data:/var/lib/grafana
+  #     - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro,Z
+
+  # grafana:
+  #   image: grafana/grafana:10.4.3
+  #   environment:
+  #     - GF_PATHS_CONFIG=/etc/grafana/grafana.ini
+  #   depends_on:
+  #     - loki
+  #   networks:
+  #     - app-network
+  #   volumes:
+  #     - ./monitoring/grafana/grafana.ini:/etc/grafana/grafana.ini:ro
+  #     - grafana_data:/var/lib/grafana
+
+  grafana:
+    image: grafana/grafana:10.4.3
+    environment:
+      - GF_SERVER_ROOT_URL=http://localhost/monitoring
+      - GF_SERVER_SERVE_FROM_SUB_PATH=true
+      - GF_SERVER_ENABLE_GZIP=true
+      - GF_SERVER_DOMAIN=localhost
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    depends_on:
+      - loki
+    networks:
+      - app-network
+    volumes:
+      - ./monitoring/grafana/grafana.ini:/etc/grafana/grafana.ini:ro
+      - grafana_data:/var/lib/grafana
 
   adminer:
     image: adminer:4.8.1
     environment:
-      ADMINER_DEFAULT_SERVER: postgres
       ADMINER_DESIGN: dracula
-    expose:
-      - "8080"
+    ports:
+      - "7080:8080"
+    networks:
+      - app-network
     depends_on:
       - postgres
 
+networks:
+  app-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.25.0.0/16
+
 volumes:
   postgres_data:
+  postgres_replica_data:
+  loki_data:
+  grafana_data:

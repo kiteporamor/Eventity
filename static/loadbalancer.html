@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Load Balancer Status</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/static/loadbalancer.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Load Balancer Status</h1>
+        
+        <div class="info-box">
+            <h2>Конфигурация балансировки</h2>
+            <div class="config-info">
+                <p><strong>Алгоритм балансировки:</strong> Weighted Round Robin</p>
+                <p><strong>Соотношение весов:</strong> 2:1:1</p>
+                <p><strong>Основной бэкенд (запись):</strong> :5001</p>
+                <p><strong>Бэкенды только для чтения:</strong> :5002, :5003</p>
+            </div>
+        </div>
+
+        <div class="backend-status">
+            <h2>Статус бэкендов</h2>
+            
+            <div class="backend" id="backend-write">
+                <h3>Основной бэкенд (Write)</h3>
+                <div class="backend-details">
+                    <p><strong>Порт:</strong> <span id="port-write">5001</span></p>
+                    <p><strong>Режим:</strong> <span class="mode write">Read/Write</span></p>
+                    <p><strong>Статус:</strong> <span id="status-write" class="status">Проверка...</span></p>
+                    <p><strong>Вес:</strong> <span id="weight-write">2</span></p>
+                    <p><strong>Запросов обработано:</strong> <span id="requests-write">0</span></p>
+                </div>
+            </div>
+            
+            <div class="backend" id="backend-read-1">
+                <h3>Бэкенд только для чтения #1</h3>
+                <div class="backend-details">
+                    <p><strong>Порт:</strong> <span id="port-read-1">5002</span></p>
+                    <p><strong>Режим:</strong> <span class="mode read">Read Only</span></p>
+                    <p><strong>Статус:</strong> <span id="status-read-1" class="status">Проверка...</span></p>
+                    <p><strong>Вес:</strong> <span id="weight-read-1">1</span></p>
+                    <p><strong>Запросов обработано:</strong> <span id="requests-read-1">0</span></p>
+                </div>
+            </div>
+            
+            <div class="backend" id="backend-read-2">
+                <h3>Бэкенд только для чтения #2</h3>
+                <div class="backend-details">
+                    <p><strong>Порт:</strong> <span id="port-read-2">5003</span></p>
+                    <p><strong>Режим:</strong> <span class="mode read">Read Only</span></p>
+                    <p><strong>Статус:</strong> <span id="status-read-2" class="status">Проверка...</span></p>
+                    <p><strong>Вес:</strong> <span id="weight-read-2">1</span></p>
+                    <p><strong>Запросов обработано:</strong> <span id="requests-read-2">0</span></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats-box">
+            <h2>Статистика балансировки</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-label">Всего запросов GET:</span>
+                    <span class="stat-value" id="total-get">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Всего запросов на запись:</span>
+                    <span class="stat-value" id="total-write">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Ошибок записи на readonly:</span>
+                    <span class="stat-value" id="write-errors">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Распределение GET запросов:</span>
+                    <span class="stat-value" id="distribution">0:0:0</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="rules-box">
+            <h2>Правила маршрутизации</h2>
+            <table class="rules-table">
+                <thead>
+                    <tr>
+                        <th>Метод HTTP</th>
+                        <th>Бэкенд</th>
+                        <th>Описание</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>GET</td>
+                        <td>Все бэкенды (2:1:1)</td>
+                        <td>Балансировка между всеми инстансами</td>
+                    </tr>
+                    <tr>
+                        <td>POST, PUT, PATCH, DELETE</td>
+                        <td>Только основной (:5001)</td>
+                        <td>Запросы на изменение только на write-инстанс</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="update-info">
+            <p>Последнее обновление: <span id="last-update">-</span></p>
+            <button onclick="updateLoadBalancerStatus()">Обновить статус</button>
+        </div>
+    </div>
+
+    <script src="/static/loadbalancer.js"></script>
+</body>
+</html>

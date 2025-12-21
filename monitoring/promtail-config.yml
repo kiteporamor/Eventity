@@ -1,0 +1,58 @@
+server:
+  http_listen_port: 9080
+  grpc_listen_port: 0
+
+positions:
+  filename: /tmp/positions.yaml
+
+clients:
+  - url: http://loki:3100/loki/api/v1/push
+
+scrape_configs:
+  - job_name: docker
+    docker_sd_configs:
+      - host: unix:///var/run/docker.sock
+    relabel_configs:
+      - source_labels: ['__meta_docker_container_log_path']
+        target_label: '__path__'
+      - source_labels: ['__meta_docker_container_name']
+        regex: '/(.*)'
+        target_label: 'container'
+      - source_labels: ['__meta_docker_container_label_AppInstance']
+        target_label: 'instance'
+      - source_labels: ['__meta_docker_container_label_Role']
+        target_label: 'role'
+    pipeline_stages:
+      - docker: {}
+      - labels:
+          container:
+          instance:
+          role:
+
+  - job_name: app
+    static_configs:
+      - targets: [localhost]
+        labels:
+          job: app
+          __path__: /var/log/app/*/logs/*.txt
+    pipeline_stages:
+      - regex:
+          source: filename
+          expression: ".*/(?P<instance>[^/]+)/logs/.*"
+      - labels:
+          instance:
+
+  - job_name: nginx-logs
+    static_configs:
+      - targets: [localhost]
+        labels:
+          job: nginx-logs
+          container: nginx
+          instance: nginx
+          __path__: /var/log/app/nginx/*.log
+    pipeline_stages:
+      - regex:
+          source: filename
+          expression: ".*/(?P<file>[^/]+)$"
+      - labels:
+          file:

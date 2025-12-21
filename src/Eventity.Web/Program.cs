@@ -3,6 +3,7 @@ using System.Text;
 using DataAccess;
 using Eventity.Application.Services;
 using Eventity.DataAccess.Context;
+using Eventity.Web.Middlewares;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
@@ -33,6 +34,8 @@ builder.Services.AddCors(options =>
 builder.Host.UseSerilog();
 
 builder.Services.AddControllers();
+
+builder.Services.AddTransient<ReadOnlyMiddleware>();
 
 builder.Services.AddAuthentication(options =>
 {
@@ -107,6 +110,8 @@ builder.Services.AddServices();
 builder.Services.AddDtoConverters();
 
 var app = builder.Build();
+
+app.UseMiddleware<ReadOnlyMiddleware>();
 
 using (var scope = app.Services.CreateScope())
 {

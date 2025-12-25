@@ -119,16 +119,32 @@ using (var scope = app.Services.CreateScope())
     // db.Database.Migrate();
 }
 
+var pathBase = builder.Configuration["ASPNETCORE_PATHBASE"]; // /mirror
+if (!string.IsNullOrEmpty(pathBase))
+{
+    app.UsePathBase(pathBase);
+}
+
 if (isSwaggerEnabled)
 {
-    app.UseSwagger(); 
+    app.UseSwagger();
 
-    app.UseSwaggerUI(c => 
+    app.UseSwaggerUI(c =>
     {
         c.RoutePrefix = "swagger";
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Eventity API v1"); 
+        c.SwaggerEndpoint(
+            string.IsNullOrEmpty(pathBase) ? "/swagger/v1/swagger.json" : $"{pathBase}/swagger/v1/swagger.json",
+            "Eventity API v1");
+    });
+
+    app.MapGet("/api/v1", context =>
+    {
+        var redirectPath = string.IsNullOrEmpty(pathBase) ? "/swagger" : $"{pathBase}/swagger";
+        context.Response.Redirect(redirectPath, permanent: false);
+        return Task.CompletedTask;
     });
 }
+
 app.UseRouting();
 
 app.UseCors("AllowAll");

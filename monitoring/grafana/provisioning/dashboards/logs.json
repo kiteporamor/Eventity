@@ -19,7 +19,10 @@
   "links": [],
   "panels": [
     {
-      "datasource": "Loki",
+      "datasource": {
+        "type": "loki",
+        "uid": "loki"
+      },
       "gridPos": {
         "h": 24,
         "w": 24,
@@ -38,20 +41,12 @@
       },
       "targets": [
         {
-          "expr": "{service=\"eventity-app\"}",
+          "datasource": {
+            "type": "loki",
+            "uid": "loki"
+          },
+          "expr": "{instance=~\"main|ro1|ro2|mirror\"}",
           "refId": "A"
-        },
-        {
-          "expr": "{service=\"eventity-app-readonly-1\"}",
-          "refId": "B"
-        },
-        {
-          "expr": "{service=\"eventity-app-readonly-2\"}",
-          "refId": "C"
-        },
-        {
-          "expr": "{service=\"eventity-app-mirror\"}",
-          "refId": "D"
         }
       ],
       "title": "Eventity Application Logs",
@@ -70,7 +65,7 @@
     "to": "now"
   },
   "timepicker": {},
-  "timezone": "browser",
+  "timezone": "utc",
   "title": "Eventity Monitoring Dashboard",
   "uid": "eventity-monitoring",
   "version": 1,

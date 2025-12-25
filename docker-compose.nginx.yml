@@ -142,6 +142,7 @@ services:
       ASPNETCORE_URLS: http://*:5004
       READONLY_MODE: "true"
       InstanceName: mirror
+      ASPNETCORE_PATHBASE: /mirror
     ports:
       - "5004:5004"
     networks:
@@ -256,18 +257,18 @@ services:
   grafana:
     image: grafana/grafana:10.4.3
     environment:
-      - GF_SERVER_ROOT_URL=http://localhost/monitoring
+      - GF_PATHS_CONFIG=/etc/grafana/grafana.ini
       - GF_SERVER_SERVE_FROM_SUB_PATH=true
-      - GF_SERVER_ENABLE_GZIP=true
       - GF_SERVER_DOMAIN=localhost
-      - GF_SECURITY_ADMIN_USER=admin
-      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_SERVER_ROOT_URL=http://localhost/monitoring/
+      - GF_SERVER_ENABLE_GZIP=true
     depends_on:
       - loki
     networks:
       - app-network
     volumes:
       - ./monitoring/grafana/grafana.ini:/etc/grafana/grafana.ini:ro
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro,Z
       - grafana_data:/var/lib/grafana
 
   adminer:

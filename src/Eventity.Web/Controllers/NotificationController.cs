@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Eventity.Application.Services;
 using Eventity.Domain.Exceptions;
 using Eventity.Domain.Interfaces.Services;
 using Eventity.Web.Converters;

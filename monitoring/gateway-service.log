@@ -1,0 +1,132 @@
+20:24:03 [Warning] Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+20:24:03 [Warning] No XML encryptor configured. Key {70cbd885-237b-42ea-97ee-28f00cb8438e} may be persisted to storage in unencrypted form.
+20:24:03 [Warning] Overriding address(es) '"http://*:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+20:24:04 [Warning] Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+20:24:04 [Warning] No XML encryptor configured. Key {c3652cc5-3644-45a3-b733-adca5846f405} may be persisted to storage in unencrypted form.
+20:24:04 [Warning] Overriding address(es) '"http://*:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+20:24:04 [Warning] Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+20:24:04 [Warning] No XML encryptor configured. Key {7a518be3-b24b-46a8-b010-b8fa9e3446ad} may be persisted to storage in unencrypted form.
+20:24:04 [Warning] Overriding address(es) '"http://*:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+21:10:36 [Warning] Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+21:10:36 [Warning] No XML encryptor configured. Key {de6e3392-cf4d-499d-a6f0-154e6fd56328} may be persisted to storage in unencrypted form.
+21:10:36 [Warning] Overriding address(es) '"http://*:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+21:10:36 [Warning] Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+21:10:36 [Warning] No XML encryptor configured. Key {b2118895-fecb-470d-9180-5f3edc2d6252} may be persisted to storage in unencrypted form.
+21:10:36 [Warning] Overriding address(es) '"http://*:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+21:10:36 [Warning] Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+21:10:36 [Warning] No XML encryptor configured. Key {35b5bc66-212f-4107-b0be-97ec674d425b} may be persisted to storage in unencrypted form.
+21:10:36 [Warning] Overriding address(es) '"http://*:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+21:19:51 [Warning] Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+21:19:51 [Warning] No XML encryptor configured. Key {722cc23e-eed6-43f6-853c-387a75deacc8} may be persisted to storage in unencrypted form.
+21:19:51 [Warning] Overriding address(es) '"http://*:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+21:19:51 [Warning] Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+21:19:51 [Warning] No XML encryptor configured. Key {e63b9283-1413-4b73-ad14-ce542dfd01b2} may be persisted to storage in unencrypted form.
+21:19:51 [Warning] Overriding address(es) '"http://*:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+21:19:51 [Warning] Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+21:19:51 [Warning] No XML encryptor configured. Key {2c246ab7-bfd9-4b7f-a56b-0eaddbb246a1} may be persisted to storage in unencrypted form.
+21:19:51 [Warning] Overriding address(es) '"http://*:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+21:50:42 [Warning] Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+21:50:42 [Warning] No XML encryptor configured. Key {2579fb3f-e75e-4813-ad51-e6c3943039a8} may be persisted to storage in unencrypted form.
+21:50:42 [Warning] Overriding address(es) '"http://*:5011"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:00:35 [Warning] Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+22:00:35 [Warning] No XML encryptor configured. Key {5574e638-d8a6-42b8-ac66-1da9512961f4} may be persisted to storage in unencrypted form.
+22:00:35 [Warning] Overriding address(es) '"http://*:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+rotected data will be unavailable when container is destroyed.
+22:00:35 [Warning] No XML encryptor configured. Key {2c04b833-f725-42a1-9e3c-0f3879d33bea} may be persisted to storage in unencrypted form.
+22:00:35 [Warning] Overriding address(es) '"http://*:5011"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:01:20 [Warning] Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+22:01:20 [Warning] Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Pro22:01:20 [Warning] Overriding address(es) '"http://*:5011"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+c63ec019a6da} may be persisted to storage in unencrypted form.
+22:01:20 [Warning] Overriding address(es) '"http://*:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+rotected data will be unavailable when container is destroyed.
+22:01:20 [Warning] Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Pro22:01:20 [Warning] Overriding address(es) '"http://*:5015"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+12150f69f428} may be persisted to storage in unencrypted form.
+22:01:20 [Warning] Overriding address(es) '"http://*:5005"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+rotected data will be unavailable when container is destroyed.
+22:01:20 [Warning] No XML encryptor configured. Key {f537b164-dcb8-4043-8aa5-3404065d7e21} may be persisted to storage in unencrypted form.
+22:01:20 [Warning] Overriding address(es) '"http://*:5014"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:05:02 [Warning] Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+22:05:02 [Warning] No XML encryptor configured. Key {f06adbd0-ef04-4df9-8ca5-efe85ef5615e} may be persisted to storage in unencrypted form.
+22:05:02 [Warning] Overriding address(es) '"http://*:5004"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+rotected data will be unavailable when container is destroyed.
+22:05:02 [Warning] Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Pro22:05:02 [Warning] Overriding address(es) '"http://*:5014"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+-Keys"' that may not be persisted outside of the container. Pro22:05:02 [Warning] Overriding address(es) '"http://*:5015"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+6ed5798009bf} may be persisted to storage in unencrypted form.
+22:05:02 [Warning] Overriding address(es) '"http://*:5005"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:05:02 [Warning] Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+22:05:02 [Warning] No XML encryptor configured. Key {9d268e92-8e15-4bf9-a1ba-9d1c464ca7d8} may be persisted to storage in unencrypted form.
+22:05:02 [Warning] Overriding address(es) '"http://*:5011"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:05:02 [Warning] Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+22:05:02 [Warning] No XML encryptor configured. Key {8d40aacd-9410-4936-9a8d-3a298d02ab67} may be persisted to storage in unencrypted form.
+22:05:02 [Warning] Overriding address(es) '"http://*:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:11:22 [Warning] Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+22:11:23 [Warning] No XML encryptor configured. Key {3e48ebd6-3335-4af3-ac7a-7440160dd3c5} may be persisted to storage in unencrypted form.
+22:11:23 [Warning] Overriding address(es) '"http://*:5011"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+rotected data will be unavailable when container is destroyed.
+22:11:23 [Warning] No XML encryptor configured. Key {a5ca5f3b-d502-4f98-9f0d-147df61372c3} may be persisted to storage in unencrypted form.
+22:11:23 [Warning] Overriding address(es) '"http://*:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:11:23 [Warning] Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+22:11:23 [Warning] Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Pro22:11:23 [Warning] Overriding address(es) '"http://*:5004"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+-Keys"' that may not be persisted outside of the container. Pro22:11:23 [Warning] Overriding address(es) '"http://*:5014"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+36a498131d0d} may be persisted to storage in unencrypted form.
+22:11:23 [Warning] Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+22:11:23 [Warning] No XML encryptor configured. Key {49720747-8ff4-4138-bf6d-7c9ac4c4d2ef} may be persisted to storage in unencrypted form.
+22:11:23 [Warning] Overriding address(es) '"http://*:5015"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:13:25 [Warning] Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+22:13:25 [Warning] No XML encryptor configured. Key {02214c5e-29c3-4e92-96c0-f2bbd537c625} may be persisted to storage in unencrypted form.
+22:13:25 [Warning] Overriding address(es) '"http://*:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+rotected data will be unavailable when container is destroyed.
+22:13:25 [Warning] No XML encryptor configured. Key {f7b8198d-c9a5-47fa-8254-d547861eae59} may be persisted to storage in unencrypted form.
+22:13:25 [Warning] Overriding address(es) '"http://*:5011"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:13:25 [Warning] Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+22:13:25 [Warning] Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Pro22:13:25 [Warning] Overriding address(es) '"http://*:5014"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+-Keys"' that may not be persisted outside of the container. Pro22:13:26 [Warning] Overriding address(es) '"http://*:5004"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+ddfcb038eab8} may be persisted to storage in unencrypted form.
+22:13:26 [Warning] Overriding address(es) '"http://*:5005"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+rotected data will be unavailable when container is destroyed.
+22:13:26 [Warning] No XML encryptor configured. Key {691c9ced-f900-41e8-92e6-13e20058cd60} may be persisted to storage in unencrypted form.
+22:13:26 [Warning] Overriding address(es) '"http://*:5015"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:18:05 [Warning] Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+22:18:05 [Warning] No XML encryptor configured. Key {4785865f-bc31-4578-b11c-e083f3e0f39e} may be persisted to storage in unencrypted form.
+22:18:05 [Warning] Overriding address(es) '"http://*:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+7ef750e66250} may be persisted to storage in unencrypted form.
+22:18:05 [Warning] Overriding address(es) '"http://*:5011"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:18:06 [Warning] Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+22:18:06 [Warning] No XML encryptor configured. Key {21088586-a3ad-421d-9153-5ce472ee7694} may be persisted to storage in unencrypted form.
+22:18:06 [Warning] Overriding address(es) '"http://*:5005"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+rotected data will be unavailable when container is destroyed.
+22:18:06 [Warning] No XML encryptor configured. Key {7059f3b9-977d-4a3b-a9a9-df5ee5199fa7} may be persisted to storage in unencrypted form.
+22:18:06 [Warning] Overriding address(es) '"http://*:5015"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:27:50 [Warning] Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+22:27:50 [Warning] No XML encryptor configured. Key {4f392f56-fc81-4769-9c9e-378d703a8bf2} may be persisted to storage in unencrypted form.
+22:27:50 [Warning] Overriding address(es) '"http://*:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:27:50 [Warning] Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+22:27:50 [Warning] Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Pro22:27:50 [Warning] Overriding address(es) '"http://*:5015"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+a7c9fb2fa81a} may be persisted to storage in unencrypted form.
+22:27:50 [Warning] Overriding address(es) '"http://*:5005"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:27:51 [Warning] Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+22:27:51 [Warning] No XML encryptor configured. Key {a91e4831-c393-4bbe-94a5-e8bdba68bf19} may be persisted to storage in unencrypted form.
+22:27:51 [Warning] Overriding address(es) '"http://*:5004"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+rotected data will be unavailable when container is destroyed.
+22:27:51 [Warning] No XML encryptor configured. Key {7b3cb57f-c24d-4ad9-a81f-2959e61a9ffb} may be persisted to storage in unencrypted form.
+22:27:51 [Warning] Overriding address(es) '"http://*:5014"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:33:04 [Warning] Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+22:33:04 [Warning] Overriding address(es) '"http://*:5005"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+06:39:20 [Warning] As of "12/25/2025 06:21:01 +00:00", the heartbeat has been running for "00:18:16.5601235" which is longer than "00:00:01". This could be caused by thread pool starvation.
+) instead.
+06:39:20 [Warning] As of "12/25/2025 06:21:01 +00:00", the heartbeat has been running for "00:18:16.7269615" which is longer than "00:00:01". This could be caused by thread pool starvation.
+) instead.
+22:36:13 [Warning] As of "12/24/2025 22:36:11 +00:00", the heartbeat has been running for "00:00:01.0918174" which is longer than "00:00:01". This could be caused by thread pool starvation.
+destroyed.
+22:33:07 [Warning] Overriding address(es) '"http://*:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+07:42:19 [Warning] Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+07:42:19 [Warning] No XML encryptor configured. Key {9bce1311-1f93-4bcb-97b8-160194501051} may be persisted to storage in unencrypted form.
+07:42:20 [Warning] Overriding address(es) '"http://*:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+9022c1454ec6} may be persisted to storage in unencrypted form.
+07:42:20 [Warning] Overriding address(es) '"http://*:5011"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+07:42:20 [Warning] Storing keys in a directory '"/root/.aspnet/DataProtection-Keys"' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+07:42:20 [Warning] No XML encryptor configured. Key {480eead9-c59b-46ec-9518-77974467ba6d} may be persisted to storage in unencrypted form.
+07:42:20 [Warning] Overriding address(es) '"http://*:5015"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+rotected data will be unavailable when container is destroyed.
+07:42:20 [Warning] No XML encryptor configured. Key {2d08e1a7-834c-4615-975c-5185e24b835f} may be persisted to storage in unencrypted form.
+07:42:20 [Warning] Overriding address(es) '"http://*:5014"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.

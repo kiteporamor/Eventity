@@ -1,0 +1,39 @@
+20:23:51 [Warning] Overriding address(es) '"http://*:5003"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+20:23:51 [Warning] Overriding address(es) '"http://*:5003"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+20:23:52 [Warning] Overriding address(es) '"http://*:5003"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+21:10:24 [Warning] Overriding address(es) '"http://*:5003"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+21:10:24 [Warning] Overriding address(es) '"http://*:5003"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+21:12:02 [Warning] User with login "string" not found
+21:19:39 [Warning] Overriding address(es) '"http://*:5003"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+21:21:02 [Warning] User with login "string1" not found
+03"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+21:19:39 [Warning] Overriding address(es) '"http://*:5003"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+21:50:32 [Warning] Overriding address(es) '"http://*:5003"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+21:50:32 [Warning] Overriding address(es) '"http://*:5008"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+21:50:32 [Warning] Overriding address(es) '"http://*:5009"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:00:24 [Warning] Overriding address(es) '"http://*:5003"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:00:24 [Warning] Overriding address(es) '"http://*:5008"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:00:24 [Warning] Overriding address(es) '"http://*:5009"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:01:08 [Warning] Overriding address(es) '"http://*:5003"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:01:08 [Warning] Overriding address(es) '"http://*:5009"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:01:08 [Warning] Overriding address(es) '"http://*:5008"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:04:50 [Warning] Overriding address(es) '"http://*:5008"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:04:50 [Warning] Overriding address(es) '"http://*:5009"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:04:50 [Warning] Overriding address(es) '"http://*:5003"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:07:37 [Warning] User with login "string" not found
+22:11:12 [Warning] Overriding address(es) '"http://*:5003"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:11:12 [Warning] Overriding address(es) '"http://*:5009"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:13:13 [Warning] Overriding address(es) '"http://*:5003"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:13:13 [Warning] Overriding address(es) '"http://*:5008"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:17:54 [Warning] Overriding address(es) '"http://*:5003"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:17:54 [Warning] Overriding address(es) '"http://*:5008"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:17:54 [Warning] Overriding address(es) '"http://*:5009"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:27:37 [Warning] Overriding address(es) '"http://*:5003"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:27:37 [Warning] Overriding address(es) '"http://*:5009"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:32:49 [Warning] Overriding address(es) '"http://*:5008"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:32:50 [Warning] Overriding address(es) '"http://*:5003"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:33:30 [Warning] User with login "string" not found
+22:33:37 [Warning] User with login "string" not found
+07:42:07 [Warning] Overriding address(es) '"http://*:5003"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+07:42:07 [Warning] Overriding address(es) '"http://*:5009"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+07:42:08 [Warning] Overriding address(es) '"http://*:5008"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.

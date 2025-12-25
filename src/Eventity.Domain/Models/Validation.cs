@@ -2,6 +2,10 @@ namespace Eventity.Domain.Models;
 
 public class Validation
 {
+    public Validation()
+    {
+    }
+
     public Validation(Guid currentUserId, bool isAdmin)
     {
         CurrentUserId = currentUserId;

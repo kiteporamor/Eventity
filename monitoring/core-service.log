@@ -1,0 +1,108 @@
+20:23:57 [Warning] Overriding address(es) '"http://*:5002"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+20:23:57 [Warning] Overriding address(es) '"http://*:5002"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+20:23:58 [Warning] Overriding address(es) '"http://*:5002"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+21:10:29 [Warning] Overriding address(es) '"http://*:5002"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+21:12:01 [Information] Registration attempt. Login: "string", Email: "string"
+21:12:02 [Information] JWT token generated for user ee610a76-29fe-44c0-adf6-2c4ff056bb13
+21:12:02 [Information] User registered successfully. UserId: ee610a76-29fe-44c0-adf6-2c4ff056bb13
+21:12:49 [I21:14:18 [Information] Authentication attempt for login: "string"
+21:14:18 [Information] JWT token generated for user ee610a76-29fe-44c0-adf6-2c4ff056bb13
+21:14:18 [Information] User authenticated successfully. UserId: ee610a76-29fe-44c0-adf6-2c4ff056bb13
+21:19:45 [Warning] Overriding address(es) '"http://*:5002"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+21:19:45 [Warning] Overriding address(es) '"http://*:5002"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+21:20:45 [Information] Registration attempt. Login: "string", Email: "string"
+21:20:46 [Warning] User already exists. Login: "string"
+21:221:21:00 [Information] Registration attempt. Login: "string1", Email: "string"
+21:21:02 [Information] JWT token generated for user 323c4818-c34b-4c4b-886e-dd82aa881a85
+21:21:02 [Information] User registered successfully. UserId: 323c4818-c34b-4c4b-886e-dd82aa881a85
+21:21:37 [Debug] Trying to get user by id
+21:21:37 [Information] Retrieved user successfully. ID: 323c4818-c34b-4c4b-886e-dd82aa881a85, Login: "string1"
+21:22:51 [Debug] Trying to get user by id
+21:22:51 [Information] Retrieved user successfully. ID: 323c4818-c34b-4c4b-886e-dd82aa881a85, Login: "string1"
+ller.cs:line 35
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+21:22:19 [Information] Authentication attempt for login: "string1"
+21:22:19 [Information] JWT token generated for user 323c4818-c34b-4c4b-886e-dd82aa881a85
+21:22:19 [Information] User authenticated successfully. UserId: 323c4818-c34b-4c4b-886e-dd82aa881a85
+21:50:36 [Warning] Overriding address(es) '"http://*:5002"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:00:29 [Warning] Overriding address(es) '"http://*:5002"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:00:29 [Warning] Overriding address(es) '"http://*:5007"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:00:29 [Warning] Overriding address(es) '"http://*:5006"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:01:13 [Warning] Overriding address(es) '"http://*:5002"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:01:13 [Warning] Overriding address(es) '"http://*:5007"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:01:13 [Warning] Overriding address(es) '"http://*:5006"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:04:56 [Warning] Overriding address(es) '"http://*:5006"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:04:56 [Warning] Overriding address(es) '"http://*:5007"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:08:16 [Debug] Trying to get user by id
+22:08:18 [Information] Retrieved user successfully. ID: a477e4f1-0514-48fc-9916-79788b6c785c, Login: "string"
+rmation] Registration attempt. Login: "string", Email: "string"
+22:07:38 [Information] JWT token generated for user a477e4f1-0514-48fc-9916-79788b6c785c
+22:07:38 [Information] User registered successfully. UserId: a477e4f1-0514-48fc-9916-79788b6c785c
+22:07:44 [Information] Authentication attempt for login: "string"
+22:07:44 [Information] JWT token generated for user a477e4f1-0514-48fc-9916-79788b6c785c
+22:07:44 [Information] User authenticated successfully. UserId: a477e4f1-0514-48fc-9916-79788b6c785c
+22:07:45 [Information] Authentication attempt for login: "string"
+22:07:45 [Information] JWT token generated for user a477e4f1-0514-48fc-9916-79788b6c785c
+22:07:45 [Information] User authenticated successfully. UserId: a477e4f1-0514-48fc-9916-79788b6c785c
+22:11:16 [Warning] Overriding address(es) '"http://*:5002"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:11:17 [Warning] Overriding address(es) '"http://*:5006"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:11:17 [Warning] Overriding address(es) '"http://*:5007"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:13:19 [Warning] Overriding address(es) '"http://*:5002"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:13:19 [Warning] Overriding address(es) '"http://*:5006"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:13:19 [Warning] Overriding address(es) '"http://*:5007"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:17:59 [Warning] Overriding address(es) '"http://*:5002"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:17:59 [Warning] Overriding address(es) '"http://*:5007"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:27:42 [Warning] Overriding address(es) '"http://*:5002"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:27:42 [Warning] Overriding address(es) '"http://*:5007"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:27:43 [Warning] Overriding address(es) '"http://*:5006"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:32:54 [Warning] Overriding address(es) '"http://*:5006"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:32:54 [Warning] Overriding address(es) '"http://*:5007"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:32:57 [Warning] Overriding address(es) '"http://*:5002"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+22:33:27 [Information] Authentication attempt for login: "string"
+22:33:30 [Warning] User not found. Login: "string"
+22:33:30 [Error] Connection id ""0HNI37HJAU7JS"", Request id ""0HNI37HJAU7JS:00000002"": An unhandled exception was thrown by the application.
+Eventity.Domain.Exceptions.UserNotFoundException: User with this login is not found
+   at Eventity.Application.Services.AuthService.AuthenticateUser(String login, String password) in /src/Eventity.Application/Services/AuthService.cs:line 38
+   at Eventity.CoreService.Controllers.AuthController.Login(AuthLoginRequest request) in /src/Eventity.CoreService/Controllers/AuthController.cs:line 27
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+22:33:37 [Information] Registration attempt. Login: "string", Email: "string"
+22:33:37 [Information] JWT token generated for user f0a0bee1-3603-4d58-acfe-ec0ab6428038
+22:33:37 [Information] User registered successfully. UserId: f0a0bee1-3603-4d58-acfe-ec0ab6428038
+22:33:52 [Debug] Trying to get user by id
+22:33:52 [Information] Retrieved user successfully. ID: f0a0bee1-3603-4d58-acfe-ec0ab6428038, Login: "string"
+22:40:44 [Information] Authentication attempt for login: "string"
+22:40:44 [Information] JWT token generated for user f0a0bee1-3603-4d58-acfe-ec0ab6428038
+22:40:44 [Information] User authenticated successfully. UserId: f0a0bee1-3603-4d58-acfe-ec0ab6428038
+22:43:05 [Debug] Trying to add notification
+22:43:05 [Information] Notifications created successfully
+07:42:13 [Warning] Overriding address(es) '"http://*:5002"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+07:49:23 [Information] Authentication attempt for login: "string"
+07:49:28 [Information] JWT token generated for user f0a0bee1-3603-4d58-acfe-ec0ab6428038
+07:49:28 [Information] User authenticated successfully. UserId: f0a0bee1-3603-4d58-acfe-ec0ab6428038
+eKestrel() instead.
+07:50:32 [Debug] Trying to get user by id
+07:50:36 [Information] Retrieved user successfully. ID: f0a0bee1-3603-4d58-acfe-ec0ab6428038, Login: "string"

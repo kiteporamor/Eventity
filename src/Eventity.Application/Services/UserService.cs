@@ -37,7 +37,7 @@ public class UserService : IUserService
 
     public async Task<User> GetUserById(Guid id)
     {
-        _logger.LogInformation("Trying to get user by id");
+        _logger.LogDebug("Trying to get user by id");
         try
         {
             var user = await _userRepository.GetByIdAsync(id);
@@ -63,7 +63,7 @@ public class UserService : IUserService
 
     public async Task<User> GetUserByLogin(string login)
     {
-        _logger.LogInformation("Trying to get user by login");
+        _logger.LogDebug("Trying to get user by login");
         try
         {
             var user = await _userRepository.GetByLoginAsync(login);
@@ -89,7 +89,7 @@ public class UserService : IUserService
 
     public async Task<IEnumerable<User>> GetAllUsers()
     {
-        _logger.LogInformation("Trying to get all users");
+        _logger.LogDebug("Trying to get all users");
         try
         {
             var users = await _userRepository.GetAllAsync();
@@ -117,7 +117,7 @@ public class UserService : IUserService
 
     public async Task<IEnumerable<User>> GetUsers(string? login)
     {
-        _logger.LogInformation("Trying to get all users");
+        _logger.LogDebug("Trying to get all users");
         try
         {
             IEnumerable<User> users = new List<User>();
@@ -153,7 +153,7 @@ public class UserService : IUserService
 
     public async Task<User> UpdateUser(Guid id, string? name, string? email, string? login, string? password)
     {
-        _logger.LogInformation("Trying to update user");
+        _logger.LogDebug("Trying to update user");
         try
         {
             var user = await _userRepository.GetByIdAsync(id);
@@ -186,7 +186,7 @@ public class UserService : IUserService
 
     public async Task RemoveUser(Guid id)
     {
-        _logger.LogInformation("Trying to remove user");
+        _logger.LogDebug("Trying to remove user");
         try
         {
             await _userRepository.RemoveAsync(id);

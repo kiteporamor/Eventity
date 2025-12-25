@@ -34,7 +34,7 @@ public class EventService : IEventService
     public async Task<Event> AddEvent(string title, string description, DateTime dateTime, string address, 
         Guid organizerId)
     {
-        _logger.LogInformation("Trying to add event");
+        _logger.LogDebug("Trying to add event");
         try
         {
             var eventId = Guid.NewGuid();
@@ -72,7 +72,7 @@ public class EventService : IEventService
 
     public async Task<Event> GetEventById(Guid id)
     {
-        _logger.LogInformation("Trying to get event by id");
+        _logger.LogDebug("Trying to get event by id");
         try
         {
             var eventDomain = await _eventRepository.GetByIdAsync(id);
@@ -99,7 +99,7 @@ public class EventService : IEventService
     
     public async Task<IEnumerable<Event>> GetEventByTitle(string title)
     {
-        _logger.LogInformation("Trying to get event by title");
+        _logger.LogDebug("Trying to get event by title");
         try
         {
             var eventDomains = await _eventRepository.GetByTitleAsync(title);
@@ -124,7 +124,7 @@ public class EventService : IEventService
 
     public async Task<IEnumerable<Event>> GetAllEvents()
     {
-        _logger.LogInformation("Trying to get add events");
+        _logger.LogDebug("Trying to get add events");
         try
         {
             var events = await _eventRepository.GetAllAsync();
@@ -151,7 +151,7 @@ public class EventService : IEventService
     public async Task<Event> UpdateEvent(Guid id, string? title, string? description, DateTime? dateTime, 
         string? address, Validation validation)
     {
-        _logger.LogInformation("Trying to update event");
+        _logger.LogDebug("Trying to update event");
         try
         {
             var eventDomain = await _eventRepository.GetByIdAsync(id);
@@ -191,7 +191,7 @@ public class EventService : IEventService
 
     public async Task RemoveEvent(Guid id, Validation validation)
     {
-        _logger.LogInformation("Trying to remove event");
+        _logger.LogDebug("Trying to remove event");
         try
         {
             var eventDomain = await _eventRepository.GetByIdAsync(id);

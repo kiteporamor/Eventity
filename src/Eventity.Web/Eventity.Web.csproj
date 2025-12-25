@@ -19,10 +19,8 @@
         <PackageReference Include="Swashbuckle.AspNetCore" />
     </ItemGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\Eventity.Application\Eventity.Application.csproj" />
-      <ProjectReference Include="..\Eventity.DataAccess\Eventity.DataAccess.csproj" />
+  <ItemGroup>
       <ProjectReference Include="..\Eventity.Domain\Eventity.Domain.csproj" />
-    </ItemGroup>
+  </ItemGroup>
 
 </Project>

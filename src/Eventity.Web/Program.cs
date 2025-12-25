@@ -1,12 +1,8 @@
 using System;
 using System.Text;
-using DataAccess;
-using Eventity.Application.Services;
-using Eventity.DataAccess.Context;
-using Eventity.Web.Middlewares;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
@@ -14,6 +10,8 @@ using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
 using Web;
+using Eventity.Domain.Interfaces.Services;
+using Eventity.Web.CoreClients;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,8 +32,6 @@ builder.Services.AddCors(options =>
 builder.Host.UseSerilog();
 
 builder.Services.AddControllers();
-
-builder.Services.AddTransient<ReadOnlyMiddleware>();
 
 builder.Services.AddAuthentication(options =>
 {
@@ -105,46 +101,55 @@ builder.Services.AddAuthorization(options =>
         policy.RequireRole("Admin", "User"));
 });
 
-builder.Services.AddDataBase(builder.Configuration);
-builder.Services.AddServices();
+void ConfigureCoreClient(HttpClient client)
+{
+    var baseUrl = builder.Configuration["ServiceUrls:CoreService"]
+                  ?? "http://core-service:5002";
+    client.BaseAddress = new Uri(baseUrl);
+}
+
+builder.Services.AddHttpClient<IAuthService, CoreAuthServiceClient>(ConfigureCoreClient);
+builder.Services.AddHttpClient<IEventService, CoreEventServiceClient>(ConfigureCoreClient);
+builder.Services.AddHttpClient<INotificationService, CoreNotificationServiceClient>(ConfigureCoreClient);
+builder.Services.AddHttpClient<IParticipationService, CoreParticipationServiceClient>(ConfigureCoreClient);
+builder.Services.AddHttpClient<IUserService, CoreUserServiceClient>(ConfigureCoreClient);
 builder.Services.AddDtoConverters();
 
 var app = builder.Build();
 
-app.UseMiddleware<ReadOnlyMiddleware>();
-
-using (var scope = app.Services.CreateScope())
-{
-    var db = scope.ServiceProvider.GetRequiredService<EventityDbContext>();
-    // db.Database.Migrate();
-}
-
-var pathBase = builder.Configuration["ASPNETCORE_PATHBASE"]; // /mirror
-if (!string.IsNullOrEmpty(pathBase))
+var pathBase = builder.Configuration["PathBase"];
+if (!string.IsNullOrWhiteSpace(pathBase))
 {
     app.UsePathBase(pathBase);
 }
 
-if (isSwaggerEnabled)
+var isReadOnly = builder.Configuration.GetValue<bool>("ReadOnly");
+if (isReadOnly)
 {
-    app.UseSwagger();
-
-    app.UseSwaggerUI(c =>
+    app.Use(async (context, next) =>
     {
-        c.RoutePrefix = "swagger";
-        c.SwaggerEndpoint(
-            string.IsNullOrEmpty(pathBase) ? "/swagger/v1/swagger.json" : $"{pathBase}/swagger/v1/swagger.json",
-            "Eventity API v1");
-    });
+        var method = context.Request.Method;
+        if (!HttpMethods.IsGet(method) && !HttpMethods.IsHead(method) && !HttpMethods.IsOptions(method))
+        {
+            context.Response.StatusCode = StatusCodes.Status403Forbidden;
+            await context.Response.WriteAsync("Read-only instance does not allow write operations.");
+            return;
+        }
 
-    app.MapGet("/api/v1", context =>
-    {
-        var redirectPath = string.IsNullOrEmpty(pathBase) ? "/swagger" : $"{pathBase}/swagger";
-        context.Response.Redirect(redirectPath, permanent: false);
-        return Task.CompletedTask;
+        await next();
     });
 }
 
+if (isSwaggerEnabled)
+{
+    app.UseSwagger(); 
+
+    app.UseSwaggerUI(c => 
+    {
+        c.RoutePrefix = "swagger";
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Eventity API v1"); 
+    });
+}
 app.UseRouting();
 
 app.UseCors("AllowAll");
@@ -159,4 +164,3 @@ app.MapGet("/api/v1/health", () => "Healthy");
 app.Run();
 
 public partial class Program { }
-

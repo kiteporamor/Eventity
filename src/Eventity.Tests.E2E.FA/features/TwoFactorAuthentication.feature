@@ -1,21 +1,39 @@
-# language: ru
+# language: en
 @2FA
-Функционал: Двухфакторная аутентификация
+Feature: Two-factor authentication and password rotation
 
-  Сценарий: Успешная аутентификация с 2FA
-    Дано существует технический пользователь с логином 'techuser' и паролем 'TestPass123!'
-    И включена двухфакторная аутентификация
-    Когда пользователь пытается войти с логином 'techuser' и паролем 'TestPass123!'
-    Тогда требуется ввести код подтверждения
-    И получен код подтверждения по email
-    Когда пользователь вводит правильный код подтверждения
-    Тогда аутентификация успешна и выдан JWT токен
-    И получен доступ к защищенным ресурсам
+  Background:
+    Given a technical user exists
+    And two-factor authentication is enabled
+
+  Scenario: Email-based 2FA authentication
+    When the user attempts to log in
+    Then a verification code is required
+    And a verification code is delivered via email
+    When the user verifies the code
+    Then authentication succeeds and a JWT token is issued
+    And access to protected resources is granted
+
+  Scenario: Limited 2FA attempts and recovery after lockout
+    When the user attempts to log in
+    Then a verification code is required
+    When the user enters an invalid verification code for the maximum number of attempts
+    Then the user is locked out from 2FA verification
+    When the lockout period has elapsed
+    And the user attempts to log in
+    Then a verification code is required
+    When the user verifies the code
+    Then authentication succeeds and a JWT token is issued
 
   @PasswordChange
-  Сценарий: Плановая смена пароля после аутентификации
-    Дано существует технический пользователь с логином 'changepassuser' и паролем 'OldPass123!'
-    И пользователь успешно аутентифицирован с 2FA
-    Когда пользователь отправляет запрос на смену пароля с текущим паролем 'OldPass123!' и новым паролем 'NewPass456!'
-    Тогда смена пароля успешна
-    И пользователь может войти с новым паролем 'NewPass456!'
+  Scenario: Planned password change with 2FA
+    When the user attempts to log in
+    Then a verification code is required
+    When the user verifies the code
+    Then authentication succeeds and a JWT token is issued
+    When the user changes the password to a new value
+    Then the password change is successful
+    When the user attempts to log in with the new password
+    Then a verification code is required
+    When the user verifies the code
+    Then authentication succeeds and a JWT token is issued

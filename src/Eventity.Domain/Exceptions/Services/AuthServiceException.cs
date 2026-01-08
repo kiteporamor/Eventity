@@ -1,3 +1,4 @@
+using System;
 using MailingManager.Core.Exceptions.Repositories;
 
 namespace Eventity.Domain.Exceptions;
@@ -26,4 +27,14 @@ public class UserAlreadyExistsException : AuthServiceException
 public class Invalid2FACodeException : AuthServiceException
 {
     public Invalid2FACodeException(string message) : base(message) { }
+}
+
+public class TwoFactorLockedException : AuthServiceException
+{
+    public TwoFactorLockedException(string message, DateTime lockoutUntil) : base(message)
+    {
+        LockoutUntil = lockoutUntil;
+    }
+
+    public DateTime LockoutUntil { get; }
 }

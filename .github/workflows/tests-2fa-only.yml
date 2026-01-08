@@ -3,7 +3,7 @@ name: 2FA E2E Tests
 on:
   workflow_dispatch:
   push:
-    branches: [ main, develop ]
+    branches: [ main, Test4 ]
     paths:
       - 'src/Eventity.Application/Services/AuthService.cs'
       - 'src/Eventity.Web/Controllers/AuthController.cs'
@@ -13,7 +13,9 @@ on:
       - 'Dockerfile.*'
 
 env:
-  TEST_USER_PASSWORD: ${{ secrets.TEST_USER_PASSWORD }}
+  EVENTITY_E2E_TECH_PASSWORD: ${{ secrets.EVENTITY_E2E_TECH_PASSWORD }}
+  EVENTITY_E2E_TECH_LOGIN: ${{ vars.EVENTITY_E2E_TECH_LOGIN }}
+  EVENTITY_E2E_2FA_CODE: ${{ vars.EVENTITY_E2E_2FA_CODE }}
 
 jobs:
   e2e-2fa-tests:
@@ -30,7 +32,9 @@ jobs:
         
     - name: Run 2FA E2E Tests
       env:
-        TEST_USER_PASSWORD: ${{ secrets.TEST_USER_PASSWORD || 'TestPass123!' }}
+        EVENTITY_E2E_TECH_PASSWORD: ${{ secrets.EVENTITY_E2E_TECH_PASSWORD }}
+        EVENTITY_E2E_TECH_LOGIN: ${{ vars.EVENTITY_E2E_TECH_LOGIN }}
+        EVENTITY_E2E_2FA_CODE: ${{ vars.EVENTITY_E2E_2FA_CODE }}
       run: |
         echo "Running 2FA E2E tests..."
         docker-compose -f docker-compose.test.2fa.yaml build

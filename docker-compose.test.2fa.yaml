@@ -28,6 +28,8 @@ services:
     environment:
       - ConnectionStrings__DataBaseConnect=User ID=postgres;Password=postgres;Host=test-db;Database=EventityTest;Port=5432
       - Auth__Require2FA=true 
+      - Auth__TwoFactorMaxAttempts=3
+      - Auth__TwoFactorLockoutSeconds=2
       - Email__SmtpEnabled=false
       - ASPNETCORE_ENVIRONMENT=Development
       - Jwt__Key=PtmYHJnq6UhhjMUw510vZd546amBNgqWSDROkhOgkyQ=
@@ -58,8 +60,12 @@ services:
         condition: service_healthy
     environment:
       - EVENTITY_API_URL=http://eventity-app:5001
-      - TEST_USER_PASSWORD=${TEST_USER_PASSWORD:-TestPass123!}
-      - TEST_2FA_CODE=123456 
+      - TestConfiguration__TestUserLogin=${EVENTITY_E2E_TECH_LOGIN:-techuser}
+      - TestConfiguration__TestUserPassword=${EVENTITY_E2E_TECH_PASSWORD}
+      - TestConfiguration__TwoFactorTestCode=${EVENTITY_E2E_2FA_CODE:-123456}
+      - TestConfiguration__TwoFactorMaxAttempts=3
+      - TestConfiguration__TwoFactorLockoutSeconds=2
+      - TEST_2FA_CODE=123456
       - TEST_MODE=true
     networks:
       - eventity-test-network

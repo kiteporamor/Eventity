@@ -116,9 +116,17 @@ public class AuthService : IAuthService
         
         try
         {
-            var isValid = await _twoFactorCodeService.ValidateCodeAsync(userId, code);
-            
-            if (!isValid)
+            var validationResult = await _twoFactorCodeService.ValidateCodeAsync(userId, code);
+
+            if (validationResult.IsLockedOut)
+            {
+                var lockoutUntil = validationResult.LockoutUntil ?? DateTime.UtcNow;
+                throw new TwoFactorLockedException(
+                    $"Too many verification attempts. Try again after {lockoutUntil:O}.",
+                    lockoutUntil);
+            }
+
+            if (!validationResult.IsValid)
             {
                 throw new Invalid2FACodeException("Invalid or expired verification code");
             }

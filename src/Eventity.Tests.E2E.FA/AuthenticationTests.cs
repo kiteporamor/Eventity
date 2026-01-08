@@ -19,327 +19,281 @@ namespace Eventity.Tests.E2E.FA
         {
             _testContext = testContext;
             _configuration = configuration;
-            
-            var baseUrl = Environment.GetEnvironmentVariable("EVENTITY_API_URL") 
-                ?? configuration.ApiBaseUrl 
+
+            var baseUrl = Environment.GetEnvironmentVariable("EVENTITY_API_URL")
+                ?? configuration.ApiBaseUrl
                 ?? "http://eventity-app:5001";
-            
+
             _httpClient = new HttpClient
             {
                 BaseAddress = new Uri(baseUrl),
                 Timeout = TimeSpan.FromSeconds(30)
             };
-            
-            _testContext.LastUserLogin = "default";
         }
 
-        [Given(@"существует технический пользователь с логином '(.*)' и паролем '(.*)'")]
-        public async Task GivenTechnicalUserExists(string login, string password)
+        [Given(@"a technical user exists")]
+        public async Task GivenATechnicalUserExists()
         {
-            _testContext.LastUserLogin = login;
-            
-            _testContext.LastVerificationCode = "123456";
-            Console.WriteLine($"Pre-setting test verification code for {login}: {_testContext.LastVerificationCode}");
-            
-            try
+            if (string.IsNullOrWhiteSpace(_configuration.TestUserPassword))
             {
-                var registerResponse = await _httpClient.PostAsJsonAsync("/api/auth/register", new
-                {
-                    name = $"Technical User {DateTime.Now.Ticks}",
-                    email = $"{login.ToLower()}@test.eventity.com",
-                    login,
-                    password,
-                    role = UserRoleEnum.User
-                });
+                throw new InvalidOperationException("Test user password is not configured.");
+            }
 
-                if (registerResponse.IsSuccessStatusCode)
+            var loginBase = _configuration.TestUserLogin ?? "techuser";
+            var login = $"{loginBase}-{DateTime.UtcNow.Ticks}";
+            var password = _configuration.TestUserPassword;
+
+            _testContext.TechnicalUserLogin = login;
+            _testContext.TechnicalUserPassword = password;
+
+            var registerResponse = await _httpClient.PostAsJsonAsync("/api/auth/register", new
+            {
+                name = $"Technical User {DateTime.UtcNow.Ticks}",
+                email = $"{login}@test.eventity.local",
+                login,
+                password,
+                role = UserRoleEnum.Admin
+            });
+
+            if (registerResponse.IsSuccessStatusCode)
+            {
+                var registerResult = await registerResponse.Content.ReadFromJsonAsync<AuthResponseDto>();
+                _testContext.TechnicalUserId = registerResult?.Id;
+                _testContext.CleanupToken = registerResult?.Token;
+                if (registerResult?.Id != null)
                 {
-                    var registerResult = await registerResponse.Content.ReadFromJsonAsync<AuthResponseDto>();
-                    _testContext.TechnicalUserToken = registerResult?.Token;
-                    _testContext.TechnicalUserId = registerResult?.Id;
-                    Console.WriteLine($"OK: Registered new user: {login}");
-                    return;
+                    _testContext.UsersToCleanup.Add(registerResult.Id);
                 }
-                
-                var loginResponse = await _httpClient.PostAsJsonAsync("/api/auth/login", new
-                {
-                    login,
-                    password
-                });
-
-                if (loginResponse.IsSuccessStatusCode)
-                {
-                    var content = await loginResponse.Content.ReadAsStringAsync();
-                    Console.WriteLine($"Login response: {content}");
-                    
-                    if (content.Contains("requires2FA"))
-                    {
-                        try
-                        {
-                            var json = JsonDocument.Parse(content);
-                            if (json.RootElement.TryGetProperty("userId", out var userIdElement))
-                            {
-                                _testContext.TechnicalUserId = userIdElement.GetGuid();
-                                Console.WriteLine($"OK: Got userId from existing user: {_testContext.TechnicalUserId}");
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine($"ERR: Error parsing JSON: {ex.Message}");
-                        }
-                    }
-                    else
-                    {
-                        var authResult = await loginResponse.Content.ReadFromJsonAsync<AuthResponseDto>();
-                        _testContext.TechnicalUserToken = authResult?.Token;
-                        _testContext.TechnicalUserId = authResult?.Id;
-                    }
-                    Console.WriteLine($"OK: User exists: {login}");
-                    return;
-                }
+                return;
             }
-            catch (Exception ex)
+
+            if (registerResponse.StatusCode != HttpStatusCode.Conflict)
             {
-                Console.WriteLine($"ERR: Error checking/creating user {login}: {ex.Message}");
-                throw;
+                var error = await registerResponse.Content.ReadAsStringAsync();
+                throw new InvalidOperationException($"Failed to create technical user: {error}");
             }
 
-            throw new InvalidOperationException($"ERR: Failed to create or login user {login}");
-        }
-
-        [Given(@"включена двухфакторная аутентификация")]
-        public void GivenTwoFactorAuthenticationIsEnabled()
-        {
-            _testContext.Is2FAEnabled = true;
-            Console.WriteLine("OK: 2FA is enabled for testing");
-        }
-
-        [When(@"пользователь пытается войти с логином '(.*)' и паролем '(.*)'")]
-        public async Task WhenUserAttemptsLogin(string login, string password)
-        {
-            _testContext.LastUserLogin = login;
-            Console.WriteLine($"Attempting login for user: {login}");
-            
-            try
+            var loginResponse = await _httpClient.PostAsJsonAsync("/api/auth/login", new
             {
-                _testContext.LastLoginResponse = await _httpClient.PostAsJsonAsync("/api/auth/login", new
-                {
-                    login,
-                    password
-                });
-                
-                Console.WriteLine($"Login response status: {_testContext.LastLoginResponse.StatusCode}");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"ERR: Error during login: {ex.Message}");
-                throw;
-            }
-        }
+                login,
+                password
+            });
 
-        [Then(@"требуется ввести код подтверждения")]
-        public async Task ThenVerificationCodeIsRequired()
-        {
-            _testContext.LastLoginResponse!.StatusCode.Should().Be(HttpStatusCode.OK);
-            
-            var content = await _testContext.LastLoginResponse.Content.ReadAsStringAsync();
-            Console.WriteLine($"Checking 2FA requirement");
-            
-            content.Should().Contain("requires2FA");
-            content.Should().Contain("true");
-            
-            try
+            if (!loginResponse.IsSuccessStatusCode)
+            {
+                var error = await loginResponse.Content.ReadAsStringAsync();
+                throw new InvalidOperationException($"Failed to authenticate technical user: {error}");
+            }
+
+            var content = await loginResponse.Content.ReadAsStringAsync();
+            if (content.Contains("requires2FA", StringComparison.OrdinalIgnoreCase))
             {
                 var json = JsonDocument.Parse(content);
                 if (json.RootElement.TryGetProperty("userId", out var userIdElement))
                 {
-                    _testContext.TwoFactorUserId = userIdElement.GetGuid();
-                    Console.WriteLine($"OK: 2FA required for user ID: {_testContext.TwoFactorUserId}");
-                }
-                else
-                {
-                    Console.WriteLine("Warning: userId not found in response");
+                    _testContext.TechnicalUserId = userIdElement.GetGuid();
                 }
             }
-            catch (Exception ex)
+            else
             {
-                Console.WriteLine($"ERR: Error parsing JSON: {ex.Message}");
-                throw;
+                var authResult = await loginResponse.Content.ReadFromJsonAsync<AuthResponseDto>();
+                _testContext.TechnicalUserId = authResult?.Id;
+                _testContext.CleanupToken = authResult?.Token;
             }
-            
-            _testContext.LastLoginRequires2FA = true;
         }
 
-        [Given(@"получен код подтверждения по email")]
-        public void GivenVerificationCodeReceivedByEmail()
+        [Given(@"two-factor authentication is enabled")]
+        public void GivenTwoFactorAuthenticationIsEnabled()
         {
-            _testContext.LastVerificationCode = "123456";
-            Console.WriteLine($"Using test verification code: {_testContext.LastVerificationCode}");
+            _testContext.Is2FAEnabled = true;
         }
 
-        [Then(@"получен код подтверждения по email")]
-        public void ThenVerificationCodeReceivedByEmail()
+        [When(@"the user attempts to log in")]
+        public async Task WhenTheUserAttemptsToLogIn()
         {
-            Console.WriteLine("OK: Email with verification code was sent (see application logs)");
+            if (string.IsNullOrWhiteSpace(_testContext.TechnicalUserLogin) ||
+                string.IsNullOrWhiteSpace(_testContext.TechnicalUserPassword))
+            {
+                throw new InvalidOperationException("Technical user credentials are missing.");
+            }
+
+            _testContext.LastLoginResponse = await _httpClient.PostAsJsonAsync("/api/auth/login", new
+            {
+                login = _testContext.TechnicalUserLogin,
+                password = _testContext.TechnicalUserPassword
+            });
         }
 
-        [When(@"пользователь вводит правильный код подтверждения")]
-        public async Task WhenUserEntersCorrectVerificationCode()
+        [When(@"the user attempts to log in with the new password")]
+        public async Task WhenTheUserAttemptsToLogInWithTheNewPassword()
+        {
+            if (string.IsNullOrWhiteSpace(_testContext.TechnicalUserLogin) ||
+                string.IsNullOrWhiteSpace(_testContext.NewPassword))
+            {
+                throw new InvalidOperationException("New password is not available for login.");
+            }
+
+            _testContext.LastLoginResponse = await _httpClient.PostAsJsonAsync("/api/auth/login", new
+            {
+                login = _testContext.TechnicalUserLogin,
+                password = _testContext.NewPassword
+            });
+        }
+
+        [Then(@"a verification code is required")]
+        public async Task ThenAVerificationCodeIsRequired()
+        {
+            _testContext.LastLoginResponse.Should().NotBeNull();
+            _testContext.LastLoginResponse!.StatusCode.Should().Be(HttpStatusCode.OK);
+
+            var content = await _testContext.LastLoginResponse.Content.ReadAsStringAsync();
+            content.Should().Contain("requires2FA");
+
+            var json = JsonDocument.Parse(content);
+            if (json.RootElement.TryGetProperty("userId", out var userIdElement))
+            {
+                _testContext.TwoFactorUserId = userIdElement.GetGuid();
+            }
+            else
+            {
+                throw new InvalidOperationException("2FA response did not include userId.");
+            }
+        }
+
+        [Then(@"a verification code is delivered via email")]
+        public void ThenAVerificationCodeIsDeliveredViaEmail()
+        {
+            _testContext.LastVerificationCode = _configuration.TwoFactorTestCode;
+        }
+
+        [When(@"the user verifies the code")]
+        public async Task WhenTheUserVerifiesTheCode()
         {
             if (_testContext.TwoFactorUserId == null)
             {
-                throw new InvalidOperationException("ERR: TwoFactorUserId is not set. Did 2FA flow complete?");
+                throw new InvalidOperationException("TwoFactorUserId is not set.");
             }
 
-            Console.WriteLine($"Verifying 2FA code for user: {_testContext.TwoFactorUserId}");
-            
-            try
+            var code = _configuration.TwoFactorTestCode;
+            if (string.IsNullOrWhiteSpace(code))
+            {
+                throw new InvalidOperationException("2FA test code is not configured.");
+            }
+
+            _testContext.LastVerifyResponse = await _httpClient.PostAsJsonAsync("/api/auth/verify-2fa", new
+            {
+                userId = _testContext.TwoFactorUserId,
+                code
+            });
+        }
+
+        [Then(@"authentication succeeds and a JWT token is issued")]
+        public async Task ThenAuthenticationSucceedsAndAJwtTokenIsIssued()
+        {
+            _testContext.LastVerifyResponse.Should().NotBeNull();
+            _testContext.LastVerifyResponse!.StatusCode.Should().Be(HttpStatusCode.OK);
+
+            var authResult = await _testContext.LastVerifyResponse.Content.ReadFromJsonAsync<AuthResponseDto>();
+            authResult.Should().NotBeNull();
+            authResult!.Token.Should().NotBeNullOrEmpty();
+
+            _testContext.LastAuthToken = authResult.Token;
+            _testContext.LastUserId = authResult.Id;
+        }
+
+        [Then(@"access to protected resources is granted")]
+        public async Task ThenAccessToProtectedResourcesIsGranted()
+        {
+            if (string.IsNullOrWhiteSpace(_testContext.LastAuthToken))
+            {
+                throw new InvalidOperationException("No auth token available.");
+            }
+
+            _httpClient.DefaultRequestHeaders.Remove("Authorization");
+            _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {_testContext.LastAuthToken}");
+
+            var response = await _httpClient.GetAsync("/api/users/me");
+            response.StatusCode.Should().Be(HttpStatusCode.OK);
+        }
+
+        [When(@"the user enters an invalid verification code for the maximum number of attempts")]
+        public async Task WhenTheUserEntersAnInvalidVerificationCodeForTheMaximumNumberOfAttempts()
+        {
+            if (_testContext.TwoFactorUserId == null)
+            {
+                throw new InvalidOperationException("TwoFactorUserId is not set.");
+            }
+
+            var invalidCode = GetInvalidCode();
+            for (var attempt = 0; attempt < _configuration.TwoFactorMaxAttempts; attempt++)
             {
                 _testContext.LastVerifyResponse = await _httpClient.PostAsJsonAsync("/api/auth/verify-2fa", new
                 {
                     userId = _testContext.TwoFactorUserId,
-                    code = _testContext.LastVerificationCode
+                    code = invalidCode
                 });
-                
-                Console.WriteLine($"Verify response status: {_testContext.LastVerifyResponse.StatusCode}");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"ERR: Error during 2FA verification: {ex.Message}");
-                throw;
             }
         }
 
-        [Then(@"аутентификация успешна и выдан JWT токен")]
-        public async Task ThenAuthenticationIsSuccessfulAndTokenIssued()
+        [Then(@"the user is locked out from 2FA verification")]
+        public async Task ThenTheUserIsLockedOutFrom2FAVerification()
         {
-            _testContext.LastVerifyResponse!.StatusCode.Should().Be(HttpStatusCode.OK);
-            
+            _testContext.LastVerifyResponse.Should().NotBeNull();
+            _testContext.LastVerifyResponse!.StatusCode.Should().Be(HttpStatusCode.Locked);
+
             var content = await _testContext.LastVerifyResponse.Content.ReadAsStringAsync();
-            Console.WriteLine($"OK: Auth successful response received");
-            
-            var authResult = await _testContext.LastVerifyResponse.Content.ReadFromJsonAsync<AuthResponseDto>();
-            authResult.Should().NotBeNull();
-            authResult!.Token.Should().NotBeNullOrEmpty();
-            
-            _testContext.LastAuthToken = authResult.Token;
-            _testContext.LastUserId = authResult.Id;
-            
-            Console.WriteLine($"OK: Authentication successful. User ID: {_testContext.LastUserId}");
+            content.Should().Contain("Too many verification attempts");
         }
 
-        [Then(@"получен доступ к защищенным ресурсам")]
-        public async Task ThenAccessToProtectedResourcesIsGranted()
+        [When(@"the lockout period has elapsed")]
+        public async Task WhenTheLockoutPeriodHasElapsed()
         {
-            if (string.IsNullOrEmpty(_testContext.LastAuthToken))
+            var delay = TimeSpan.FromSeconds(_configuration.TwoFactorLockoutSeconds + 1);
+            await Task.Delay(delay);
+        }
+
+        [When(@"the user changes the password to a new value")]
+        public async Task WhenTheUserChangesThePasswordToANewValue()
+        {
+            if (string.IsNullOrWhiteSpace(_testContext.LastAuthToken))
             {
-                throw new InvalidOperationException("ERR: No auth token available");
+                throw new InvalidOperationException("No auth token available for password change.");
             }
+
+            var newPassword = _configuration.TestUserNewPassword;
+            if (string.IsNullOrWhiteSpace(newPassword))
+            {
+                newPassword = $"NewPass-{Guid.NewGuid():N}!";
+            }
+
+            _testContext.NewPassword = newPassword;
 
             _httpClient.DefaultRequestHeaders.Remove("Authorization");
             _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {_testContext.LastAuthToken}");
-            
-            var response = await _httpClient.GetAsync("/api/events");
-            Console.WriteLine($"Access to /api/events: {response.StatusCode}");
-            
-            response.StatusCode.Should().BeOneOf(HttpStatusCode.OK, HttpStatusCode.Unauthorized, HttpStatusCode.Forbidden);
-            
-            if (response.StatusCode == HttpStatusCode.OK)
-            {
-                _testContext.HasAccessToProtectedResources = true;
-                Console.WriteLine("OK: Access to protected resources granted");
-            }
-            else
-            {
-                Console.WriteLine("ERR: Access to protected resources not granted (might require specific permissions)");
-            }
-        }
 
-        [Given(@"пользователь успешно аутентифицирован с 2FA")]
-        public async Task GivenUserSuccessfullyAuthenticatedWith2FA()
-        {
-            var login = "changepassuser";
-            var password = "OldPass123!";
-            
-            await GivenTechnicalUserExists(login, password);
-            
-            await WhenUserAttemptsLogin(login, password);
-            await ThenVerificationCodeIsRequired();
-            
-            GivenVerificationCodeReceivedByEmail();
-            
-            await WhenUserEntersCorrectVerificationCode();
-            await ThenAuthenticationIsSuccessfulAndTokenIssued();
-            
-            Console.WriteLine("OK: User successfully authenticated with 2FA for password change test");
-        }
-
-        [When(@"пользователь отправляет запрос на смену пароля с текущим паролем '(.*)' и новым паролем '(.*)'")]
-        public async Task WhenUserSubmitsPasswordChangeRequest(string currentPassword, string newPassword)
-        {
-            if (string.IsNullOrEmpty(_testContext.LastAuthToken))
+            _testContext.LastPasswordChangeResponse = await _httpClient.PostAsJsonAsync("/api/auth/change-password", new
             {
-                throw new InvalidOperationException("ERR: No auth token available for password change");
-            }
-
-            Console.WriteLine($"Changing password from '{currentPassword}' to '{newPassword}'");
-            
-            _httpClient.DefaultRequestHeaders.Remove("Authorization");
-            _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {_testContext.LastAuthToken}");
-            
-            try
-            {
-                _testContext.LastPasswordChangeResponse = await _httpClient.PostAsJsonAsync("/api/auth/change-password", new
-                {
-                    currentPassword,
-                    newPassword
-                });
-                
-                Console.WriteLine($"Password change response status: {_testContext.LastPasswordChangeResponse.StatusCode}");
-                
-                if (!_testContext.LastPasswordChangeResponse.IsSuccessStatusCode)
-                {
-                    var error = await _testContext.LastPasswordChangeResponse.Content.ReadAsStringAsync();
-                    Console.WriteLine($"ERR: Password change error: {error}");
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"ERR: Error during password change: {ex.Message}");
-                throw;
-            }
-        }
-
-        [Then(@"смена пароля успешна")]
-        public void ThenPasswordChangeIsSuccessful()
-        {
-            _testContext.LastPasswordChangeResponse!.StatusCode.Should().Be(HttpStatusCode.OK);
-            Console.WriteLine("OK: Password change successful");
-        }
-
-        [Then(@"пользователь может войти с новым паролем '(.*)'")]
-        public async Task ThenUserCanLoginWithNewPassword(string newPassword)
-        {
-            _httpClient.DefaultRequestHeaders.Remove("Authorization");
-            
-            Console.WriteLine($"Attempting login with new password for user: {_testContext.LastUserLogin}");
-            
-            var loginResponse = await _httpClient.PostAsJsonAsync("/api/auth/login", new
-            {
-                login = _testContext.LastUserLogin,
-                password = newPassword
+                currentPassword = _testContext.TechnicalUserPassword,
+                newPassword
             });
-            
-            Console.WriteLine($"📊 Login with new password status: {loginResponse.StatusCode}");
-            
-            if (!loginResponse.IsSuccessStatusCode)
+        }
+
+        [Then(@"the password change is successful")]
+        public void ThenThePasswordChangeIsSuccessful()
+        {
+            _testContext.LastPasswordChangeResponse.Should().NotBeNull();
+            _testContext.LastPasswordChangeResponse!.StatusCode.Should().Be(HttpStatusCode.OK);
+        }
+
+        private string GetInvalidCode()
+        {
+            var correctCode = _configuration.TwoFactorTestCode;
+            if (!string.Equals(correctCode, "000000", StringComparison.Ordinal))
             {
-                var error = await loginResponse.Content.ReadAsStringAsync();
-                Console.WriteLine($"ERR: Login with new password failed: {error}");
+                return "000000";
             }
-            
-            loginResponse.StatusCode.Should().Be(HttpStatusCode.OK);
-            Console.WriteLine("OK: Login with new password successful");
+
+            return "111111";
         }
     }
 }

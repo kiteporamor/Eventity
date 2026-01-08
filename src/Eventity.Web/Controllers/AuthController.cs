@@ -70,6 +70,7 @@ namespace Eventity.Web.Controllers
         [HttpPost("verify-2fa")]
         [ProducesResponseType(typeof(AuthResponseDto), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorResponseDto), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(ErrorResponseDto), StatusCodes.Status423Locked)]
         [ProducesResponseType(typeof(ErrorResponseDto), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Verify2FA([FromBody] Verify2FARequestDto request)
         {
@@ -77,6 +78,11 @@ namespace Eventity.Web.Controllers
             {
                 var result = await _authService.Verify2FA(request.UserId, request.Code);
                 return Ok(_dtoConverter.ToResponseDto(result));
+            }
+            catch (TwoFactorLockedException ex)
+            {
+                Response.Headers.Add("Retry-After", ex.LockoutUntil.ToUniversalTime().ToString("O"));
+                return StatusCode(StatusCodes.Status423Locked, new ErrorResponseDto { Message = ex.Message });
             }
             catch (Invalid2FACodeException ex)
             {

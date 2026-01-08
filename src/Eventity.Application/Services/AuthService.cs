@@ -149,6 +149,18 @@ public class AuthService : IAuthService
                 TokenExpiresAt = DateTime.Now.AddMinutes(Convert.ToInt32(_configuration["Jwt:ExpireMinutes"]))
             };
         }
+        catch (TwoFactorLockedException)
+        {
+            throw;
+        }
+        catch (Invalid2FACodeException)
+        {
+            throw;
+        }
+        catch (UserNotFoundException)
+        {
+            throw;
+        }
         catch (Exception ex)
         {
             _logger.LogError(ex, "2FA verification failed for user {UserId}", userId);

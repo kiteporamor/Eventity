@@ -9,8 +9,10 @@ using Eventity.Domain.Enums;
 using Eventity.Application.Services;
 using Eventity.Domain.Interfaces.Services;
 using Eventity.Domain.Interfaces.Repositories;
+using Eventity.Domain.Interfaces;
 using Eventity.DataAccess.Context;
 using Eventity.DataAccess.Repositories;
+using DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -157,14 +159,12 @@ public class TelemetryBenchmark
             _testUserPassword,
             UserRoleEnum.Admin);
 
-        var validation = new Validation(authResult.User.Id, true);
-
         await _eventService!.AddEvent(
             "Benchmark Event",
             "Test event for benchmarking",
             DateTime.UtcNow.AddDays(7),
             "123 Test Street",
-            validation);
+            authResult.User.Id);
     }
 
     [Benchmark]
@@ -195,16 +195,16 @@ public class TelemetryBenchmark
 
         // Create event
         var adminId = Guid.Parse(registeredUsers[0].id);
-        var adminValidation = new Validation(adminId, true);
 
         var eventResult = await _eventService!.AddEvent(
             "Benchmark Event",
             "Test event for benchmarking",
             DateTime.UtcNow.AddDays(7),
             "123 Test Street",
-            adminValidation);
+            adminId);
 
         // Add participants
+        var adminValidation = new Validation(adminId, true);
         var participationService = _serviceProvider!.GetRequiredService<IParticipationService>();
         foreach (var (id, _) in registeredUsers.Skip(1))
         {

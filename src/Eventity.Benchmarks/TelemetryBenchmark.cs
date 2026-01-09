@@ -1,11 +1,14 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Running;
 using Eventity.Domain.Enums;
 using Eventity.Application.Services;
 using Eventity.Domain.Interfaces.Services;
+using Eventity.Domain.Interfaces.Repositories;
 using Eventity.DataAccess.Context;
 using Eventity.DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -176,6 +179,7 @@ public class TelemetryBenchmark
         }
 
         var registeredUsers = new List<(string id, string login)>();
+        int userIndex = 0;
         foreach (var (login, email) in users)
         {
             var result = await _authService!.RegisterUser(
@@ -183,36 +187,30 @@ public class TelemetryBenchmark
                 email,
                 login,
                 _testUserPassword,
-                i == 0 ? UserRoleEnum.Admin : UserRoleEnum.User);
+                userIndex == 0 ? UserRoleEnum.Admin : UserRoleEnum.User);
 
             registeredUsers.Add((result.User.Id.ToString(), login));
+            userIndex++;
         }
 
         // Create event
         var adminId = Guid.Parse(registeredUsers[0].id);
-        var validation = new Validation(adminId, true);
+        var adminValidation = new Validation(adminId, true);
 
         var eventResult = await _eventService!.AddEvent(
             "Benchmark Event",
             "Test event for benchmarking",
             DateTime.UtcNow.AddDays(7),
             "123 Test Street",
-            validation);
+            adminValidation);
 
         // Add participants
+        var participationService = _serviceProvider!.GetRequiredService<IParticipationService>();
         foreach (var (id, _) in registeredUsers.Skip(1))
         {
             var userId = Guid.Parse(id);
-            await _eventService.AddParticipation(eventResult.Id, userId, ParticipationStatusEnum.Accepted);
+            await participationService.AddParticipation(userId, eventResult.Id, ParticipationRoleEnum.Participant, adminValidation);
         }
-    }
-}
-
-public class Program
-{
-    public static void Main(string[] args)
-    {
-        var summary = BenchmarkRunner.Run<TelemetryBenchmark>();
     }
 }
 

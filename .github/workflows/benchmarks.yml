@@ -75,7 +75,7 @@ jobs:
 
     - name: Upload benchmark results
       if: always()
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: benchmark-results-${{ matrix.configuration }}
         path: reports/
@@ -83,7 +83,7 @@ jobs:
 
     - name: Upload test results
       if: always()
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: test-results-${{ matrix.configuration }}
         path: |
@@ -100,7 +100,7 @@ jobs:
     - uses: actions/checkout@v3
 
     - name: Download all benchmark results
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         path: all-reports
 
@@ -130,7 +130,7 @@ jobs:
         cname: benchmarks.example.com
 
     - name: Upload final report
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: final-report
         path: final-reports/
@@ -157,7 +157,7 @@ jobs:
 
     steps:
     - name: Download artifacts
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: final-report
 

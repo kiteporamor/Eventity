@@ -15,6 +15,10 @@ using Web;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Load additional configuration files based on environment or telemetry settings
+var telemetryEnabled = builder.Configuration.GetValue<bool>("Telemetry:Enabled");
+var additionalConfig = builder.Configuration.GetValue<string>("AdditionalConfig") ?? "default";
+
 Log.Logger = new LoggerConfiguration()
     .ReadFrom.Configuration(builder.Configuration)
     .CreateLogger();
@@ -30,6 +34,9 @@ builder.Services.AddCors(options =>
 });
 
 builder.Host.UseSerilog();
+
+// Add OpenTelemetry/Tracing
+builder.Services.AddTelemetry(builder.Configuration);
 
 builder.Services.AddControllers();
 

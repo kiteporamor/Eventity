@@ -1,0 +1,132 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database for benchmarks
+  benchmark-db:
+    image: postgres:15-alpine
+    container_name: eventity-benchmark-db
+    environment:
+      POSTGRES_DB: eventity_benchmark
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_INITDB_ARGS: "-c max_connections=100 -c shared_buffers=256MB"
+    ports:
+      - "5433:5432"
+    volumes:
+      - benchmark-db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - benchmark-network
+
+  # Minimal configuration benchmark
+  benchmarks-minimal:
+    build:
+      context: .
+      dockerfile: Dockerfile.benchmarks
+    container_name: eventity-benchmarks-minimal
+    environment:
+      ASPNETCORE_ENVIRONMENT: Minimal
+      ConnectionStrings__DefaultConnection: "Host=benchmark-db;Port=5432;Database=eventity_benchmark;Username=postgres;Password=postgres"
+      Telemetry__Enabled: "false"
+      Logging__LogLevel__Default: "Information"
+    depends_on:
+      benchmark-db:
+        condition: service_healthy
+    volumes:
+      - ./reports:/app/reports
+      - ./logs:/app/logs
+    networks:
+      - benchmark-network
+    command: 
+      - "--filter"
+      - "TelemetryBenchmark.UserRegistration*"
+      - "--job"
+      - "short"
+
+  # Extended configuration benchmark
+  benchmarks-extended:
+    build:
+      context: .
+      dockerfile: Dockerfile.benchmarks
+    container_name: eventity-benchmarks-extended
+    environment:
+      ASPNETCORE_ENVIRONMENT: Extended
+      ConnectionStrings__DefaultConnection: "Host=benchmark-db;Port=5432;Database=eventity_benchmark_ext;Username=postgres;Password=postgres"
+      Telemetry__Enabled: "false"
+      Logging__LogLevel__Default: "Debug"
+      Logging__LogLevel__Microsoft__EntityFrameworkCore: "Debug"
+    depends_on:
+      benchmark-db:
+        condition: service_healthy
+    volumes:
+      - ./reports:/app/reports
+      - ./logs:/app/logs
+    networks:
+      - benchmark-network
+    command: 
+      - "--filter"
+      - "TelemetryBenchmark.UserRegistration*"
+      - "--job"
+      - "short"
+
+  # Telemetry configuration benchmark
+  benchmarks-telemetry:
+    build:
+      context: .
+      dockerfile: Dockerfile.benchmarks
+    container_name: eventity-benchmarks-telemetry
+    environment:
+      ASPNETCORE_ENVIRONMENT: Telemetry
+      ConnectionStrings__DefaultConnection: "Host=benchmark-db;Port=5432;Database=eventity_benchmark_telem;Username=postgres;Password=postgres"
+      Telemetry__Enabled: "true"
+      Telemetry__ExporterType: "Console"
+      Logging__LogLevel__Default: "Debug"
+      Logging__LogLevel__Microsoft__EntityFrameworkCore: "Debug"
+    depends_on:
+      benchmark-db:
+        condition: service_healthy
+    volumes:
+      - ./reports:/app/reports
+      - ./logs:/app/logs
+    networks:
+      - benchmark-network
+    command: 
+      - "--filter"
+      - "TelemetryBenchmark.UserRegistration*"
+      - "--job"
+      - "short"
+
+  # Integration tests runner
+  integration-tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.benchmarks
+    container_name: eventity-integration-tests
+    environment:
+      ASPNETCORE_ENVIRONMENT: Test
+      ConnectionStrings__DefaultConnection: "Host=benchmark-db;Port=5432;Database=eventity_test;Username=postgres;Password=postgres"
+      Telemetry__Enabled: "false"
+    depends_on:
+      benchmark-db:
+        condition: service_healthy
+    volumes:
+      - ./reports:/app/reports
+      - ./logs:/app/logs
+    networks:
+      - benchmark-network
+    command:
+      - "dotnet"
+      - "test"
+      - "--logger"
+      - "console;verbosity=detailed"
+
+volumes:
+  benchmark-db-data:
+
+networks:
+  benchmark-network:
+    driver: bridge

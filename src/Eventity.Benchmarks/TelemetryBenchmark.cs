@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Running;
 using Eventity.Domain.Enums;
+using Eventity.Domain.Models;
 using Eventity.Application.Services;
 using Eventity.Domain.Interfaces.Services;
 using Eventity.Domain.Interfaces.Repositories;
@@ -211,18 +212,5 @@ public class TelemetryBenchmark
             var userId = Guid.Parse(id);
             await participationService.AddParticipation(userId, eventResult.Id, ParticipationRoleEnum.Participant, ParticipationStatusEnum.Accepted, adminValidation);
         }
-    }
-}
-
-// Helper class for validation
-public class Validation
-{
-    public Guid CurrentUserId { get; }
-    public bool IsAdmin { get; }
-
-    public Validation(Guid currentUserId, bool isAdmin)
-    {
-        CurrentUserId = currentUserId;
-        IsAdmin = isAdmin;
     }
 }

@@ -89,7 +89,7 @@ public class TelemetryBenchmark
         services.AddScoped<IEventRepository, EventRepository>();
         services.AddScoped<IParticipationRepository, ParticipationRepository>();
         services.AddScoped<INotificationRepository, NotificationRepository>();
-        services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddScoped<IUnitOfWork, EfUnitOfWork>();
 
         // Add services
         services.AddScoped<IAuthService, AuthService>();
@@ -209,7 +209,7 @@ public class TelemetryBenchmark
         foreach (var (id, _) in registeredUsers.Skip(1))
         {
             var userId = Guid.Parse(id);
-            await participationService.AddParticipation(userId, eventResult.Id, ParticipationRoleEnum.Participant, adminValidation);
+            await participationService.AddParticipation(userId, eventResult.Id, ParticipationRoleEnum.Participant, ParticipationStatusEnum.Accepted, adminValidation);
         }
     }
 }

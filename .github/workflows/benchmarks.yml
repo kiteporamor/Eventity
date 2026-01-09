@@ -14,25 +14,7 @@ env:
   CONFIGURATION: Release
 
 jobs:
-  setup-database:
-    runs-on: ubuntu-latest
-    services:
-      postgres:
-        image: postgres:15-alpine
-        env:
-          POSTGRES_DB: eventity_benchmark
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-        ports:
-          - 5432:5432
-
   benchmark:
-    needs: setup-database
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -128,45 +110,13 @@ jobs:
         
         # Create markdown report
         cat > final-reports/BENCHMARK_COMPARISON.md << 'EOF'
-        # Performance Comparison Report
-        
-        Generated: $(date)
-        Commit: ${{ github.sha }}
-        Branch: ${{ github.ref }}
-        
-        ## Configurations Tested
-        - Minimal: No logging/telemetry
-        - Extended: Debug logging with SQL tracking
-        - Telemetry: Full OpenTelemetry enabled
-        
-        ## Test Scenarios
-        - User Registration
-        - User Authentication
-        - Event Creation
-        - Complex Operations
-        
-        ## Results Summary
-        
+      
         | Configuration | Avg Time (ms) | Memory (MB) | CPU Usage % |
         |---|---|---|---|
         | Minimal | - | - | - |
         | Extended | - | - | - |
         | Telemetry | - | - | - |
         
-        ## Key Findings
-        
-        1. **Performance Impact**: Extended logging and telemetry add measurable overhead
-        2. **Memory Usage**: Telemetry configuration uses 2-3x more memory
-        3. **CPU Consumption**: Full tracing adds 60-80% CPU overhead
-        
-        ## Recommendations
-        
-        - Use Minimal configuration in production
-        - Enable Extended logging only during development
-        - Use Telemetry configuration in staging for monitoring
-        
-        ---
-        For detailed analysis, see attached artifacts.
         EOF
         
         cat final-reports/BENCHMARK_COMPARISON.md

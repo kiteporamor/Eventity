@@ -15,7 +15,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Eventity.Web\Eventity.Web.csproj" />
         <ProjectReference Include="..\Eventity.Application\Eventity.Application.csproj" />
         <ProjectReference Include="..\Eventity.DataAccess\Eventity.DataAccess.csproj" />
     </ItemGroup>

@@ -78,6 +78,11 @@ jobs:
       env:
         ConnectionStrings__DefaultConnection: "Host=localhost;Port=5432;Database=eventity_test;Username=postgres;Password=postgres"
 
+    - name: Run resource measurement
+      run: |
+        chmod +x ./scripts/measure_resources.sh || true
+        TEST_DB_HOST=postgres ./scripts/measure_resources.sh
+
     - name: Upload benchmark results
       if: always()
       uses: actions/upload-artifact@v4
@@ -94,6 +99,16 @@ jobs:
         path: |
           reports/**/*.trx
           logs/
+        retention-days: 30
+
+    - name: Upload resource artifacts
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: resource-artifacts-${{ matrix.configuration }}
+        path: |
+          artifacts/resource
+          artifacts/allure-results
         retention-days: 30
 
   generate-report:

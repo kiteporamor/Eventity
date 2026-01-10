@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "Running static analysis checks before commit..."
+scripts/check_static_analysis.sh
+echo "Pre-commit checks passed."

@@ -1,0 +1,27 @@
+name: Static Analysis
+
+on:
+  pull_request:
+  push:
+    branches: [ main, master ]
+
+jobs:
+  static-analysis:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '6.0.x'
+
+      - name: Restore
+        run: dotnet restore ./src/Eventity.sln
+
+      - name: Build with analyzers (fail on warnings)
+        run: dotnet build ./src/Eventity.sln --no-restore -warnaserror
+
+      - name: Run tests
+        run: dotnet test ./src/Eventity.Tests.Integration/Eventity.Tests.Integration.csproj --no-build --verbosity normal

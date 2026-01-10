@@ -47,19 +47,24 @@ jobs:
         dotnet-version: ${{ env.DOTNET_VERSION }}
 
     - name: Restore dependencies
-      run: dotnet restore src/Eventity.sln
+      run: |
+        dotnet restore src/Eventity.sln
+        dotnet restore src/Eventity.Benchmarks.Runner/Eventity.Benchmarks.Runner.csproj
 
     - name: Build solution
-      run: dotnet build src/Eventity.sln -c ${{ env.CONFIGURATION }} --no-restore
+      run: |
+        dotnet build src/Eventity.sln -c ${{ env.CONFIGURATION }} --no-restore
+        dotnet build src/Eventity.Benchmarks.Runner/Eventity.Benchmarks.Runner.csproj -c ${{ env.CONFIGURATION }} --no-restore
 
     - name: Run benchmarks (${{ matrix.configuration }})
       run: |
-        cd src/Eventity.Benchmarks
         dotnet run -c ${{ env.CONFIGURATION }} \
+          --project src/Eventity.Benchmarks.Runner/Eventity.Benchmarks.Runner.csproj \
+          -- \
           --runtimes net60 \
           --jobs short \
           --exporters json \
-          --artifacts "../../reports/${{ matrix.configuration }}"
+          --artifacts "reports/${{ matrix.configuration }}"
       env:
         ASPNETCORE_ENVIRONMENT: ${{ matrix.configuration }}
         ConnectionStrings__DefaultConnection: "Host=localhost;Port=5432;Database=eventity_benchmark;Username=postgres;Password=postgres"

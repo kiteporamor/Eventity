@@ -1,11 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <OutputType>Exe</OutputType>
+        <OutputType>Library</OutputType>
         <TargetFramework>net6.0</TargetFramework>
         <Nullable>enable</Nullable>
         <IsPackable>false</IsPackable>
-        <GenerateProgramFile>false</GenerateProgramFile>
     </PropertyGroup>
 
     <ItemGroup>

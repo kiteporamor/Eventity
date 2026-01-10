@@ -1,0 +1,58 @@
+name: CI - Monitoring and Benchmarks
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  monitor-bench:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: EventityTest
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready -U postgres -d EventityTest
+          --health-interval 10s --health-timeout 5s --health-retries 5
+    env:
+      TEST_DB_HOST: postgres
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '6.0.x'
+
+      - name: Install GNU time
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gnu-time
+
+      - name: Restore and Build
+        run: dotnet build src/Eventity.sln -c Release --no-restore
+
+      - name: Sanity run: integration tests
+        run: dotnet test src/Eventity.Tests.Integration/Eventity.Tests.Integration.csproj -c Release --no-build
+
+      - name: Run resource measurements (tracing/logging scenarios)
+        run: |
+          chmod +x scripts/measure_resources.sh || true
+          bash scripts/measure_resources.sh
+
+      - name: Upload artifacts (resource report and Allure)
+        uses: actions/upload-artifact@v4
+        with:
+          name: monitoring-artifacts
+          path: |
+            artifacts/resource
+            artifacts/allure-results

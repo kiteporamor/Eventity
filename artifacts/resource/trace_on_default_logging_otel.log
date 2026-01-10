@@ -1,17 +1,17 @@
   Determining projects to restore...
-/Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Application/Eventity.Application.csproj : warning NU1504: Duplicate 'PackageReference' items found. Remove the duplicate items or use the Update functionality to ensure a consistent restore behavior. The duplicate 'PackageReference' items are: Microsoft.AspNetCore.Authentication.JwtBearer 6.0.0, Microsoft.AspNetCore.Authentication.JwtBearer ; Microsoft.Extensions.Configuration 7.0.0, Microsoft.Extensions.Configuration ; Microsoft.Extensions.DependencyInjection 7.0.0, Microsoft.Extensions.DependencyInjection ; Microsoft.Extensions.Logging 8.0.1, Microsoft.Extensions.Logging ; Microsoft.Extensions.Logging.Abstractions 8.0.3, Microsoft.Extensions.Logging.Abstractions ; Serilog 4.2.0, Serilog ; Serilog.Settings.Configuration 8.0.0, Serilog.Settings.Configuration ; Serilog.Sinks.File 7.0.0, Serilog.Sinks.File ; System.IdentityModel.Tokens.Jwt 8.8.0, System.IdentityModel.Tokens.Jwt .
-/Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Domain/Eventity.Domain.csproj : warning NU1504: Duplicate 'PackageReference' items found. Remove the duplicate items or use the Update functionality to ensure a consistent restore behavior. The duplicate 'PackageReference' items are: Microsoft.AspNetCore.Authentication.JwtBearer 6.0.0, Microsoft.AspNetCore.Authentication.JwtBearer ; Serilog 4.2.0, Serilog ; Serilog.Settings.Configuration 8.0.0, Serilog.Settings.Configuration ; Serilog.Sinks.File 7.0.0, Serilog.Sinks.File ; System.IdentityModel.Tokens.Jwt 8.8.0, System.IdentityModel.Tokens.Jwt .
-/Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.DataAccess/Eventity.DataAccess.csproj : warning NU1504: Duplicate 'PackageReference' items found. Remove the duplicate items or use the Update functionality to ensure a consistent restore behavior. The duplicate 'PackageReference' items are: Microsoft.Extensions.Configuration 7.0.0, Microsoft.Extensions.Configuration ; Microsoft.Extensions.DependencyInjection 7.0.0, Microsoft.Extensions.DependencyInjection ; Microsoft.Extensions.Logging 8.0.1, Microsoft.Extensions.Logging ; Microsoft.Extensions.Logging.Abstractions 8.0.3, Microsoft.Extensions.Logging.Abstractions ; Serilog 4.2.0, Serilog ; Serilog.Settings.Configuration 8.0.0, Serilog.Settings.Configuration ; Serilog.Sinks.File 7.0.0, Serilog.Sinks.File ; Microsoft.EntityFrameworkCore 7.0.20, Microsoft.EntityFrameworkCore ; Microsoft.EntityFrameworkCore.Design 7.0.20, Microsoft.EntityFrameworkCore.Design ; Npgsql.EntityFrameworkCore.PostgreSQL 7.0.11, Npgsql.EntityFrameworkCore.PostgreSQL ; MongoDB.Driver 3.5.0, MongoDB.Driver .
-/Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/Eventity.Tests.Integration.csproj : warning NU1504: Duplicate 'PackageReference' items found. Remove the duplicate items or use the Update functionality to ensure a consistent restore behavior. The duplicate 'PackageReference' items are: Microsoft.NET.Test.Sdk 17.8.0, Microsoft.NET.Test.Sdk 17.1.0; xunit 2.6.6, xunit 2.4.1; xunit.runner.visualstudio 2.5.6, xunit.runner.visualstudio 2.4.3; coverlet.collector 6.0.0, coverlet.collector 3.1.2.
+/Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Application/Eventity.Application.csproj : warning NU1504: Duplicate 'PackageReference' items found. Remove the duplicate items or use the Update functionality to ensure a consistent restore behavior. The duplicate 'PackageReference' items are: Microsoft.AspNetCore.Authentication.JwtBearer 6.0.0, Microsoft.AspNetCore.Authentication.JwtBearer ; Microsoft.Extensions.Configuration 7.0.0, Microsoft.Extensions.Configuration ; Microsoft.Extensions.DependencyInjection 7.0.0, Microsoft.Extensions.DependencyInjection ; Microsoft.Extensions.Logging 8.0.1, Microsoft.Extensions.Logging ; Microsoft.Extensions.Logging.Abstractions 8.0.3, Microsoft.Extensions.Logging.Abstractions ; Serilog 4.2.0, Serilog ; Serilog.Settings.Configuration 8.0.0, Serilog.Settings.Configuration ; Serilog.Sinks.File 7.0.0, Serilog.Sinks.File ; System.IdentityModel.Tokens.Jwt 8.8.0, System.IdentityModel.Tokens.Jwt ; Swashbuckle.AspNetCore 6.2.3, Swashbuckle.AspNetCore 6.9.0.
+/Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.DataAccess/Eventity.DataAccess.csproj : warning NU1504: Duplicate 'PackageReference' items found. Remove the duplicate items or use the Update functionality to ensure a consistent restore behavior. The duplicate 'PackageReference' items are: Microsoft.Extensions.Configuration 7.0.0, Microsoft.Extensions.Configuration ; Microsoft.Extensions.DependencyInjection 7.0.0, Microsoft.Extensions.DependencyInjection ; Microsoft.Extensions.Logging 8.0.1, Microsoft.Extensions.Logging ; Microsoft.Extensions.Logging.Abstractions 8.0.3, Microsoft.Extensions.Logging.Abstractions ; Serilog 4.2.0, Serilog ; Serilog.Settings.Configuration 8.0.0, Serilog.Settings.Configuration ; Serilog.Sinks.File 7.0.0, Serilog.Sinks.File ; Microsoft.EntityFrameworkCore 7.0.20, Microsoft.EntityFrameworkCore ; Microsoft.EntityFrameworkCore.Design 7.0.20, Microsoft.EntityFrameworkCore.Design ; Npgsql.EntityFrameworkCore.PostgreSQL 7.0.11, Npgsql.EntityFrameworkCore.PostgreSQL ; Swashbuckle.AspNetCore 6.2.3, Swashbuckle.AspNetCore 6.9.0.
+/Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Domain/Eventity.Domain.csproj : warning NU1504: Duplicate 'PackageReference' items found. Remove the duplicate items or use the Update functionality to ensure a consistent restore behavior. The duplicate 'PackageReference' items are: Microsoft.AspNetCore.Authentication.JwtBearer 6.0.0, Microsoft.AspNetCore.Authentication.JwtBearer ; Serilog 4.2.0, Serilog ; Serilog.Settings.Configuration 8.0.0, Serilog.Settings.Configuration ; Serilog.Sinks.File 7.0.0, Serilog.Sinks.File ; System.IdentityModel.Tokens.Jwt 8.8.0, System.IdentityModel.Tokens.Jwt ; Swashbuckle.AspNetCore 6.2.3, Swashbuckle.AspNetCore 6.9.0.
+/Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/Eventity.Tests.Integration.csproj : warning NU1504: Duplicate 'PackageReference' items found. Remove the duplicate items or use the Update functionality to ensure a consistent restore behavior. The duplicate 'PackageReference' items are: Microsoft.NET.Test.Sdk 17.8.0, Microsoft.NET.Test.Sdk 17.1.0; xunit 2.6.6, xunit 2.4.1; xunit.runner.visualstudio 2.5.6, xunit.runner.visualstudio 2.4.3; coverlet.collector 6.0.0, coverlet.collector 3.1.2; Swashbuckle.AspNetCore 6.2.3, Swashbuckle.AspNetCore 6.9.0.
   All projects are up-to-date for restore.
 /Users/ekaterinaparamonova/.nuget/packages/microsoft.bcl.memory/9.0.0/buildTransitive/netcoreapp2.0/Microsoft.Bcl.Memory.targets(4,5): warning : Microsoft.Bcl.Memory 9.0.0 doesn't support net6.0 and has not been tested with it. Consider upgrading your TargetFramework to net8.0 or later. You may also set <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings> in the project file to ignore this warning and attempt to run in this unsupported configuration at your own risk. [/Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/Eventity.Tests.Integration.csproj]
-/Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/Eventity.Tests.Integration.csproj : warning NU1504: Duplicate 'PackageReference' items found. Remove the duplicate items or use the Update functionality to ensure a consistent restore behavior. The duplicate 'PackageReference' items are: Microsoft.NET.Test.Sdk 17.8.0, Microsoft.NET.Test.Sdk 17.1.0; xunit 2.6.6, xunit 2.4.1; xunit.runner.visualstudio 2.5.6, xunit.runner.visualstudio 2.4.3; coverlet.collector 6.0.0, coverlet.collector 3.1.2.
-/Users/ekaterinaparamonova/.nuget/packages/microsoft.bcl.memory/9.0.0/buildTransitive/netcoreapp2.0/Microsoft.Bcl.Memory.targets(4,5): warning : Microsoft.Bcl.Memory 9.0.0 doesn't support net6.0 and has not been tested with it. Consider upgrading your TargetFramework to net8.0 or later. You may also set <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings> in the project file to ignore this warning and attempt to run in this unsupported configuration at your own risk. [/Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Application/Eventity.Application.csproj]
+/Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/Eventity.Tests.Integration.csproj : warning NU1504: Duplicate 'PackageReference' items found. Remove the duplicate items or use the Update functionality to ensure a consistent restore behavior. The duplicate 'PackageReference' items are: Microsoft.NET.Test.Sdk 17.8.0, Microsoft.NET.Test.Sdk 17.1.0; xunit 2.6.6, xunit 2.4.1; xunit.runner.visualstudio 2.5.6, xunit.runner.visualstudio 2.4.3; coverlet.collector 6.0.0, coverlet.collector 3.1.2; Swashbuckle.AspNetCore 6.2.3, Swashbuckle.AspNetCore 6.9.0.
 /Users/ekaterinaparamonova/.nuget/packages/microsoft.bcl.memory/9.0.0/buildTransitive/netcoreapp2.0/Microsoft.Bcl.Memory.targets(4,5): warning : Microsoft.Bcl.Memory 9.0.0 doesn't support net6.0 and has not been tested with it. Consider upgrading your TargetFramework to net8.0 or later. You may also set <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings> in the project file to ignore this warning and attempt to run in this unsupported configuration at your own risk. [/Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.DataAccess/Eventity.DataAccess.csproj]
+/Users/ekaterinaparamonova/.nuget/packages/microsoft.bcl.memory/9.0.0/buildTransitive/netcoreapp2.0/Microsoft.Bcl.Memory.targets(4,5): warning : Microsoft.Bcl.Memory 9.0.0 doesn't support net6.0 and has not been tested with it. Consider upgrading your TargetFramework to net8.0 or later. You may also set <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings> in the project file to ignore this warning and attempt to run in this unsupported configuration at your own risk. [/Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Application/Eventity.Application.csproj]
 /Users/ekaterinaparamonova/.nuget/packages/microsoft.bcl.memory/9.0.0/buildTransitive/netcoreapp2.0/Microsoft.Bcl.Memory.targets(4,5): warning : Microsoft.Bcl.Memory 9.0.0 doesn't support net6.0 and has not been tested with it. Consider upgrading your TargetFramework to net8.0 or later. You may also set <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings> in the project file to ignore this warning and attempt to run in this unsupported configuration at your own risk. [/Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Domain/Eventity.Domain.csproj]
-/Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Domain/Eventity.Domain.csproj : warning NU1504: Duplicate 'PackageReference' items found. Remove the duplicate items or use the Update functionality to ensure a consistent restore behavior. The duplicate 'PackageReference' items are: Microsoft.AspNetCore.Authentication.JwtBearer 6.0.0, Microsoft.AspNetCore.Authentication.JwtBearer ; Serilog 4.2.0, Serilog ; Serilog.Settings.Configuration 8.0.0, Serilog.Settings.Configuration ; Serilog.Sinks.File 7.0.0, Serilog.Sinks.File ; System.IdentityModel.Tokens.Jwt 8.8.0, System.IdentityModel.Tokens.Jwt .
-/Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.DataAccess/Eventity.DataAccess.csproj : warning NU1504: Duplicate 'PackageReference' items found. Remove the duplicate items or use the Update functionality to ensure a consistent restore behavior. The duplicate 'PackageReference' items are: Microsoft.Extensions.Configuration 7.0.0, Microsoft.Extensions.Configuration ; Microsoft.Extensions.DependencyInjection 7.0.0, Microsoft.Extensions.DependencyInjection ; Microsoft.Extensions.Logging 8.0.1, Microsoft.Extensions.Logging ; Microsoft.Extensions.Logging.Abstractions 8.0.3, Microsoft.Extensions.Logging.Abstractions ; Serilog 4.2.0, Serilog ; Serilog.Settings.Configuration 8.0.0, Serilog.Settings.Configuration ; Serilog.Sinks.File 7.0.0, Serilog.Sinks.File ; Microsoft.EntityFrameworkCore 7.0.20, Microsoft.EntityFrameworkCore ; Microsoft.EntityFrameworkCore.Design 7.0.20, Microsoft.EntityFrameworkCore.Design ; Npgsql.EntityFrameworkCore.PostgreSQL 7.0.11, Npgsql.EntityFrameworkCore.PostgreSQL ; MongoDB.Driver 3.5.0, MongoDB.Driver .
-/Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Application/Eventity.Application.csproj : warning NU1504: Duplicate 'PackageReference' items found. Remove the duplicate items or use the Update functionality to ensure a consistent restore behavior. The duplicate 'PackageReference' items are: Microsoft.AspNetCore.Authentication.JwtBearer 6.0.0, Microsoft.AspNetCore.Authentication.JwtBearer ; Microsoft.Extensions.Configuration 7.0.0, Microsoft.Extensions.Configuration ; Microsoft.Extensions.DependencyInjection 7.0.0, Microsoft.Extensions.DependencyInjection ; Microsoft.Extensions.Logging 8.0.1, Microsoft.Extensions.Logging ; Microsoft.Extensions.Logging.Abstractions 8.0.3, Microsoft.Extensions.Logging.Abstractions ; Serilog 4.2.0, Serilog ; Serilog.Settings.Configuration 8.0.0, Serilog.Settings.Configuration ; Serilog.Sinks.File 7.0.0, Serilog.Sinks.File ; System.IdentityModel.Tokens.Jwt 8.8.0, System.IdentityModel.Tokens.Jwt .
+/Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Domain/Eventity.Domain.csproj : warning NU1504: Duplicate 'PackageReference' items found. Remove the duplicate items or use the Update functionality to ensure a consistent restore behavior. The duplicate 'PackageReference' items are: Microsoft.AspNetCore.Authentication.JwtBearer 6.0.0, Microsoft.AspNetCore.Authentication.JwtBearer ; Serilog 4.2.0, Serilog ; Serilog.Settings.Configuration 8.0.0, Serilog.Settings.Configuration ; Serilog.Sinks.File 7.0.0, Serilog.Sinks.File ; System.IdentityModel.Tokens.Jwt 8.8.0, System.IdentityModel.Tokens.Jwt ; Swashbuckle.AspNetCore 6.2.3, Swashbuckle.AspNetCore 6.9.0.
+/Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.DataAccess/Eventity.DataAccess.csproj : warning NU1504: Duplicate 'PackageReference' items found. Remove the duplicate items or use the Update functionality to ensure a consistent restore behavior. The duplicate 'PackageReference' items are: Microsoft.Extensions.Configuration 7.0.0, Microsoft.Extensions.Configuration ; Microsoft.Extensions.DependencyInjection 7.0.0, Microsoft.Extensions.DependencyInjection ; Microsoft.Extensions.Logging 8.0.1, Microsoft.Extensions.Logging ; Microsoft.Extensions.Logging.Abstractions 8.0.3, Microsoft.Extensions.Logging.Abstractions ; Serilog 4.2.0, Serilog ; Serilog.Settings.Configuration 8.0.0, Serilog.Settings.Configuration ; Serilog.Sinks.File 7.0.0, Serilog.Sinks.File ; Microsoft.EntityFrameworkCore 7.0.20, Microsoft.EntityFrameworkCore ; Microsoft.EntityFrameworkCore.Design 7.0.20, Microsoft.EntityFrameworkCore.Design ; Npgsql.EntityFrameworkCore.PostgreSQL 7.0.11, Npgsql.EntityFrameworkCore.PostgreSQL ; Swashbuckle.AspNetCore 6.2.3, Swashbuckle.AspNetCore 6.9.0.
+/Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Application/Eventity.Application.csproj : warning NU1504: Duplicate 'PackageReference' items found. Remove the duplicate items or use the Update functionality to ensure a consistent restore behavior. The duplicate 'PackageReference' items are: Microsoft.AspNetCore.Authentication.JwtBearer 6.0.0, Microsoft.AspNetCore.Authentication.JwtBearer ; Microsoft.Extensions.Configuration 7.0.0, Microsoft.Extensions.Configuration ; Microsoft.Extensions.DependencyInjection 7.0.0, Microsoft.Extensions.DependencyInjection ; Microsoft.Extensions.Logging 8.0.1, Microsoft.Extensions.Logging ; Microsoft.Extensions.Logging.Abstractions 8.0.3, Microsoft.Extensions.Logging.Abstractions ; Serilog 4.2.0, Serilog ; Serilog.Settings.Configuration 8.0.0, Serilog.Settings.Configuration ; Serilog.Sinks.File 7.0.0, Serilog.Sinks.File ; System.IdentityModel.Tokens.Jwt 8.8.0, System.IdentityModel.Tokens.Jwt ; Swashbuckle.AspNetCore 6.2.3, Swashbuckle.AspNetCore 6.9.0.
   Eventity.Domain -> /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Domain/bin/Debug/net6.0/Eventity.Domain.dll
   Eventity.Application -> /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Application/bin/Debug/net6.0/Eventity.Application.dll
   Eventity.DataAccess -> /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.DataAccess/bin/Debug/net6.0/Eventity.DataAccess.dll
@@ -22,212 +22,1567 @@ Copyright (c) Microsoft Corporation.  All rights reserved.
 
 Starting test execution, please wait...
 A total of 1 test files matched the specified pattern.
-  Failed Eventity.Tests.Integration.ParticipationServiceIntegrationTests.AddParticipation_ShouldCreateParticipationAndNotification [1 ms]
-  Error Message:
-   System.Net.Internals.SocketExceptionFactory+ExtendedSocketException : nodename nor servname provided, or not known
-  Stack Trace:
-     at System.Net.Dns.GetHostEntryOrAddressesCore(String hostName, Boolean justAddresses, AddressFamily addressFamily, ValueStopwatch stopwatch)
-   at System.Net.Dns.<>c.<GetHostEntryOrAddressesCoreAsync>b__33_0(Object s, ValueStopwatch stopwatch)
-   at System.Net.Dns.<>c__DisplayClass39_0`1.<RunAsync>b__0(Task <p0>, Object <p1>)
-   at System.Threading.Tasks.ContinuationResultTaskFromTask`1.InnerInvoke()
-   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
---- End of stack trace from previous location ---
-   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
---- End of stack trace from previous location ---
-   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
-   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync[TResult](Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
-   at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
-   at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|215_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-   at Npgsql.PoolingDataSource.<Get>g__RentAsync|28_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|45_0(Boolean async, CancellationToken cancellationToken)
-   at Eventity.Tests.Integration.IntegrationTestBase.CreateTestDatabase() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 95
-   at Eventity.Tests.Integration.IntegrationTestBase.InitializeAsync() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 28
-  Failed Eventity.Tests.Integration.AuthServiceIntegrationTests.AuthenticateUser_WithValidCredentials_ShouldReturnToken [1 ms]
-  Error Message:
-   System.Net.Internals.SocketExceptionFactory+ExtendedSocketException : nodename nor servname provided, or not known
-  Stack Trace:
-     at System.Net.Dns.GetHostEntryOrAddressesCore(String hostName, Boolean justAddresses, AddressFamily addressFamily, ValueStopwatch stopwatch)
-   at System.Net.Dns.<>c.<GetHostEntryOrAddressesCoreAsync>b__33_0(Object s, ValueStopwatch stopwatch)
-   at System.Net.Dns.<>c__DisplayClass39_0`1.<RunAsync>b__0(Task <p0>, Object <p1>)
-   at System.Threading.Tasks.ContinuationResultTaskFromTask`1.InnerInvoke()
-   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
---- End of stack trace from previous location ---
-   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
---- End of stack trace from previous location ---
-   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
-   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync[TResult](Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
-   at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
-   at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|215_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-   at Npgsql.PoolingDataSource.<Get>g__RentAsync|28_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|45_0(Boolean async, CancellationToken cancellationToken)
-   at Eventity.Tests.Integration.IntegrationTestBase.CreateTestDatabase() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 95
-   at Eventity.Tests.Integration.IntegrationTestBase.InitializeAsync() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 28
-  Failed Eventity.Tests.Integration.CreateInviteSentIntegrationTests.CreateInviteSent_ShouldWorkCorrectly [1 ms]
-  Error Message:
-   System.Net.Internals.SocketExceptionFactory+ExtendedSocketException : nodename nor servname provided, or not known
-  Stack Trace:
-     at System.Net.Dns.GetHostEntryOrAddressesCore(String hostName, Boolean justAddresses, AddressFamily addressFamily, ValueStopwatch stopwatch)
-   at System.Net.Dns.<>c.<GetHostEntryOrAddressesCoreAsync>b__33_0(Object s, ValueStopwatch stopwatch)
-   at System.Net.Dns.<>c__DisplayClass39_0`1.<RunAsync>b__0(Task <p0>, Object <p1>)
-   at System.Threading.Tasks.ContinuationResultTaskFromTask`1.InnerInvoke()
-   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
---- End of stack trace from previous location ---
-   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
---- End of stack trace from previous location ---
-   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
-   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync[TResult](Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
-   at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
-   at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|215_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-   at Npgsql.PoolingDataSource.<Get>g__RentAsync|28_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|45_0(Boolean async, CancellationToken cancellationToken)
-   at Eventity.Tests.Integration.IntegrationTestBase.CreateTestDatabase() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 95
-   at Eventity.Tests.Integration.IntegrationTestBase.InitializeAsync() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 28
-  Failed Eventity.Tests.Integration.NotificationServiceIntegrationTests.AddNotification_ForEvent_ShouldCreateNotificationsForAllParticipants [1 ms]
-  Error Message:
-   System.Net.Internals.SocketExceptionFactory+ExtendedSocketException : nodename nor servname provided, or not known
-  Stack Trace:
-     at System.Net.Dns.GetHostEntryOrAddressesCore(String hostName, Boolean justAddresses, AddressFamily addressFamily, ValueStopwatch stopwatch)
-   at System.Net.Dns.<>c.<GetHostEntryOrAddressesCoreAsync>b__33_0(Object s, ValueStopwatch stopwatch)
-   at System.Net.Dns.<>c__DisplayClass39_0`1.<RunAsync>b__0(Task <p0>, Object <p1>)
-   at System.Threading.Tasks.ContinuationResultTaskFromTask`1.InnerInvoke()
-   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
---- End of stack trace from previous location ---
-   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
---- End of stack trace from previous location ---
-   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
-   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync[TResult](Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
-   at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
-   at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|215_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-   at Npgsql.PoolingDataSource.<Get>g__RentAsync|28_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|45_0(Boolean async, CancellationToken cancellationToken)
-   at Eventity.Tests.Integration.IntegrationTestBase.CreateTestDatabase() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 95
-   at Eventity.Tests.Integration.IntegrationTestBase.InitializeAsync() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 28
-  Failed Eventity.Tests.Integration.EventServiceIntegrationTests.CreateEvent_ShouldCreateEventAndOrganizerParticipation [1 ms]
-  Error Message:
-   System.Net.Internals.SocketExceptionFactory+ExtendedSocketException : nodename nor servname provided, or not known
-  Stack Trace:
-     at System.Net.Dns.GetHostEntryOrAddressesCore(String hostName, Boolean justAddresses, AddressFamily addressFamily, ValueStopwatch stopwatch)
-   at System.Net.Dns.<>c.<GetHostEntryOrAddressesCoreAsync>b__33_0(Object s, ValueStopwatch stopwatch)
-   at System.Net.Dns.<>c__DisplayClass39_0`1.<RunAsync>b__0(Task <p0>, Object <p1>)
-   at System.Threading.Tasks.ContinuationResultTaskFromTask`1.InnerInvoke()
-   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
---- End of stack trace from previous location ---
-   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
---- End of stack trace from previous location ---
-   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
-   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync[TResult](Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
-   at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
-   at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|215_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-   at Npgsql.PoolingDataSource.<Get>g__RentAsync|28_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|45_0(Boolean async, CancellationToken cancellationToken)
-   at Eventity.Tests.Integration.IntegrationTestBase.CreateTestDatabase() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 95
-   at Eventity.Tests.Integration.IntegrationTestBase.InitializeAsync() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 28
-  Failed Eventity.Tests.Integration.EventServiceIntegrationTests.GetEventById_ShouldReturnEvent [1 ms]
-  Error Message:
-   System.Net.Internals.SocketExceptionFactory+ExtendedSocketException : nodename nor servname provided, or not known
-  Stack Trace:
-     at System.Net.Dns.GetHostEntryOrAddressesCore(String hostName, Boolean justAddresses, AddressFamily addressFamily, ValueStopwatch stopwatch)
-   at System.Net.Dns.<>c.<GetHostEntryOrAddressesCoreAsync>b__33_0(Object s, ValueStopwatch stopwatch)
-   at System.Net.Dns.<>c__DisplayClass39_0`1.<RunAsync>b__0(Task <p0>, Object <p1>)
-   at System.Threading.Tasks.ContinuationResultTaskFromTask`1.InnerInvoke()
-   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
---- End of stack trace from previous location ---
-   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
---- End of stack trace from previous location ---
-   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
-   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync[TResult](Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
-   at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
-   at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|215_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-   at Npgsql.PoolingDataSource.<Get>g__RentAsync|28_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|45_0(Boolean async, CancellationToken cancellationToken)
-   at Eventity.Tests.Integration.IntegrationTestBase.CreateTestDatabase() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 95
-   at Eventity.Tests.Integration.IntegrationTestBase.InitializeAsync() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 28
-  Failed Eventity.Tests.Integration.ParticipationServiceIntegrationTests.UpdateParticipationStatus_ShouldUpdateStatus [1 ms]
-  Error Message:
-   System.Net.Internals.SocketExceptionFactory+ExtendedSocketException : nodename nor servname provided, or not known
-  Stack Trace:
-     at System.Net.Dns.GetHostEntryOrAddressesCore(String hostName, Boolean justAddresses, AddressFamily addressFamily, ValueStopwatch stopwatch)
-   at System.Net.Dns.<>c.<GetHostEntryOrAddressesCoreAsync>b__33_0(Object s, ValueStopwatch stopwatch)
-   at System.Net.Dns.<>c__DisplayClass39_0`1.<RunAsync>b__0(Task <p0>, Object <p1>)
-   at System.Threading.Tasks.ContinuationResultTaskFromTask`1.InnerInvoke()
-   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
---- End of stack trace from previous location ---
-   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
---- End of stack trace from previous location ---
-   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
-   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync[TResult](Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
-   at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
-   at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|215_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-   at Npgsql.PoolingDataSource.<Get>g__RentAsync|28_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|45_0(Boolean async, CancellationToken cancellationToken)
-   at Eventity.Tests.Integration.IntegrationTestBase.CreateTestDatabase() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 95
-   at Eventity.Tests.Integration.IntegrationTestBase.InitializeAsync() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 28
-  Failed Eventity.Tests.Integration.AuthServiceIntegrationTests.AuthenticateUser_WithInvalidPassword_ShouldThrowException [1 ms]
-  Error Message:
-   System.Net.Internals.SocketExceptionFactory+ExtendedSocketException : nodename nor servname provided, or not known
-  Stack Trace:
-     at System.Net.Dns.GetHostEntryOrAddressesCore(String hostName, Boolean justAddresses, AddressFamily addressFamily, ValueStopwatch stopwatch)
-   at System.Net.Dns.<>c.<GetHostEntryOrAddressesCoreAsync>b__33_0(Object s, ValueStopwatch stopwatch)
-   at System.Net.Dns.<>c__DisplayClass39_0`1.<RunAsync>b__0(Task <p0>, Object <p1>)
-   at System.Threading.Tasks.ContinuationResultTaskFromTask`1.InnerInvoke()
-   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
---- End of stack trace from previous location ---
-   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
---- End of stack trace from previous location ---
-   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
-   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync[TResult](Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
-   at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
-   at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|215_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-   at Npgsql.PoolingDataSource.<Get>g__RentAsync|28_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|45_0(Boolean async, CancellationToken cancellationToken)
-   at Eventity.Tests.Integration.IntegrationTestBase.CreateTestDatabase() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 95
-   at Eventity.Tests.Integration.IntegrationTestBase.InitializeAsync() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 28
-  Failed Eventity.Tests.Integration.AuthServiceIntegrationTests.RegisterUser_ShouldCreateUserAndReturnToken [1 ms]
-  Error Message:
-   System.Net.Internals.SocketExceptionFactory+ExtendedSocketException : nodename nor servname provided, or not known
-  Stack Trace:
-     at System.Net.Dns.GetHostEntryOrAddressesCore(String hostName, Boolean justAddresses, AddressFamily addressFamily, ValueStopwatch stopwatch)
-   at System.Net.Dns.<>c.<GetHostEntryOrAddressesCoreAsync>b__33_0(Object s, ValueStopwatch stopwatch)
-   at System.Net.Dns.<>c__DisplayClass39_0`1.<RunAsync>b__0(Task <p0>, Object <p1>)
-   at System.Threading.Tasks.ContinuationResultTaskFromTask`1.InnerInvoke()
-   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
---- End of stack trace from previous location ---
-   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
---- End of stack trace from previous location ---
-   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
-   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync[TResult](Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
-   at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
-   at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|215_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
-   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-   at Npgsql.PoolingDataSource.<Get>g__RentAsync|28_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
-   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|45_0(Boolean async, CancellationToken cancellationToken)
-   at Eventity.Tests.Integration.IntegrationTestBase.CreateTestDatabase() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 95
-   at Eventity.Tests.Integration.IntegrationTestBase.InitializeAsync() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 28
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (10ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      REVOKE CONNECT ON DATABASE "TestDb_9396aaf890" FROM PUBLIC;
+      SELECT pg_terminate_backend(pg_stat_activity.pid) FROM pg_stat_activity WHERE datname = 'TestDb_9396aaf890';
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (9ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      REVOKE CONNECT ON DATABASE "TestDb_4069e0865d" FROM PUBLIC;
+      SELECT pg_terminate_backend(pg_stat_activity.pid) FROM pg_stat_activity WHERE datname = 'TestDb_4069e0865d';
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (11ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      REVOKE CONNECT ON DATABASE "TestDb_3cf94f823e" FROM PUBLIC;
+      SELECT pg_terminate_backend(pg_stat_activity.pid) FROM pg_stat_activity WHERE datname = 'TestDb_3cf94f823e';
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (10ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      REVOKE CONNECT ON DATABASE "TestDb_d6dfa5f556" FROM PUBLIC;
+      SELECT pg_terminate_backend(pg_stat_activity.pid) FROM pg_stat_activity WHERE datname = 'TestDb_d6dfa5f556';
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (11ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      REVOKE CONNECT ON DATABASE "TestDb_f0cc157127" FROM PUBLIC;
+      SELECT pg_terminate_backend(pg_stat_activity.pid) FROM pg_stat_activity WHERE datname = 'TestDb_f0cc157127';
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (130ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      DROP DATABASE "TestDb_d6dfa5f556";
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (135ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      DROP DATABASE "TestDb_f0cc157127";
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (135ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      DROP DATABASE "TestDb_9396aaf890";
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (135ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      DROP DATABASE "TestDb_3cf94f823e";
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (136ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      DROP DATABASE "TestDb_4069e0865d";
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (132ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE DATABASE "TestDb_9396aaf890";
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (151ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE DATABASE "TestDb_f0cc157127";
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (148ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE DATABASE "TestDb_4069e0865d";
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (156ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE DATABASE "TestDb_3cf94f823e";
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (151ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE DATABASE "TestDb_d6dfa5f556";
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (10ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "__EFMigrationsHistory" (
+          "MigrationId" character varying(150) NOT NULL,
+          "ProductVersion" character varying(32) NOT NULL,
+          CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+      );
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (10ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "__EFMigrationsHistory" (
+          "MigrationId" character varying(150) NOT NULL,
+          "ProductVersion" character varying(32) NOT NULL,
+          CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+      );
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (10ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "__EFMigrationsHistory" (
+          "MigrationId" character varying(150) NOT NULL,
+          "ProductVersion" character varying(32) NOT NULL,
+          CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+      );
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (10ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "__EFMigrationsHistory" (
+          "MigrationId" character varying(150) NOT NULL,
+          "ProductVersion" character varying(32) NOT NULL,
+          CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+      );
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (8ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "__EFMigrationsHistory" (
+          "MigrationId" character varying(150) NOT NULL,
+          "ProductVersion" character varying(32) NOT NULL,
+          CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+      );
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (17ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT EXISTS (
+          SELECT 1 FROM pg_catalog.pg_class c
+          JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+          WHERE n.nspname='public' AND
+                c.relname='__EFMigrationsHistory'
+      )
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (17ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT EXISTS (
+          SELECT 1 FROM pg_catalog.pg_class c
+          JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+          WHERE n.nspname='public' AND
+                c.relname='__EFMigrationsHistory'
+      )
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (17ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT EXISTS (
+          SELECT 1 FROM pg_catalog.pg_class c
+          JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+          WHERE n.nspname='public' AND
+                c.relname='__EFMigrationsHistory'
+      )
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (17ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT EXISTS (
+          SELECT 1 FROM pg_catalog.pg_class c
+          JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+          WHERE n.nspname='public' AND
+                c.relname='__EFMigrationsHistory'
+      )
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (17ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT EXISTS (
+          SELECT 1 FROM pg_catalog.pg_class c
+          JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+          WHERE n.nspname='public' AND
+                c.relname='__EFMigrationsHistory'
+      )
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT "MigrationId", "ProductVersion"
+      FROM "__EFMigrationsHistory"
+      ORDER BY "MigrationId";
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT "MigrationId", "ProductVersion"
+      FROM "__EFMigrationsHistory"
+      ORDER BY "MigrationId";
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT "MigrationId", "ProductVersion"
+      FROM "__EFMigrationsHistory"
+      ORDER BY "MigrationId";
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT "MigrationId", "ProductVersion"
+      FROM "__EFMigrationsHistory"
+      ORDER BY "MigrationId";
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT "MigrationId", "ProductVersion"
+      FROM "__EFMigrationsHistory"
+      ORDER BY "MigrationId";
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Migrations[20402]
+      Applying migration '20251020143131_Initial'.
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Migrations[20402]
+      Applying migration '20251020143131_Initial'.
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Migrations[20402]
+      Applying migration '20251020143131_Initial'.
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Migrations[20402]
+      Applying migration '20251020143131_Initial'.
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Migrations[20402]
+      Applying migration '20251020143131_Initial'.
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (11ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "Events" (
+          "Id" uuid NOT NULL,
+          "Title" character varying(100) NOT NULL,
+          "Description" text NOT NULL,
+          "DateTime" timestamp with time zone NOT NULL,
+          "Address" text NOT NULL,
+          "OrganizerId" uuid NOT NULL,
+          CONSTRAINT "PK_Events" PRIMARY KEY ("Id")
+      );
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (11ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "Events" (
+          "Id" uuid NOT NULL,
+          "Title" character varying(100) NOT NULL,
+          "Description" text NOT NULL,
+          "DateTime" timestamp with time zone NOT NULL,
+          "Address" text NOT NULL,
+          "OrganizerId" uuid NOT NULL,
+          CONSTRAINT "PK_Events" PRIMARY KEY ("Id")
+      );
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (11ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "Events" (
+          "Id" uuid NOT NULL,
+          "Title" character varying(100) NOT NULL,
+          "Description" text NOT NULL,
+          "DateTime" timestamp with time zone NOT NULL,
+          "Address" text NOT NULL,
+          "OrganizerId" uuid NOT NULL,
+          CONSTRAINT "PK_Events" PRIMARY KEY ("Id")
+      );
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (11ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "Events" (
+          "Id" uuid NOT NULL,
+          "Title" character varying(100) NOT NULL,
+          "Description" text NOT NULL,
+          "DateTime" timestamp with time zone NOT NULL,
+          "Address" text NOT NULL,
+          "OrganizerId" uuid NOT NULL,
+          CONSTRAINT "PK_Events" PRIMARY KEY ("Id")
+      );
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (14ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "Events" (
+          "Id" uuid NOT NULL,
+          "Title" character varying(100) NOT NULL,
+          "Description" text NOT NULL,
+          "DateTime" timestamp with time zone NOT NULL,
+          "Address" text NOT NULL,
+          "OrganizerId" uuid NOT NULL,
+          CONSTRAINT "PK_Events" PRIMARY KEY ("Id")
+      );
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (10ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "Users" (
+          "Id" uuid NOT NULL,
+          "Name" text NOT NULL,
+          "Email" text NOT NULL,
+          "Login" text NOT NULL,
+          "Password" text NOT NULL,
+          "Role" integer NOT NULL,
+          CONSTRAINT "PK_Users" PRIMARY KEY ("Id")
+      );
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (10ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "Users" (
+          "Id" uuid NOT NULL,
+          "Name" text NOT NULL,
+          "Email" text NOT NULL,
+          "Login" text NOT NULL,
+          "Password" text NOT NULL,
+          "Role" integer NOT NULL,
+          CONSTRAINT "PK_Users" PRIMARY KEY ("Id")
+      );
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (12ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "Users" (
+          "Id" uuid NOT NULL,
+          "Name" text NOT NULL,
+          "Email" text NOT NULL,
+          "Login" text NOT NULL,
+          "Password" text NOT NULL,
+          "Role" integer NOT NULL,
+          CONSTRAINT "PK_Users" PRIMARY KEY ("Id")
+      );
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (12ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "Users" (
+          "Id" uuid NOT NULL,
+          "Name" text NOT NULL,
+          "Email" text NOT NULL,
+          "Login" text NOT NULL,
+          "Password" text NOT NULL,
+          "Role" integer NOT NULL,
+          CONSTRAINT "PK_Users" PRIMARY KEY ("Id")
+      );
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (10ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "Users" (
+          "Id" uuid NOT NULL,
+          "Name" text NOT NULL,
+          "Email" text NOT NULL,
+          "Login" text NOT NULL,
+          "Password" text NOT NULL,
+          "Role" integer NOT NULL,
+          CONSTRAINT "PK_Users" PRIMARY KEY ("Id")
+      );
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (7ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "Participations" (
+          "Id" uuid NOT NULL,
+          "UserId" uuid NOT NULL,
+          "EventId" uuid NOT NULL,
+          "Role" integer NOT NULL,
+          "Status" integer NOT NULL,
+          CONSTRAINT "PK_Participations" PRIMARY KEY ("Id"),
+          CONSTRAINT "FK_Participations_Events_EventId" FOREIGN KEY ("EventId") REFERENCES "Events" ("Id") ON DELETE RESTRICT,
+          CONSTRAINT "FK_Participations_Users_UserId" FOREIGN KEY ("UserId") REFERENCES "Users" ("Id") ON DELETE RESTRICT
+      );
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (7ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "Participations" (
+          "Id" uuid NOT NULL,
+          "UserId" uuid NOT NULL,
+          "EventId" uuid NOT NULL,
+          "Role" integer NOT NULL,
+          "Status" integer NOT NULL,
+          CONSTRAINT "PK_Participations" PRIMARY KEY ("Id"),
+          CONSTRAINT "FK_Participations_Events_EventId" FOREIGN KEY ("EventId") REFERENCES "Events" ("Id") ON DELETE RESTRICT,
+          CONSTRAINT "FK_Participations_Users_UserId" FOREIGN KEY ("UserId") REFERENCES "Users" ("Id") ON DELETE RESTRICT
+      );
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (9ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "Participations" (
+          "Id" uuid NOT NULL,
+          "UserId" uuid NOT NULL,
+          "EventId" uuid NOT NULL,
+          "Role" integer NOT NULL,
+          "Status" integer NOT NULL,
+          CONSTRAINT "PK_Participations" PRIMARY KEY ("Id"),
+          CONSTRAINT "FK_Participations_Events_EventId" FOREIGN KEY ("EventId") REFERENCES "Events" ("Id") ON DELETE RESTRICT,
+          CONSTRAINT "FK_Participations_Users_UserId" FOREIGN KEY ("UserId") REFERENCES "Users" ("Id") ON DELETE RESTRICT
+      );
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (8ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "Participations" (
+          "Id" uuid NOT NULL,
+          "UserId" uuid NOT NULL,
+          "EventId" uuid NOT NULL,
+          "Role" integer NOT NULL,
+          "Status" integer NOT NULL,
+          CONSTRAINT "PK_Participations" PRIMARY KEY ("Id"),
+          CONSTRAINT "FK_Participations_Events_EventId" FOREIGN KEY ("EventId") REFERENCES "Events" ("Id") ON DELETE RESTRICT,
+          CONSTRAINT "FK_Participations_Users_UserId" FOREIGN KEY ("UserId") REFERENCES "Users" ("Id") ON DELETE RESTRICT
+      );
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (9ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "Participations" (
+          "Id" uuid NOT NULL,
+          "UserId" uuid NOT NULL,
+          "EventId" uuid NOT NULL,
+          "Role" integer NOT NULL,
+          "Status" integer NOT NULL,
+          CONSTRAINT "PK_Participations" PRIMARY KEY ("Id"),
+          CONSTRAINT "FK_Participations_Events_EventId" FOREIGN KEY ("EventId") REFERENCES "Events" ("Id") ON DELETE RESTRICT,
+          CONSTRAINT "FK_Participations_Users_UserId" FOREIGN KEY ("UserId") REFERENCES "Users" ("Id") ON DELETE RESTRICT
+      );
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (11ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "Notifications" (
+          "Id" uuid NOT NULL,
+          "ParticipationId" uuid NOT NULL,
+          "Text" text NOT NULL,
+          "SentAt" timestamp with time zone NOT NULL,
+          "Type" integer NOT NULL,
+          CONSTRAINT "PK_Notifications" PRIMARY KEY ("Id"),
+          CONSTRAINT "FK_Notifications_Participations_ParticipationId" FOREIGN KEY ("ParticipationId") REFERENCES "Participations" ("Id") ON DELETE CASCADE
+      );
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (11ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "Notifications" (
+          "Id" uuid NOT NULL,
+          "ParticipationId" uuid NOT NULL,
+          "Text" text NOT NULL,
+          "SentAt" timestamp with time zone NOT NULL,
+          "Type" integer NOT NULL,
+          CONSTRAINT "PK_Notifications" PRIMARY KEY ("Id"),
+          CONSTRAINT "FK_Notifications_Participations_ParticipationId" FOREIGN KEY ("ParticipationId") REFERENCES "Participations" ("Id") ON DELETE CASCADE
+      );
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (11ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "Notifications" (
+          "Id" uuid NOT NULL,
+          "ParticipationId" uuid NOT NULL,
+          "Text" text NOT NULL,
+          "SentAt" timestamp with time zone NOT NULL,
+          "Type" integer NOT NULL,
+          CONSTRAINT "PK_Notifications" PRIMARY KEY ("Id"),
+          CONSTRAINT "FK_Notifications_Participations_ParticipationId" FOREIGN KEY ("ParticipationId") REFERENCES "Participations" ("Id") ON DELETE CASCADE
+      );
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (12ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "Notifications" (
+          "Id" uuid NOT NULL,
+          "ParticipationId" uuid NOT NULL,
+          "Text" text NOT NULL,
+          "SentAt" timestamp with time zone NOT NULL,
+          "Type" integer NOT NULL,
+          CONSTRAINT "PK_Notifications" PRIMARY KEY ("Id"),
+          CONSTRAINT "FK_Notifications_Participations_ParticipationId" FOREIGN KEY ("ParticipationId") REFERENCES "Participations" ("Id") ON DELETE CASCADE
+      );
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (13ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "Notifications" (
+          "Id" uuid NOT NULL,
+          "ParticipationId" uuid NOT NULL,
+          "Text" text NOT NULL,
+          "SentAt" timestamp with time zone NOT NULL,
+          "Type" integer NOT NULL,
+          CONSTRAINT "PK_Notifications" PRIMARY KEY ("Id"),
+          CONSTRAINT "FK_Notifications_Participations_ParticipationId" FOREIGN KEY ("ParticipationId") REFERENCES "Participations" ("Id") ON DELETE CASCADE
+      );
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Notifications_ParticipationId" ON "Notifications" ("ParticipationId");
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (5ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Notifications_ParticipationId" ON "Notifications" ("ParticipationId");
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (7ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Notifications_ParticipationId" ON "Notifications" ("ParticipationId");
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (5ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Notifications_ParticipationId" ON "Notifications" ("ParticipationId");
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (7ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Notifications_ParticipationId" ON "Notifications" ("ParticipationId");
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Participations_EventId" ON "Participations" ("EventId");
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (5ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Participations_EventId" ON "Participations" ("EventId");
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Participations_EventId" ON "Participations" ("EventId");
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Participations_EventId" ON "Participations" ("EventId");
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Participations_UserId" ON "Participations" ("UserId");
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Participations_EventId" ON "Participations" ("EventId");
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (5ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Participations_UserId" ON "Participations" ("UserId");
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Participations_UserId" ON "Participations" ("UserId");
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (5ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Participations_UserId" ON "Participations" ("UserId");
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+      VALUES ('20251020143131_Initial', '7.0.20');
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+      VALUES ('20251020143131_Initial', '7.0.20');
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+      VALUES ('20251020143131_Initial', '7.0.20');
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Participations_UserId" ON "Participations" ("UserId");
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+      VALUES ('20251020143131_Initial', '7.0.20');
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+      VALUES ('20251020143131_Initial', '7.0.20');
+[40m[32minfo[39m[22m[49m: Eventity.Application.Services.AuthService[0]
+      Registration attempt. Login: eventorg, Email: organizer@test.com
+[40m[32minfo[39m[22m[49m: Eventity.Application.Services.AuthService[0]
+      Registration attempt. Login: testuser, Email: test@email.com
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (26ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?', @p3='?', @p4='?', @p5='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Users" ("Id", "Email", "Login", "Name", "Password", "Role")
+      VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (26ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?', @p3='?', @p4='?', @p5='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Users" ("Id", "Email", "Login", "Name", "Password", "Role")
+      VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (26ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?', @p3='?', @p4='?', @p5='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Users" ("Id", "Email", "Login", "Name", "Password", "Role")
+      VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+[40m[32minfo[39m[22m[49m: UserService[0]
+      User created successfully. ID: 9f9c7d5e-ab25-49db-b5ca-c79b0ec6d8d3, Login: organizer, Role: User
+[40m[32minfo[39m[22m[49m: UserService[0]
+      User created successfully. ID: 71deba64-e217-44b2-93e7-8c8dbf75be4e, Login: organizer, Role: User
+[40m[32minfo[39m[22m[49m: UserService[0]
+      User created successfully. ID: 214cb26b-fe9b-41b8-be2e-6cf34a7ddfa2, Login: organizer, Role: User
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?', @p3='?', @p4='?', @p5='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Users" ("Id", "Email", "Login", "Name", "Password", "Role")
+      VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?', @p3='?', @p4='?', @p5='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Users" ("Id", "Email", "Login", "Name", "Password", "Role")
+      VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+[40m[32minfo[39m[22m[49m: UserService[0]
+      User created successfully. ID: c84903b7-202d-4d63-83e1-d12ac0ec747f, Login: participant1, Role: User
+[40m[32minfo[39m[22m[49m: UserService[0]
+      User created successfully. ID: 34ae690d-531f-4928-b84d-5ad5cf2d00c4, Login: participant, Role: User
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?', @p3='?', @p4='?', @p5='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Users" ("Id", "Email", "Login", "Name", "Password", "Role")
+      VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+[40m[32minfo[39m[22m[49m: UserService[0]
+      User created successfully. ID: 177b6d8b-2af3-4e36-93a2-555551cfb131, Login: participant2, Role: User
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (5ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?' (DbType = DateTime), @p3='?', @p4='?' (DbType = Guid), @p5='?'], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Events" ("Id", "Address", "DateTime", "Description", "OrganizerId", "Title")
+      VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (5ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?' (DbType = DateTime), @p3='?', @p4='?' (DbType = Guid), @p5='?'], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Events" ("Id", "Address", "DateTime", "Description", "OrganizerId", "Title")
+      VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (5ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?' (DbType = DateTime), @p3='?', @p4='?' (DbType = Guid), @p5='?'], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Events" ("Id", "Address", "DateTime", "Description", "OrganizerId", "Title")
+      VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+[40m[32minfo[39m[22m[49m: Eventity.DataAccess.Repositories.EventRepository[0]
+      Event added successfully: 6f1ba58a-e152-499f-a14e-c6e68b009f77
+[40m[32minfo[39m[22m[49m: Eventity.DataAccess.Repositories.EventRepository[0]
+      Event added successfully: ef8472ca-62b4-4f31-8c43-673ab5afc8b3
+[40m[32minfo[39m[22m[49m: Eventity.DataAccess.Repositories.EventRepository[0]
+      Event added successfully: 8144faa8-8059-4d24-89b4-2075c6b303fe
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__login_0='?'], CommandType='Text', CommandTimeout='30']
+      SELECT u."Id", u."Email", u."Login", u."Name", u."Password", u."Role"
+      FROM "Users" AS u
+      WHERE u."Login" = @__login_0
+      LIMIT 1
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__login_0='?'], CommandType='Text', CommandTimeout='30']
+      SELECT u."Id", u."Email", u."Login", u."Name", u."Password", u."Role"
+      FROM "Users" AS u
+      WHERE u."Login" = @__login_0
+      LIMIT 1
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Participations" ("Id", "EventId", "Role", "Status", "UserId")
+      VALUES (@p0, @p1, @p2, @p3, @p4);
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Participations" ("Id", "EventId", "Role", "Status", "UserId")
+      VALUES (@p0, @p1, @p2, @p3, @p4);
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Participations" ("Id", "EventId", "Role", "Status", "UserId")
+      VALUES (@p0, @p1, @p2, @p3, @p4);
+[40m[1m[33mwarn[39m[22m[49m: Eventity.DataAccess.Repositories.UserRepository[0]
+      User with login testuser not found
+[40m[1m[33mwarn[39m[22m[49m: Eventity.DataAccess.Repositories.UserRepository[0]
+      User with login eventorg not found
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?', @p3='?', @p4='?', @p5='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Users" ("Id", "Email", "Login", "Name", "Password", "Role")
+      VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (4ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?', @p3='?', @p4='?', @p5='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Users" ("Id", "Email", "Login", "Name", "Password", "Role")
+      VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+[40m[32minfo[39m[22m[49m: Eventity.Application.Services.EventService[0]
+      Event created successfully. ID: ef8472ca-62b4-4f31-8c43-673ab5afc8b3, Title: Test Event, Organizer: 214cb26b-fe9b-41b8-be2e-6cf34a7ddfa2
+[40m[32minfo[39m[22m[49m: Eventity.Application.Services.EventService[0]
+      Event created successfully. ID: 8144faa8-8059-4d24-89b4-2075c6b303fe, Title: Test Event, Organizer: 71deba64-e217-44b2-93e7-8c8dbf75be4e
+[40m[32minfo[39m[22m[49m: Eventity.Application.Services.EventService[0]
+      Event created successfully. ID: 6f1ba58a-e152-499f-a14e-c6e68b009f77, Title: Test Event, Organizer: 9f9c7d5e-ab25-49db-b5ca-c79b0ec6d8d3
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT e."Id", e."Address", e."DateTime", e."Description", e."OrganizerId", e."Title"
+      FROM "Events" AS e
+      WHERE e."Id" = @__id_0
+      LIMIT 1
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT e."Id", e."Address", e."DateTime", e."Description", e."OrganizerId", e."Title"
+      FROM "Events" AS e
+      WHERE e."Id" = @__id_0
+      LIMIT 1
+     Warning:
+     The component "Fluent Assertions" is governed by the rules defined in the Xceed License Agreement and
+     the Xceed Fluent Assertions Community License. You may use Fluent Assertions free of charge for
+     non-commercial use only. An active subscription is required to use Fluent Assertions for commercial use.
 
-Failed!  - Failed:     9, Passed:     0, Skipped:     0, Total:     9, Duration: 40 s - Eventity.Tests.Integration.dll (net6.0)
+     Please contact Xceed Sales mailto:sales@xceed.com to acquire a subscription at a very low cost.
+
+     A paid commercial license supports the development and continued increasing support of
+     Fluent Assertions users under both commercial and community licenses. Help us
+     keep Fluent Assertions at the forefront of unit testing.
+
+     For more information, visit https://xceed.com/products/unit-testing/fluent-assertions/
+[40m[32minfo[39m[22m[49m: Eventity.DataAccess.Repositories.EventRepository[0]
+      Event retrieved: ef8472ca-62b4-4f31-8c43-673ab5afc8b3
+[40m[32minfo[39m[22m[49m: Eventity.DataAccess.Repositories.EventRepository[0]
+      Event retrieved: 8144faa8-8059-4d24-89b4-2075c6b303fe
+[40m[32minfo[39m[22m[49m: Eventity.Application.Services.JwtService[0]
+      JWT token generated for user 273434b4-10d9-4133-82fb-16b13d87721f
+[40m[32minfo[39m[22m[49m: Eventity.Application.Services.JwtService[0]
+      JWT token generated for user ff4d5f74-0205-4419-abe2-179603deba8a
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Participations" ("Id", "EventId", "Role", "Status", "UserId")
+      VALUES (@p0, @p1, @p2, @p3, @p4);
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (4ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Participations" ("Id", "EventId", "Role", "Status", "UserId")
+      VALUES (@p0, @p1, @p2, @p3, @p4);
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__eventId_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."EventId", p."Role", p."Status", p."UserId"
+      FROM "Participations" AS p
+      WHERE p."EventId" = @__eventId_0
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__eventId_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."EventId", p."Role", p."Status", p."UserId"
+      FROM "Participations" AS p
+      WHERE p."EventId" = @__eventId_0
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__eventId_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."EventId", p."Role", p."Status", p."UserId"
+      FROM "Participations" AS p
+      WHERE p."EventId" = @__eventId_0
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT u."Id", u."Email", u."Login", u."Name", u."Password", u."Role"
+      FROM "Users" AS u
+      WHERE u."Id" = @__id_0
+      LIMIT 1
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT u."Id", u."Email", u."Login", u."Name", u."Password", u."Role"
+      FROM "Users" AS u
+      WHERE u."Id" = @__id_0
+      LIMIT 1
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT e."Id", e."Address", e."DateTime", e."Description", e."OrganizerId", e."Title"
+      FROM "Events" AS e
+      WHERE e."Id" = @__id_0
+      LIMIT 1
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT e."Id", e."Address", e."DateTime", e."Description", e."OrganizerId", e."Title"
+      FROM "Events" AS e
+      WHERE e."Id" = @__id_0
+      LIMIT 1
+[40m[32minfo[39m[22m[49m: Eventity.DataAccess.Repositories.EventRepository[0]
+      Event retrieved: ef8472ca-62b4-4f31-8c43-673ab5afc8b3
+[40m[32minfo[39m[22m[49m: Eventity.DataAccess.Repositories.EventRepository[0]
+      Event retrieved: 8144faa8-8059-4d24-89b4-2075c6b303fe
+[40m[32minfo[39m[22m[49m: Eventity.DataAccess.Repositories.NotificationRepository[0]
+      Adding new notification with Id 9ee247b3-7a9c-48c2-bd1d-79a9c1fe8128
+[40m[32minfo[39m[22m[49m: Eventity.DataAccess.Repositories.NotificationRepository[0]
+      Adding new notification with Id 8d9b2d99-d102-42cc-a2af-a768c50d74e3
+[40m[32minfo[39m[22m[49m: Eventity.Application.Services.AuthService[0]
+      User registered successfully. UserId: 273434b4-10d9-4133-82fb-16b13d87721f
+[40m[32minfo[39m[22m[49m: Eventity.Application.Services.AuthService[0]
+      User registered successfully. UserId: ff4d5f74-0205-4419-abe2-179603deba8a
+[40m[32minfo[39m[22m[49m: Eventity.Application.Services.AuthService[0]
+      Registration attempt. Login: eventpart, Email: participant@test.com
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (4ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = DateTime), @p3='?', @p4='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Notifications" ("Id", "ParticipationId", "SentAt", "Text", "Type")
+      VALUES (@p0, @p1, @p2, @p3, @p4);
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (5ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = DateTime), @p3='?', @p4='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Notifications" ("Id", "ParticipationId", "SentAt", "Text", "Type")
+      VALUES (@p0, @p1, @p2, @p3, @p4);
+[40m[32minfo[39m[22m[49m: Eventity.Application.Services.AuthService[0]
+      Authentication attempt for login: testuser
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__login_0='?'], CommandType='Text', CommandTimeout='30']
+      SELECT u."Id", u."Email", u."Login", u."Name", u."Password", u."Role"
+      FROM "Users" AS u
+      WHERE u."Login" = @__login_0
+      LIMIT 1
+[40m[1m[33mwarn[39m[22m[49m: Eventity.DataAccess.Repositories.UserRepository[0]
+      User with login eventpart not found
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__login_0='?'], CommandType='Text', CommandTimeout='30']
+      SELECT u."Id", u."Email", u."Login", u."Name", u."Password", u."Role"
+      FROM "Users" AS u
+      WHERE u."Login" = @__login_0
+      LIMIT 1
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT u."Id", u."Email", u."Login", u."Name", u."Password", u."Role"
+      FROM "Users" AS u
+      WHERE u."Id" = @__id_0
+      LIMIT 1
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT u."Id", u."Email", u."Login", u."Name", u."Password", u."Role"
+      FROM "Users" AS u
+      WHERE u."Id" = @__id_0
+      LIMIT 1
+[40m[32minfo[39m[22m[49m: Eventity.Application.Services.JwtService[0]
+      JWT token generated for user ff4d5f74-0205-4419-abe2-179603deba8a
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (4ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?', @p3='?', @p4='?', @p5='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Users" ("Id", "Email", "Login", "Name", "Password", "Role")
+      VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+[40m[32minfo[39m[22m[49m: Eventity.Application.Services.AuthService[0]
+      User authenticated successfully. UserId: ff4d5f74-0205-4419-abe2-179603deba8a
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT e."Id", e."Address", e."DateTime", e."Description", e."OrganizerId", e."Title"
+      FROM "Events" AS e
+      WHERE e."Id" = @__id_0
+      LIMIT 1
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT e."Id", e."Address", e."DateTime", e."Description", e."OrganizerId", e."Title"
+      FROM "Events" AS e
+      WHERE e."Id" = @__id_0
+      LIMIT 1
+[40m[32minfo[39m[22m[49m: Eventity.Application.Services.JwtService[0]
+      JWT token generated for user 8d2cbda7-31c3-4c61-929d-8e2b85e9a7c4
+[40m[32minfo[39m[22m[49m: Eventity.DataAccess.Repositories.EventRepository[0]
+      Event retrieved: ef8472ca-62b4-4f31-8c43-673ab5afc8b3
+[40m[32minfo[39m[22m[49m: Eventity.DataAccess.Repositories.EventRepository[0]
+      Event retrieved: 8144faa8-8059-4d24-89b4-2075c6b303fe
+[40m[32minfo[39m[22m[49m: Eventity.Application.Services.AuthService[0]
+      User registered successfully. UserId: 8d2cbda7-31c3-4c61-929d-8e2b85e9a7c4
+[40m[32minfo[39m[22m[49m: Eventity.DataAccess.Repositories.NotificationRepository[0]
+      Adding new notification with Id 1ffcfbda-3e69-475a-ae2c-1ee3791f55e9
+[40m[32minfo[39m[22m[49m: Eventity.DataAccess.Repositories.NotificationRepository[0]
+      Adding new notification with Id 6eb16b0a-179e-4939-9e16-49d589f4d4d1
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?' (DbType = DateTime), @p3='?', @p4='?' (DbType = Guid), @p5='?'], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Events" ("Id", "Address", "DateTime", "Description", "OrganizerId", "Title")
+      VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+[40m[32minfo[39m[22m[49m: Eventity.DataAccess.Repositories.EventRepository[0]
+      Event added successfully: 4edd50bc-a6b5-4353-a3df-2580db3efe85
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = DateTime), @p3='?', @p4='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Notifications" ("Id", "ParticipationId", "SentAt", "Text", "Type")
+      VALUES (@p0, @p1, @p2, @p3, @p4);
+[40m[32minfo[39m[22m[49m: Eventity.Application.Services.NotificationService[0]
+      Notifications created successfully
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (4ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = DateTime), @p3='?', @p4='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Notifications" ("Id", "ParticipationId", "SentAt", "Text", "Type")
+      VALUES (@p0, @p1, @p2, @p3, @p4);
+[40m[32minfo[39m[22m[49m: Eventity.Application.Services.ParticipationService[0]
+      Participation created. ID: b07b155d-5130-4ebb-a724-65a515927ed5, UserID: c84903b7-202d-4d63-83e1-d12ac0ec747f, EventID: 8144faa8-8059-4d24-89b4-2075c6b303fe
+[40m[32minfo[39m[22m[49m: Eventity.Application.Services.NotificationService[0]
+      Notifications created successfully
+[40m[32minfo[39m[22m[49m: Eventity.Application.Services.ParticipationService[0]
+      Participation created. ID: 6f76f73a-d68a-488b-aab3-7d6f8a381df9, UserID: 34ae690d-531f-4928-b84d-5ad5cf2d00c4, EventID: ef8472ca-62b4-4f31-8c43-673ab5afc8b3
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT e."Id", e."Address", e."DateTime", e."Description", e."OrganizerId", e."Title"
+      FROM "Events" AS e
+      WHERE e."Id" = @__id_0
+      LIMIT 1
+[40m[32minfo[39m[22m[49m: Eventity.DataAccess.Repositories.NotificationRepository[0]
+      Getting all notifications
+[40m[32minfo[39m[22m[49m: Eventity.DataAccess.Repositories.EventRepository[0]
+      Event retrieved: 8144faa8-8059-4d24-89b4-2075c6b303fe
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Participations" ("Id", "EventId", "Role", "Status", "UserId")
+      VALUES (@p0, @p1, @p2, @p3, @p4);
+[40m[32minfo[39m[22m[49m: Eventity.Application.Services.EventService[0]
+      Event created successfully. ID: 4edd50bc-a6b5-4353-a3df-2580db3efe85, Title: Conference, Organizer: 273434b4-10d9-4133-82fb-16b13d87721f
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT e."Id", e."Address", e."DateTime", e."Description", e."OrganizerId", e."Title"
+      FROM "Events" AS e
+      WHERE e."Id" = @__id_0
+      LIMIT 1
+[40m[32minfo[39m[22m[49m: Eventity.DataAccess.Repositories.EventRepository[0]
+      Event retrieved: 4edd50bc-a6b5-4353-a3df-2580db3efe85
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT n."Id", n."ParticipationId", n."SentAt", n."Text", n."Type"
+      FROM "Notifications" AS n
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (6ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Participations" ("Id", "EventId", "Role", "Status", "UserId")
+      VALUES (@p0, @p1, @p2, @p3, @p4);
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (9ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Participations" ("Id", "EventId", "Role", "Status", "UserId")
+      VALUES (@p0, @p1, @p2, @p3, @p4);
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__eventId_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."EventId", p."Role", p."Status", p."UserId"
+      FROM "Participations" AS p
+      WHERE p."EventId" = @__eventId_0
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT u."Id", u."Email", u."Login", u."Name", u."Password", u."Role"
+      FROM "Users" AS u
+      WHERE u."Id" = @__id_0
+      LIMIT 1
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__eventId_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."EventId", p."Role", p."Status", p."UserId"
+      FROM "Participations" AS p
+      WHERE p."EventId" = @__eventId_0
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT e."Id", e."Address", e."DateTime", e."Description", e."OrganizerId", e."Title"
+      FROM "Events" AS e
+      WHERE e."Id" = @__id_0
+      LIMIT 1
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT u."Id", u."Email", u."Login", u."Name", u."Password", u."Role"
+      FROM "Users" AS u
+      WHERE u."Id" = @__id_0
+      LIMIT 1
+[40m[32minfo[39m[22m[49m: Eventity.DataAccess.Repositories.EventRepository[0]
+      Event retrieved: 4edd50bc-a6b5-4353-a3df-2580db3efe85
+[40m[32minfo[39m[22m[49m: Eventity.DataAccess.Repositories.NotificationRepository[0]
+      Adding new notification with Id 554f4fe4-728a-46e7-8741-4cc28128b527
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT e."Id", e."Address", e."DateTime", e."Description", e."OrganizerId", e."Title"
+      FROM "Events" AS e
+      WHERE e."Id" = @__id_0
+      LIMIT 1
+[40m[32minfo[39m[22m[49m: Eventity.DataAccess.Repositories.EventRepository[0]
+      Event retrieved: 8144faa8-8059-4d24-89b4-2075c6b303fe
+[40m[32minfo[39m[22m[49m: Eventity.DataAccess.Repositories.NotificationRepository[0]
+      Adding new notification with Id 79451edb-c35e-48b5-b24f-1b984cb5f468
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (9ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = DateTime), @p3='?', @p4='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Notifications" ("Id", "ParticipationId", "SentAt", "Text", "Type")
+      VALUES (@p0, @p1, @p2, @p3, @p4);
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT u."Id", u."Email", u."Login", u."Name", u."Password", u."Role"
+      FROM "Users" AS u
+      WHERE u."Id" = @__id_0
+      LIMIT 1
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (15ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = DateTime), @p3='?', @p4='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Notifications" ("Id", "ParticipationId", "SentAt", "Text", "Type")
+      VALUES (@p0, @p1, @p2, @p3, @p4);
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT e."Id", e."Address", e."DateTime", e."Description", e."OrganizerId", e."Title"
+      FROM "Events" AS e
+      WHERE e."Id" = @__id_0
+      LIMIT 1
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT u."Id", u."Email", u."Login", u."Name", u."Password", u."Role"
+      FROM "Users" AS u
+      WHERE u."Id" = @__id_0
+      LIMIT 1
+[40m[32minfo[39m[22m[49m: Eventity.DataAccess.Repositories.EventRepository[0]
+      Event retrieved: 8144faa8-8059-4d24-89b4-2075c6b303fe
+[40m[32minfo[39m[22m[49m: Eventity.DataAccess.Repositories.NotificationRepository[0]
+      Adding new notification with Id bb3cb801-e876-4270-b0de-cf5a90b70281
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT e."Id", e."Address", e."DateTime", e."Description", e."OrganizerId", e."Title"
+      FROM "Events" AS e
+      WHERE e."Id" = @__id_0
+      LIMIT 1
+[40m[32minfo[39m[22m[49m: Eventity.DataAccess.Repositories.EventRepository[0]
+      Event retrieved: 4edd50bc-a6b5-4353-a3df-2580db3efe85
+[40m[32minfo[39m[22m[49m: Eventity.DataAccess.Repositories.NotificationRepository[0]
+      Adding new notification with Id f3560ef2-e894-4c18-9b65-70ce25f2a8d3
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = DateTime), @p3='?', @p4='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Notifications" ("Id", "ParticipationId", "SentAt", "Text", "Type")
+      VALUES (@p0, @p1, @p2, @p3, @p4);
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = DateTime), @p3='?', @p4='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Notifications" ("Id", "ParticipationId", "SentAt", "Text", "Type")
+      VALUES (@p0, @p1, @p2, @p3, @p4);
+[40m[32minfo[39m[22m[49m: Eventity.Application.Services.NotificationService[0]
+      Notifications created successfully
+[40m[32minfo[39m[22m[49m: Eventity.Application.Services.ParticipationService[0]
+      Participation created. ID: 9f8ebc9c-1b72-45c9-bc9e-1a9c977c1a46, UserID: 8d2cbda7-31c3-4c61-929d-8e2b85e9a7c4, EventID: 4edd50bc-a6b5-4353-a3df-2580db3efe85
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT u."Id", u."Email", u."Login", u."Name", u."Password", u."Role"
+      FROM "Users" AS u
+      WHERE u."Id" = @__id_0
+      LIMIT 1
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT e."Id", e."Address", e."DateTime", e."Description", e."OrganizerId", e."Title"
+      FROM "Events" AS e
+      WHERE e."Id" = @__id_0
+      LIMIT 1
+[40m[32minfo[39m[22m[49m: Eventity.DataAccess.Repositories.EventRepository[0]
+      Event retrieved: 8144faa8-8059-4d24-89b4-2075c6b303fe
+[40m[32minfo[39m[22m[49m: Eventity.DataAccess.Repositories.NotificationRepository[0]
+      Adding new notification with Id 8c495893-e785-4749-acbc-36d4a8396ff4
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = DateTime), @p3='?', @p4='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Notifications" ("Id", "ParticipationId", "SentAt", "Text", "Type")
+      VALUES (@p0, @p1, @p2, @p3, @p4);
+[40m[32minfo[39m[22m[49m: Eventity.Application.Services.NotificationService[0]
+      Notifications created successfully
+[40m[32minfo[39m[22m[49m: Eventity.Application.Services.ParticipationService[0]
+      Participation created. ID: c339f16f-e8e0-4f42-a2a1-1dac8c1a37d8, UserID: 177b6d8b-2af3-4e36-93a2-555551cfb131, EventID: 8144faa8-8059-4d24-89b4-2075c6b303fe
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__eventId_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."EventId", p."Role", p."Status", p."UserId"
+      FROM "Participations" AS p
+      WHERE p."EventId" = @__eventId_0
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT u."Id", u."Email", u."Login", u."Name", u."Password", u."Role"
+      FROM "Users" AS u
+      WHERE u."Id" = @__id_0
+      LIMIT 1
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."EventId", p."Role", p."Status", p."UserId"
+      FROM "Participations" AS p
+      WHERE p."Id" = @__id_0
+      LIMIT 1
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT e."Id", e."Address", e."DateTime", e."Description", e."OrganizerId", e."Title"
+      FROM "Events" AS e
+      WHERE e."Id" = @__id_0
+      LIMIT 1
+[40m[32minfo[39m[22m[49m: Eventity.DataAccess.Repositories.EventRepository[0]
+      Event retrieved: 8144faa8-8059-4d24-89b4-2075c6b303fe
+[40m[32minfo[39m[22m[49m: Eventity.Application.Services.ParticipationService[0]
+      Participation updated: 9f8ebc9c-1b72-45c9-bc9e-1a9c977c1a46
+[40m[32minfo[39m[22m[49m: Eventity.DataAccess.Repositories.NotificationRepository[0]
+      Adding new notification with Id 3cd366bb-7f4e-467f-87a4-e52ccb464574
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__participation_Id_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."EventId", p."Role", p."Status", p."UserId"
+      FROM "Participations" AS p
+      WHERE p."Id" = @__participation_Id_0
+      LIMIT 1
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (9ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = DateTime), @p3='?', @p4='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Notifications" ("Id", "ParticipationId", "SentAt", "Text", "Type")
+      VALUES (@p0, @p1, @p2, @p3, @p4);
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT u."Id", u."Email", u."Login", u."Name", u."Password", u."Role"
+      FROM "Users" AS u
+      WHERE u."Id" = @__id_0
+      LIMIT 1
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT e."Id", e."Address", e."DateTime", e."Description", e."OrganizerId", e."Title"
+      FROM "Events" AS e
+      WHERE e."Id" = @__id_0
+      LIMIT 1
+[40m[32minfo[39m[22m[49m: Eventity.DataAccess.Repositories.EventRepository[0]
+      Event retrieved: 8144faa8-8059-4d24-89b4-2075c6b303fe
+[40m[32minfo[39m[22m[49m: Eventity.DataAccess.Repositories.NotificationRepository[0]
+      Adding new notification with Id 833508ac-ee0e-4a05-a393-c338aa4cf4c4
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (8ms) [Parameters=[@p4='?' (DbType = Guid), @p0='?' (DbType = Guid), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      UPDATE "Participations" SET "EventId" = @p0, "Role" = @p1, "Status" = @p2, "UserId" = @p3
+      WHERE "Id" = @p4;
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__eventId_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."EventId", p."Role", p."Status", p."UserId"
+      FROM "Participations" AS p
+      WHERE p."EventId" = @__eventId_0
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (11ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = DateTime), @p3='?', @p4='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Notifications" ("Id", "ParticipationId", "SentAt", "Text", "Type")
+      VALUES (@p0, @p1, @p2, @p3, @p4);
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT u."Id", u."Email", u."Login", u."Name", u."Password", u."Role"
+      FROM "Users" AS u
+      WHERE u."Id" = @__id_0
+      LIMIT 1
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT u."Id", u."Email", u."Login", u."Name", u."Password", u."Role"
+      FROM "Users" AS u
+      WHERE u."Id" = @__id_0
+      LIMIT 1
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT e."Id", e."Address", e."DateTime", e."Description", e."OrganizerId", e."Title"
+      FROM "Events" AS e
+      WHERE e."Id" = @__id_0
+      LIMIT 1
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT e."Id", e."Address", e."DateTime", e."Description", e."OrganizerId", e."Title"
+      FROM "Events" AS e
+      WHERE e."Id" = @__id_0
+      LIMIT 1
+[40m[32minfo[39m[22m[49m: Eventity.DataAccess.Repositories.EventRepository[0]
+      Event retrieved: 4edd50bc-a6b5-4353-a3df-2580db3efe85
+[40m[32minfo[39m[22m[49m: Eventity.DataAccess.Repositories.EventRepository[0]
+      Event retrieved: 8144faa8-8059-4d24-89b4-2075c6b303fe
+[40m[32minfo[39m[22m[49m: Eventity.DataAccess.Repositories.NotificationRepository[0]
+      Adding new notification with Id 94ca5d32-2061-4167-b9ae-adfbe6d7b4f3
+[40m[32minfo[39m[22m[49m: Eventity.DataAccess.Repositories.NotificationRepository[0]
+      Adding new notification with Id b75df26a-0f41-4a5a-bbd7-853a394b7f56
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (8ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = DateTime), @p3='?', @p4='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Notifications" ("Id", "ParticipationId", "SentAt", "Text", "Type")
+      VALUES (@p0, @p1, @p2, @p3, @p4);
+[40m[32minfo[39m[22m[49m: Eventity.Application.Services.NotificationService[0]
+      Notifications created successfully
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (12ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = DateTime), @p3='?', @p4='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Notifications" ("Id", "ParticipationId", "SentAt", "Text", "Type")
+      VALUES (@p0, @p1, @p2, @p3, @p4);
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT u."Id", u."Email", u."Login", u."Name", u."Password", u."Role"
+      FROM "Users" AS u
+      WHERE u."Id" = @__id_0
+      LIMIT 1
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT e."Id", e."Address", e."DateTime", e."Description", e."OrganizerId", e."Title"
+      FROM "Events" AS e
+      WHERE e."Id" = @__id_0
+      LIMIT 1
+[40m[32minfo[39m[22m[49m: Eventity.DataAccess.Repositories.EventRepository[0]
+      Event retrieved: 4edd50bc-a6b5-4353-a3df-2580db3efe85
+[40m[32minfo[39m[22m[49m: Eventity.DataAccess.Repositories.NotificationRepository[0]
+      Adding new notification with Id 7f4d9107-f02b-4110-ba3c-cb2e8b1c85d0
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (4ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = DateTime), @p3='?', @p4='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Notifications" ("Id", "ParticipationId", "SentAt", "Text", "Type")
+      VALUES (@p0, @p1, @p2, @p3, @p4);
+[40m[32minfo[39m[22m[49m: Eventity.Application.Services.NotificationService[0]
+      Notifications created successfully
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (7ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      REVOKE CONNECT ON DATABASE "TestDb_6068e91a0e" FROM PUBLIC;
+      SELECT pg_terminate_backend(pg_stat_activity.pid) FROM pg_stat_activity WHERE datname = 'TestDb_6068e91a0e';
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      REVOKE CONNECT ON DATABASE "TestDb_1072ccead9" FROM PUBLIC;
+      SELECT pg_terminate_backend(pg_stat_activity.pid) FROM pg_stat_activity WHERE datname = 'TestDb_1072ccead9';
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      REVOKE CONNECT ON DATABASE "TestDb_556d267724" FROM PUBLIC;
+      SELECT pg_terminate_backend(pg_stat_activity.pid) FROM pg_stat_activity WHERE datname = 'TestDb_556d267724';
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (28ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      DROP DATABASE "TestDb_6068e91a0e";
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (35ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      DROP DATABASE "TestDb_556d267724";
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (36ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      DROP DATABASE "TestDb_1072ccead9";
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (85ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE DATABASE "TestDb_556d267724";
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (93ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE DATABASE "TestDb_1072ccead9";
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (99ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE DATABASE "TestDb_6068e91a0e";
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (9ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "__EFMigrationsHistory" (
+          "MigrationId" character varying(150) NOT NULL,
+          "ProductVersion" character varying(32) NOT NULL,
+          CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+      );
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (9ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "__EFMigrationsHistory" (
+          "MigrationId" character varying(150) NOT NULL,
+          "ProductVersion" character varying(32) NOT NULL,
+          CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+      );
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (8ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "__EFMigrationsHistory" (
+          "MigrationId" character varying(150) NOT NULL,
+          "ProductVersion" character varying(32) NOT NULL,
+          CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+      );
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT EXISTS (
+          SELECT 1 FROM pg_catalog.pg_class c
+          JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+          WHERE n.nspname='public' AND
+                c.relname='__EFMigrationsHistory'
+      )
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT "MigrationId", "ProductVersion"
+      FROM "__EFMigrationsHistory"
+      ORDER BY "MigrationId";
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Migrations[20402]
+      Applying migration '20251020143131_Initial'.
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT EXISTS (
+          SELECT 1 FROM pg_catalog.pg_class c
+          JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+          WHERE n.nspname='public' AND
+                c.relname='__EFMigrationsHistory'
+      )
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT "MigrationId", "ProductVersion"
+      FROM "__EFMigrationsHistory"
+      ORDER BY "MigrationId";
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Migrations[20402]
+      Applying migration '20251020143131_Initial'.
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT EXISTS (
+          SELECT 1 FROM pg_catalog.pg_class c
+          JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+          WHERE n.nspname='public' AND
+                c.relname='__EFMigrationsHistory'
+      )
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT "MigrationId", "ProductVersion"
+      FROM "__EFMigrationsHistory"
+      ORDER BY "MigrationId";
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Migrations[20402]
+      Applying migration '20251020143131_Initial'.
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (13ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "Events" (
+          "Id" uuid NOT NULL,
+          "Title" character varying(100) NOT NULL,
+          "Description" text NOT NULL,
+          "DateTime" timestamp with time zone NOT NULL,
+          "Address" text NOT NULL,
+          "OrganizerId" uuid NOT NULL,
+          CONSTRAINT "PK_Events" PRIMARY KEY ("Id")
+      );
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (11ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "Events" (
+          "Id" uuid NOT NULL,
+          "Title" character varying(100) NOT NULL,
+          "Description" text NOT NULL,
+          "DateTime" timestamp with time zone NOT NULL,
+          "Address" text NOT NULL,
+          "OrganizerId" uuid NOT NULL,
+          CONSTRAINT "PK_Events" PRIMARY KEY ("Id")
+      );
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (8ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "Users" (
+          "Id" uuid NOT NULL,
+          "Name" text NOT NULL,
+          "Email" text NOT NULL,
+          "Login" text NOT NULL,
+          "Password" text NOT NULL,
+          "Role" integer NOT NULL,
+          CONSTRAINT "PK_Users" PRIMARY KEY ("Id")
+      );
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (9ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "Events" (
+          "Id" uuid NOT NULL,
+          "Title" character varying(100) NOT NULL,
+          "Description" text NOT NULL,
+          "DateTime" timestamp with time zone NOT NULL,
+          "Address" text NOT NULL,
+          "OrganizerId" uuid NOT NULL,
+          CONSTRAINT "PK_Events" PRIMARY KEY ("Id")
+      );
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (7ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "Users" (
+          "Id" uuid NOT NULL,
+          "Name" text NOT NULL,
+          "Email" text NOT NULL,
+          "Login" text NOT NULL,
+          "Password" text NOT NULL,
+          "Role" integer NOT NULL,
+          CONSTRAINT "PK_Users" PRIMARY KEY ("Id")
+      );
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "Participations" (
+          "Id" uuid NOT NULL,
+          "UserId" uuid NOT NULL,
+          "EventId" uuid NOT NULL,
+          "Role" integer NOT NULL,
+          "Status" integer NOT NULL,
+          CONSTRAINT "PK_Participations" PRIMARY KEY ("Id"),
+          CONSTRAINT "FK_Participations_Events_EventId" FOREIGN KEY ("EventId") REFERENCES "Events" ("Id") ON DELETE RESTRICT,
+          CONSTRAINT "FK_Participations_Users_UserId" FOREIGN KEY ("UserId") REFERENCES "Users" ("Id") ON DELETE RESTRICT
+      );
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (5ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "Participations" (
+          "Id" uuid NOT NULL,
+          "UserId" uuid NOT NULL,
+          "EventId" uuid NOT NULL,
+          "Role" integer NOT NULL,
+          "Status" integer NOT NULL,
+          CONSTRAINT "PK_Participations" PRIMARY KEY ("Id"),
+          CONSTRAINT "FK_Participations_Events_EventId" FOREIGN KEY ("EventId") REFERENCES "Events" ("Id") ON DELETE RESTRICT,
+          CONSTRAINT "FK_Participations_Users_UserId" FOREIGN KEY ("UserId") REFERENCES "Users" ("Id") ON DELETE RESTRICT
+      );
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (8ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "Users" (
+          "Id" uuid NOT NULL,
+          "Name" text NOT NULL,
+          "Email" text NOT NULL,
+          "Login" text NOT NULL,
+          "Password" text NOT NULL,
+          "Role" integer NOT NULL,
+          CONSTRAINT "PK_Users" PRIMARY KEY ("Id")
+      );
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (8ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "Notifications" (
+          "Id" uuid NOT NULL,
+          "ParticipationId" uuid NOT NULL,
+          "Text" text NOT NULL,
+          "SentAt" timestamp with time zone NOT NULL,
+          "Type" integer NOT NULL,
+          CONSTRAINT "PK_Notifications" PRIMARY KEY ("Id"),
+          CONSTRAINT "FK_Notifications_Participations_ParticipationId" FOREIGN KEY ("ParticipationId") REFERENCES "Participations" ("Id") ON DELETE CASCADE
+      );
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Notifications_ParticipationId" ON "Notifications" ("ParticipationId");
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (5ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "Participations" (
+          "Id" uuid NOT NULL,
+          "UserId" uuid NOT NULL,
+          "EventId" uuid NOT NULL,
+          "Role" integer NOT NULL,
+          "Status" integer NOT NULL,
+          CONSTRAINT "PK_Participations" PRIMARY KEY ("Id"),
+          CONSTRAINT "FK_Participations_Events_EventId" FOREIGN KEY ("EventId") REFERENCES "Events" ("Id") ON DELETE RESTRICT,
+          CONSTRAINT "FK_Participations_Users_UserId" FOREIGN KEY ("UserId") REFERENCES "Users" ("Id") ON DELETE RESTRICT
+      );
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (7ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "Notifications" (
+          "Id" uuid NOT NULL,
+          "ParticipationId" uuid NOT NULL,
+          "Text" text NOT NULL,
+          "SentAt" timestamp with time zone NOT NULL,
+          "Type" integer NOT NULL,
+          CONSTRAINT "PK_Notifications" PRIMARY KEY ("Id"),
+          CONSTRAINT "FK_Notifications_Participations_ParticipationId" FOREIGN KEY ("ParticipationId") REFERENCES "Participations" ("Id") ON DELETE CASCADE
+      );
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Participations_EventId" ON "Participations" ("EventId");
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (5ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Notifications_ParticipationId" ON "Notifications" ("ParticipationId");
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (5ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Participations_UserId" ON "Participations" ("UserId");
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Participations_EventId" ON "Participations" ("EventId");
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+      VALUES ('20251020143131_Initial', '7.0.20');
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (11ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "Notifications" (
+          "Id" uuid NOT NULL,
+          "ParticipationId" uuid NOT NULL,
+          "Text" text NOT NULL,
+          "SentAt" timestamp with time zone NOT NULL,
+          "Type" integer NOT NULL,
+          CONSTRAINT "PK_Notifications" PRIMARY KEY ("Id"),
+          CONSTRAINT "FK_Notifications_Participations_ParticipationId" FOREIGN KEY ("ParticipationId") REFERENCES "Participations" ("Id") ON DELETE CASCADE
+      );
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Participations_UserId" ON "Participations" ("UserId");
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Notifications_ParticipationId" ON "Notifications" ("ParticipationId");
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+      VALUES ('20251020143131_Initial', '7.0.20');
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (5ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Participations_EventId" ON "Participations" ("EventId");
+[40m[32minfo[39m[22m[49m: Eventity.Application.Services.AuthService[0]
+      Registration attempt. Login: testuser, Email: test@email.com
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (4ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?', @p3='?', @p4='?', @p5='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Users" ("Id", "Email", "Login", "Name", "Password", "Role")
+      VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+[40m[32minfo[39m[22m[49m: UserService[0]
+      User created successfully. ID: dfd140a9-fa65-4283-b54c-8411e7596003, Login: organizer, Role: User
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[@__login_0='?'], CommandType='Text', CommandTimeout='30']
+      SELECT u."Id", u."Email", u."Login", u."Name", u."Password", u."Role"
+      FROM "Users" AS u
+      WHERE u."Login" = @__login_0
+      LIMIT 1
+[40m[1m[33mwarn[39m[22m[49m: Eventity.DataAccess.Repositories.UserRepository[0]
+      User with login testuser not found
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?', @p3='?', @p4='?', @p5='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Users" ("Id", "Email", "Login", "Name", "Password", "Role")
+      VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+[40m[32minfo[39m[22m[49m: UserService[0]
+      User created successfully. ID: 5f17c5c6-4479-42ec-8d5a-85b7668721c8, Login: participant, Role: User
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Participations_UserId" ON "Participations" ("UserId");
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+      VALUES ('20251020143131_Initial', '7.0.20');
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?', @p3='?', @p4='?', @p5='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Users" ("Id", "Email", "Login", "Name", "Password", "Role")
+      VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+[40m[32minfo[39m[22m[49m: Eventity.Application.Services.JwtService[0]
+      JWT token generated for user 1bf11fb7-848d-415d-931d-80f6f2398f65
+[40m[32minfo[39m[22m[49m: Eventity.Application.Services.AuthService[0]
+      User registered successfully. UserId: 1bf11fb7-848d-415d-931d-80f6f2398f65
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?' (DbType = DateTime), @p3='?', @p4='?' (DbType = Guid), @p5='?'], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Events" ("Id", "Address", "DateTime", "Description", "OrganizerId", "Title")
+      VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+[40m[32minfo[39m[22m[49m: Eventity.DataAccess.Repositories.EventRepository[0]
+      Event added successfully: db4cf7f8-747e-4204-975e-6a15e41b1c14
+[40m[32minfo[39m[22m[49m: Eventity.Application.Services.AuthService[0]
+      Authentication attempt for login: testuser
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__login_0='?'], CommandType='Text', CommandTimeout='30']
+      SELECT u."Id", u."Email", u."Login", u."Name", u."Password", u."Role"
+      FROM "Users" AS u
+      WHERE u."Login" = @__login_0
+      LIMIT 1
+[40m[1m[33mwarn[39m[22m[49m: Eventity.Application.Services.AuthService[0]
+      Invalid password for user. Login: testuser
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Participations" ("Id", "EventId", "Role", "Status", "UserId")
+      VALUES (@p0, @p1, @p2, @p3, @p4);
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?', @p3='?', @p4='?', @p5='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Users" ("Id", "Email", "Login", "Name", "Password", "Role")
+      VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+[40m[32minfo[39m[22m[49m: UserService[0]
+      User created successfully. ID: 8844bae5-7669-42cc-a7f0-48c9cae75a07, Login: organizer, Role: User
+[40m[32minfo[39m[22m[49m: Eventity.Application.Services.EventService[0]
+      Event created successfully. ID: db4cf7f8-747e-4204-975e-6a15e41b1c14, Title: Test Event, Organizer: dfd140a9-fa65-4283-b54c-8411e7596003
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?' (DbType = DateTime), @p3='?', @p4='?' (DbType = Guid), @p5='?'], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Events" ("Id", "Address", "DateTime", "Description", "OrganizerId", "Title")
+      VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT e."Id", e."Address", e."DateTime", e."Description", e."OrganizerId", e."Title"
+      FROM "Events" AS e
+      WHERE e."Id" = @__id_0
+      LIMIT 1
+[40m[32minfo[39m[22m[49m: Eventity.DataAccess.Repositories.EventRepository[0]
+      Event added successfully: ebd0210a-00e2-4444-9638-19eef9e46708
+[40m[32minfo[39m[22m[49m: Eventity.DataAccess.Repositories.EventRepository[0]
+      Event retrieved: db4cf7f8-747e-4204-975e-6a15e41b1c14
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Participations" ("Id", "EventId", "Role", "Status", "UserId")
+      VALUES (@p0, @p1, @p2, @p3, @p4);
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Participations" ("Id", "EventId", "Role", "Status", "UserId")
+      VALUES (@p0, @p1, @p2, @p3, @p4);
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__eventId_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."EventId", p."Role", p."Status", p."UserId"
+      FROM "Participations" AS p
+      WHERE p."EventId" = @__eventId_0
+[40m[32minfo[39m[22m[49m: Eventity.Application.Services.EventService[0]
+      Event created successfully. ID: ebd0210a-00e2-4444-9638-19eef9e46708, Title: Test Event, Organizer: 8844bae5-7669-42cc-a7f0-48c9cae75a07
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT u."Id", u."Email", u."Login", u."Name", u."Password", u."Role"
+      FROM "Users" AS u
+      WHERE u."Id" = @__id_0
+      LIMIT 1
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT e."Id", e."Address", e."DateTime", e."Description", e."OrganizerId", e."Title"
+      FROM "Events" AS e
+      WHERE e."Id" = @__id_0
+      LIMIT 1
+[40m[32minfo[39m[22m[49m: Eventity.DataAccess.Repositories.EventRepository[0]
+      Event retrieved: db4cf7f8-747e-4204-975e-6a15e41b1c14
+[40m[32minfo[39m[22m[49m: Eventity.DataAccess.Repositories.NotificationRepository[0]
+      Adding new notification with Id 36056407-a4da-4fa6-84e7-eba56834bbf2
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT e."Id", e."Address", e."DateTime", e."Description", e."OrganizerId", e."Title"
+      FROM "Events" AS e
+      WHERE e."Id" = @__id_0
+      LIMIT 1
+[40m[32minfo[39m[22m[49m: Eventity.DataAccess.Repositories.EventRepository[0]
+      Event retrieved: ebd0210a-00e2-4444-9638-19eef9e46708
+[40m[32minfo[39m[22m[49m: Eventity.Application.Services.EventService[0]
+      Retrieved event successfully. ID: ebd0210a-00e2-4444-9638-19eef9e46708, Title: Test Event
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (4ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = DateTime), @p3='?', @p4='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Notifications" ("Id", "ParticipationId", "SentAt", "Text", "Type")
+      VALUES (@p0, @p1, @p2, @p3, @p4);
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT u."Id", u."Email", u."Login", u."Name", u."Password", u."Role"
+      FROM "Users" AS u
+      WHERE u."Id" = @__id_0
+      LIMIT 1
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT e."Id", e."Address", e."DateTime", e."Description", e."OrganizerId", e."Title"
+      FROM "Events" AS e
+      WHERE e."Id" = @__id_0
+      LIMIT 1
+[40m[32minfo[39m[22m[49m: Eventity.DataAccess.Repositories.EventRepository[0]
+      Event retrieved: db4cf7f8-747e-4204-975e-6a15e41b1c14
+[40m[32minfo[39m[22m[49m: Eventity.DataAccess.Repositories.NotificationRepository[0]
+      Adding new notification with Id 6f6e058d-1d12-43fe-80bc-475cdc180cf6
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = DateTime), @p3='?', @p4='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Notifications" ("Id", "ParticipationId", "SentAt", "Text", "Type")
+      VALUES (@p0, @p1, @p2, @p3, @p4);
+[40m[32minfo[39m[22m[49m: Eventity.Application.Services.NotificationService[0]
+      Notifications created successfully
+[40m[32minfo[39m[22m[49m: Eventity.Application.Services.ParticipationService[0]
+      Participation created. ID: 438cc1e8-68ca-4d8f-907f-7838db94b1c3, UserID: 5f17c5c6-4479-42ec-8d5a-85b7668721c8, EventID: db4cf7f8-747e-4204-975e-6a15e41b1c14
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."EventId", p."Role", p."Status", p."UserId"
+      FROM "Participations" AS p
+      WHERE p."Id" = @__id_0
+      LIMIT 1
+[40m[32minfo[39m[22m[49m: Eventity.Application.Services.ParticipationService[0]
+      Participation updated: 438cc1e8-68ca-4d8f-907f-7838db94b1c3
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__participation_Id_0='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      SELECT p."Id", p."EventId", p."Role", p."Status", p."UserId"
+      FROM "Participations" AS p
+      WHERE p."Id" = @__participation_Id_0
+      LIMIT 1
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[@p4='?' (DbType = Guid), @p0='?' (DbType = Guid), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = Guid)], CommandType='Text', CommandTimeout='30']
+      UPDATE "Participations" SET "EventId" = @p0, "Role" = @p1, "Status" = @p2, "UserId" = @p3
+      WHERE "Id" = @p4;
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      REVOKE CONNECT ON DATABASE "TestDb_d5290ef03a" FROM PUBLIC;
+      SELECT pg_terminate_backend(pg_stat_activity.pid) FROM pg_stat_activity WHERE datname = 'TestDb_d5290ef03a';
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (33ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      DROP DATABASE "TestDb_d5290ef03a";
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (66ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE DATABASE "TestDb_d5290ef03a";
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "__EFMigrationsHistory" (
+          "MigrationId" character varying(150) NOT NULL,
+          "ProductVersion" character varying(32) NOT NULL,
+          CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+      );
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT EXISTS (
+          SELECT 1 FROM pg_catalog.pg_class c
+          JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+          WHERE n.nspname='public' AND
+                c.relname='__EFMigrationsHistory'
+      )
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT "MigrationId", "ProductVersion"
+      FROM "__EFMigrationsHistory"
+      ORDER BY "MigrationId";
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Migrations[20402]
+      Applying migration '20251020143131_Initial'.
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (7ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "Events" (
+          "Id" uuid NOT NULL,
+          "Title" character varying(100) NOT NULL,
+          "Description" text NOT NULL,
+          "DateTime" timestamp with time zone NOT NULL,
+          "Address" text NOT NULL,
+          "OrganizerId" uuid NOT NULL,
+          CONSTRAINT "PK_Events" PRIMARY KEY ("Id")
+      );
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "Users" (
+          "Id" uuid NOT NULL,
+          "Name" text NOT NULL,
+          "Email" text NOT NULL,
+          "Login" text NOT NULL,
+          "Password" text NOT NULL,
+          "Role" integer NOT NULL,
+          CONSTRAINT "PK_Users" PRIMARY KEY ("Id")
+      );
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "Participations" (
+          "Id" uuid NOT NULL,
+          "UserId" uuid NOT NULL,
+          "EventId" uuid NOT NULL,
+          "Role" integer NOT NULL,
+          "Status" integer NOT NULL,
+          CONSTRAINT "PK_Participations" PRIMARY KEY ("Id"),
+          CONSTRAINT "FK_Participations_Events_EventId" FOREIGN KEY ("EventId") REFERENCES "Events" ("Id") ON DELETE RESTRICT,
+          CONSTRAINT "FK_Participations_Users_UserId" FOREIGN KEY ("UserId") REFERENCES "Users" ("Id") ON DELETE RESTRICT
+      );
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (7ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "Notifications" (
+          "Id" uuid NOT NULL,
+          "ParticipationId" uuid NOT NULL,
+          "Text" text NOT NULL,
+          "SentAt" timestamp with time zone NOT NULL,
+          "Type" integer NOT NULL,
+          CONSTRAINT "PK_Notifications" PRIMARY KEY ("Id"),
+          CONSTRAINT "FK_Notifications_Participations_ParticipationId" FOREIGN KEY ("ParticipationId") REFERENCES "Participations" ("Id") ON DELETE CASCADE
+      );
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Notifications_ParticipationId" ON "Notifications" ("ParticipationId");
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Participations_EventId" ON "Participations" ("EventId");
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Participations_UserId" ON "Participations" ("UserId");
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+      VALUES ('20251020143131_Initial', '7.0.20');
+[40m[32minfo[39m[22m[49m: Eventity.Application.Services.AuthService[0]
+      Registration attempt. Login: testuser, Email: test@email.com
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__login_0='?'], CommandType='Text', CommandTimeout='30']
+      SELECT u."Id", u."Email", u."Login", u."Name", u."Password", u."Role"
+      FROM "Users" AS u
+      WHERE u."Login" = @__login_0
+      LIMIT 1
+[40m[1m[33mwarn[39m[22m[49m: Eventity.DataAccess.Repositories.UserRepository[0]
+      User with login testuser not found
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?', @p3='?', @p4='?', @p5='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Users" ("Id", "Email", "Login", "Name", "Password", "Role")
+      VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+[40m[32minfo[39m[22m[49m: Eventity.Application.Services.JwtService[0]
+      JWT token generated for user a3c26e78-a8ea-4883-aa64-f6221d01b48d
+[40m[32minfo[39m[22m[49m: Eventity.Application.Services.AuthService[0]
+      User registered successfully. UserId: a3c26e78-a8ea-4883-aa64-f6221d01b48d
+[40m[32minfo[39m[22m[49m: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__login_0='?'], CommandType='Text', CommandTimeout='30']
+      SELECT u."Id", u."Email", u."Login", u."Name", u."Password", u."Role"
+      FROM "Users" AS u
+      WHERE u."Login" = @__login_0
+      LIMIT 1
+
+Passed!  - Failed:     0, Passed:     9, Skipped:     0, Total:     9, Duration: 1 s - Eventity.Tests.Integration.dll (net6.0)

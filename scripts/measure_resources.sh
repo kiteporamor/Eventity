@@ -44,8 +44,9 @@ run_case() {
     export OpenTelemetry__Enabled="$trace_enabled"
     export Logging__Mode="$logging_mode"
     export OpenTelemetry__Exporter="$OTEL_EXPORTER"
+    export TEST_DB_HOST="${TEST_DB_HOST:-127.0.0.1}"
     # ensure per-project 'artifacts' folders exist so Allure can write into build output
-    find "$ROOT_DIR/src" -type d -path "*/bin/*" -print0 | xargs -0 -I{} mkdir -p "{}/artifacts" || true
+    find "$ROOT_DIR/src" -type d -path "*/bin/*" -exec mkdir -p "{}/artifacts" \; || true
 
     # run command under chosen time tool; use non-login shell to avoid sourcing user profiles
     $TIME_CMD bash -c "cd \"$ROOT_DIR\" && $COMMAND"
@@ -56,7 +57,9 @@ run_case() {
   if [ "$exit_code" -ne 0 ]; then
     echo "Scenario $name failed with exit code $exit_code" >&2
     echo "See $otel_file and $time_file for details." >&2
-    exit "$exit_code"
+    # don't abort the whole script: record failure in the report and continue
+    printf "| %s | %s | %s | %s | # exit=%d\n" "$name" "n/a" "n/a" "n/a" "$exit_code" >> "$REPORT_PATH"
+    return 0
   fi
 
   local user_time

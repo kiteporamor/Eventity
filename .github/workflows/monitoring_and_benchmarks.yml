@@ -16,9 +16,7 @@ jobs:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
           POSTGRES_DB: EventityTest
-        options: >-
-          --health-cmd pg_isready -U postgres -d EventityTest
-          --health-interval 10s --health-timeout 5s --health-retries 5
+         options: --health-cmd "pg_isready -U postgres" --health-interval 10s --health-timeout 5s --health-retries 5
     env:
       TEST_DB_HOST: postgres
 

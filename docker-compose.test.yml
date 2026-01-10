@@ -1,5 +1,17 @@
-version: '3.8'
 services:
+  tests:
+    build: 
+      context: . 
+      dockerfile: Dockerfile
+    depends_on:
+      test-db:
+        condition: service_healthy
+    environment:
+      - ConnectionStrings__DataBaseConnect=User ID=postgres;Password=postgres;Host=test-db;Database=EventityTest;Port=5432
+    volumes:
+      - ./test-results:/src/test-results
+      - ./allure-report:/src/allure-report
+
   test-db:
     image: postgres:15
     environment:
@@ -7,24 +19,9 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 10s
+      test: ["CMD-SHELL", "pg_isready -U postgres -d EventityTest"]
+      interval: 5s
       timeout: 5s
       retries: 5
-    ports:
-      - "5432:5432"
-
-  test-runner:
-    image: mcr.microsoft.com/dotnet/sdk:6.0
     volumes:
-      - ./:/src
-    working_dir: /src
-    depends_on:
-      test-db:
-        condition: service_healthy
-    environment:
-      DOTNET_CLI_TELEMETRY_OPTOUT: "1"
-    command: >-
-      bash -lc "mkdir -p ./src/Eventity.Tests.Integration/artifacts/allure-results ./src/test-results && \
-      dotnet restore && \
-      dotnet test ./src/Eventity.Tests.Integration/Eventity.Tests.Integration.csproj --logger:\"trx;LogFileName=Integration.trx\" --results-directory ./src/test-results --verbosity normal"
+      - ./scripts:/docker-entrypoint-initdb.d

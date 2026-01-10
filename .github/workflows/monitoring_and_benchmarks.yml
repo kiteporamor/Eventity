@@ -62,8 +62,32 @@ jobs:
       - name: Run integration tests (sanity)
         run: dotnet test src/Eventity.Tests.Integration/Eventity.Tests.Integration.csproj -c Release --no-build
 
+      - name: Install Postgres client
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y postgresql-client
+
+      - name: Prepare E2E database schema and data
+        env:
+          PGPASSWORD: postgres
+        run: |
+          psql -h 127.0.0.1 -U postgres -p 5432 -tc "SELECT 1 FROM pg_database WHERE datname='Eventity'" | grep -q 1 || \
+            psql -h 127.0.0.1 -U postgres -p 5432 -c "CREATE DATABASE \"Eventity\";"
+          psql -h 127.0.0.1 -U postgres -p 5432 -d Eventity -f scripts/01_init_schema.sql
+          psql -h 127.0.0.1 -U postgres -p 5432 -d Eventity -f scripts/02_test_data.sql
+
+      - name: Start web app
+        env:
+          ASPNETCORE_ENVIRONMENT: Development
+        run: |
+          nohup dotnet run --project src/Eventity.Web/Eventity.Web.csproj -c Release --no-build > web.out 2>&1 &
+          for i in {1..30}; do
+            if curl -fsS http://localhost:5001/health > /dev/null; then echo "Web up"; break; fi; sleep 2; done
+
       - name: Run E2E tests (optional)
         if: always()
+        env:
+          EVENTITY_API_URL: http://localhost:5001
         run: dotnet test src/Eventity.Tests.E2E/Eventity.Tests.E2E.csproj -c Release --no-build || true
 
       - name: Run resource measurements (tracing/logging scenarios)

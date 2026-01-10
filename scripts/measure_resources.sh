@@ -12,7 +12,12 @@ mkdir -p "$ALLURE_DIR"
 
 REPORT_PATH="$OUT_DIR/resource-report.md"
 {
-  echo "| Scenario | User time (s) | System time (s) | Max RSS (KB) |"
+  echo "trace_off_default_logging -- трассировка выключена, логирование обычное"
+  echo "trace_on_default_logging -- трассировка включена, логирование обычное"
+  echo "trace_off_extended_logging -- трассировка выключена, логирование расширенное"
+  echo "trace_on_extended_logging -- трассировка включена, логирование расширенное"
+  echo ""
+  echo "| Cценарий | U time (с) | S time (с) | Max RSS (Kб) |"
   echo "| --- | --- | --- | --- |"
 } > "$REPORT_PATH"
 

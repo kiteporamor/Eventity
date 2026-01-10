@@ -2,9 +2,9 @@ name: CI - Monitoring and Benchmarks
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [ main, Test5 ]
   pull_request:
-    branches: [ main, master ]
+    branches: [ main, Test5 ]
 
 jobs:
   monitor-bench:
@@ -41,7 +41,7 @@ jobs:
       - name: Restore and Build
         run: dotnet build src/Eventity.sln -c Release --no-restore
 
-      - name: Sanity run: integration tests
+      - name: Sanity run - integration tests
         run: dotnet test src/Eventity.Tests.Integration/Eventity.Tests.Integration.csproj -c Release --no-build
 
       - name: Run resource measurements (tracing/logging scenarios)

@@ -38,11 +38,21 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y gnu-time
 
-      - name: Restore and Build
+      - name: Restore
+        run: dotnet restore src/Eventity.sln
+
+      - name: Build
         run: dotnet build src/Eventity.sln -c Release --no-restore
 
-      - name: Sanity run - integration tests
+      - name: Run unit tests
+        run: dotnet test src/Eventity.Tests.Unit/Eventity.Tests.Unit.csproj -c Release --no-build
+
+      - name: Run integration tests (sanity)
         run: dotnet test src/Eventity.Tests.Integration/Eventity.Tests.Integration.csproj -c Release --no-build
+
+      - name: Run E2E tests (optional)
+        if: always()
+        run: dotnet test src/Eventity.Tests.E2E/Eventity.Tests.E2E.csproj -c Release --no-build || true
 
       - name: Run resource measurements (tracing/logging scenarios)
         run: |

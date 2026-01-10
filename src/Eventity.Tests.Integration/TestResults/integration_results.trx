@@ -1,0 +1,565 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="58cdd868-7888-4e99-abae-56fb8a9048f7" name="@MacBook-Pro-Ekaterina 2026-01-10 18:20:01" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2026-01-10T18:20:02.0677430+03:00" queuing="2026-01-10T18:20:02.0677430+03:00" start="2026-01-10T18:19:52.5495590+03:00" finish="2026-01-10T18:20:04.6544440+03:00" />
+  <TestSettings name="default" id="115c19a3-3d3e-44f9-949f-3a04f70a7e84">
+    <Deployment runDeploymentRoot="_MacBook-Pro-Ekaterina_2026-01-10_18_20_01" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="29657bc2-982f-419a-8889-f189b2b3b6b3" testId="e713cfc5-069a-1b1d-17c2-3721ef9e2a63" testName="Eventity.Tests.Integration.ParticipationServiceIntegrationTests.UpdateParticipationStatus_ShouldUpdateStatus" computerName="MacBook-Pro-Ekaterina" duration="00:00:00.2281090" startTime="2026-01-10T18:20:03.8361890+03:00" endTime="2026-01-10T18:20:03.8361890+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="29657bc2-982f-419a-8889-f189b2b3b6b3">
+      <Output>
+        <ErrorInfo>
+          <Message>System.Net.Internals.SocketExceptionFactory+ExtendedSocketException : nodename nor servname provided, or not known</Message>
+          <StackTrace>   at System.Net.Dns.GetHostEntryOrAddressesCore(String hostName, Boolean justAddresses, AddressFamily addressFamily, ValueStopwatch stopwatch)
+   at System.Net.Dns.&lt;&gt;c.&lt;GetHostEntryOrAddressesCoreAsync&gt;b__33_0(Object s, ValueStopwatch stopwatch)
+   at System.Net.Dns.&lt;&gt;c__DisplayClass39_0`1.&lt;RunAsync&gt;b__0(Task &lt;p0&gt;, Object &lt;p1&gt;)
+   at System.Threading.Tasks.ContinuationResultTaskFromTask`1.InnerInvoke()
+   at System.Threading.Tasks.Task.&lt;&gt;c.&lt;.cctor&gt;b__272_0(Object obj)
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task&amp; currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync[TResult](Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.&lt;Open&gt;g__OpenCore|215_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.&lt;Get&gt;g__RentAsync|28_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.&lt;Open&gt;g__OpenAsync|45_0(Boolean async, CancellationToken cancellationToken)
+   at Eventity.Tests.Integration.IntegrationTestBase.DropTestDatabase() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 132
+   at Eventity.Tests.Integration.IntegrationTestBase.DisposeAsync() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 86</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="c5d73156-255e-438d-882b-43c9dd0797d5" testId="74ff21b9-20e7-de18-31d8-ee8fe569b25e" testName="Eventity.Tests.Integration.EventServiceIntegrationTests.CreateEvent_ShouldCreateEventAndOrganizerParticipation" computerName="MacBook-Pro-Ekaterina" duration="00:00:00.5778200" startTime="2026-01-10T18:20:01.7927930+03:00" endTime="2026-01-10T18:20:01.7928860+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c5d73156-255e-438d-882b-43c9dd0797d5">
+      <Output>
+        <ErrorInfo>
+          <Message>System.Net.Internals.SocketExceptionFactory+ExtendedSocketException : nodename nor servname provided, or not known</Message>
+          <StackTrace>   at System.Net.Dns.GetHostEntryOrAddressesCore(String hostName, Boolean justAddresses, AddressFamily addressFamily, ValueStopwatch stopwatch)
+   at System.Net.Dns.&lt;&gt;c.&lt;GetHostEntryOrAddressesCoreAsync&gt;b__33_0(Object s, ValueStopwatch stopwatch)
+   at System.Net.Dns.&lt;&gt;c__DisplayClass39_0`1.&lt;RunAsync&gt;b__0(Task &lt;p0&gt;, Object &lt;p1&gt;)
+   at System.Threading.Tasks.ContinuationResultTaskFromTask`1.InnerInvoke()
+   at System.Threading.Tasks.Task.&lt;&gt;c.&lt;.cctor&gt;b__272_0(Object obj)
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task&amp; currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync[TResult](Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.&lt;Open&gt;g__OpenCore|215_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.&lt;Get&gt;g__RentAsync|28_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.&lt;Open&gt;g__OpenAsync|45_0(Boolean async, CancellationToken cancellationToken)
+   at Eventity.Tests.Integration.IntegrationTestBase.DropTestDatabase() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 132
+   at Eventity.Tests.Integration.IntegrationTestBase.DisposeAsync() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 86</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="7060be0a-9009-425d-9418-5b9769eafc91" testId="6efc0d59-eb5e-830e-e261-e1c991580915" testName="Eventity.Tests.Integration.AuthServiceIntegrationTests.RegisterUser_ShouldCreateUserAndReturnToken" computerName="MacBook-Pro-Ekaterina" duration="00:00:00.0108356" startTime="2026-01-10T18:20:04.5497470+03:00" endTime="2026-01-10T18:20:04.5497480+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7060be0a-9009-425d-9418-5b9769eafc91">
+      <Output>
+        <ErrorInfo>
+          <Message>System.Net.Internals.SocketExceptionFactory+ExtendedSocketException : nodename nor servname provided, or not known</Message>
+          <StackTrace>   at System.Net.Dns.GetHostEntryOrAddressesCore(String hostName, Boolean justAddresses, AddressFamily addressFamily, ValueStopwatch stopwatch)
+   at System.Net.Dns.&lt;&gt;c.&lt;GetHostEntryOrAddressesCoreAsync&gt;b__33_0(Object s, ValueStopwatch stopwatch)
+   at System.Net.Dns.&lt;&gt;c__DisplayClass39_0`1.&lt;RunAsync&gt;b__0(Task &lt;p0&gt;, Object &lt;p1&gt;)
+   at System.Threading.Tasks.ContinuationResultTaskFromTask`1.InnerInvoke()
+   at System.Threading.Tasks.Task.&lt;&gt;c.&lt;.cctor&gt;b__272_0(Object obj)
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task&amp; currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync[TResult](Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.&lt;Open&gt;g__OpenCore|215_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.&lt;Get&gt;g__RentAsync|28_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.&lt;Open&gt;g__OpenAsync|45_0(Boolean async, CancellationToken cancellationToken)
+   at Eventity.Tests.Integration.IntegrationTestBase.DropTestDatabase() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 132
+   at Eventity.Tests.Integration.IntegrationTestBase.DisposeAsync() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 86</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="9c42bf84-0e3a-463f-82a0-6fb401ebabc5" testId="3d69041a-e8f9-491d-0c46-0e8ef26fa951" testName="Eventity.Tests.Integration.AuthServiceIntegrationTests.AuthenticateUser_WithValidCredentials_ShouldReturnToken" computerName="MacBook-Pro-Ekaterina" duration="00:00:00.6702056" startTime="2026-01-10T18:20:01.8110230+03:00" endTime="2026-01-10T18:20:01.8110230+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9c42bf84-0e3a-463f-82a0-6fb401ebabc5">
+      <Output>
+        <ErrorInfo>
+          <Message>System.Net.Internals.SocketExceptionFactory+ExtendedSocketException : nodename nor servname provided, or not known</Message>
+          <StackTrace>   at System.Net.Dns.GetHostEntryOrAddressesCore(String hostName, Boolean justAddresses, AddressFamily addressFamily, ValueStopwatch stopwatch)
+   at System.Net.Dns.&lt;&gt;c.&lt;GetHostEntryOrAddressesCoreAsync&gt;b__33_0(Object s, ValueStopwatch stopwatch)
+   at System.Net.Dns.&lt;&gt;c__DisplayClass39_0`1.&lt;RunAsync&gt;b__0(Task &lt;p0&gt;, Object &lt;p1&gt;)
+   at System.Threading.Tasks.ContinuationResultTaskFromTask`1.InnerInvoke()
+   at System.Threading.Tasks.Task.&lt;&gt;c.&lt;.cctor&gt;b__272_0(Object obj)
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task&amp; currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync[TResult](Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.&lt;Open&gt;g__OpenCore|215_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.&lt;Get&gt;g__RentAsync|28_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.&lt;Open&gt;g__OpenAsync|45_0(Boolean async, CancellationToken cancellationToken)
+   at Eventity.Tests.Integration.IntegrationTestBase.DropTestDatabase() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 132
+   at Eventity.Tests.Integration.IntegrationTestBase.DisposeAsync() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 86</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="19e0b55c-c443-4310-b012-7cd80281b6c5" testId="500bc8f7-bec4-4e18-28ad-d453956af13e" testName="Eventity.Tests.Integration.AuthServiceIntegrationTests.AuthenticateUser_WithInvalidPassword_ShouldThrowException" computerName="MacBook-Pro-Ekaterina" duration="00:00:00.0252664" startTime="2026-01-10T18:20:03.6465790+03:00" endTime="2026-01-10T18:20:03.6465790+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="19e0b55c-c443-4310-b012-7cd80281b6c5">
+      <Output>
+        <ErrorInfo>
+          <Message>System.Net.Internals.SocketExceptionFactory+ExtendedSocketException : nodename nor servname provided, or not known</Message>
+          <StackTrace>   at System.Net.Dns.GetHostEntryOrAddressesCore(String hostName, Boolean justAddresses, AddressFamily addressFamily, ValueStopwatch stopwatch)
+   at System.Net.Dns.&lt;&gt;c.&lt;GetHostEntryOrAddressesCoreAsync&gt;b__33_0(Object s, ValueStopwatch stopwatch)
+   at System.Net.Dns.&lt;&gt;c__DisplayClass39_0`1.&lt;RunAsync&gt;b__0(Task &lt;p0&gt;, Object &lt;p1&gt;)
+   at System.Threading.Tasks.ContinuationResultTaskFromTask`1.InnerInvoke()
+   at System.Threading.Tasks.Task.&lt;&gt;c.&lt;.cctor&gt;b__272_0(Object obj)
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task&amp; currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync[TResult](Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.&lt;Open&gt;g__OpenCore|215_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.&lt;Get&gt;g__RentAsync|28_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.&lt;Open&gt;g__OpenAsync|45_0(Boolean async, CancellationToken cancellationToken)
+   at Eventity.Tests.Integration.IntegrationTestBase.DropTestDatabase() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 132
+   at Eventity.Tests.Integration.IntegrationTestBase.DisposeAsync() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 86</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="34bf23d3-3bbf-4f4d-9ef5-a7fec7bb8db6" testId="6644b860-e86b-101b-5f9a-90e175909307" testName="Eventity.Tests.Integration.EventServiceIntegrationTests.GetEventById_ShouldReturnEvent" computerName="MacBook-Pro-Ekaterina" duration="00:00:00.0421591" startTime="2026-01-10T18:20:03.6397140+03:00" endTime="2026-01-10T18:20:03.6397140+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="34bf23d3-3bbf-4f4d-9ef5-a7fec7bb8db6">
+      <Output>
+        <ErrorInfo>
+          <Message>System.Net.Internals.SocketExceptionFactory+ExtendedSocketException : nodename nor servname provided, or not known</Message>
+          <StackTrace>   at System.Net.Dns.GetHostEntryOrAddressesCore(String hostName, Boolean justAddresses, AddressFamily addressFamily, ValueStopwatch stopwatch)
+   at System.Net.Dns.&lt;&gt;c.&lt;GetHostEntryOrAddressesCoreAsync&gt;b__33_0(Object s, ValueStopwatch stopwatch)
+   at System.Net.Dns.&lt;&gt;c__DisplayClass39_0`1.&lt;RunAsync&gt;b__0(Task &lt;p0&gt;, Object &lt;p1&gt;)
+   at System.Threading.Tasks.ContinuationResultTaskFromTask`1.InnerInvoke()
+   at System.Threading.Tasks.Task.&lt;&gt;c.&lt;.cctor&gt;b__272_0(Object obj)
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task&amp; currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync[TResult](Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.&lt;Open&gt;g__OpenCore|215_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.&lt;Get&gt;g__RentAsync|28_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.&lt;Open&gt;g__OpenAsync|45_0(Boolean async, CancellationToken cancellationToken)
+   at Eventity.Tests.Integration.IntegrationTestBase.DropTestDatabase() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 132
+   at Eventity.Tests.Integration.IntegrationTestBase.DisposeAsync() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 86</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="a5f3627c-688b-46f9-b856-eeb54e6040ad" testId="9a409744-a1e9-cd9b-7b1c-1abc48417f20" testName="Eventity.Tests.Integration.CreateInviteSentIntegrationTests.CreateInviteSent_ShouldWorkCorrectly" computerName="MacBook-Pro-Ekaterina" duration="00:00:00.8283431" startTime="2026-01-10T18:20:01.9181380+03:00" endTime="2026-01-10T18:20:01.9181380+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a5f3627c-688b-46f9-b856-eeb54e6040ad">
+      <Output>
+        <ErrorInfo>
+          <Message>System.Net.Internals.SocketExceptionFactory+ExtendedSocketException : nodename nor servname provided, or not known</Message>
+          <StackTrace>   at System.Net.Dns.GetHostEntryOrAddressesCore(String hostName, Boolean justAddresses, AddressFamily addressFamily, ValueStopwatch stopwatch)
+   at System.Net.Dns.&lt;&gt;c.&lt;GetHostEntryOrAddressesCoreAsync&gt;b__33_0(Object s, ValueStopwatch stopwatch)
+   at System.Net.Dns.&lt;&gt;c__DisplayClass39_0`1.&lt;RunAsync&gt;b__0(Task &lt;p0&gt;, Object &lt;p1&gt;)
+   at System.Threading.Tasks.ContinuationResultTaskFromTask`1.InnerInvoke()
+   at System.Threading.Tasks.Task.&lt;&gt;c.&lt;.cctor&gt;b__272_0(Object obj)
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task&amp; currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync[TResult](Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.&lt;Open&gt;g__OpenCore|215_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.&lt;Get&gt;g__RentAsync|28_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.&lt;Open&gt;g__OpenAsync|45_0(Boolean async, CancellationToken cancellationToken)
+   at Eventity.Tests.Integration.IntegrationTestBase.DropTestDatabase() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 132
+   at Eventity.Tests.Integration.IntegrationTestBase.DisposeAsync() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 86</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="9f9a0c5c-873a-446e-a87b-c68a142091eb" testId="d3c4fce7-a64b-e519-6ae3-50fa9d327192" testName="Eventity.Tests.Integration.NotificationServiceIntegrationTests.AddNotification_ForEvent_ShouldCreateNotificationsForAllParticipants" computerName="MacBook-Pro-Ekaterina" duration="00:00:00.7813513" startTime="2026-01-10T18:20:01.9141990+03:00" endTime="2026-01-10T18:20:01.9141990+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9f9a0c5c-873a-446e-a87b-c68a142091eb">
+      <Output>
+        <ErrorInfo>
+          <Message>System.Net.Internals.SocketExceptionFactory+ExtendedSocketException : nodename nor servname provided, or not known</Message>
+          <StackTrace>   at System.Net.Dns.GetHostEntryOrAddressesCore(String hostName, Boolean justAddresses, AddressFamily addressFamily, ValueStopwatch stopwatch)
+   at System.Net.Dns.&lt;&gt;c.&lt;GetHostEntryOrAddressesCoreAsync&gt;b__33_0(Object s, ValueStopwatch stopwatch)
+   at System.Net.Dns.&lt;&gt;c__DisplayClass39_0`1.&lt;RunAsync&gt;b__0(Task &lt;p0&gt;, Object &lt;p1&gt;)
+   at System.Threading.Tasks.ContinuationResultTaskFromTask`1.InnerInvoke()
+   at System.Threading.Tasks.Task.&lt;&gt;c.&lt;.cctor&gt;b__272_0(Object obj)
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task&amp; currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync[TResult](Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.&lt;Open&gt;g__OpenCore|215_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.&lt;Get&gt;g__RentAsync|28_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.&lt;Open&gt;g__OpenAsync|45_0(Boolean async, CancellationToken cancellationToken)
+   at Eventity.Tests.Integration.IntegrationTestBase.DropTestDatabase() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 132
+   at Eventity.Tests.Integration.IntegrationTestBase.DisposeAsync() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 86</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="8cdd16cb-9805-4308-aa9b-b542612ef5a7" testId="33ed8877-3f2a-1779-550a-9b6ba6fa7932" testName="Eventity.Tests.Integration.ParticipationServiceIntegrationTests.AddParticipation_ShouldCreateParticipationAndNotification" computerName="MacBook-Pro-Ekaterina" duration="00:00:00.6707897" startTime="2026-01-10T18:20:01.8160060+03:00" endTime="2026-01-10T18:20:01.8160060+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8cdd16cb-9805-4308-aa9b-b542612ef5a7">
+      <Output>
+        <ErrorInfo>
+          <Message>System.Net.Internals.SocketExceptionFactory+ExtendedSocketException : nodename nor servname provided, or not known</Message>
+          <StackTrace>   at System.Net.Dns.GetHostEntryOrAddressesCore(String hostName, Boolean justAddresses, AddressFamily addressFamily, ValueStopwatch stopwatch)
+   at System.Net.Dns.&lt;&gt;c.&lt;GetHostEntryOrAddressesCoreAsync&gt;b__33_0(Object s, ValueStopwatch stopwatch)
+   at System.Net.Dns.&lt;&gt;c__DisplayClass39_0`1.&lt;RunAsync&gt;b__0(Task &lt;p0&gt;, Object &lt;p1&gt;)
+   at System.Threading.Tasks.ContinuationResultTaskFromTask`1.InnerInvoke()
+   at System.Threading.Tasks.Task.&lt;&gt;c.&lt;.cctor&gt;b__272_0(Object obj)
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task&amp; currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync[TResult](Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.&lt;Open&gt;g__OpenCore|215_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.&lt;Get&gt;g__RentAsync|28_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.&lt;Open&gt;g__OpenAsync|45_0(Boolean async, CancellationToken cancellationToken)
+   at Eventity.Tests.Integration.IntegrationTestBase.DropTestDatabase() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 132
+   at Eventity.Tests.Integration.IntegrationTestBase.DisposeAsync() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 86</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="Eventity.Tests.Integration.EventServiceIntegrationTests.CreateEvent_ShouldCreateEventAndOrganizerParticipation" storage="/users/ekaterinaparamonova/downloads/eventity2/src/eventity.tests.integration/bin/debug/net6.0/eventity.tests.integration.dll" id="74ff21b9-20e7-de18-31d8-ee8fe569b25e">
+      <Execution id="c5d73156-255e-438d-882b-43c9dd0797d5" />
+      <TestMethod codeBase="/Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/bin/Debug/net6.0/Eventity.Tests.Integration.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Eventity.Tests.Integration.EventServiceIntegrationTests" name="CreateEvent_ShouldCreateEventAndOrganizerParticipation" />
+    </UnitTest>
+    <UnitTest name="Eventity.Tests.Integration.AuthServiceIntegrationTests.AuthenticateUser_WithValidCredentials_ShouldReturnToken" storage="/users/ekaterinaparamonova/downloads/eventity2/src/eventity.tests.integration/bin/debug/net6.0/eventity.tests.integration.dll" id="3d69041a-e8f9-491d-0c46-0e8ef26fa951">
+      <Execution id="9c42bf84-0e3a-463f-82a0-6fb401ebabc5" />
+      <TestMethod codeBase="/Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/bin/Debug/net6.0/Eventity.Tests.Integration.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Eventity.Tests.Integration.AuthServiceIntegrationTests" name="AuthenticateUser_WithValidCredentials_ShouldReturnToken" />
+    </UnitTest>
+    <UnitTest name="Eventity.Tests.Integration.ParticipationServiceIntegrationTests.UpdateParticipationStatus_ShouldUpdateStatus" storage="/users/ekaterinaparamonova/downloads/eventity2/src/eventity.tests.integration/bin/debug/net6.0/eventity.tests.integration.dll" id="e713cfc5-069a-1b1d-17c2-3721ef9e2a63">
+      <Execution id="29657bc2-982f-419a-8889-f189b2b3b6b3" />
+      <TestMethod codeBase="/Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/bin/Debug/net6.0/Eventity.Tests.Integration.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Eventity.Tests.Integration.ParticipationServiceIntegrationTests" name="UpdateParticipationStatus_ShouldUpdateStatus" />
+    </UnitTest>
+    <UnitTest name="Eventity.Tests.Integration.ParticipationServiceIntegrationTests.AddParticipation_ShouldCreateParticipationAndNotification" storage="/users/ekaterinaparamonova/downloads/eventity2/src/eventity.tests.integration/bin/debug/net6.0/eventity.tests.integration.dll" id="33ed8877-3f2a-1779-550a-9b6ba6fa7932">
+      <Execution id="8cdd16cb-9805-4308-aa9b-b542612ef5a7" />
+      <TestMethod codeBase="/Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/bin/Debug/net6.0/Eventity.Tests.Integration.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Eventity.Tests.Integration.ParticipationServiceIntegrationTests" name="AddParticipation_ShouldCreateParticipationAndNotification" />
+    </UnitTest>
+    <UnitTest name="Eventity.Tests.Integration.AuthServiceIntegrationTests.RegisterUser_ShouldCreateUserAndReturnToken" storage="/users/ekaterinaparamonova/downloads/eventity2/src/eventity.tests.integration/bin/debug/net6.0/eventity.tests.integration.dll" id="6efc0d59-eb5e-830e-e261-e1c991580915">
+      <Execution id="7060be0a-9009-425d-9418-5b9769eafc91" />
+      <TestMethod codeBase="/Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/bin/Debug/net6.0/Eventity.Tests.Integration.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Eventity.Tests.Integration.AuthServiceIntegrationTests" name="RegisterUser_ShouldCreateUserAndReturnToken" />
+    </UnitTest>
+    <UnitTest name="Eventity.Tests.Integration.CreateInviteSentIntegrationTests.CreateInviteSent_ShouldWorkCorrectly" storage="/users/ekaterinaparamonova/downloads/eventity2/src/eventity.tests.integration/bin/debug/net6.0/eventity.tests.integration.dll" id="9a409744-a1e9-cd9b-7b1c-1abc48417f20">
+      <Execution id="a5f3627c-688b-46f9-b856-eeb54e6040ad" />
+      <TestMethod codeBase="/Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/bin/Debug/net6.0/Eventity.Tests.Integration.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Eventity.Tests.Integration.CreateInviteSentIntegrationTests" name="CreateInviteSent_ShouldWorkCorrectly" />
+    </UnitTest>
+    <UnitTest name="Eventity.Tests.Integration.AuthServiceIntegrationTests.AuthenticateUser_WithInvalidPassword_ShouldThrowException" storage="/users/ekaterinaparamonova/downloads/eventity2/src/eventity.tests.integration/bin/debug/net6.0/eventity.tests.integration.dll" id="500bc8f7-bec4-4e18-28ad-d453956af13e">
+      <Execution id="19e0b55c-c443-4310-b012-7cd80281b6c5" />
+      <TestMethod codeBase="/Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/bin/Debug/net6.0/Eventity.Tests.Integration.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Eventity.Tests.Integration.AuthServiceIntegrationTests" name="AuthenticateUser_WithInvalidPassword_ShouldThrowException" />
+    </UnitTest>
+    <UnitTest name="Eventity.Tests.Integration.EventServiceIntegrationTests.GetEventById_ShouldReturnEvent" storage="/users/ekaterinaparamonova/downloads/eventity2/src/eventity.tests.integration/bin/debug/net6.0/eventity.tests.integration.dll" id="6644b860-e86b-101b-5f9a-90e175909307">
+      <Execution id="34bf23d3-3bbf-4f4d-9ef5-a7fec7bb8db6" />
+      <TestMethod codeBase="/Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/bin/Debug/net6.0/Eventity.Tests.Integration.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Eventity.Tests.Integration.EventServiceIntegrationTests" name="GetEventById_ShouldReturnEvent" />
+    </UnitTest>
+    <UnitTest name="Eventity.Tests.Integration.NotificationServiceIntegrationTests.AddNotification_ForEvent_ShouldCreateNotificationsForAllParticipants" storage="/users/ekaterinaparamonova/downloads/eventity2/src/eventity.tests.integration/bin/debug/net6.0/eventity.tests.integration.dll" id="d3c4fce7-a64b-e519-6ae3-50fa9d327192">
+      <Execution id="9f9a0c5c-873a-446e-a87b-c68a142091eb" />
+      <TestMethod codeBase="/Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/bin/Debug/net6.0/Eventity.Tests.Integration.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Eventity.Tests.Integration.NotificationServiceIntegrationTests" name="AddNotification_ForEvent_ShouldCreateNotificationsForAllParticipants" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="e713cfc5-069a-1b1d-17c2-3721ef9e2a63" executionId="29657bc2-982f-419a-8889-f189b2b3b6b3" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="74ff21b9-20e7-de18-31d8-ee8fe569b25e" executionId="c5d73156-255e-438d-882b-43c9dd0797d5" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="6efc0d59-eb5e-830e-e261-e1c991580915" executionId="7060be0a-9009-425d-9418-5b9769eafc91" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3d69041a-e8f9-491d-0c46-0e8ef26fa951" executionId="9c42bf84-0e3a-463f-82a0-6fb401ebabc5" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="500bc8f7-bec4-4e18-28ad-d453956af13e" executionId="19e0b55c-c443-4310-b012-7cd80281b6c5" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="6644b860-e86b-101b-5f9a-90e175909307" executionId="34bf23d3-3bbf-4f4d-9ef5-a7fec7bb8db6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9a409744-a1e9-cd9b-7b1c-1abc48417f20" executionId="a5f3627c-688b-46f9-b856-eeb54e6040ad" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d3c4fce7-a64b-e519-6ae3-50fa9d327192" executionId="9f9a0c5c-873a-446e-a87b-c68a142091eb" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="33ed8877-3f2a-1779-550a-9b6ba6fa7932" executionId="8cdd16cb-9805-4308-aa9b-b542612ef5a7" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Failed">
+    <Counters total="9" executed="9" passed="0" failed="9" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>[xUnit.net 00:00:00.01] xUnit.net VSTest Adapter v2.5.6+bf9b858c26 (64-bit .NET 6.0.8)
+[xUnit.net 00:00:01.38] XunitTestRunner's Void .ctor(Xunit.Abstractions.ITest, Xunit.Sdk.IMessageBus, System.Type, System.Object[], System.Reflection.MethodInfo, System.Object[], System.String, System.Collections.Generic.IReadOnlyList`1[Xunit.Sdk.BeforeAfterTestAttribute], Xunit.Sdk.ExceptionAggregator, System.Threading.CancellationTokenSource) has been patched
+[xUnit.net 00:00:01.48] Allure reporter enabled
+[xUnit.net 00:00:01.52] Patching is skipped: Xunit is already patched
+[xUnit.net 00:00:01.53] Allure reporter enabled
+[xUnit.net 00:00:01.81]   Discovering: Eventity.Tests.Integration
+[xUnit.net 00:00:01.91]   Discovered:  Eventity.Tests.Integration
+[xUnit.net 00:00:01.92]   Starting:    Eventity.Tests.Integration
+[xUnit.net 00:00:07.23]       System.Net.Internals.SocketExceptionFactory+ExtendedSocketException : nodename nor servname provided, or not known
+[xUnit.net 00:00:07.23]       Stack Trace:
+[xUnit.net 00:00:07.23]            at System.Net.Dns.GetHostEntryOrAddressesCore(String hostName, Boolean justAddresses, AddressFamily addressFamily, ValueStopwatch stopwatch)
+[xUnit.net 00:00:07.23]            at System.Net.Dns.&lt;&gt;c.&lt;GetHostEntryOrAddressesCoreAsync&gt;b__33_0(Object s, ValueStopwatch stopwatch)
+[xUnit.net 00:00:07.23]            at System.Net.Dns.&lt;&gt;c__DisplayClass39_0`1.&lt;RunAsync&gt;b__0(Task &lt;p0&gt;, Object &lt;p1&gt;)
+[xUnit.net 00:00:07.24]            at System.Threading.Tasks.ContinuationResultTaskFromTask`1.InnerInvoke()
+[xUnit.net 00:00:07.24]            at System.Threading.Tasks.Task.&lt;&gt;c.&lt;.cctor&gt;b__272_0(Object obj)
+[xUnit.net 00:00:07.24]            at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+[xUnit.net 00:00:07.24]         --- End of stack trace from previous location ---
+[xUnit.net 00:00:07.24]            at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+[xUnit.net 00:00:07.24]            at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task&amp; currentTaskSlot, Thread threadPoolThread)
+[xUnit.net 00:00:07.24]         --- End of stack trace from previous location ---
+[xUnit.net 00:00:07.24]            at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+[xUnit.net 00:00:07.24]            at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync[TResult](Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+[xUnit.net 00:00:07.24]            at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
+[xUnit.net 00:00:07.24]            at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+[xUnit.net 00:00:07.24]            at Npgsql.Internal.NpgsqlConnector.&lt;Open&gt;g__OpenCore|215_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+[xUnit.net 00:00:07.24]            at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+[xUnit.net 00:00:07.24]            at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+[xUnit.net 00:00:07.24]            at Npgsql.PoolingDataSource.&lt;Get&gt;g__RentAsync|28_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+[xUnit.net 00:00:07.24]            at Npgsql.NpgsqlConnection.&lt;Open&gt;g__OpenAsync|45_0(Boolean async, CancellationToken cancellationToken)
+[xUnit.net 00:00:07.24]         /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs(132,0): at Eventity.Tests.Integration.IntegrationTestBase.DropTestDatabase()
+[xUnit.net 00:00:07.24]         /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs(86,0): at Eventity.Tests.Integration.IntegrationTestBase.DisposeAsync()
+[xUnit.net 00:00:07.24]       System.Net.Internals.SocketExceptionFactory+ExtendedSocketException : nodename nor servname provided, or not known
+[xUnit.net 00:00:07.24]       Stack Trace:
+[xUnit.net 00:00:07.25]            at System.Net.Dns.GetHostEntryOrAddressesCore(String hostName, Boolean justAddresses, AddressFamily addressFamily, ValueStopwatch stopwatch)
+[xUnit.net 00:00:07.25]            at System.Net.Dns.&lt;&gt;c.&lt;GetHostEntryOrAddressesCoreAsync&gt;b__33_0(Object s, ValueStopwatch stopwatch)
+[xUnit.net 00:00:07.25]            at System.Net.Dns.&lt;&gt;c__DisplayClass39_0`1.&lt;RunAsync&gt;b__0(Task &lt;p0&gt;, Object &lt;p1&gt;)
+[xUnit.net 00:00:07.25]            at System.Threading.Tasks.ContinuationResultTaskFromTask`1.InnerInvoke()
+[xUnit.net 00:00:07.25]            at System.Threading.Tasks.Task.&lt;&gt;c.&lt;.cctor&gt;b__272_0(Object obj)
+[xUnit.net 00:00:07.25]            at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+[xUnit.net 00:00:07.25]         --- End of stack trace from previous location ---
+[xUnit.net 00:00:07.25]            at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+[xUnit.net 00:00:07.25]            at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task&amp; currentTaskSlot, Thread threadPoolThread)
+[xUnit.net 00:00:07.25]         --- End of stack trace from previous location ---
+[xUnit.net 00:00:07.25]            at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+[xUnit.net 00:00:07.25]            at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync[TResult](Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+[xUnit.net 00:00:07.25]            at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
+[xUnit.net 00:00:07.25]            at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+[xUnit.net 00:00:07.25]            at Npgsql.Internal.NpgsqlConnector.&lt;Open&gt;g__OpenCore|215_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+[xUnit.net 00:00:07.25]            at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+[xUnit.net 00:00:07.25]            at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+[xUnit.net 00:00:07.25]            at Npgsql.PoolingDataSource.&lt;Get&gt;g__RentAsync|28_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+[xUnit.net 00:00:07.25]            at Npgsql.NpgsqlConnection.&lt;Open&gt;g__OpenAsync|45_0(Boolean async, CancellationToken cancellationToken)
+[xUnit.net 00:00:07.25]         /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs(132,0): at Eventity.Tests.Integration.IntegrationTestBase.DropTestDatabase()
+[xUnit.net 00:00:07.25]         /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs(86,0): at Eventity.Tests.Integration.IntegrationTestBase.DisposeAsync()
+[xUnit.net 00:00:07.26]       System.Net.Internals.SocketExceptionFactory+ExtendedSocketException : nodename nor servname provided, or not known
+[xUnit.net 00:00:07.27]       Stack Trace:
+[xUnit.net 00:00:07.27]            at System.Net.Dns.GetHostEntryOrAddressesCore(String hostName, Boolean justAddresses, AddressFamily addressFamily, ValueStopwatch stopwatch)
+[xUnit.net 00:00:07.27]            at System.Net.Dns.&lt;&gt;c.&lt;GetHostEntryOrAddressesCoreAsync&gt;b__33_0(Object s, ValueStopwatch stopwatch)
+[xUnit.net 00:00:07.27]            at System.Net.Dns.&lt;&gt;c__DisplayClass39_0`1.&lt;RunAsync&gt;b__0(Task &lt;p0&gt;, Object &lt;p1&gt;)
+[xUnit.net 00:00:07.27]            at System.Threading.Tasks.ContinuationResultTaskFromTask`1.InnerInvoke()
+[xUnit.net 00:00:07.27]            at System.Threading.Tasks.Task.&lt;&gt;c.&lt;.cctor&gt;b__272_0(Object obj)
+[xUnit.net 00:00:07.27]            at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+[xUnit.net 00:00:07.27]         --- End of stack trace from previous location ---
+[xUnit.net 00:00:07.27]            at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+[xUnit.net 00:00:07.27]            at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task&amp; currentTaskSlot, Thread threadPoolThread)
+[xUnit.net 00:00:07.27]         --- End of stack trace from previous location ---
+[xUnit.net 00:00:07.27]            at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+[xUnit.net 00:00:07.27]            at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync[TResult](Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+[xUnit.net 00:00:07.27]            at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
+[xUnit.net 00:00:07.27]            at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+[xUnit.net 00:00:07.27]            at Npgsql.Internal.NpgsqlConnector.&lt;Open&gt;g__OpenCore|215_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+[xUnit.net 00:00:07.27]            at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+[xUnit.net 00:00:07.27]            at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+[xUnit.net 00:00:07.27]            at Npgsql.PoolingDataSource.&lt;Get&gt;g__RentAsync|28_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+[xUnit.net 00:00:07.27]            at Npgsql.NpgsqlConnection.&lt;Open&gt;g__OpenAsync|45_0(Boolean async, CancellationToken cancellationToken)
+[xUnit.net 00:00:07.27]         /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs(132,0): at Eventity.Tests.Integration.IntegrationTestBase.DropTestDatabase()
+[xUnit.net 00:00:07.27]         /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs(86,0): at Eventity.Tests.Integration.IntegrationTestBase.DisposeAsync()
+[xUnit.net 00:00:07.37]       System.Net.Internals.SocketExceptionFactory+ExtendedSocketException : nodename nor servname provided, or not known
+[xUnit.net 00:00:07.37]       Stack Trace:
+[xUnit.net 00:00:07.37]            at System.Net.Dns.GetHostEntryOrAddressesCore(String hostName, Boolean justAddresses, AddressFamily addressFamily, ValueStopwatch stopwatch)
+[xUnit.net 00:00:07.37]            at System.Net.Dns.&lt;&gt;c.&lt;GetHostEntryOrAddressesCoreAsync&gt;b__33_0(Object s, ValueStopwatch stopwatch)
+[xUnit.net 00:00:07.37]            at System.Net.Dns.&lt;&gt;c__DisplayClass39_0`1.&lt;RunAsync&gt;b__0(Task &lt;p0&gt;, Object &lt;p1&gt;)
+[xUnit.net 00:00:07.37]            at System.Threading.Tasks.ContinuationResultTaskFromTask`1.InnerInvoke()
+[xUnit.net 00:00:07.37]            at System.Threading.Tasks.Task.&lt;&gt;c.&lt;.cctor&gt;b__272_0(Object obj)
+[xUnit.net 00:00:07.37]            at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+[xUnit.net 00:00:07.37]         --- End of stack trace from previous location ---
+[xUnit.net 00:00:07.37]            at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+[xUnit.net 00:00:07.37]            at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task&amp; currentTaskSlot, Thread threadPoolThread)
+[xUnit.net 00:00:07.37]         --- End of stack trace from previous location ---
+[xUnit.net 00:00:07.37]            at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+[xUnit.net 00:00:07.37]            at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync[TResult](Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+[xUnit.net 00:00:07.37]            at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
+[xUnit.net 00:00:07.37]            at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+[xUnit.net 00:00:07.37]            at Npgsql.Internal.NpgsqlConnector.&lt;Open&gt;g__OpenCore|215_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+[xUnit.net 00:00:07.37]            at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+[xUnit.net 00:00:07.37]            at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+[xUnit.net 00:00:07.37]            at Npgsql.PoolingDataSource.&lt;Get&gt;g__RentAsync|28_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+[xUnit.net 00:00:07.37]            at Npgsql.NpgsqlConnection.&lt;Open&gt;g__OpenAsync|45_0(Boolean async, CancellationToken cancellationToken)
+[xUnit.net 00:00:07.37]         /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs(132,0): at Eventity.Tests.Integration.IntegrationTestBase.DropTestDatabase()
+[xUnit.net 00:00:07.37]         /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs(86,0): at Eventity.Tests.Integration.IntegrationTestBase.DisposeAsync()
+[xUnit.net 00:00:07.37]       System.Net.Internals.SocketExceptionFactory+ExtendedSocketException : nodename nor servname provided, or not known
+[xUnit.net 00:00:07.37]       Stack Trace:
+[xUnit.net 00:00:07.37]            at System.Net.Dns.GetHostEntryOrAddressesCore(String hostName, Boolean justAddresses, AddressFamily addressFamily, ValueStopwatch stopwatch)
+[xUnit.net 00:00:07.37]            at System.Net.Dns.&lt;&gt;c.&lt;GetHostEntryOrAddressesCoreAsync&gt;b__33_0(Object s, ValueStopwatch stopwatch)
+[xUnit.net 00:00:07.37]            at System.Net.Dns.&lt;&gt;c__DisplayClass39_0`1.&lt;RunAsync&gt;b__0(Task &lt;p0&gt;, Object &lt;p1&gt;)
+[xUnit.net 00:00:07.37]            at System.Threading.Tasks.ContinuationResultTaskFromTask`1.InnerInvoke()
+[xUnit.net 00:00:07.37]            at System.Threading.Tasks.Task.&lt;&gt;c.&lt;.cctor&gt;b__272_0(Object obj)
+[xUnit.net 00:00:07.37]            at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+[xUnit.net 00:00:07.37]         --- End of stack trace from previous location ---
+[xUnit.net 00:00:07.37]            at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+[xUnit.net 00:00:07.37]            at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task&amp; currentTaskSlot, Thread threadPoolThread)
+[xUnit.net 00:00:07.37]         --- End of stack trace from previous location ---
+[xUnit.net 00:00:07.37]            at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+[xUnit.net 00:00:07.37]            at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync[TResult](Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+[xUnit.net 00:00:07.37]            at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
+[xUnit.net 00:00:07.37]            at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+[xUnit.net 00:00:07.37]            at Npgsql.Internal.NpgsqlConnector.&lt;Open&gt;g__OpenCore|215_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+[xUnit.net 00:00:07.37]            at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+[xUnit.net 00:00:07.37]            at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+[xUnit.net 00:00:07.37]            at Npgsql.PoolingDataSource.&lt;Get&gt;g__RentAsync|28_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+[xUnit.net 00:00:07.37]            at Npgsql.NpgsqlConnection.&lt;Open&gt;g__OpenAsync|45_0(Boolean async, CancellationToken cancellationToken)
+[xUnit.net 00:00:07.37]         /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs(132,0): at Eventity.Tests.Integration.IntegrationTestBase.DropTestDatabase()
+[xUnit.net 00:00:07.37]         /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs(86,0): at Eventity.Tests.Integration.IntegrationTestBase.DisposeAsync()
+[xUnit.net 00:00:09.09]       System.Net.Internals.SocketExceptionFactory+ExtendedSocketException : nodename nor servname provided, or not known
+[xUnit.net 00:00:09.09]       Stack Trace:
+[xUnit.net 00:00:09.09]            at System.Net.Dns.GetHostEntryOrAddressesCore(String hostName, Boolean justAddresses, AddressFamily addressFamily, ValueStopwatch stopwatch)
+[xUnit.net 00:00:09.09]            at System.Net.Dns.&lt;&gt;c.&lt;GetHostEntryOrAddressesCoreAsync&gt;b__33_0(Object s, ValueStopwatch stopwatch)
+[xUnit.net 00:00:09.09]            at System.Net.Dns.&lt;&gt;c__DisplayClass39_0`1.&lt;RunAsync&gt;b__0(Task &lt;p0&gt;, Object &lt;p1&gt;)
+[xUnit.net 00:00:09.09]            at System.Threading.Tasks.ContinuationResultTaskFromTask`1.InnerInvoke()
+[xUnit.net 00:00:09.09]            at System.Threading.Tasks.Task.&lt;&gt;c.&lt;.cctor&gt;b__272_0(Object obj)
+[xUnit.net 00:00:09.09]            at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+[xUnit.net 00:00:09.09]         --- End of stack trace from previous location ---
+[xUnit.net 00:00:09.09]            at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+[xUnit.net 00:00:09.09]            at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task&amp; currentTaskSlot, Thread threadPoolThread)
+[xUnit.net 00:00:09.09]         --- End of stack trace from previous location ---
+[xUnit.net 00:00:09.09]            at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+[xUnit.net 00:00:09.09]            at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync[TResult](Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+[xUnit.net 00:00:09.09]            at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
+[xUnit.net 00:00:09.09]            at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+[xUnit.net 00:00:09.09]            at Npgsql.Internal.NpgsqlConnector.&lt;Open&gt;g__OpenCore|215_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+[xUnit.net 00:00:09.09]            at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+[xUnit.net 00:00:09.09]            at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+[xUnit.net 00:00:09.09]            at Npgsql.PoolingDataSource.&lt;Get&gt;g__RentAsync|28_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+[xUnit.net 00:00:09.09]            at Npgsql.NpgsqlConnection.&lt;Open&gt;g__OpenAsync|45_0(Boolean async, CancellationToken cancellationToken)
+[xUnit.net 00:00:09.09]         /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs(132,0): at Eventity.Tests.Integration.IntegrationTestBase.DropTestDatabase()
+[xUnit.net 00:00:09.09]         /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs(86,0): at Eventity.Tests.Integration.IntegrationTestBase.DisposeAsync()
+[xUnit.net 00:00:09.10]       System.Net.Internals.SocketExceptionFactory+ExtendedSocketException : nodename nor servname provided, or not known
+[xUnit.net 00:00:09.10]       Stack Trace:
+[xUnit.net 00:00:09.10]            at System.Net.Dns.GetHostEntryOrAddressesCore(String hostName, Boolean justAddresses, AddressFamily addressFamily, ValueStopwatch stopwatch)
+[xUnit.net 00:00:09.10]            at System.Net.Dns.&lt;&gt;c.&lt;GetHostEntryOrAddressesCoreAsync&gt;b__33_0(Object s, ValueStopwatch stopwatch)
+[xUnit.net 00:00:09.10]            at System.Net.Dns.&lt;&gt;c__DisplayClass39_0`1.&lt;RunAsync&gt;b__0(Task &lt;p0&gt;, Object &lt;p1&gt;)
+[xUnit.net 00:00:09.10]            at System.Threading.Tasks.ContinuationResultTaskFromTask`1.InnerInvoke()
+[xUnit.net 00:00:09.10]            at System.Threading.Tasks.Task.&lt;&gt;c.&lt;.cctor&gt;b__272_0(Object obj)
+[xUnit.net 00:00:09.10]            at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+[xUnit.net 00:00:09.10]         --- End of stack trace from previous location ---
+[xUnit.net 00:00:09.10]            at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+[xUnit.net 00:00:09.10]            at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task&amp; currentTaskSlot, Thread threadPoolThread)
+[xUnit.net 00:00:09.10]         --- End of stack trace from previous location ---
+[xUnit.net 00:00:09.10]            at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+[xUnit.net 00:00:09.10]            at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync[TResult](Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+[xUnit.net 00:00:09.10]            at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
+[xUnit.net 00:00:09.10]            at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+[xUnit.net 00:00:09.10]            at Npgsql.Internal.NpgsqlConnector.&lt;Open&gt;g__OpenCore|215_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+[xUnit.net 00:00:09.10]            at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+[xUnit.net 00:00:09.10]            at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+[xUnit.net 00:00:09.10]            at Npgsql.PoolingDataSource.&lt;Get&gt;g__RentAsync|28_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+[xUnit.net 00:00:09.10]            at Npgsql.NpgsqlConnection.&lt;Open&gt;g__OpenAsync|45_0(Boolean async, CancellationToken cancellationToken)
+[xUnit.net 00:00:09.10]         /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs(132,0): at Eventity.Tests.Integration.IntegrationTestBase.DropTestDatabase()
+[xUnit.net 00:00:09.10]         /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs(86,0): at Eventity.Tests.Integration.IntegrationTestBase.DisposeAsync()
+[xUnit.net 00:00:09.29]       System.Net.Internals.SocketExceptionFactory+ExtendedSocketException : nodename nor servname provided, or not known
+[xUnit.net 00:00:09.29]       Stack Trace:
+[xUnit.net 00:00:09.29]            at System.Net.Dns.GetHostEntryOrAddressesCore(String hostName, Boolean justAddresses, AddressFamily addressFamily, ValueStopwatch stopwatch)
+[xUnit.net 00:00:09.29]            at System.Net.Dns.&lt;&gt;c.&lt;GetHostEntryOrAddressesCoreAsync&gt;b__33_0(Object s, ValueStopwatch stopwatch)
+[xUnit.net 00:00:09.29]            at System.Net.Dns.&lt;&gt;c__DisplayClass39_0`1.&lt;RunAsync&gt;b__0(Task &lt;p0&gt;, Object &lt;p1&gt;)
+[xUnit.net 00:00:09.29]            at System.Threading.Tasks.ContinuationResultTaskFromTask`1.InnerInvoke()
+[xUnit.net 00:00:09.29]            at System.Threading.Tasks.Task.&lt;&gt;c.&lt;.cctor&gt;b__272_0(Object obj)
+[xUnit.net 00:00:09.29]            at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+[xUnit.net 00:00:09.29]         --- End of stack trace from previous location ---
+[xUnit.net 00:00:09.29]            at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+[xUnit.net 00:00:09.29]            at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task&amp; currentTaskSlot, Thread threadPoolThread)
+[xUnit.net 00:00:09.29]         --- End of stack trace from previous location ---
+[xUnit.net 00:00:09.29]            at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+[xUnit.net 00:00:09.29]            at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync[TResult](Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+[xUnit.net 00:00:09.29]            at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
+[xUnit.net 00:00:09.29]            at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+[xUnit.net 00:00:09.29]            at Npgsql.Internal.NpgsqlConnector.&lt;Open&gt;g__OpenCore|215_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+[xUnit.net 00:00:09.29]            at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+[xUnit.net 00:00:09.29]            at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+[xUnit.net 00:00:09.29]            at Npgsql.PoolingDataSource.&lt;Get&gt;g__RentAsync|28_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+[xUnit.net 00:00:09.29]            at Npgsql.NpgsqlConnection.&lt;Open&gt;g__OpenAsync|45_0(Boolean async, CancellationToken cancellationToken)
+[xUnit.net 00:00:09.29]         /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs(132,0): at Eventity.Tests.Integration.IntegrationTestBase.DropTestDatabase()
+[xUnit.net 00:00:09.29]         /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs(86,0): at Eventity.Tests.Integration.IntegrationTestBase.DisposeAsync()
+[xUnit.net 00:00:10.00]       System.Net.Internals.SocketExceptionFactory+ExtendedSocketException : nodename nor servname provided, or not known
+[xUnit.net 00:00:10.00]       Stack Trace:
+[xUnit.net 00:00:10.00]            at System.Net.Dns.GetHostEntryOrAddressesCore(String hostName, Boolean justAddresses, AddressFamily addressFamily, ValueStopwatch stopwatch)
+[xUnit.net 00:00:10.00]            at System.Net.Dns.&lt;&gt;c.&lt;GetHostEntryOrAddressesCoreAsync&gt;b__33_0(Object s, ValueStopwatch stopwatch)
+[xUnit.net 00:00:10.00]            at System.Net.Dns.&lt;&gt;c__DisplayClass39_0`1.&lt;RunAsync&gt;b__0(Task &lt;p0&gt;, Object &lt;p1&gt;)
+[xUnit.net 00:00:10.00]            at System.Threading.Tasks.ContinuationResultTaskFromTask`1.InnerInvoke()
+[xUnit.net 00:00:10.00]            at System.Threading.Tasks.Task.&lt;&gt;c.&lt;.cctor&gt;b__272_0(Object obj)
+[xUnit.net 00:00:10.00]            at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+[xUnit.net 00:00:10.00]         --- End of stack trace from previous location ---
+[xUnit.net 00:00:10.00]            at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+[xUnit.net 00:00:10.00]            at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task&amp; currentTaskSlot, Thread threadPoolThread)
+[xUnit.net 00:00:10.00]         --- End of stack trace from previous location ---
+[xUnit.net 00:00:10.00]            at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+[xUnit.net 00:00:10.00]            at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync[TResult](Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+[xUnit.net 00:00:10.00]            at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
+[xUnit.net 00:00:10.00]            at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+[xUnit.net 00:00:10.00]            at Npgsql.Internal.NpgsqlConnector.&lt;Open&gt;g__OpenCore|215_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+[xUnit.net 00:00:10.00]            at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+[xUnit.net 00:00:10.00]            at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+[xUnit.net 00:00:10.00]            at Npgsql.PoolingDataSource.&lt;Get&gt;g__RentAsync|28_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+[xUnit.net 00:00:10.00]            at Npgsql.NpgsqlConnection.&lt;Open&gt;g__OpenAsync|45_0(Boolean async, CancellationToken cancellationToken)
+[xUnit.net 00:00:10.00]         /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs(132,0): at Eventity.Tests.Integration.IntegrationTestBase.DropTestDatabase()
+[xUnit.net 00:00:10.00]         /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs(86,0): at Eventity.Tests.Integration.IntegrationTestBase.DisposeAsync()
+[xUnit.net 00:00:10.01]   Finished:    Eventity.Tests.Integration
+</StdOut>
+    </Output>
+    <RunInfos>
+      <RunInfo computerName="MacBook-Pro-Ekaterina" outcome="Error" timestamp="2026-01-10T18:20:01.7616660+03:00">
+        <Text>[xUnit.net 00:00:07.22]     Eventity.Tests.Integration.EventServiceIntegrationTests.CreateEvent_ShouldCreateEventAndOrganizerParticipation [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="MacBook-Pro-Ekaterina" outcome="Error" timestamp="2026-01-10T18:20:01.7900200+03:00">
+        <Text>[xUnit.net 00:00:07.24]     Eventity.Tests.Integration.AuthServiceIntegrationTests.AuthenticateUser_WithValidCredentials_ShouldReturnToken [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="MacBook-Pro-Ekaterina" outcome="Error" timestamp="2026-01-10T18:20:01.8100440+03:00">
+        <Text>[xUnit.net 00:00:07.26]     Eventity.Tests.Integration.ParticipationServiceIntegrationTests.AddParticipation_ShouldCreateParticipationAndNotification [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="MacBook-Pro-Ekaterina" outcome="Error" timestamp="2026-01-10T18:20:01.9119710+03:00">
+        <Text>[xUnit.net 00:00:07.37]     Eventity.Tests.Integration.NotificationServiceIntegrationTests.AddNotification_ForEvent_ShouldCreateNotificationsForAllParticipants [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="MacBook-Pro-Ekaterina" outcome="Error" timestamp="2026-01-10T18:20:01.9162770+03:00">
+        <Text>[xUnit.net 00:00:07.37]     Eventity.Tests.Integration.CreateInviteSentIntegrationTests.CreateInviteSent_ShouldWorkCorrectly [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="MacBook-Pro-Ekaterina" outcome="Error" timestamp="2026-01-10T18:20:03.6375400+03:00">
+        <Text>[xUnit.net 00:00:09.09]     Eventity.Tests.Integration.EventServiceIntegrationTests.GetEventById_ShouldReturnEvent [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="MacBook-Pro-Ekaterina" outcome="Error" timestamp="2026-01-10T18:20:03.6453060+03:00">
+        <Text>[xUnit.net 00:00:09.10]     Eventity.Tests.Integration.AuthServiceIntegrationTests.AuthenticateUser_WithInvalidPassword_ShouldThrowException [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="MacBook-Pro-Ekaterina" outcome="Error" timestamp="2026-01-10T18:20:03.8354330+03:00">
+        <Text>[xUnit.net 00:00:09.29]     Eventity.Tests.Integration.ParticipationServiceIntegrationTests.UpdateParticipationStatus_ShouldUpdateStatus [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="MacBook-Pro-Ekaterina" outcome="Error" timestamp="2026-01-10T18:20:04.5490390+03:00">
+        <Text>[xUnit.net 00:00:10.00]     Eventity.Tests.Integration.AuthServiceIntegrationTests.RegisterUser_ShouldCreateUserAndReturnToken [FAIL]</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+</TestRun>

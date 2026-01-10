@@ -1,0 +1,50 @@
+name: Measure resources
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  measure:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '7.0.x'
+
+      - name: Install time tool
+        run: |
+          if [ "${{ matrix.os }}" = "macos-latest" ]; then
+            brew update || true
+            brew install gnu-time || true
+          else
+            sudo apt-get update
+            sudo apt-get install -y time
+          fi
+
+      - name: Make measurement script executable
+        run: chmod +x scripts/measure_resources.sh
+
+      - name: Run resource measurement
+        env:
+          # optional: override COMMAND to run a different test/benchmark
+          COMMAND: ${COMMAND:-dotnet test src/Eventity.Tests.Integration/Eventity.Tests.Integration.csproj}
+        run: ./scripts/measure_resources.sh
+
+      - name: Upload resource artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: resource-artifacts-${{ matrix.os }}
+          path: |
+            artifacts/resource
+            artifacts/allure-results

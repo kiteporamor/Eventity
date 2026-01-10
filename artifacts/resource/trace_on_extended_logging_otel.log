@@ -1,0 +1,233 @@
+  Determining projects to restore...
+/Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Application/Eventity.Application.csproj : warning NU1504: Duplicate 'PackageReference' items found. Remove the duplicate items or use the Update functionality to ensure a consistent restore behavior. The duplicate 'PackageReference' items are: Microsoft.AspNetCore.Authentication.JwtBearer 6.0.0, Microsoft.AspNetCore.Authentication.JwtBearer ; Microsoft.Extensions.Configuration 7.0.0, Microsoft.Extensions.Configuration ; Microsoft.Extensions.DependencyInjection 7.0.0, Microsoft.Extensions.DependencyInjection ; Microsoft.Extensions.Logging 8.0.1, Microsoft.Extensions.Logging ; Microsoft.Extensions.Logging.Abstractions 8.0.3, Microsoft.Extensions.Logging.Abstractions ; Serilog 4.2.0, Serilog ; Serilog.Settings.Configuration 8.0.0, Serilog.Settings.Configuration ; Serilog.Sinks.File 7.0.0, Serilog.Sinks.File ; System.IdentityModel.Tokens.Jwt 8.8.0, System.IdentityModel.Tokens.Jwt .
+/Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.DataAccess/Eventity.DataAccess.csproj : warning NU1504: Duplicate 'PackageReference' items found. Remove the duplicate items or use the Update functionality to ensure a consistent restore behavior. The duplicate 'PackageReference' items are: Microsoft.Extensions.Configuration 7.0.0, Microsoft.Extensions.Configuration ; Microsoft.Extensions.DependencyInjection 7.0.0, Microsoft.Extensions.DependencyInjection ; Microsoft.Extensions.Logging 8.0.1, Microsoft.Extensions.Logging ; Microsoft.Extensions.Logging.Abstractions 8.0.3, Microsoft.Extensions.Logging.Abstractions ; Serilog 4.2.0, Serilog ; Serilog.Settings.Configuration 8.0.0, Serilog.Settings.Configuration ; Serilog.Sinks.File 7.0.0, Serilog.Sinks.File ; Microsoft.EntityFrameworkCore 7.0.20, Microsoft.EntityFrameworkCore ; Microsoft.EntityFrameworkCore.Design 7.0.20, Microsoft.EntityFrameworkCore.Design ; Npgsql.EntityFrameworkCore.PostgreSQL 7.0.11, Npgsql.EntityFrameworkCore.PostgreSQL ; MongoDB.Driver 3.5.0, MongoDB.Driver .
+/Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Domain/Eventity.Domain.csproj : warning NU1504: Duplicate 'PackageReference' items found. Remove the duplicate items or use the Update functionality to ensure a consistent restore behavior. The duplicate 'PackageReference' items are: Microsoft.AspNetCore.Authentication.JwtBearer 6.0.0, Microsoft.AspNetCore.Authentication.JwtBearer ; Serilog 4.2.0, Serilog ; Serilog.Settings.Configuration 8.0.0, Serilog.Settings.Configuration ; Serilog.Sinks.File 7.0.0, Serilog.Sinks.File ; System.IdentityModel.Tokens.Jwt 8.8.0, System.IdentityModel.Tokens.Jwt .
+/Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/Eventity.Tests.Integration.csproj : warning NU1504: Duplicate 'PackageReference' items found. Remove the duplicate items or use the Update functionality to ensure a consistent restore behavior. The duplicate 'PackageReference' items are: Microsoft.NET.Test.Sdk 17.8.0, Microsoft.NET.Test.Sdk 17.1.0; xunit 2.6.6, xunit 2.4.1; xunit.runner.visualstudio 2.5.6, xunit.runner.visualstudio 2.4.3; coverlet.collector 6.0.0, coverlet.collector 3.1.2.
+  All projects are up-to-date for restore.
+/Users/ekaterinaparamonova/.nuget/packages/microsoft.bcl.memory/9.0.0/buildTransitive/netcoreapp2.0/Microsoft.Bcl.Memory.targets(4,5): warning : Microsoft.Bcl.Memory 9.0.0 doesn't support net6.0 and has not been tested with it. Consider upgrading your TargetFramework to net8.0 or later. You may also set <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings> in the project file to ignore this warning and attempt to run in this unsupported configuration at your own risk. [/Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/Eventity.Tests.Integration.csproj]
+/Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/Eventity.Tests.Integration.csproj : warning NU1504: Duplicate 'PackageReference' items found. Remove the duplicate items or use the Update functionality to ensure a consistent restore behavior. The duplicate 'PackageReference' items are: Microsoft.NET.Test.Sdk 17.8.0, Microsoft.NET.Test.Sdk 17.1.0; xunit 2.6.6, xunit 2.4.1; xunit.runner.visualstudio 2.5.6, xunit.runner.visualstudio 2.4.3; coverlet.collector 6.0.0, coverlet.collector 3.1.2.
+/Users/ekaterinaparamonova/.nuget/packages/microsoft.bcl.memory/9.0.0/buildTransitive/netcoreapp2.0/Microsoft.Bcl.Memory.targets(4,5): warning : Microsoft.Bcl.Memory 9.0.0 doesn't support net6.0 and has not been tested with it. Consider upgrading your TargetFramework to net8.0 or later. You may also set <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings> in the project file to ignore this warning and attempt to run in this unsupported configuration at your own risk. [/Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Application/Eventity.Application.csproj]
+/Users/ekaterinaparamonova/.nuget/packages/microsoft.bcl.memory/9.0.0/buildTransitive/netcoreapp2.0/Microsoft.Bcl.Memory.targets(4,5): warning : Microsoft.Bcl.Memory 9.0.0 doesn't support net6.0 and has not been tested with it. Consider upgrading your TargetFramework to net8.0 or later. You may also set <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings> in the project file to ignore this warning and attempt to run in this unsupported configuration at your own risk. [/Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Domain/Eventity.Domain.csproj]
+/Users/ekaterinaparamonova/.nuget/packages/microsoft.bcl.memory/9.0.0/buildTransitive/netcoreapp2.0/Microsoft.Bcl.Memory.targets(4,5): warning : Microsoft.Bcl.Memory 9.0.0 doesn't support net6.0 and has not been tested with it. Consider upgrading your TargetFramework to net8.0 or later. You may also set <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings> in the project file to ignore this warning and attempt to run in this unsupported configuration at your own risk. [/Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.DataAccess/Eventity.DataAccess.csproj]
+/Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Domain/Eventity.Domain.csproj : warning NU1504: Duplicate 'PackageReference' items found. Remove the duplicate items or use the Update functionality to ensure a consistent restore behavior. The duplicate 'PackageReference' items are: Microsoft.AspNetCore.Authentication.JwtBearer 6.0.0, Microsoft.AspNetCore.Authentication.JwtBearer ; Serilog 4.2.0, Serilog ; Serilog.Settings.Configuration 8.0.0, Serilog.Settings.Configuration ; Serilog.Sinks.File 7.0.0, Serilog.Sinks.File ; System.IdentityModel.Tokens.Jwt 8.8.0, System.IdentityModel.Tokens.Jwt .
+/Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.DataAccess/Eventity.DataAccess.csproj : warning NU1504: Duplicate 'PackageReference' items found. Remove the duplicate items or use the Update functionality to ensure a consistent restore behavior. The duplicate 'PackageReference' items are: Microsoft.Extensions.Configuration 7.0.0, Microsoft.Extensions.Configuration ; Microsoft.Extensions.DependencyInjection 7.0.0, Microsoft.Extensions.DependencyInjection ; Microsoft.Extensions.Logging 8.0.1, Microsoft.Extensions.Logging ; Microsoft.Extensions.Logging.Abstractions 8.0.3, Microsoft.Extensions.Logging.Abstractions ; Serilog 4.2.0, Serilog ; Serilog.Settings.Configuration 8.0.0, Serilog.Settings.Configuration ; Serilog.Sinks.File 7.0.0, Serilog.Sinks.File ; Microsoft.EntityFrameworkCore 7.0.20, Microsoft.EntityFrameworkCore ; Microsoft.EntityFrameworkCore.Design 7.0.20, Microsoft.EntityFrameworkCore.Design ; Npgsql.EntityFrameworkCore.PostgreSQL 7.0.11, Npgsql.EntityFrameworkCore.PostgreSQL ; MongoDB.Driver 3.5.0, MongoDB.Driver .
+/Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Application/Eventity.Application.csproj : warning NU1504: Duplicate 'PackageReference' items found. Remove the duplicate items or use the Update functionality to ensure a consistent restore behavior. The duplicate 'PackageReference' items are: Microsoft.AspNetCore.Authentication.JwtBearer 6.0.0, Microsoft.AspNetCore.Authentication.JwtBearer ; Microsoft.Extensions.Configuration 7.0.0, Microsoft.Extensions.Configuration ; Microsoft.Extensions.DependencyInjection 7.0.0, Microsoft.Extensions.DependencyInjection ; Microsoft.Extensions.Logging 8.0.1, Microsoft.Extensions.Logging ; Microsoft.Extensions.Logging.Abstractions 8.0.3, Microsoft.Extensions.Logging.Abstractions ; Serilog 4.2.0, Serilog ; Serilog.Settings.Configuration 8.0.0, Serilog.Settings.Configuration ; Serilog.Sinks.File 7.0.0, Serilog.Sinks.File ; System.IdentityModel.Tokens.Jwt 8.8.0, System.IdentityModel.Tokens.Jwt .
+  Eventity.Domain -> /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Domain/bin/Debug/net6.0/Eventity.Domain.dll
+  Eventity.Application -> /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Application/bin/Debug/net6.0/Eventity.Application.dll
+  Eventity.DataAccess -> /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.DataAccess/bin/Debug/net6.0/Eventity.DataAccess.dll
+  Eventity.Tests.Integration -> /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/bin/Debug/net6.0/Eventity.Tests.Integration.dll
+Test run for /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/bin/Debug/net6.0/Eventity.Tests.Integration.dll (.NETCoreApp,Version=v6.0)
+Microsoft (R) Test Execution Command Line Tool Version 17.10.0 (x64)
+Copyright (c) Microsoft Corporation.  All rights reserved.
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+  Failed Eventity.Tests.Integration.CreateInviteSentIntegrationTests.CreateInviteSent_ShouldWorkCorrectly [1 ms]
+  Error Message:
+   System.Net.Internals.SocketExceptionFactory+ExtendedSocketException : nodename nor servname provided, or not known
+  Stack Trace:
+     at System.Net.Dns.GetHostEntryOrAddressesCore(String hostName, Boolean justAddresses, AddressFamily addressFamily, ValueStopwatch stopwatch)
+   at System.Net.Dns.<>c.<GetHostEntryOrAddressesCoreAsync>b__33_0(Object s, ValueStopwatch stopwatch)
+   at System.Net.Dns.<>c__DisplayClass39_0`1.<RunAsync>b__0(Task <p0>, Object <p1>)
+   at System.Threading.Tasks.ContinuationResultTaskFromTask`1.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync[TResult](Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|215_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|28_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|45_0(Boolean async, CancellationToken cancellationToken)
+   at Eventity.Tests.Integration.IntegrationTestBase.CreateTestDatabase() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 95
+   at Eventity.Tests.Integration.IntegrationTestBase.InitializeAsync() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 28
+  Failed Eventity.Tests.Integration.AuthServiceIntegrationTests.AuthenticateUser_WithValidCredentials_ShouldReturnToken [1 ms]
+  Error Message:
+   System.Net.Internals.SocketExceptionFactory+ExtendedSocketException : nodename nor servname provided, or not known
+  Stack Trace:
+     at System.Net.Dns.GetHostEntryOrAddressesCore(String hostName, Boolean justAddresses, AddressFamily addressFamily, ValueStopwatch stopwatch)
+   at System.Net.Dns.<>c.<GetHostEntryOrAddressesCoreAsync>b__33_0(Object s, ValueStopwatch stopwatch)
+   at System.Net.Dns.<>c__DisplayClass39_0`1.<RunAsync>b__0(Task <p0>, Object <p1>)
+   at System.Threading.Tasks.ContinuationResultTaskFromTask`1.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync[TResult](Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|215_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|28_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|45_0(Boolean async, CancellationToken cancellationToken)
+   at Eventity.Tests.Integration.IntegrationTestBase.CreateTestDatabase() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 95
+   at Eventity.Tests.Integration.IntegrationTestBase.InitializeAsync() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 28
+  Failed Eventity.Tests.Integration.NotificationServiceIntegrationTests.AddNotification_ForEvent_ShouldCreateNotificationsForAllParticipants [1 ms]
+  Error Message:
+   System.Net.Internals.SocketExceptionFactory+ExtendedSocketException : nodename nor servname provided, or not known
+  Stack Trace:
+     at System.Net.Dns.GetHostEntryOrAddressesCore(String hostName, Boolean justAddresses, AddressFamily addressFamily, ValueStopwatch stopwatch)
+   at System.Net.Dns.<>c.<GetHostEntryOrAddressesCoreAsync>b__33_0(Object s, ValueStopwatch stopwatch)
+   at System.Net.Dns.<>c__DisplayClass39_0`1.<RunAsync>b__0(Task <p0>, Object <p1>)
+   at System.Threading.Tasks.ContinuationResultTaskFromTask`1.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync[TResult](Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|215_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|28_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|45_0(Boolean async, CancellationToken cancellationToken)
+   at Eventity.Tests.Integration.IntegrationTestBase.CreateTestDatabase() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 95
+   at Eventity.Tests.Integration.IntegrationTestBase.InitializeAsync() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 28
+  Failed Eventity.Tests.Integration.EventServiceIntegrationTests.CreateEvent_ShouldCreateEventAndOrganizerParticipation [1 ms]
+  Error Message:
+   System.Net.Internals.SocketExceptionFactory+ExtendedSocketException : nodename nor servname provided, or not known
+  Stack Trace:
+     at System.Net.Dns.GetHostEntryOrAddressesCore(String hostName, Boolean justAddresses, AddressFamily addressFamily, ValueStopwatch stopwatch)
+   at System.Net.Dns.<>c.<GetHostEntryOrAddressesCoreAsync>b__33_0(Object s, ValueStopwatch stopwatch)
+   at System.Net.Dns.<>c__DisplayClass39_0`1.<RunAsync>b__0(Task <p0>, Object <p1>)
+   at System.Threading.Tasks.ContinuationResultTaskFromTask`1.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync[TResult](Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|215_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|28_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|45_0(Boolean async, CancellationToken cancellationToken)
+   at Eventity.Tests.Integration.IntegrationTestBase.CreateTestDatabase() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 95
+   at Eventity.Tests.Integration.IntegrationTestBase.InitializeAsync() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 28
+  Failed Eventity.Tests.Integration.ParticipationServiceIntegrationTests.AddParticipation_ShouldCreateParticipationAndNotification [1 ms]
+  Error Message:
+   System.Net.Internals.SocketExceptionFactory+ExtendedSocketException : nodename nor servname provided, or not known
+  Stack Trace:
+     at System.Net.Dns.GetHostEntryOrAddressesCore(String hostName, Boolean justAddresses, AddressFamily addressFamily, ValueStopwatch stopwatch)
+   at System.Net.Dns.<>c.<GetHostEntryOrAddressesCoreAsync>b__33_0(Object s, ValueStopwatch stopwatch)
+   at System.Net.Dns.<>c__DisplayClass39_0`1.<RunAsync>b__0(Task <p0>, Object <p1>)
+   at System.Threading.Tasks.ContinuationResultTaskFromTask`1.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync[TResult](Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|215_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|28_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|45_0(Boolean async, CancellationToken cancellationToken)
+   at Eventity.Tests.Integration.IntegrationTestBase.CreateTestDatabase() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 95
+   at Eventity.Tests.Integration.IntegrationTestBase.InitializeAsync() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 28
+  Failed Eventity.Tests.Integration.AuthServiceIntegrationTests.AuthenticateUser_WithInvalidPassword_ShouldThrowException [1 ms]
+  Error Message:
+   System.Net.Internals.SocketExceptionFactory+ExtendedSocketException : nodename nor servname provided, or not known
+  Stack Trace:
+     at System.Net.Dns.GetHostEntryOrAddressesCore(String hostName, Boolean justAddresses, AddressFamily addressFamily, ValueStopwatch stopwatch)
+   at System.Net.Dns.<>c.<GetHostEntryOrAddressesCoreAsync>b__33_0(Object s, ValueStopwatch stopwatch)
+   at System.Net.Dns.<>c__DisplayClass39_0`1.<RunAsync>b__0(Task <p0>, Object <p1>)
+   at System.Threading.Tasks.ContinuationResultTaskFromTask`1.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync[TResult](Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|215_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|28_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|45_0(Boolean async, CancellationToken cancellationToken)
+   at Eventity.Tests.Integration.IntegrationTestBase.CreateTestDatabase() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 95
+   at Eventity.Tests.Integration.IntegrationTestBase.InitializeAsync() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 28
+  Failed Eventity.Tests.Integration.ParticipationServiceIntegrationTests.UpdateParticipationStatus_ShouldUpdateStatus [1 ms]
+  Error Message:
+   System.Net.Internals.SocketExceptionFactory+ExtendedSocketException : nodename nor servname provided, or not known
+  Stack Trace:
+     at System.Net.Dns.GetHostEntryOrAddressesCore(String hostName, Boolean justAddresses, AddressFamily addressFamily, ValueStopwatch stopwatch)
+   at System.Net.Dns.<>c.<GetHostEntryOrAddressesCoreAsync>b__33_0(Object s, ValueStopwatch stopwatch)
+   at System.Net.Dns.<>c__DisplayClass39_0`1.<RunAsync>b__0(Task <p0>, Object <p1>)
+   at System.Threading.Tasks.ContinuationResultTaskFromTask`1.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync[TResult](Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|215_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|28_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|45_0(Boolean async, CancellationToken cancellationToken)
+   at Eventity.Tests.Integration.IntegrationTestBase.CreateTestDatabase() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 95
+   at Eventity.Tests.Integration.IntegrationTestBase.InitializeAsync() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 28
+  Failed Eventity.Tests.Integration.EventServiceIntegrationTests.GetEventById_ShouldReturnEvent [1 ms]
+  Error Message:
+   System.Net.Internals.SocketExceptionFactory+ExtendedSocketException : nodename nor servname provided, or not known
+  Stack Trace:
+     at System.Net.Dns.GetHostEntryOrAddressesCore(String hostName, Boolean justAddresses, AddressFamily addressFamily, ValueStopwatch stopwatch)
+   at System.Net.Dns.<>c.<GetHostEntryOrAddressesCoreAsync>b__33_0(Object s, ValueStopwatch stopwatch)
+   at System.Net.Dns.<>c__DisplayClass39_0`1.<RunAsync>b__0(Task <p0>, Object <p1>)
+   at System.Threading.Tasks.ContinuationResultTaskFromTask`1.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync[TResult](Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|215_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|28_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|45_0(Boolean async, CancellationToken cancellationToken)
+   at Eventity.Tests.Integration.IntegrationTestBase.CreateTestDatabase() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 95
+   at Eventity.Tests.Integration.IntegrationTestBase.InitializeAsync() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 28
+  Failed Eventity.Tests.Integration.AuthServiceIntegrationTests.RegisterUser_ShouldCreateUserAndReturnToken [1 ms]
+  Error Message:
+   System.Net.Internals.SocketExceptionFactory+ExtendedSocketException : nodename nor servname provided, or not known
+  Stack Trace:
+     at System.Net.Dns.GetHostEntryOrAddressesCore(String hostName, Boolean justAddresses, AddressFamily addressFamily, ValueStopwatch stopwatch)
+   at System.Net.Dns.<>c.<GetHostEntryOrAddressesCoreAsync>b__33_0(Object s, ValueStopwatch stopwatch)
+   at System.Net.Dns.<>c__DisplayClass39_0`1.<RunAsync>b__0(Task <p0>, Object <p1>)
+   at System.Threading.Tasks.ContinuationResultTaskFromTask`1.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync[TResult](Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|215_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|28_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|45_0(Boolean async, CancellationToken cancellationToken)
+   at Eventity.Tests.Integration.IntegrationTestBase.CreateTestDatabase() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 95
+   at Eventity.Tests.Integration.IntegrationTestBase.InitializeAsync() in /Users/ekaterinaparamonova/Downloads/Eventity2/src/Eventity.Tests.Integration/IntegrationTestBase.cs:line 28
+
+Failed!  - Failed:     9, Passed:     0, Skipped:     0, Total:     9, Duration: 40 s - Eventity.Tests.Integration.dll (net6.0)

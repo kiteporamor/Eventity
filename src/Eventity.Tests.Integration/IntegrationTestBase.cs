@@ -40,8 +40,17 @@ public class IntegrationTestBase : IAsyncLifetime
             .Build();
         
         services.AddSingleton<IConfiguration>(configuration);
+        // bind JwtConfiguration for JwtService
+        services.Configure<Eventity.Application.Services.JwtConfiguration>(opts =>
+        {
+            opts.Key = configuration["Jwt:Key"]!;
+            opts.Issuer = configuration["Jwt:Issuer"]!;
+            opts.Audience = configuration["Jwt:Audience"]!;
+            opts.ExpireMinutes = int.Parse(configuration["Jwt:ExpireMinutes"]!);
+        });
         
-        var connectionString = $"User ID=postgres;Password=postgres;Host=test-db;Database={_testDatabaseName};Port=5432";
+        var testDbHost = Environment.GetEnvironmentVariable("TEST_DB_HOST") ?? "test-db";
+        var connectionString = $"User ID=postgres;Password=postgres;Host={testDbHost};Database={_testDatabaseName};Port=5432";
         
         services.AddDbContext<EventityDbContext>(options =>
             options.UseNpgsql(connectionString));
@@ -84,7 +93,8 @@ public class IntegrationTestBase : IAsyncLifetime
 
     private async Task CreateTestDatabase()
     {
-        var masterConnectionString = "User ID=postgres;Password=postgres;Host=test-db;Database=EventityTest;Port=5432";
+        var testDbHost = Environment.GetEnvironmentVariable("TEST_DB_HOST") ?? "test-db";
+        var masterConnectionString = $"User ID=postgres;Password=postgres;Host={testDbHost};Database=EventityTest;Port=5432";
     
         var maxRetries = 5;
         for (int i = 0; i < maxRetries; i++)

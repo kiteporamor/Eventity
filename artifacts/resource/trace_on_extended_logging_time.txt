@@ -1,0 +1,34 @@
+xargs: command line cannot be assembled, too long
+[xUnit.net 00:00:21.87]     Eventity.Tests.Integration.CreateInviteSentIntegrationTests.CreateInviteSent_ShouldWorkCorrectly [FAIL]
+[xUnit.net 00:00:21.88]     Eventity.Tests.Integration.AuthServiceIntegrationTests.AuthenticateUser_WithValidCredentials_ShouldReturnToken [FAIL]
+[xUnit.net 00:00:21.89]     Eventity.Tests.Integration.NotificationServiceIntegrationTests.AddNotification_ForEvent_ShouldCreateNotificationsForAllParticipants [FAIL]
+[xUnit.net 00:00:21.89]     Eventity.Tests.Integration.EventServiceIntegrationTests.CreateEvent_ShouldCreateEventAndOrganizerParticipation [FAIL]
+[xUnit.net 00:00:21.89]     Eventity.Tests.Integration.ParticipationServiceIntegrationTests.AddParticipation_ShouldCreateParticipationAndNotification [FAIL]
+[xUnit.net 00:00:41.97]     Eventity.Tests.Integration.AuthServiceIntegrationTests.AuthenticateUser_WithInvalidPassword_ShouldThrowException [FAIL]
+[xUnit.net 00:00:41.98]     Eventity.Tests.Integration.ParticipationServiceIntegrationTests.UpdateParticipationStatus_ShouldUpdateStatus [FAIL]
+[xUnit.net 00:00:41.98]     Eventity.Tests.Integration.EventServiceIntegrationTests.GetEventById_ShouldReturnEvent [FAIL]
+[xUnit.net 00:01:02.01]     Eventity.Tests.Integration.AuthServiceIntegrationTests.RegisterUser_ShouldCreateUserAndReturnToken [FAIL]
+Command exited with non-zero status 1
+	Command being timed: "bash -c cd "/Users/ekaterinaparamonova/Downloads/Eventity2" && dotnet test src/Eventity.Tests.Integration/Eventity.Tests.Integration.csproj"
+	User time (seconds): 23.92
+	System time (seconds): 4.39
+	Percent of CPU this job got: 39%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:11.22
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 178172
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 801
+	Minor (reclaiming a frame) page faults: 215090
+	Voluntary context switches: 1058
+	Involuntary context switches: 87856
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 775
+	Socket messages received: 2027
+	Signals delivered: 4
+	Page size (bytes): 4096
+	Exit status: 1

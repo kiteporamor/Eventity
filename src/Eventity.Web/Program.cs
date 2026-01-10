@@ -12,6 +12,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Serilog;
 using Web;
+<<<<<<< HEAD
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +23,25 @@ var additionalConfig = builder.Configuration.GetValue<string>("AdditionalConfig"
 Log.Logger = new LoggerConfiguration()
     .ReadFrom.Configuration(builder.Configuration)
     .CreateLogger();
+=======
+using MongoDB.Driver;
+using Prometheus;
+
+var builder = WebApplication.CreateBuilder(args);
+
+var loggingMode = builder.Configuration.GetValue<string>("Logging:Mode") ?? "Default";
+var isExtendedLogging = loggingMode.Equals("Extended", StringComparison.OrdinalIgnoreCase);
+
+var loggerConfig = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration);
+
+if (isExtendedLogging)
+{
+    loggerConfig.MinimumLevel.Debug();
+}
+
+Log.Logger = loggerConfig.CreateLogger();
+>>>>>>> b728086 (aaa)
 
 builder.Services.AddCors(options =>
 {
@@ -35,8 +55,13 @@ builder.Services.AddCors(options =>
 
 builder.Host.UseSerilog();
 
+<<<<<<< HEAD
 // Add OpenTelemetry/Tracing
 builder.Services.AddTelemetry(builder.Configuration);
+=======
+builder.Services.AddControllers();
+builder.Services.AddOpenTelemetryIfEnabled(builder.Configuration);
+>>>>>>> b728086 (aaa)
 
 builder.Services.AddControllers();
 
@@ -131,8 +156,18 @@ if (isSwaggerEnabled)
 }
 
 app.UseRouting();
+<<<<<<< HEAD
+=======
+app.UseMetricServer();
+app.UseStaticFiles();
+>>>>>>> b728086 (aaa)
 
 app.UseCors("AllowAll");
+
+if (isExtendedLogging)
+{
+    app.UseSerilogRequestLogging();
+}
 
 app.UseAuthentication();
 app.UseAuthorization();
@@ -144,4 +179,7 @@ app.MapGet("/health", () => "Healthy");
 app.Run();
 
 public partial class Program { }
+<<<<<<< HEAD
 
+=======
+>>>>>>> b728086 (aaa)

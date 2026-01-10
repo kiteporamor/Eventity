@@ -1,0 +1,33 @@
+[xUnit.net 00:00:22.10]     Eventity.Tests.Integration.ParticipationServiceIntegrationTests.AddParticipation_ShouldCreateParticipationAndNotification [FAIL]
+[xUnit.net 00:00:22.11]     Eventity.Tests.Integration.AuthServiceIntegrationTests.AuthenticateUser_WithValidCredentials_ShouldReturnToken [FAIL]
+[xUnit.net 00:00:22.12]     Eventity.Tests.Integration.CreateInviteSentIntegrationTests.CreateInviteSent_ShouldWorkCorrectly [FAIL]
+[xUnit.net 00:00:22.12]     Eventity.Tests.Integration.NotificationServiceIntegrationTests.AddNotification_ForEvent_ShouldCreateNotificationsForAllParticipants [FAIL]
+[xUnit.net 00:00:22.12]     Eventity.Tests.Integration.EventServiceIntegrationTests.CreateEvent_ShouldCreateEventAndOrganizerParticipation [FAIL]
+[xUnit.net 00:00:42.20]     Eventity.Tests.Integration.EventServiceIntegrationTests.GetEventById_ShouldReturnEvent [FAIL]
+[xUnit.net 00:00:42.20]     Eventity.Tests.Integration.ParticipationServiceIntegrationTests.UpdateParticipationStatus_ShouldUpdateStatus [FAIL]
+[xUnit.net 00:00:42.21]     Eventity.Tests.Integration.AuthServiceIntegrationTests.AuthenticateUser_WithInvalidPassword_ShouldThrowException [FAIL]
+[xUnit.net 00:01:02.25]     Eventity.Tests.Integration.AuthServiceIntegrationTests.RegisterUser_ShouldCreateUserAndReturnToken [FAIL]
+Command exited with non-zero status 1
+	Command being timed: "bash -c cd "/Users/ekaterinaparamonova/Downloads/Eventity2" && dotnet test src/Eventity.Tests.Integration/Eventity.Tests.Integration.csproj"
+	User time (seconds): 25.00
+	System time (seconds): 4.68
+	Percent of CPU this job got: 41%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:12.20
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 177184
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 2960
+	Minor (reclaiming a frame) page faults: 225683
+	Voluntary context switches: 734
+	Involuntary context switches: 104763
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 773
+	Socket messages received: 2028
+	Signals delivered: 4
+	Page size (bytes): 4096
+	Exit status: 1

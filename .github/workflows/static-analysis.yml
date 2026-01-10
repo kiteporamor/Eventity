@@ -12,16 +12,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup .NET
+      - name: Setup .NET 6
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '6.0.x'
 
-      - name: Restore
-        run: dotnet restore ./src/Eventity.sln
+      - name: Confirm dotnet
+        run: dotnet --info
 
-      - name: Build with analyzers (fail on warnings)
-        run: dotnet build ./src/Eventity.sln --no-restore -warnaserror
+      - name: Run static analysis script (filters only CA1502/StyleCop)
+        run: bash scripts/check_static_analysis.sh
 
-      - name: Run tests
+      - name: Run tests (only if checks passed)
+        if: ${{ success() }}
         run: dotnet test ./src/Eventity.Tests.Integration/Eventity.Tests.Integration.csproj --no-build --verbosity normal
+

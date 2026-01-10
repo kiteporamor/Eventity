@@ -41,7 +41,11 @@ jobs:
         run: dotnet build src/Eventity.sln -c Release --no-restore
 
       - name: Create artifacts directories
-        run: mkdir -p artifacts/allure-results artifacts/resource
+          run: |
+            mkdir -p artifacts/allure-results artifacts/resource
+            mkdir -p src/Eventity.Tests.Unit/artifacts
+            mkdir -p src/Eventity.Tests.Integration/artifacts
+            mkdir -p src/Eventity.Tests.E2E/artifacts
 
       - name: Run unit tests
         run: dotnet test src/Eventity.Tests.Unit/Eventity.Tests.Unit.csproj -c Release --no-build

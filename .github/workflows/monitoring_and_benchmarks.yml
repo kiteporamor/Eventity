@@ -46,6 +46,13 @@ jobs:
           mkdir -p src/Eventity.Tests.Unit/artifacts
           mkdir -p src/Eventity.Tests.Integration/artifacts
           mkdir -p src/Eventity.Tests.E2E/artifacts
+          # Allure writes relative to test assembly base dir (bin/Release/net6.0)
+          mkdir -p src/Eventity.Tests.Unit/bin/Release/net6.0/artifacts
+          mkdir -p src/Eventity.Tests.Unit/bin/Release/net6.0/artifacts/allure-results
+          mkdir -p src/Eventity.Tests.Integration/bin/Release/net6.0/artifacts
+          mkdir -p src/Eventity.Tests.Integration/bin/Release/net6.0/artifacts/allure-results
+          mkdir -p src/Eventity.Tests.E2E/bin/Release/net6.0/artifacts
+          mkdir -p src/Eventity.Tests.E2E/bin/Release/net6.0/artifacts/allure-results
 
       - name: Run unit tests
         run: dotnet test src/Eventity.Tests.Unit/Eventity.Tests.Unit.csproj -c Release --no-build

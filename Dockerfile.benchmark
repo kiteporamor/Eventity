@@ -1,0 +1,25 @@
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+WORKDIR /src
+
+COPY ./src/*.sln ./
+COPY ./src/Eventity.Web/*.csproj ./Eventity.Web/
+COPY ./src/Eventity.Application/*.csproj ./Eventity.Application/
+COPY ./src/Eventity.Domain/*.csproj ./Eventity.Domain/
+COPY ./src/Eventity.DataAccess/*.csproj ./Eventity.DataAccess/
+COPY ./src/Eventity.Tests.Unit/*.csproj ./Eventity.Tests.Unit/
+COPY ./src/Eventity.Tests.Integration/*.csproj ./Eventity.Tests.Integration/
+COPY ./src/Eventity.Tests.E2E/*.csproj ./Eventity.Tests.E2E/
+
+RUN dotnet restore
+
+COPY ./src/ .
+
+RUN dotnet publish Eventity.Web/ -c Release -o /app/publish
+
+FROM mcr.microsoft.com/dotnet/aspnet:6.0
+WORKDIR /app
+COPY --from=build /app/publish .
+
+EXPOSE 5001
+
+ENTRYPOINT ["dotnet", "Eventity.Web.dll", "--urls", "http://0.0.0.0:5001"]

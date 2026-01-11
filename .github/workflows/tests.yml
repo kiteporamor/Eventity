@@ -2,7 +2,7 @@ name: Run Tests and Deploy Report
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [ main, Test7 ]
   pull_request:
     branches: [ main ]
 

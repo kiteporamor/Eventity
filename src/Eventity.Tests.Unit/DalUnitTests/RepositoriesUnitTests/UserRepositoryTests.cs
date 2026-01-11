@@ -1,8 +1,8 @@
 using System;
 using System.Threading.Tasks;
 using Allure.XUnit.Attributes.Steps;
-using Eventity.DataAccess.Converters;
-using Eventity.DataAccess.Repositories;
+using Eventity.DataAccess.Converters.Postgres;
+using Eventity.DataAccess.Repositories.Postgres;
 using Eventity.Domain.Models;
 using Xunit;
 

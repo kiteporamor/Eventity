@@ -1,4 +1,5 @@
 using Eventity.Application.Services;
+using Eventity.Domain.Interfaces.Services;
 using Microsoft.Extensions.Logging;
 
 namespace Eventity.Tests.Services;

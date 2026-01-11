@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="aac75bc5-0904-4188-a4bd-7b55dbced8b5" name="@bf110c70a91d 2026-01-11 22:03:55" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2026-01-11T22:03:55.7027664+00:00" queuing="2026-01-11T22:03:55.7027665+00:00" start="2026-01-11T22:03:52.1858403+00:00" finish="2026-01-11T22:03:55.7180467+00:00" />
+  <TestSettings name="default" id="d4227a18-63bb-4259-a629-b682485f10a6">
+    <Deployment runDeploymentRoot="_bf110c70a91d_2026-01-11_22_03_55" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="9332141a-0a3a-42d3-afa2-c5dc343366c0" testId="21c89fbb-c128-60cd-d5d8-a89b119023ce" testName="Eventity.Tests.E2E.E2ETests.CompleteEventScenario_ShouldWorkEndToEnd" computerName="bf110c70a91d" duration="00:00:00.0531396" startTime="2026-01-11T22:03:55.4631518+00:00" endTime="2026-01-11T22:03:55.4631518+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9332141a-0a3a-42d3-afa2-c5dc343366c0">
+      <Output>
+        <ErrorInfo>
+          <Message>Expected 201 Created, got 400 BadRequest. Body: {"title":"Event creation failed","status":400,"detail":"Failed to create event: Standalone servers do not support transactions."}</Message>
+          <StackTrace>   at Eventity.Tests.E2E.E2ETests.AssertCreatedOrDumpAsync(HttpResponseMessage response) in /src/Eventity.Tests.E2E/E2ETest.cs:line 364
+   at Eventity.Tests.E2E.E2ETests.CompleteEventScenario_ShouldWorkEndToEnd() in /src/Eventity.Tests.E2E/E2ETest.cs:line 98
+--- End of stack trace from previous location ---</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="14015338-27f5-4bca-9104-0a26964e7383" testId="4c6705ae-9057-fbbc-b752-aa9c75023c80" testName="Eventity.Tests.E2E.E2ETests.EventCreationAndManagement_ShouldHandleMultipleParticipants" computerName="bf110c70a91d" duration="00:00:00.0212492" startTime="2026-01-11T22:03:55.5020946+00:00" endTime="2026-01-11T22:03:55.5020946+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="14015338-27f5-4bca-9104-0a26964e7383">
+      <Output>
+        <ErrorInfo>
+          <Message>Expected 201 Created, got 400 BadRequest. Body: {"title":"Event creation failed","status":400,"detail":"Failed to create event: Standalone servers do not support transactions."}</Message>
+          <StackTrace>   at Eventity.Tests.E2E.E2ETests.AssertCreatedOrDumpAsync(HttpResponseMessage response) in /src/Eventity.Tests.E2E/E2ETest.cs:line 364
+   at Eventity.Tests.E2E.E2ETests.EventCreationAndManagement_ShouldHandleMultipleParticipants() in /src/Eventity.Tests.E2E/E2ETest.cs:line 186
+--- End of stack trace from previous location ---</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="26fffc6d-6fcc-4084-9c3c-e985d87278cf" testId="6997d790-999d-144e-74ee-1a0c8a4e3a1c" testName="Eventity.Tests.E2E.E2ETests.EventCreation_ShouldSyncCalendarAndReminders" computerName="bf110c70a91d" duration="00:00:01.3262557" startTime="2026-01-11T22:03:55.3508411+00:00" endTime="2026-01-11T22:03:55.3509012+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="26fffc6d-6fcc-4084-9c3c-e985d87278cf">
+      <Output>
+        <ErrorInfo>
+          <Message>Expected 201 Created, got 400 BadRequest. Body: {"title":"Event creation failed","status":400,"detail":"Failed to create event: Standalone servers do not support transactions."}</Message>
+          <StackTrace>   at Eventity.Tests.E2E.E2ETests.AssertCreatedOrDumpAsync(HttpResponseMessage response) in /src/Eventity.Tests.E2E/E2ETest.cs:line 364
+   at Eventity.Tests.E2E.E2ETests.EventCreation_ShouldSyncCalendarAndReminders() in /src/Eventity.Tests.E2E/E2ETest.cs:line 289
+--- End of stack trace from previous location ---</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="c63b22a9-f75c-4c06-81ec-6ff4232b695c" testId="415ba134-e204-fb07-82d1-c7cab7088be2" testName="Eventity.Tests.E2E.E2ETests.UserRegistrationAndLogin_ShouldWorkCorrectly" computerName="bf110c70a91d" duration="00:00:00.0302995" startTime="2026-01-11T22:03:55.5483663+00:00" endTime="2026-01-11T22:03:55.5483666+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c63b22a9-f75c-4c06-81ec-6ff4232b695c" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="Eventity.Tests.E2E.E2ETests.UserRegistrationAndLogin_ShouldWorkCorrectly" storage="/src/eventity.tests.e2e/bin/debug/net6.0/eventity.tests.e2e.dll" id="415ba134-e204-fb07-82d1-c7cab7088be2">
+      <Execution id="c63b22a9-f75c-4c06-81ec-6ff4232b695c" />
+      <TestMethod codeBase="/src/Eventity.Tests.E2E/bin/Debug/net6.0/Eventity.Tests.E2E.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Eventity.Tests.E2E.E2ETests" name="UserRegistrationAndLogin_ShouldWorkCorrectly" />
+    </UnitTest>
+    <UnitTest name="Eventity.Tests.E2E.E2ETests.EventCreation_ShouldSyncCalendarAndReminders" storage="/src/eventity.tests.e2e/bin/debug/net6.0/eventity.tests.e2e.dll" id="6997d790-999d-144e-74ee-1a0c8a4e3a1c">
+      <Execution id="26fffc6d-6fcc-4084-9c3c-e985d87278cf" />
+      <TestMethod codeBase="/src/Eventity.Tests.E2E/bin/Debug/net6.0/Eventity.Tests.E2E.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Eventity.Tests.E2E.E2ETests" name="EventCreation_ShouldSyncCalendarAndReminders" />
+    </UnitTest>
+    <UnitTest name="Eventity.Tests.E2E.E2ETests.EventCreationAndManagement_ShouldHandleMultipleParticipants" storage="/src/eventity.tests.e2e/bin/debug/net6.0/eventity.tests.e2e.dll" id="4c6705ae-9057-fbbc-b752-aa9c75023c80">
+      <Execution id="14015338-27f5-4bca-9104-0a26964e7383" />
+      <TestMethod codeBase="/src/Eventity.Tests.E2E/bin/Debug/net6.0/Eventity.Tests.E2E.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Eventity.Tests.E2E.E2ETests" name="EventCreationAndManagement_ShouldHandleMultipleParticipants" />
+    </UnitTest>
+    <UnitTest name="Eventity.Tests.E2E.E2ETests.CompleteEventScenario_ShouldWorkEndToEnd" storage="/src/eventity.tests.e2e/bin/debug/net6.0/eventity.tests.e2e.dll" id="21c89fbb-c128-60cd-d5d8-a89b119023ce">
+      <Execution id="9332141a-0a3a-42d3-afa2-c5dc343366c0" />
+      <TestMethod codeBase="/src/Eventity.Tests.E2E/bin/Debug/net6.0/Eventity.Tests.E2E.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Eventity.Tests.E2E.E2ETests" name="CompleteEventScenario_ShouldWorkEndToEnd" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="21c89fbb-c128-60cd-d5d8-a89b119023ce" executionId="9332141a-0a3a-42d3-afa2-c5dc343366c0" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4c6705ae-9057-fbbc-b752-aa9c75023c80" executionId="14015338-27f5-4bca-9104-0a26964e7383" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="6997d790-999d-144e-74ee-1a0c8a4e3a1c" executionId="26fffc6d-6fcc-4084-9c3c-e985d87278cf" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="415ba134-e204-fb07-82d1-c7cab7088be2" executionId="c63b22a9-f75c-4c06-81ec-6ff4232b695c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Failed">
+    <Counters total="4" executed="4" passed="1" failed="3" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v2.5.6+bf9b858c26 (64-bit .NET 6.0.36)
+[xUnit.net 00:00:00.61] XunitTestRunner's Void .ctor(Xunit.Abstractions.ITest, Xunit.Sdk.IMessageBus, System.Type, System.Object[], System.Reflection.MethodInfo, System.Object[], System.String, System.Collections.Generic.IReadOnlyList`1[Xunit.Sdk.BeforeAfterTestAttribute], Xunit.Sdk.ExceptionAggregator, System.Threading.CancellationTokenSource) has been patched
+[xUnit.net 00:00:00.70] Allure reporter enabled
+[xUnit.net 00:00:00.75] Patching is skipped: Xunit is already patched
+[xUnit.net 00:00:00.76] Allure reporter enabled
+[xUnit.net 00:00:00.85]   Discovering: Eventity.Tests.E2E
+[xUnit.net 00:00:00.91]   Discovered:  Eventity.Tests.E2E
+[xUnit.net 00:00:00.91]   Starting:    Eventity.Tests.E2E
+[xUnit.net 00:00:02.39]       Expected 201 Created, got 400 BadRequest. Body: {"title":"Event creation failed","status":400,"detail":"Failed to create event: Standalone servers do not support transactions."}
+[xUnit.net 00:00:02.39]       Stack Trace:
+[xUnit.net 00:00:02.40]         /src/Eventity.Tests.E2E/E2ETest.cs(364,0): at Eventity.Tests.E2E.E2ETests.AssertCreatedOrDumpAsync(HttpResponseMessage response)
+[xUnit.net 00:00:02.40]         /src/Eventity.Tests.E2E/E2ETest.cs(289,0): at Eventity.Tests.E2E.E2ETests.EventCreation_ShouldSyncCalendarAndReminders()
+[xUnit.net 00:00:02.40]         --- End of stack trace from previous location ---
+[xUnit.net 00:00:02.51]       Expected 201 Created, got 400 BadRequest. Body: {"title":"Event creation failed","status":400,"detail":"Failed to create event: Standalone servers do not support transactions."}
+[xUnit.net 00:00:02.51]       Stack Trace:
+[xUnit.net 00:00:02.51]         /src/Eventity.Tests.E2E/E2ETest.cs(364,0): at Eventity.Tests.E2E.E2ETests.AssertCreatedOrDumpAsync(HttpResponseMessage response)
+[xUnit.net 00:00:02.51]         /src/Eventity.Tests.E2E/E2ETest.cs(98,0): at Eventity.Tests.E2E.E2ETests.CompleteEventScenario_ShouldWorkEndToEnd()
+[xUnit.net 00:00:02.51]         --- End of stack trace from previous location ---
+[xUnit.net 00:00:02.55]       Expected 201 Created, got 400 BadRequest. Body: {"title":"Event creation failed","status":400,"detail":"Failed to create event: Standalone servers do not support transactions."}
+[xUnit.net 00:00:02.55]       Stack Trace:
+[xUnit.net 00:00:02.55]         /src/Eventity.Tests.E2E/E2ETest.cs(364,0): at Eventity.Tests.E2E.E2ETests.AssertCreatedOrDumpAsync(HttpResponseMessage response)
+[xUnit.net 00:00:02.55]         /src/Eventity.Tests.E2E/E2ETest.cs(186,0): at Eventity.Tests.E2E.E2ETests.EventCreationAndManagement_ShouldHandleMultipleParticipants()
+[xUnit.net 00:00:02.55]         --- End of stack trace from previous location ---
+[xUnit.net 00:00:02.63]   Finished:    Eventity.Tests.E2E
+</StdOut>
+    </Output>
+    <RunInfos>
+      <RunInfo computerName="bf110c70a91d" outcome="Error" timestamp="2026-01-11T22:03:55.3417393+00:00">
+        <Text>[xUnit.net 00:00:02.39]     Eventity.Tests.E2E.E2ETests.EventCreation_ShouldSyncCalendarAndReminders [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="bf110c70a91d" outcome="Error" timestamp="2026-01-11T22:03:55.4629387+00:00">
+        <Text>[xUnit.net 00:00:02.51]     Eventity.Tests.E2E.E2ETests.CompleteEventScenario_ShouldWorkEndToEnd [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="bf110c70a91d" outcome="Error" timestamp="2026-01-11T22:03:55.5018999+00:00">
+        <Text>[xUnit.net 00:00:02.55]     Eventity.Tests.E2E.E2ETests.EventCreationAndManagement_ShouldHandleMultipleParticipants [FAIL]</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+</TestRun>

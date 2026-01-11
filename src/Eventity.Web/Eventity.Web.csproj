@@ -12,6 +12,7 @@
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+        <PackageReference Include="prometheus-net.AspNetCore" Version="8.2.1" />
         <PackageReference Include="Serilog" />
         <PackageReference Include="Serilog.AspNetCore" />
         <PackageReference Include="Serilog.Settings.Configuration" />
@@ -23,6 +24,10 @@
       <ProjectReference Include="..\Eventity.Application\Eventity.Application.csproj" />
       <ProjectReference Include="..\Eventity.DataAccess\Eventity.DataAccess.csproj" />
       <ProjectReference Include="..\Eventity.Domain\Eventity.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Logs\" />
     </ItemGroup>
 
 </Project>

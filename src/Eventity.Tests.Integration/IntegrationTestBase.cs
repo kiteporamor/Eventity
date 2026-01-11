@@ -1,10 +1,11 @@
 using DataAccess;
-using Eventity.DataAccess.Context;
-using Eventity.DataAccess.Repositories;
+using Eventity.DataAccess.Context.Postgres;
+using Eventity.DataAccess.Repositories.Postgres;
 using Eventity.Application.Services;
 using Eventity.Domain.Interfaces;
 using Eventity.Domain.Interfaces.Repositories;
 using Eventity.Domain.Interfaces.Services;
+using Eventity.Tests.Integration.Fakes;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -53,6 +54,7 @@ public class IntegrationTestBase : IAsyncLifetime
         
         services.AddScoped<IJwtService, JwtService>();
         services.AddScoped<IAuthService, AuthService>();
+        services.AddScoped<ICalendarService, CalendarServiceFake>();
         services.AddScoped<IEventService, EventService>();
         services.AddScoped<IParticipationService, ParticipationService>();
         services.AddScoped<INotificationService, NotificationService>();

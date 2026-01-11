@@ -1,0 +1,47 @@
+services:
+  mongo:
+    image: mongo:6
+    environment:
+      MONGO_INITDB_DATABASE: EventityE2E
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+
+  eventity-app:
+    build:
+      context: .
+      dockerfile: Dockerfile.app
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DatabaseProvider=MongoDB
+      - ConnectionStrings__MongoDB=mongodb://mongo:27017
+      - ConnectionStrings__DatabaseName=EventityE2E
+      - Calendar__Mode=Real
+      - Calendar__MockBaseUrl=http://calendar-mock:8080
+      - Calendar__Provider=Google
+      - Calendar__GoogleBaseUrl=https://www.googleapis.com/calendar/v3
+      - Calendar__GoogleCalendarId=${GOOGLE_CALENDAR_ID:-primary}
+      - Calendar__GoogleAccessToken=${GOOGLE_CALENDAR_ACCESS_TOKEN}
+    depends_on:
+      mongo:
+        condition: service_healthy
+    ports:
+      - "5001:5001"
+
+  e2e-tests:
+    image: mcr.microsoft.com/dotnet/sdk:6.0
+    working_dir: /src
+    volumes:
+      - ./src:/src
+    environment:
+      - EVENTITY_API_URL=http://eventity-app:5001
+      - CALENDAR_API_URL=https://www.googleapis.com/calendar/v3
+      - CALENDAR_MODE=Real
+      - GOOGLE_CALENDAR_ID=${GOOGLE_CALENDAR_ID:-primary}
+      - GOOGLE_CALENDAR_ACCESS_TOKEN=${GOOGLE_CALENDAR_ACCESS_TOKEN}
+    depends_on:
+      eventity-app:
+        condition: service_started
+    command: ["dotnet", "test", "Eventity.Tests.E2E/Eventity.Tests.E2E.csproj", "--logger", "trx"]

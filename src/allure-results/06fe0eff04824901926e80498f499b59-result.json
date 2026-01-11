@@ -1,0 +1,72 @@
+{
+  "uuid": "9e2810da-9d11-4e06-9748-5b5ac2195408",
+  "historyId": "28f024c424c3500052d1fad0ece7f435",
+  "testCaseId": "4f06d865378137a938cd1a701f096436",
+  "fullName": "Eventity.Tests.E2E:Eventity.Tests.E2E.E2ETests.EventCreation_ShouldSyncCalendarAndReminders()",
+  "labels": [
+    {
+      "name": "thread",
+      "value": ".NET Long Running Task"
+    },
+    {
+      "name": "host",
+      "value": "cc7884f5f6b6"
+    },
+    {
+      "name": "language",
+      "value": "C#"
+    },
+    {
+      "name": "framework",
+      "value": "xUnit.net"
+    },
+    {
+      "name": "testClass",
+      "value": "Eventity.Tests.E2E.E2ETests"
+    },
+    {
+      "name": "testMethod",
+      "value": "Eventity.Tests.E2E.E2ETests.EventCreation_ShouldSyncCalendarAndReminders"
+    },
+    {
+      "name": "package",
+      "value": "Eventity.Tests.E2E.E2ETests"
+    },
+    {
+      "name": "feature",
+      "value": "Event Management"
+    },
+    {
+      "name": "subSuite",
+      "value": "E2E-tests"
+    },
+    {
+      "name": "suite",
+      "value": "E2E Tests"
+    },
+    {
+      "name": "feature",
+      "value": "Calendar Integration"
+    },
+    {
+      "name": "story",
+      "value": "Event creation adds calendar entries and reminders"
+    }
+  ],
+  "links": [],
+  "name": "Eventity.Tests.E2E.E2ETests.EventCreation_ShouldSyncCalendarAndReminders",
+  "status": "failed",
+  "statusDetails": {
+    "known": false,
+    "muted": false,
+    "flaky": false,
+    "message": "Expected createEventResponse.StatusCode to be HttpStatusCode.Created {value: 201}, but found HttpStatusCode.BadRequest {value: 400}.",
+    "trace": "   at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)\n   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)\n   at FluentAssertions.Execution.AssertionScope.AddPreFormattedFailure(String formattedFailureMessage)\n   at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)\n   at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)\n   at FluentAssertions.Execution.AssertionChain.FailWith(String message, Object[] args)\n   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)\n   at Eventity.Tests.E2E.E2ETests.EventCreation_ShouldSyncCalendarAndReminders() in /src/Eventity.Tests.E2E/E2ETest.cs:line 289\n   at Xunit.Sdk.TestInvoker`1.<>c__DisplayClass48_0.<<InvokeTestMethodAsync>b__1>d.MoveNext() in /_/src/xunit.execution/Sdk/Frameworks/Runners/TestInvoker.cs:line 285\n--- End of stack trace from previous location ---\n   at Xunit.Sdk.ExecutionTimer.AggregateAsync(Func`1 asyncAction) in /_/src/xunit.execution/Sdk/Frameworks/ExecutionTimer.cs:line 48\n   at Xunit.Sdk.ExceptionAggregator.RunAsync(Func`1 code) in /_/src/xunit.core/Sdk/ExceptionAggregator.cs:line 90"
+  },
+  "stage": "finished",
+  "steps": [],
+  "attachments": [],
+  "parameters": [],
+  "start": 1768167493402,
+  "stop": 1768167494801
+}

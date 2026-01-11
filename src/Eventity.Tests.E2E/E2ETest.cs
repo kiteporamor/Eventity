@@ -1,5 +1,7 @@
 using System.Net;
 using System.Net.Http.Json;
+using System.Text.Json;
+using System.Net.Http.Headers;
 using Allure.Xunit.Attributes;
 using Eventity.Domain.Enums;
 using Eventity.Web.Dtos;
@@ -14,6 +16,8 @@ namespace Eventity.Tests.E2E;
 public class E2ETests : IAsyncLifetime
 {
     private readonly HttpClient _client;
+    private readonly HttpClient _calendarClient;
+    private readonly string _calendarMode;
     private string _organizerToken;
     private string _participantToken;
     private Guid _createdEventId;
@@ -22,9 +26,15 @@ public class E2ETests : IAsyncLifetime
     public E2ETests()
     {
         var baseUrl = Environment.GetEnvironmentVariable("EVENTITY_API_URL") ?? "http://eventity-app:5001";
+        var calendarUrl = Environment.GetEnvironmentVariable("CALENDAR_API_URL") ?? "http://calendar-mock:8080";
+        _calendarMode = Environment.GetEnvironmentVariable("CALENDAR_MODE") ?? "Mock";
         _client = new HttpClient
         {
             BaseAddress = new Uri(baseUrl)
+        };
+        _calendarClient = new HttpClient
+        {
+            BaseAddress = new Uri(calendarUrl)
         };
     }
 
@@ -33,6 +43,7 @@ public class E2ETests : IAsyncLifetime
     public Task DisposeAsync()
     {
         _client?.Dispose();
+        _calendarClient?.Dispose();
         return Task.CompletedTask;
     }
 
@@ -84,7 +95,7 @@ public class E2ETests : IAsyncLifetime
             address = "Москва"
         });
 
-        createEventResponse.StatusCode.Should().Be(HttpStatusCode.Created);
+        await AssertCreatedOrDumpAsync(createEventResponse);
         var newEvent = await createEventResponse.Content.ReadFromJsonAsync<EventResponseDto>();
         newEvent.Should().NotBeNull();
         newEvent!.Title.Should().Be($"День рождения {timestamp}");
@@ -172,7 +183,7 @@ public class E2ETests : IAsyncLifetime
             address = "Санкт-Петербург"
         });
 
-        createEventResponse.StatusCode.Should().Be(HttpStatusCode.Created);
+        await AssertCreatedOrDumpAsync(createEventResponse);
         var techEvent = await createEventResponse.Content.ReadFromJsonAsync<EventResponseDto>();
 
         var participants = new List<AuthResponseDto>();
@@ -241,4 +252,124 @@ public class E2ETests : IAsyncLifetime
         loginResult.Should().NotBeNull();
         loginResult!.Token.Should().NotBeNullOrEmpty();
     }
+
+    [Fact]
+    [AllureFeature("Calendar Integration")]
+    [AllureStory("Event creation adds calendar entries and reminders")]
+    public async Task EventCreation_ShouldSyncCalendarAndReminders()
+    {
+        var timestamp = DateTime.Now.Ticks;
+
+        var organizerRegisterResponse = await _client.PostAsJsonAsync("/api/auth/register", new
+        {
+            name = "Calendar User",
+            email = $"calendar{timestamp}@eventity.com",
+            login = $"calendar{timestamp}",
+            password = "password123",
+            role = UserRoleEnum.User
+        });
+
+        organizerRegisterResponse.StatusCode.Should().Be(HttpStatusCode.OK);
+        var organizerAuth = await organizerRegisterResponse.Content.ReadFromJsonAsync<AuthResponseDto>();
+        organizerAuth.Should().NotBeNull();
+        organizerAuth!.Token.Should().NotBeNullOrEmpty();
+
+        _organizerToken = organizerAuth.Token;
+        _client.DefaultRequestHeaders.Remove("Authorization");
+        _client.DefaultRequestHeaders.Add("Authorization", $"Bearer {_organizerToken}");
+
+        var createEventResponse = await _client.PostAsJsonAsync("/api/events", new
+        {
+            title = $"Calendar Event {timestamp}",
+            description = "Calendar event description",
+            dateTime = DateTime.UtcNow.AddDays(10),
+            address = "Calendar Address"
+        });
+
+        await AssertCreatedOrDumpAsync(createEventResponse);
+        var newEvent = await createEventResponse.Content.ReadFromJsonAsync<EventResponseDto>();
+        newEvent.Should().NotBeNull();
+
+        var reminderResponse = await _client.PostAsJsonAsync("/api/notifications", new
+        {
+            eventId = newEvent!.Id,
+            type = NotificationTypeEnum.Reminder
+        });
+
+        reminderResponse.StatusCode.Should().Be(HttpStatusCode.Created);
+
+        if (_calendarMode.Equals("Mock", StringComparison.OrdinalIgnoreCase))
+        {
+            var eventsCount = await GetWireMockRequestCountAsync("/api/calendar/events");
+            eventsCount.Should().BeGreaterThan(0);
+
+            var remindersCount = await GetWireMockRequestCountAsync("/api/calendar/reminders");
+            remindersCount.Should().BeGreaterThan(0);
+        }
+        else
+        {
+            var accessToken = Environment.GetEnvironmentVariable("GOOGLE_CALENDAR_ACCESS_TOKEN");
+            var calendarId = Environment.GetEnvironmentVariable("GOOGLE_CALENDAR_ID") ?? "primary";
+            if (string.IsNullOrWhiteSpace(accessToken))
+            {
+                return;
+            }
+
+            _calendarClient.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", accessToken);
+
+            var query =
+                $"?privateExtendedProperty=eventityEventId={newEvent.Id}&fields=items(id,reminders)";
+            var encodedCalendarId = Uri.EscapeDataString(calendarId);
+            var eventsResponse = await _calendarClient
+                .GetFromJsonAsync<GoogleEventsListDto>($"/calendars/{encodedCalendarId}/events{query}");
+
+            eventsResponse.Should().NotBeNull();
+            var googleEvent = eventsResponse!.Items?.FirstOrDefault();
+            googleEvent.Should().NotBeNull();
+            googleEvent!.Id.Should().NotBeNullOrEmpty();
+            googleEvent.Reminders.Should().NotBeNull();
+        }
+    }
+
+    private async Task<int> GetWireMockRequestCountAsync(string path)
+    {
+        var response = await _calendarClient.GetAsync("/__admin/requests");
+        response.StatusCode.Should().Be(HttpStatusCode.OK);
+
+        var content = await response.Content.ReadAsStringAsync();
+        using var doc = JsonDocument.Parse(content);
+        if (!doc.RootElement.TryGetProperty("requests", out var requests))
+        {
+            return 0;
+        }
+
+        return requests.EnumerateArray()
+            .Count(entry =>
+            {
+                var request = entry.GetProperty("request");
+                var url = request.GetProperty("url").GetString() ?? string.Empty;
+                return url.StartsWith(path, StringComparison.OrdinalIgnoreCase);
+            });
+    }
+
+    private async Task AssertCreatedOrDumpAsync(HttpResponseMessage response)
+    {
+        if (response.StatusCode == HttpStatusCode.Created)
+        {
+            return;
+        }
+
+        var body = await response.Content.ReadAsStringAsync();
+        throw new Xunit.Sdk.XunitException(
+            $"Expected 201 Created, got {(int)response.StatusCode} {response.StatusCode}. Body: {body}");
+    }
+
+    private sealed record GoogleEventsListDto(GoogleEventDto[]? Items);
+
+    private sealed record GoogleEventDto(string Id, GoogleRemindersDto? Reminders);
+
+    private sealed record GoogleRemindersDto(bool UseDefault, GoogleReminderOverrideDto[]? Overrides);
+
+    private sealed record GoogleReminderOverrideDto(string Method, int Minutes);
 }

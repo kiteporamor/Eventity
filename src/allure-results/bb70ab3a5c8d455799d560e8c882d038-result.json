@@ -1,0 +1,72 @@
+{
+  "uuid": "198369fd-8383-4bed-af61-76623074ad88",
+  "historyId": "daa323b631d727bd589722f91d71cd81",
+  "testCaseId": "2f61ece57a3a5af3207dbf69a7cdaef2",
+  "fullName": "Eventity.Tests.E2E:Eventity.Tests.E2E.E2ETests.EventCreationAndManagement_ShouldHandleMultipleParticipants()",
+  "labels": [
+    {
+      "name": "thread",
+      "value": ".NET Long Running Task"
+    },
+    {
+      "name": "host",
+      "value": "cc7884f5f6b6"
+    },
+    {
+      "name": "language",
+      "value": "C#"
+    },
+    {
+      "name": "framework",
+      "value": "xUnit.net"
+    },
+    {
+      "name": "testClass",
+      "value": "Eventity.Tests.E2E.E2ETests"
+    },
+    {
+      "name": "testMethod",
+      "value": "Eventity.Tests.E2E.E2ETests.EventCreationAndManagement_ShouldHandleMultipleParticipants"
+    },
+    {
+      "name": "package",
+      "value": "Eventity.Tests.E2E.E2ETests"
+    },
+    {
+      "name": "feature",
+      "value": "Event Management"
+    },
+    {
+      "name": "subSuite",
+      "value": "E2E-tests"
+    },
+    {
+      "name": "suite",
+      "value": "E2E Tests"
+    },
+    {
+      "name": "feature",
+      "value": "End to End Multiple participants"
+    },
+    {
+      "name": "story",
+      "value": "Multiple participants"
+    }
+  ],
+  "links": [],
+  "name": "Eventity.Tests.E2E.E2ETests.EventCreationAndManagement_ShouldHandleMultipleParticipants",
+  "status": "failed",
+  "statusDetails": {
+    "known": false,
+    "muted": false,
+    "flaky": false,
+    "message": "Expected 201 Created, got 400 BadRequest. Body: {\"title\":\"Event creation failed\",\"status\":400,\"detail\":\"Failed to create event\"}",
+    "trace": "   at Eventity.Tests.E2E.E2ETests.AssertCreatedOrDumpAsync(HttpResponseMessage response) in /src/Eventity.Tests.E2E/E2ETest.cs:line 364\n   at Eventity.Tests.E2E.E2ETests.EventCreationAndManagement_ShouldHandleMultipleParticipants() in /src/Eventity.Tests.E2E/E2ETest.cs:line 186\n   at Xunit.Sdk.TestInvoker`1.<>c__DisplayClass48_0.<<InvokeTestMethodAsync>b__1>d.MoveNext() in /_/src/xunit.execution/Sdk/Frameworks/Runners/TestInvoker.cs:line 285\n--- End of stack trace from previous location ---\n   at Xunit.Sdk.ExecutionTimer.AggregateAsync(Func`1 asyncAction) in /_/src/xunit.execution/Sdk/Frameworks/ExecutionTimer.cs:line 48\n   at Xunit.Sdk.ExceptionAggregator.RunAsync(Func`1 code) in /_/src/xunit.core/Sdk/ExceptionAggregator.cs:line 90"
+  },
+  "stage": "finished",
+  "steps": [],
+  "attachments": [],
+  "parameters": [],
+  "start": 1768168618332,
+  "stop": 1768168618352
+}

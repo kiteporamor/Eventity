@@ -1,0 +1,12 @@
+{
+  "uuid": "5cc3142a-2f03-43ea-8782-804b246746fb",
+  "name": "Eventity.Tests.E2E.E2ETests",
+  "children": [
+    "bc5d9ecd-e884-40b5-b142-13b656d0943a"
+  ],
+  "befores": [],
+  "afters": [],
+  "links": [],
+  "start": 1768169245614,
+  "stop": 1768169245638
+}

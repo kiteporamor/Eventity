@@ -1,0 +1,42 @@
+services:
+  mongo:
+    image: mongo:6
+    environment:
+      MONGO_INITDB_DATABASE: EventityDemo
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+    ports:
+      - "27017:27017"
+
+  calendar-mock:
+    image: wiremock/wiremock:3.3.1
+    volumes:
+      - ./mocks/calendar:/home/wiremock
+    command: ["--global-response-templating"]
+    ports:
+      - "8080:8080"
+
+  eventity-app:
+    build:
+      context: .
+      dockerfile: Dockerfile.app
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DatabaseProvider=MongoDB
+      - ConnectionStrings__MongoDB=mongodb://mongo:27017
+      - ConnectionStrings__DatabaseName=EventityDemo
+      - Calendar__Mode=Mock
+      - Calendar__MockBaseUrl=http://calendar-mock:8080
+      - Calendar__Provider=Google
+      - Calendar__GoogleBaseUrl=https://www.googleapis.com/calendar/v3
+      - Calendar__GoogleCalendarId=primary
+    depends_on:
+      mongo:
+        condition: service_healthy
+      calendar-mock:
+        condition: service_started
+    ports:
+      - "5001:5001"

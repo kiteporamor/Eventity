@@ -1,0 +1,19 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPath": "/api/calendar/reminders"
+  },
+  "response": {
+    "status": 202,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "reminderId": "{{randomValue length=32 type='UUID'}}",
+      "status": "accepted"
+    },
+    "transformers": [
+      "response-template"
+    ]
+  }
+}

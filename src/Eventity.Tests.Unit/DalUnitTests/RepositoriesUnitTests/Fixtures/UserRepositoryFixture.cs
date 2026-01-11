@@ -1,5 +1,5 @@
-using Eventity.DataAccess.Context;
-using Eventity.DataAccess.Repositories;
+using Eventity.DataAccess.Context.Postgres;
+using Eventity.DataAccess.Repositories.Postgres;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 

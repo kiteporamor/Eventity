@@ -16,17 +16,23 @@ public class EventService : IEventService
 {
     private readonly IEventRepository _eventRepository;
     private readonly IParticipationRepository _participationRepository;
+    private readonly IUserRepository _userRepository;
+    private readonly ICalendarService _calendarService;
     private readonly ILogger<EventService> _logger;
     private readonly IUnitOfWork _unitOfWork;
 
     public EventService(
         IEventRepository eventRepository,
         IParticipationRepository participationRepository,
+        IUserRepository userRepository,
+        ICalendarService calendarService,
         ILogger<EventService> logger,
         IUnitOfWork unitOfWork)
     {
         _eventRepository = eventRepository;
         _participationRepository = participationRepository;
+        _userRepository = userRepository;
+        _calendarService = calendarService;
         _logger = logger;
         _unitOfWork = unitOfWork;
     }
@@ -37,6 +43,13 @@ public class EventService : IEventService
         _logger.LogDebug("Trying to add event");
         try
         {
+            var organizer = await _userRepository.GetByIdAsync(organizerId);
+            if (organizer == null)
+            {
+                _logger.LogWarning("Organizer not found. ID: {OrganizerId}", organizerId);
+                throw new EventServiceException("Organizer not found");
+            }
+
             var eventId = Guid.NewGuid();
             var eventDomain = new Event(eventId, title, description, dateTime, address, organizerId);
             var participation = new Participation(Guid.NewGuid(), organizerId, eventId, 
@@ -51,10 +64,6 @@ public class EventService : IEventService
                 
                 await _unitOfWork.SaveChangesAsync();
                 await _unitOfWork.CommitAsync();
-                
-                _logger.LogInformation("Event created successfully. ID: {EventId}, Title: {Title}, Organizer: {OrganizerId}", 
-                    eventId, title, organizerId);
-                return eventDomain;
             }
             catch (Exception ex)
             {
@@ -62,11 +71,21 @@ public class EventService : IEventService
                 _logger.LogError(ex, "Failed to create event. Transaction rolled back.");
                 throw;
             }
+
+            await _calendarService.AddEventToCalendarAsync(organizer, eventDomain);
+            
+            _logger.LogInformation("Event created successfully. ID: {EventId}, Title: {Title}, Organizer: {OrganizerId}", 
+                eventId, title, organizerId);
+            return eventDomain;
+        }
+        catch (EventServiceException)
+        {
+            throw;
         }
         catch(Exception ex)
         {
             _logger.LogError(ex, "Failed to create event. Title: {Title}, Organizer: {OrganizerId}", title, organizerId);
-            throw new EventServiceException("Failed to create event", ex);
+            throw new EventServiceException($"Failed to create event: {ex.Message}", ex);
         }
     }
 

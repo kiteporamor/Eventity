@@ -1,0 +1,71 @@
+{
+  "uuid": "e5d9cfa1-5ae6-45d3-b968-7c0dbb604917",
+  "historyId": "b7dd3b9650f2fcf073ff4db11278bf82",
+  "testCaseId": "f177d5225b599d042357196e2eafda86",
+  "fullName": "Eventity.Tests.E2E:Eventity.Tests.E2E.E2ETests.UserRegistrationAndLogin_ShouldWorkCorrectly()",
+  "labels": [
+    {
+      "name": "thread",
+      "value": ".NET Long Running Task"
+    },
+    {
+      "name": "host",
+      "value": "ed4b1ecb2cdc"
+    },
+    {
+      "name": "language",
+      "value": "C#"
+    },
+    {
+      "name": "framework",
+      "value": "xUnit.net"
+    },
+    {
+      "name": "testClass",
+      "value": "Eventity.Tests.E2E.E2ETests"
+    },
+    {
+      "name": "testMethod",
+      "value": "Eventity.Tests.E2E.E2ETests.UserRegistrationAndLogin_ShouldWorkCorrectly"
+    },
+    {
+      "name": "package",
+      "value": "Eventity.Tests.E2E.E2ETests"
+    },
+    {
+      "name": "feature",
+      "value": "Event Management"
+    },
+    {
+      "name": "subSuite",
+      "value": "E2E-tests"
+    },
+    {
+      "name": "suite",
+      "value": "E2E Tests"
+    },
+    {
+      "name": "feature",
+      "value": "End to End Registration"
+    },
+    {
+      "name": "story",
+      "value": "Registration"
+    }
+  ],
+  "links": [],
+  "name": "Eventity.Tests.E2E.E2ETests.UserRegistrationAndLogin_ShouldWorkCorrectly",
+  "status": "passed",
+  "statusDetails": {
+    "known": false,
+    "muted": false,
+    "flaky": false,
+    "message": ""
+  },
+  "stage": "finished",
+  "steps": [],
+  "attachments": [],
+  "parameters": [],
+  "start": 1768172708307,
+  "stop": 1768172708347
+}

@@ -1,0 +1,72 @@
+{
+  "uuid": "3a70d011-805a-4085-8e2f-a4efae89f4f9",
+  "historyId": "54e957eb23161ed44ae1e22f598f55f1",
+  "testCaseId": "b0df548e3b1c8279c153e52da293e996",
+  "fullName": "Eventity.Tests.E2E:Eventity.Tests.E2E.E2ETests.CompleteEventScenario_ShouldWorkEndToEnd()",
+  "labels": [
+    {
+      "name": "thread",
+      "value": ".NET Long Running Task"
+    },
+    {
+      "name": "host",
+      "value": "cc7884f5f6b6"
+    },
+    {
+      "name": "language",
+      "value": "C#"
+    },
+    {
+      "name": "framework",
+      "value": "xUnit.net"
+    },
+    {
+      "name": "testClass",
+      "value": "Eventity.Tests.E2E.E2ETests"
+    },
+    {
+      "name": "testMethod",
+      "value": "Eventity.Tests.E2E.E2ETests.CompleteEventScenario_ShouldWorkEndToEnd"
+    },
+    {
+      "name": "package",
+      "value": "Eventity.Tests.E2E.E2ETests"
+    },
+    {
+      "name": "feature",
+      "value": "Event Management"
+    },
+    {
+      "name": "subSuite",
+      "value": "E2E-tests"
+    },
+    {
+      "name": "suite",
+      "value": "E2E Tests"
+    },
+    {
+      "name": "feature",
+      "value": "End to End"
+    },
+    {
+      "name": "story",
+      "value": "Scenario"
+    }
+  ],
+  "links": [],
+  "name": "Eventity.Tests.E2E.E2ETests.CompleteEventScenario_ShouldWorkEndToEnd",
+  "status": "failed",
+  "statusDetails": {
+    "known": false,
+    "muted": false,
+    "flaky": false,
+    "message": "Expected 201 Created, got 400 BadRequest. Body: {\"title\":\"Event creation failed\",\"status\":400,\"detail\":\"Failed to create event\"}",
+    "trace": "   at Eventity.Tests.E2E.E2ETests.AssertCreatedOrDumpAsync(HttpResponseMessage response) in /src/Eventity.Tests.E2E/E2ETest.cs:line 364\n   at Eventity.Tests.E2E.E2ETests.CompleteEventScenario_ShouldWorkEndToEnd() in /src/Eventity.Tests.E2E/E2ETest.cs:line 98\n   at Xunit.Sdk.TestInvoker`1.<>c__DisplayClass48_0.<<InvokeTestMethodAsync>b__1>d.MoveNext() in /_/src/xunit.execution/Sdk/Frameworks/Runners/TestInvoker.cs:line 285\n--- End of stack trace from previous location ---\n   at Xunit.Sdk.ExecutionTimer.AggregateAsync(Func`1 asyncAction) in /_/src/xunit.execution/Sdk/Frameworks/ExecutionTimer.cs:line 48\n   at Xunit.Sdk.ExceptionAggregator.RunAsync(Func`1 code) in /_/src/xunit.core/Sdk/ExceptionAggregator.cs:line 90"
+  },
+  "stage": "finished",
+  "steps": [],
+  "attachments": [],
+  "parameters": [],
+  "start": 1768168134228,
+  "stop": 1768168134265
+}

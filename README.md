@@ -86,3 +86,38 @@
 
 ## Диаграмма базы данных
 ![](docs/db.png)
+
+## Calendar integration (lab 7)
+
+Contract (Google Calendar subset):
+- `docs/calendar-api.yaml`
+
+Run E2E with mock calendar:
+```
+docker-compose -f docker-compose.e2e.mock.yml up --build --abort-on-container-exit
+```
+
+Run E2E with real Google Calendar (needs OAuth token):
+```
+docker-compose -f docker-compose.e2e.real.yml up --build --abort-on-container-exit
+```
+Env for real mode:
+- `GOOGLE_CALENDAR_ACCESS_TOKEN`
+- `GOOGLE_CALENDAR_ID` (default `primary`)
+
+Run demo with mock calendar:
+```
+docker-compose -f docker-compose.demo.mock.yml up --build
+```
+
+Run demo with real Google Calendar (needs OAuth token):
+```
+docker-compose -f docker-compose.demo.real.yml up --build
+```
+
+Calendar settings (switch mock/real):
+- `Calendar:Mode` = `Mock` or `Real`
+- `Calendar:Provider` = `Google`
+- `Calendar:MockBaseUrl`
+- `Calendar:GoogleBaseUrl`, `Calendar:GoogleCalendarId`, `Calendar:GoogleAccessToken`
+  - `Calendar:GoogleCalendarId` can be `primary` or `{user.email}`

@@ -1,0 +1,19 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPath": "/api/calendar/events"
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "calendarEventId": "{{randomValue length=32 type='UUID'}}",
+      "status": "created"
+    },
+    "transformers": [
+      "response-template"
+    ]
+  }
+}

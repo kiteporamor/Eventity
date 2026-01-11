@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using Allure.XUnit.Attributes.Steps;
-using Eventity.DataAccess.Repositories;
+using Eventity.DataAccess.Repositories.Postgres;
 using Eventity.Domain.Enums;
 using Eventity.Domain.Models;
 using Eventity.UnitTests.DalUnitTests.Fabrics;

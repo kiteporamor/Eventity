@@ -1,6 +1,7 @@
 using Eventity.Application.Services;
 using Eventity.Domain.Models;
 using Eventity.Domain.Interfaces.Repositories;
+using Eventity.Domain.Interfaces.Services;
 using Microsoft.Extensions.Logging;
 using Moq;
 
@@ -12,6 +13,7 @@ public class NotificationServiceTestFixture
     public Mock<IParticipationRepository> PartRepoMock { get; }
     public Mock<IUserRepository> UserRepoMock { get; }
     public Mock<IEventRepository> EventRepoMock { get; }
+    public Mock<ICalendarService> CalendarServiceMock { get; }
     public Mock<ILogger<NotificationService>> LoggerMock { get; }
     public NotificationService Service { get; }
 
@@ -21,6 +23,7 @@ public class NotificationServiceTestFixture
         PartRepoMock = new Mock<IParticipationRepository>();
         UserRepoMock = new Mock<IUserRepository>();
         EventRepoMock = new Mock<IEventRepository>();
+        CalendarServiceMock = new Mock<ICalendarService>();
         LoggerMock = new Mock<ILogger<NotificationService>>();
         
         Service = new NotificationService(
@@ -28,6 +31,7 @@ public class NotificationServiceTestFixture
             PartRepoMock.Object,
             UserRepoMock.Object,
             EventRepoMock.Object,
+            CalendarServiceMock.Object,
             LoggerMock.Object);
     }
 
@@ -37,6 +41,7 @@ public class NotificationServiceTestFixture
         PartRepoMock.Reset();
         UserRepoMock.Reset();
         EventRepoMock.Reset();
+        CalendarServiceMock.Reset();
         LoggerMock.Reset();
     }
 

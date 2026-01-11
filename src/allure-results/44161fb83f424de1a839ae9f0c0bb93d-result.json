@@ -1,0 +1,71 @@
+{
+  "uuid": "6cf788dc-76ec-4dbd-a683-a21dfcf6424f",
+  "historyId": "28f024c424c3500052d1fad0ece7f435",
+  "testCaseId": "4f06d865378137a938cd1a701f096436",
+  "fullName": "Eventity.Tests.E2E:Eventity.Tests.E2E.E2ETests.EventCreation_ShouldSyncCalendarAndReminders()",
+  "labels": [
+    {
+      "name": "thread",
+      "value": ".NET Long Running Task"
+    },
+    {
+      "name": "host",
+      "value": "ed4b1ecb2cdc"
+    },
+    {
+      "name": "language",
+      "value": "C#"
+    },
+    {
+      "name": "framework",
+      "value": "xUnit.net"
+    },
+    {
+      "name": "testClass",
+      "value": "Eventity.Tests.E2E.E2ETests"
+    },
+    {
+      "name": "testMethod",
+      "value": "Eventity.Tests.E2E.E2ETests.EventCreation_ShouldSyncCalendarAndReminders"
+    },
+    {
+      "name": "package",
+      "value": "Eventity.Tests.E2E.E2ETests"
+    },
+    {
+      "name": "feature",
+      "value": "Event Management"
+    },
+    {
+      "name": "subSuite",
+      "value": "E2E-tests"
+    },
+    {
+      "name": "suite",
+      "value": "E2E Tests"
+    },
+    {
+      "name": "feature",
+      "value": "Calendar Integration"
+    },
+    {
+      "name": "story",
+      "value": "Event creation adds calendar entries and reminders"
+    }
+  ],
+  "links": [],
+  "name": "Eventity.Tests.E2E.E2ETests.EventCreation_ShouldSyncCalendarAndReminders",
+  "status": "passed",
+  "statusDetails": {
+    "known": false,
+    "muted": false,
+    "flaky": false,
+    "message": ""
+  },
+  "stage": "finished",
+  "steps": [],
+  "attachments": [],
+  "parameters": [],
+  "start": 1768172700958,
+  "stop": 1768172707717
+}

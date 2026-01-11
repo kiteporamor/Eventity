@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Eventity.Application.Services;
 using Eventity.Domain.Enums;
@@ -38,10 +39,15 @@ public class EventServiceTests : IClassFixture<EventServiceTestFixture>
         var date = DateTime.Now.AddDays(1);
         var addr = "Address";
         var organizerId = Guid.NewGuid();
+        var organizer = new User(organizerId, "Org", "org@test.com", "org", "pass", UserRoleEnum.User);
 
         _fixture.UnitOfWorkMock.Setup(x => x.BeginTransactionAsync()).Returns(Task.CompletedTask);
         _fixture.UnitOfWorkMock.Setup(x => x.SaveChangesAsync()).Returns(Task.CompletedTask);
         _fixture.UnitOfWorkMock.Setup(x => x.CommitAsync()).Returns(Task.CompletedTask);
+        _fixture.UserRepoMock.Setup(x => x.GetByIdAsync(organizerId)).ReturnsAsync(organizer);
+        _fixture.CalendarServiceMock.Setup(x => x.AddEventToCalendarAsync(organizer, It.IsAny<Event>(),
+                It.IsAny<CancellationToken>()))
+            .Returns(Task.CompletedTask);
 
         var result = await _fixture.Service.AddEvent(title, desc, date, addr, organizerId);
 
@@ -56,6 +62,9 @@ public class EventServiceTests : IClassFixture<EventServiceTestFixture>
         _fixture.UnitOfWorkMock.Verify(x => x.BeginTransactionAsync(), Times.Once);
         _fixture.UnitOfWorkMock.Verify(x => x.SaveChangesAsync(), Times.Once);
         _fixture.UnitOfWorkMock.Verify(x => x.CommitAsync(), Times.Once);
+        _fixture.CalendarServiceMock.Verify(x => x.AddEventToCalendarAsync(organizer, It.IsAny<Event>(),
+                It.IsAny<CancellationToken>()),
+            Times.Once);
     }
 
     [Fact]

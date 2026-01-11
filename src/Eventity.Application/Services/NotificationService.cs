@@ -17,6 +17,7 @@ public class NotificationService : INotificationService
     private readonly IParticipationRepository _participationRepository;
     private readonly IUserRepository _userRepository;
     private readonly IEventRepository _eventRepository;
+    private readonly ICalendarService _calendarService;
     private readonly ILogger<NotificationService> _logger;
 
     public NotificationService(
@@ -24,12 +25,14 @@ public class NotificationService : INotificationService
         IParticipationRepository participationRepository,
         IUserRepository userRepository,
         IEventRepository eventRepository,
+        ICalendarService calendarService,
         ILogger<NotificationService> logger)
     {
         _notificationRepository = notificationRepository;
         _participationRepository = participationRepository;
         _userRepository = userRepository;
         _eventRepository = eventRepository;
+        _calendarService = calendarService;
         _logger = logger;
     }
     
@@ -66,6 +69,7 @@ public class NotificationService : INotificationService
                          participation.Status == ParticipationStatusEnum.Accepted)
                 {
                     text = GenerateReminderText(user, eventInfo);
+                    await _calendarService.SendReminderAsync(user, eventInfo, text, DateTime.UtcNow);
                 }
                 
                 var notification = new Notification(

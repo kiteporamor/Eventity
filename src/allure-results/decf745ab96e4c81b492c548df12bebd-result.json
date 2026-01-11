@@ -1,0 +1,71 @@
+{
+  "uuid": "7185030d-d97e-4f0e-8077-8dcb0d88c1d1",
+  "historyId": "daa323b631d727bd589722f91d71cd81",
+  "testCaseId": "2f61ece57a3a5af3207dbf69a7cdaef2",
+  "fullName": "Eventity.Tests.E2E:Eventity.Tests.E2E.E2ETests.EventCreationAndManagement_ShouldHandleMultipleParticipants()",
+  "labels": [
+    {
+      "name": "thread",
+      "value": ".NET Long Running Task"
+    },
+    {
+      "name": "host",
+      "value": "ed4b1ecb2cdc"
+    },
+    {
+      "name": "language",
+      "value": "C#"
+    },
+    {
+      "name": "framework",
+      "value": "xUnit.net"
+    },
+    {
+      "name": "testClass",
+      "value": "Eventity.Tests.E2E.E2ETests"
+    },
+    {
+      "name": "testMethod",
+      "value": "Eventity.Tests.E2E.E2ETests.EventCreationAndManagement_ShouldHandleMultipleParticipants"
+    },
+    {
+      "name": "package",
+      "value": "Eventity.Tests.E2E.E2ETests"
+    },
+    {
+      "name": "feature",
+      "value": "Event Management"
+    },
+    {
+      "name": "subSuite",
+      "value": "E2E-tests"
+    },
+    {
+      "name": "suite",
+      "value": "E2E Tests"
+    },
+    {
+      "name": "feature",
+      "value": "End to End Multiple participants"
+    },
+    {
+      "name": "story",
+      "value": "Multiple participants"
+    }
+  ],
+  "links": [],
+  "name": "Eventity.Tests.E2E.E2ETests.EventCreationAndManagement_ShouldHandleMultipleParticipants",
+  "status": "passed",
+  "statusDetails": {
+    "known": false,
+    "muted": false,
+    "flaky": false,
+    "message": ""
+  },
+  "stage": "finished",
+  "steps": [],
+  "attachments": [],
+  "parameters": [],
+  "start": 1768172708145,
+  "stop": 1768172708303
+}

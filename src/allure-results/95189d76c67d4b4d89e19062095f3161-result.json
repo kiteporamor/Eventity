@@ -1,0 +1,71 @@
+{
+  "uuid": "36d6e5ba-a1e6-458a-a2f4-32710ada590d",
+  "historyId": "54e957eb23161ed44ae1e22f598f55f1",
+  "testCaseId": "b0df548e3b1c8279c153e52da293e996",
+  "fullName": "Eventity.Tests.E2E:Eventity.Tests.E2E.E2ETests.CompleteEventScenario_ShouldWorkEndToEnd()",
+  "labels": [
+    {
+      "name": "thread",
+      "value": ".NET Long Running Task"
+    },
+    {
+      "name": "host",
+      "value": "bf110c70a91d"
+    },
+    {
+      "name": "language",
+      "value": "C#"
+    },
+    {
+      "name": "framework",
+      "value": "xUnit.net"
+    },
+    {
+      "name": "testClass",
+      "value": "Eventity.Tests.E2E.E2ETests"
+    },
+    {
+      "name": "testMethod",
+      "value": "Eventity.Tests.E2E.E2ETests.CompleteEventScenario_ShouldWorkEndToEnd"
+    },
+    {
+      "name": "package",
+      "value": "Eventity.Tests.E2E.E2ETests"
+    },
+    {
+      "name": "feature",
+      "value": "Event Management"
+    },
+    {
+      "name": "subSuite",
+      "value": "E2E-tests"
+    },
+    {
+      "name": "suite",
+      "value": "E2E Tests"
+    },
+    {
+      "name": "feature",
+      "value": "End to End"
+    },
+    {
+      "name": "story",
+      "value": "Scenario"
+    }
+  ],
+  "links": [],
+  "name": "Eventity.Tests.E2E.E2ETests.CompleteEventScenario_ShouldWorkEndToEnd",
+  "status": "passed",
+  "statusDetails": {
+    "known": false,
+    "muted": false,
+    "flaky": false,
+    "message": ""
+  },
+  "stage": "finished",
+  "steps": [],
+  "attachments": [],
+  "parameters": [],
+  "start": 1768169838129,
+  "stop": 1768169838302
+}

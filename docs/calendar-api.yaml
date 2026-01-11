@@ -1,0 +1,155 @@
+openapi: 3.0.3
+info:
+  title: Google Calendar API (subset)
+  version: 1.0.0
+  description: Minimal contract subset used by Eventity for Google Calendar integration.
+servers:
+  - url: https://www.googleapis.com/calendar/v3
+paths:
+  /calendars/{calendarId}/events:
+    post:
+      summary: Create calendar event
+      parameters:
+        - in: path
+          name: calendarId
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GoogleEventInsert"
+      responses:
+        "200":
+          description: Created event
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GoogleEvent"
+    get:
+      summary: List calendar events
+      parameters:
+        - in: path
+          name: calendarId
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: privateExtendedProperty
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Event list
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GoogleEventsList"
+  /calendars/{calendarId}/events/{eventId}:
+    patch:
+      summary: Update event (reminders)
+      parameters:
+        - in: path
+          name: calendarId
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: eventId
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GoogleEventPatch"
+      responses:
+        "200":
+          description: Updated event
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GoogleEvent"
+components:
+  schemas:
+    GoogleEventInsert:
+      type: object
+      required:
+        - summary
+        - start
+        - end
+      properties:
+        summary:
+          type: string
+        description:
+          type: string
+        location:
+          type: string
+        start:
+          $ref: "#/components/schemas/GoogleEventTime"
+        end:
+          $ref: "#/components/schemas/GoogleEventTime"
+        extendedProperties:
+          $ref: "#/components/schemas/GoogleExtendedProperties"
+    GoogleEventPatch:
+      type: object
+      properties:
+        description:
+          type: string
+        reminders:
+          $ref: "#/components/schemas/GoogleReminders"
+    GoogleEvent:
+      type: object
+      properties:
+        id:
+          type: string
+        summary:
+          type: string
+        description:
+          type: string
+    GoogleEventsList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/GoogleEvent"
+    GoogleEventTime:
+      type: object
+      required:
+        - dateTime
+      properties:
+        dateTime:
+          type: string
+          format: date-time
+        timeZone:
+          type: string
+    GoogleExtendedProperties:
+      type: object
+      properties:
+        private:
+          type: object
+          properties:
+            eventityEventId:
+              type: string
+    GoogleReminders:
+      type: object
+      properties:
+        useDefault:
+          type: boolean
+        overrides:
+          type: array
+          items:
+            $ref: "#/components/schemas/GoogleReminderOverride"
+    GoogleReminderOverride:
+      type: object
+      properties:
+        method:
+          type: string
+        minutes:
+          type: integer

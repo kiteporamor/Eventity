@@ -1,0 +1,77 @@
+00:05:19 [Warning] Overriding address(es) '"http://localhost:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+00:12:02 [Warning] Overriding address(es) '"http://localhost:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+00:13:20 [Warning] Overriding address(es) '"http://localhost:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+00:13:44 [Warning] Overriding address(es) '"http://localhost:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+00:14:08 [Warning] Overriding address(es) '"http://localhost:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+00:15:34 [Warning] Overriding address(es) '"http://localhost:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+00:16:46 [Warning] Overriding address(es) '"http://localhost:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+00:17:57 [Warning] Overriding address(es) '"http://localhost:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+00:20:50 [Warning] Overriding address(es) '"http://localhost:5000, http://localhost:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+00:21:23 [Warning] Overriding address(es) '"http://localhost:5000, http://localhost:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+00:23:14 [Warning] Overriding address(es) '"http://localhost:5000, http://localhost:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+00:25:04 [Warning] Overriding address(es) '"http://localhost:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+00:30:23 [Warning] Overriding address(es) '"http://localhost:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+00:34:11 [Warning] Overriding address(es) '"http://localhost:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+00:35:27 [Warning] Overriding address(es) '"http://localhost:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+00:37:04 [Warning] Overriding address(es) '"http://localhost:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+02:08:37 [Warning] Overriding address(es) '"http://localhost:5001"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+02:11:00 [Information] Authentication attempt for login: "string"
+02:11:00 [Warning] User with login "string" not found
+02:11:00 [Warning] User not found. Login: "string"
+02:11:06 [Information] Registration attempt. Login: "string", Email: "string"
+02:11:06 [Warning] User with login "string" not found
+02:11:06 [Information] JWT token generated for user 304f48a9-a82a-4666-82a6-ce921032f081
+02:11:06 [Information] User registered successfully. UserId: 304f48a9-a82a-4666-82a6-ce921032f081
+02:11:25 [Debug] Trying to add event
+02:11:25 [Debug] Attempting to add new event: Event { Id: d12134fc-e574-46c5-9233-210ecfefc25e, Title: "string", Description: "string", DateTime: 01/12/2026 23:11:18, Address: "string", OrganizerId: 304f48a9-a82a-4666-82a6-ce921032f081 }
+02:11:25 [Information] Event added successfully: "d12134fc-e574-46c5-9233-210ecfefc25e"
+02:11:26 [Error] Failed to create event. Title: "string", Organizer: 304f48a9-a82a-4666-82a6-ce921032f081
+System.Net.Http.HttpRequestException: nodename nor servname provided, or not known (calendar-mock:8080)
+ ---> System.Net.Sockets.SocketException (0xFFFDFFFF): nodename nor servname provided, or not known
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|277_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.AddHttp11ConnectionAsync(HttpRequestMessage request)
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.GetHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingHttpMessageHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingScopeHttpMessageHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at Eventity.Application.Services.CalendarService.SendWithRetryAsync(Func`2 sendAsync, String errorMessage, CancellationToken cancellationToken) in /Users/ekaterinaparamonova/Downloads/Eventity7/src/Eventity.Application/Services/CalendarService.cs:line 230
+   at Eventity.Application.Services.CalendarService.AddEventToCalendarAsync(User user, Event eventInfo, CancellationToken cancellationToken) in /Users/ekaterinaparamonova/Downloads/Eventity7/src/Eventity.Application/Services/CalendarService.cs:line 57
+   at Eventity.Application.Services.EventService.AddEvent(String title, String description, DateTime dateTime, String address, Guid organizerId) in /Users/ekaterinaparamonova/Downloads/Eventity7/src/Eventity.Application/Services/EventService.cs:line 75
+02:11:26 [Error] Failed to create event
+Eventity.Domain.Exceptions.EventServiceException: Failed to create event: nodename nor servname provided, or not known (calendar-mock:8080)
+ ---> System.Net.Http.HttpRequestException: nodename nor servname provided, or not known (calendar-mock:8080)
+ ---> System.Net.Sockets.SocketException (0xFFFDFFFF): nodename nor servname provided, or not known
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|277_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.AddHttp11ConnectionAsync(HttpRequestMessage request)
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.GetHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingHttpMessageHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingScopeHttpMessageHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at Eventity.Application.Services.CalendarService.SendWithRetryAsync(Func`2 sendAsync, String errorMessage, CancellationToken cancellationToken) in /Users/ekaterinaparamonova/Downloads/Eventity7/src/Eventity.Application/Services/CalendarService.cs:line 230
+   at Eventity.Application.Services.CalendarService.AddEventToCalendarAsync(User user, Event eventInfo, CancellationToken cancellationToken) in /Users/ekaterinaparamonova/Downloads/Eventity7/src/Eventity.Application/Services/CalendarService.cs:line 57
+   at Eventity.Application.Services.EventService.AddEvent(String title, String description, DateTime dateTime, String address, Guid organizerId) in /Users/ekaterinaparamonova/Downloads/Eventity7/src/Eventity.Application/Services/EventService.cs:line 75
+   --- End of inner exception stack trace ---
+   at Eventity.Application.Services.EventService.AddEvent(String title, String description, DateTime dateTime, String address, Guid organizerId) in /Users/ekaterinaparamonova/Downloads/Eventity7/src/Eventity.Application/Services/EventService.cs:line 88
+   at Eventity.Api.Controllers.EventController.CreateEvent(CreateEventRequestDto requestDto) in /Users/ekaterinaparamonova/Downloads/Eventity7/src/Eventity.Web/Controllers/EventController.cs:line 48

@@ -1,0 +1,63 @@
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: Eventity
+    ports:
+      - "5432:5432"
+    networks:
+      - app-network
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init-db:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d Eventity"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    command: 
+      - "postgres"
+      - "-c"
+      - "max_connections=500"
+      - "-c"
+      - "shared_buffers=256MB"
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.app
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - app-network
+    ports:
+      - "7080:5001"
+      # - "7081:8081"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      # ASPNETCORE_URLS: "http://+:8080;https://+:8081"
+      ASPNETCORE_URLS: "http://+:5001"
+    # volumes:
+    #   - ./logs:/app/Logs
+    #   - ~/.aspnet/https:/https:ro
+    volumes:
+      - ./logs:/app/logs
+      - ./logs:/app/Logs
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: '2.0'
+        reservations:
+          memory: 1G
+          cpus: '1.0'
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  postgres_data:

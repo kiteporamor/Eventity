@@ -1,0 +1,7 @@
+Id,Title,Description,DateTime,Address,OrganizerId
+650e8400-e29b-41d4-a716-446655440000,Tech Conference 2025,Annual technology conference featuring industry leaders,2025-03-15T09:00:00Z,"123 Main Street, Tech City",550e8400-e29b-41d4-a716-446655440000
+650e8400-e29b-41d4-a716-446655440001,Web Development Workshop,Learn modern web development with hands-on exercises,2025-02-20T14:00:00Z,"456 Developer Ave, Code Town",550e8400-e29b-41d4-a716-446655440001
+650e8400-e29b-41d4-a716-446655440002,Database Design Seminar,Seminar on advanced database design patterns,2025-03-22T10:00:00Z,"789 Database Lane, Data City",550e8400-e29b-41d4-a716-446655440002
+650e8400-e29b-41d4-a716-446655440003,Python Bootcamp,Intensive 5-day Python programming bootcamp,2025-04-01T09:00:00Z,"321 Python Street, Script City",550e8400-e29b-41d4-a716-446655440000
+650e8400-e29b-41d4-a716-446655440004,Mobile App Development,Building iOS and Android applications,2025-03-10T15:00:00Z,"654 Mobile Blvd, App City",550e8400-e29b-41d4-a716-446655440003
+650e8400-e29b-41d4-a716-446655440005,Cloud Architecture Summit,Enterprise cloud solutions and best practices,2025-02-28T11:00:00Z,"987 Cloud Drive, Server City",550e8400-e29b-41d4-a716-446655440002

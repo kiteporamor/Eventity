@@ -12,8 +12,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eventity.Tests.Unit", "Even
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eventity.Tests.Integration", "Eventity.Tests.Integration\Eventity.Tests.Integration.csproj", "{F9B933A3-7283-4F91-823D-2CEBCF8AEB8D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eventity.Tests.E2E", "Eventity.Tests.E2E\Eventity.Tests.E2E.csproj", "{976C8C25-8AE7-4140-B290-9A2F938AE504}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,9 +42,5 @@ Global
 		{F9B933A3-7283-4F91-823D-2CEBCF8AEB8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9B933A3-7283-4F91-823D-2CEBCF8AEB8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9B933A3-7283-4F91-823D-2CEBCF8AEB8D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{976C8C25-8AE7-4140-B290-9A2F938AE504}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{976C8C25-8AE7-4140-B290-9A2F938AE504}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{976C8C25-8AE7-4140-B290-9A2F938AE504}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{976C8C25-8AE7-4140-B290-9A2F938AE504}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

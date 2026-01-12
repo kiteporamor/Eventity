@@ -24,45 +24,98 @@ public class AuthService : IAuthService
         _jwtService = jwtService;
         _logger = logger;
     }
-    
+
     public async Task<AuthResult> AuthenticateUser(string login, string password)
     {
         _logger.LogInformation("Authentication attempt for login: {Login}", login);
         
         try
         {
+            Console.WriteLine($"DEBUG: Looking for user with login: '{login}'");
             var user = await _userRepository.GetByLoginAsync(login);
+            
             if (user == null)
             {
+                Console.WriteLine($"DEBUG: User '{login}' NOT FOUND");
                 _logger.LogWarning("User not found. Login: {Login}", login);
                 throw new UserNotFoundException("User with this login is not found");
             }
 
+            Console.WriteLine($"DEBUG: User found: {user.Login}");
+            Console.WriteLine($"DEBUG: Expected password: '{user.Password}'");
+            Console.WriteLine($"DEBUG: Provided password: '{password}'");
+            Console.WriteLine($"DEBUG: Passwords match: {user.Password == password}");
+            
             if (user.Password != password)
             {
+                Console.WriteLine($"DEBUG: Password mismatch for user '{login}'");
                 _logger.LogWarning("Invalid password for user. Login: {Login}", login);
                 throw new InvalidPasswordException("Invalid password");
             }
 
             var token = _jwtService.GenerateToken(user);
+            Console.WriteLine($"DEBUG: Authentication SUCCESS for user '{login}'");
             _logger.LogInformation("User authenticated successfully. UserId: {UserId}", user.Id);
             
             return new AuthResult { User = user, Token = token };
         }
-        catch (UserNotFoundException)
+        catch (UserNotFoundException ex)
         {
+            Console.WriteLine($"DEBUG: UserNotFoundException: {ex.Message}");
             throw;
         }
-        catch (InvalidPasswordException)
+        catch (InvalidPasswordException ex)
         {
+            Console.WriteLine($"DEBUG: InvalidPasswordException: {ex.Message}");
             throw;
         }
         catch (Exception ex)
         {
+            Console.WriteLine($"DEBUG: Generic Exception: {ex.Message}");
+            Console.WriteLine($"DEBUG: StackTrace: {ex.StackTrace}");
             _logger.LogError(ex, "Authentication failed for login: {Login}", login);
             throw new AuthServiceException("Failed to authenticate user", ex);
         }
     }
+        
+    // public async Task<AuthResult> AuthenticateUser(string login, string password)
+    // {
+    //     _logger.LogInformation("Authentication attempt for login: {Login}", login);
+        
+    //     try
+    //     {
+    //         var user = await _userRepository.GetByLoginAsync(login);
+    //         if (user == null)
+    //         {
+    //             _logger.LogWarning("User not found. Login: {Login}", login);
+    //             throw new UserNotFoundException("User with this login is not found");
+    //         }
+
+    //         if (user.Password != password)
+    //         {
+    //             _logger.LogWarning("Invalid password for user. Login: {Login}", login);
+    //             throw new InvalidPasswordException("Invalid password");
+    //         }
+
+    //         var token = _jwtService.GenerateToken(user);
+    //         _logger.LogInformation("User authenticated successfully. UserId: {UserId}", user.Id);
+            
+    //         return new AuthResult { User = user, Token = token };
+    //     }
+    //     catch (UserNotFoundException)
+    //     {
+    //         throw;
+    //     }
+    //     catch (InvalidPasswordException)
+    //     {
+    //         throw;
+    //     }
+    //     catch (Exception ex)
+    //     {
+    //         _logger.LogError(ex, "Authentication failed for login: {Login}", login);
+    //         throw new AuthServiceException("Failed to authenticate user", ex);
+    //     }
+    // }
 
     public async Task<AuthResult> RegisterUser(string name, string email, string login, string password, UserRoleEnum role)
     {

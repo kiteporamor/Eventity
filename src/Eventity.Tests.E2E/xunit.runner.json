@@ -1,6 +1,0 @@
-{
-  "parallelizeTestCollections": true,
-  "diagnosticMessages": false,
-  "stopOnFail": false,
-  "seed": "random"
-}

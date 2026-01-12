@@ -128,12 +128,11 @@ public class EventService : IEventService
         try
         {
             var events = await _eventRepository.GetAllAsync();
-            if (events == null || !events.Any()) 
+            if (events == null)
             {
-                _logger.LogWarning("No events found");
-                throw new EventServiceException("No events found");
+                _logger.LogInformation("Retrieved 0 events successfully");
+                return Enumerable.Empty<Event>();
             }
-            
             _logger.LogInformation("Retrieved {EventCount} events successfully", events.Count());
             return events;
         }

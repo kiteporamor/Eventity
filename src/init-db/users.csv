@@ -1,0 +1,9 @@
+Id,Name,Email,Login,Password,Role
+550e8400-e29b-41d4-a716-446655440000,Alice Johnson,alice@example.com,alice_j,hashed_password_1,0
+550e8400-e29b-41d4-a716-446655440001,Bob Smith,bob@example.com,bob_s,hashed_password_2,0
+550e8400-e29b-41d4-a716-446655440002,Carol Davis,carol@example.com,carol_d,hashed_password_3,1
+550e8400-e29b-41d4-a716-446655440003,David Wilson,david@example.com,david_w,hashed_password_4,0
+550e8400-e29b-41d4-a716-446655440004,Emma Brown,emma@example.com,emma_b,hashed_password_5,0
+550e8400-e29b-41d4-a716-446655440005,Frank Miller,frank@example.com,frank_m,hashed_password_6,1
+550e8400-e29b-41d4-a716-446655440006,Grace Lee,grace@example.com,grace_l,hashed_password_7,0
+550e8400-e29b-41d4-a716-446655440007,Henry Taylor,henry@example.com,henry_t,hashed_password_8,0

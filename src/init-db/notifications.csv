@@ -1,0 +1,11 @@
+Id,ParticipationId,Text,SentAt,Type
+850e8400-e29b-41d4-a716-446655440000,750e8400-e29b-41d4-a716-446655440000,Your participation in Tech Conference 2025 has been confirmed,2025-02-01T10:00:00Z,0
+850e8400-e29b-41d4-a716-446655440001,750e8400-e29b-41d4-a716-446655440001,Reminder: Tech Conference 2025 starts in 7 days,2025-03-08T09:00:00Z,1
+850e8400-e29b-41d4-a716-446655440002,750e8400-e29b-41d4-a716-446655440002,Your participation in Tech Conference 2025 has been rejected,2025-02-05T14:30:00Z,2
+850e8400-e29b-41d4-a716-446655440003,750e8400-e29b-41d4-a716-446655440003,Welcome to Web Development Workshop,2025-02-10T11:00:00Z,0
+850e8400-e29b-41d4-a716-446655440004,750e8400-e29b-41d4-a716-446655440004,Update: Web Development Workshop rescheduled to 2025-02-21,2025-02-15T16:00:00Z,3
+850e8400-e29b-41d4-a716-446655440005,750e8400-e29b-41d4-a716-446655440005,Thank you for attending Database Design Seminar,2025-03-23T15:00:00Z,0
+850e8400-e29b-41d4-a716-446655440006,750e8400-e29b-41d4-a716-446655440006,Your registration for Database Design Seminar is pending approval,2025-02-20T12:00:00Z,1
+850e8400-e29b-41d4-a716-446655440007,750e8400-e29b-41d4-a716-446655440007,Deadline for Python Bootcamp registration extended to 2025-03-25,2025-03-18T09:00:00Z,3
+850e8400-e29b-41d4-a716-446655440008,750e8400-e29b-41d4-a716-446655440008,You have been selected as speaker for Mobile App Development,2025-02-25T13:00:00Z,0
+850e8400-e29b-41d4-a716-446655440009,750e8400-e29b-41d4-a716-446655440009,Your request to participate in Cloud Architecture Summit was declined,2025-02-22T10:30:00Z,2
